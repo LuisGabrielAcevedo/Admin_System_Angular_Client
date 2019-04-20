@@ -1,0 +1,26 @@
+<div style="height: 100%;">
+    <mat-toolbar fxLayout="row" fxLayoutAlign="start center" color="primary">
+        <button type="button" mat-button (click)="sidebar.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Admin System Angular</span>
+      </mat-toolbar>
+    <mat-drawer-container class="container" autosize>
+      <mat-drawer #drawer class="sidenav" mode="over">
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let item of sidebarItems">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{item.name}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+              <p class="sidebarSubItem" (click)="goTo(subItem.route)" *ngFor="let subItem of item.subItems">{{subItem.name}}</p>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-drawer>
+      <router-outlet></router-outlet>
+    </mat-drawer-container>
+</div>
+<app-snackbar></app-snackbar>

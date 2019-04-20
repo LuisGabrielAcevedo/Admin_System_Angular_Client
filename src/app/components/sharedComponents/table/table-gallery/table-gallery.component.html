@@ -1,0 +1,12 @@
+<div>
+    <div class="galleryContainer">
+        <cdk-virtual-scroll-viewport *ngIf="item[field].length > 0" orientation="horizontal" itemSize="50" class="cdkItem">
+            <div class="itemContainer" *cdkVirtualFor="let item of item[field]">
+                <img class="itemImage" src="{{item.imagen}}">
+            </div>
+        </cdk-virtual-scroll-viewport>
+        <div *ngIf="item[field].length === 0">
+            <p>No hay imagenes disponibles</p>
+        </div>
+    </div>
+</div>

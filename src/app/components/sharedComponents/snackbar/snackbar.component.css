@@ -1,0 +1,19 @@
+.snackbarSuccess {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+
+.snackbarError {
+    color: #D8000C;
+    background-color: #FFD2D2;
+}
+
+.snackbarWarning {
+    color: #9F6000 !important;
+    background-color: #FEEFB3 !important;
+}
+
+.snackbarInfo {
+    color: #00529B;
+    background-color: #BDE5F8;
+}

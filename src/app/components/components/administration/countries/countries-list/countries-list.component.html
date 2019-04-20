@@ -1,0 +1,5 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <h2 class="mainTitle">Countries</h2>
+</div>
+<app-table [headers]="headers" [data]="data" [loading]="loading" [rowActions]="rowActions" [addRedirect]="'/administration/countries/form'" [tablePagination]="pagination" (changePage)="changePageAction($event)" 
+    (search)="search($event)"></app-table>

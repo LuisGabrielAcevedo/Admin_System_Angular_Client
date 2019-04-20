@@ -1,0 +1,11 @@
+<div *ngIf="fields" fxLayout="column" fxLayoutAlign="center center">
+    <form>
+        <div *ngFor="let field of fields">
+            <app-form-container 
+            (changeValue)="changeValue($event)"
+            [componentType]="field.type"
+            [componentData]="{inputData: {placeholder:field.placeholder, value: model[field.value], field:field.value}}"
+            ></app-form-container>
+        </div>
+    </form>
+</div>

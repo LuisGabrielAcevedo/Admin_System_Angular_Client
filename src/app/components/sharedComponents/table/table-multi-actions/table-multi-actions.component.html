@@ -1,0 +1,7 @@
+<div class="multiActions" #multiActions fxLayout="row" fxLayoutAlign="space-between center" *ngIf="items.length > 0">
+  <span *ngIf="items.length === 1">{{items.length}} item seleccionado</span>
+  <span *ngIf="items.length > 1">{{items.length}} items seleccionados</span>
+  <button mat-mini-fab color="primary" (click)="unSelect()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>

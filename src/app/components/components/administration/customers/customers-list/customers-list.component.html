@@ -1,0 +1,5 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <h2 class="mainTitle">Customers</h2>
+</div>
+<app-table [headers]="headers" [data]="data" [loading]="loading" [rowActions]="rowActions" [addRedirect]="'/administration/customers/form'" [tablePagination]="pagination" (changePage)="changePageAction($event)" (itemSelected)="itemSelectedAction($event)"
+    (search)="search($event)"></app-table>

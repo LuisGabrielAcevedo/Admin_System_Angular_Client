@@ -1,0 +1,10 @@
+<div fxLayout="column">
+    <div fxLayout="row" class="image__content">
+        <img *ngIf="!fileSelected" src="{{defaultImage}}"/>
+        <img *ngIf="fileSelected" src="{{fileSelected}}"/>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <input style="display: none;" #fileInput type="file" (change)="fileChangeEvent($event)">
+        <button mat-flat-button color="primary" (click)="fileInput.click()">Seleccione una imagen</button>
+    </div>
+</div>

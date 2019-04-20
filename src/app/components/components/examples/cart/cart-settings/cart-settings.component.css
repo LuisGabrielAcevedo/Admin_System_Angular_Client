@@ -1,0 +1,29 @@
+.cartSettings__sidebar {
+  position: absolute;
+  padding-top: 10px;
+  height: 100%;
+  background: rgb(232, 232, 232);
+  width: 74px;
+  right: 0;
+  top: 0
+}
+
+.cartSettings__container {
+  height: 100%;
+  max-width: 100%;
+  overflow-y: scroll;
+  margin-right: 74px;
+  background: #3f51b5;
+  padding: 5px;
+}
+
+.cartSettings__sidebarItem {
+  height: 50px;
+  text-align: center;
+  width: 100%;
+}
+
+.cartSettins_sidebarIcon {
+  margin-top: 14px;
+  margin-right: 7px;
+}

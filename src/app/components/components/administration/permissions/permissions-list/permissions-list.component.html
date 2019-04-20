@@ -1,0 +1,14 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <h2 class="mainTitle">Permisos</h2>
+</div>
+<app-table 
+[headers]="headers" 
+[data]="data" 
+[loading]="loading"
+[rowActions]="rowActions"
+[addRedirect]="'/administration/permissions/form'"
+[tablePagination]="pagination"
+(changePage)="changePageAction($event)"
+(itemSelected)="itemSelectedAction($event)"
+(search)="search($event)"
+></app-table>

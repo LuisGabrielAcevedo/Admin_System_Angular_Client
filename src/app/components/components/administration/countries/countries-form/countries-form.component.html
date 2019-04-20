@@ -1,0 +1,53 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <h2 class="mainTitle">Pais</h2>
+</div>
+
+<form localForm [formGroup]="form">
+
+    <div fxLayout="row" fxLayout.lt-sm="column" class="form__content">
+
+        <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" class="form__content__div">
+            <div fxLayout="column">
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre del Pais</mat-label>
+                    <input matInput formControlName="name" placeholder="Nombre">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Iniciales del Nombre</mat-label>
+                    <input matInput formControlName="nameInitials" placeholder="Iniciales del Nombre">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Capital</mat-label>
+                    <input matInput formControlName="capital" placeholder="Capital">
+                </mat-form-field>
+            </div>
+        </div>
+
+
+        <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" class="form__content__div">
+            <div fxLayout="column">
+                <mat-form-field appearance="outline">
+                    <mat-label>Idioma</mat-label>
+                    <input matInput formControlName="language" placeholder="Idioma">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Moneda</mat-label>
+                    <input matInput formControlName="currency" placeholder="Moneda">
+                </mat-form-field>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div fxLayout="row" fxLayoutAlign="center center" class="form__footer">
+        <button mat-flat-button color="primary" (click)="volver()">Volver</button>
+        <button mat-flat-button color="primary" (click)="buttonActionCountry()">{{item? 'Actualizar' : 'Guardar' }}</button>
+        <mat-spinner diameter="30" *ngIf="loading"></mat-spinner>
+    </div>
+
+</form>

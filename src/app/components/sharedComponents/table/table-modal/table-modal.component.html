@@ -1,0 +1,26 @@
+<div class="modalFondo">
+  <div class="modalContainer">
+    <div *ngIf="modalData.number === 1" fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-icon-button color="primary" (click)="close()">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+      <span>{{modalData.question}}</span>
+      <mat-divider></mat-divider>
+      <button mat-flat-button color="primary" (click)="modalSuccesActions()">Yes</button>
+      <button mat-flat-button color="primary" (click)="close()">No</button>
+    </div>
+    <div *ngIf="modalData.number === 2">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <button mat-icon-button color="primary" (click)="close()">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+        <div *ngFor="let button of modalData.buttons" (click)="buttonActions(button)" fxLayout="column" fxLayoutAlign="space-between center" class="buttons" [ngClass]="{'selectButton': buttonSelected === button.icon}">
+          <button mat-icon-button color="primary">
+            <mat-icon>{{button.icon}}</mat-icon>
+          </button>
+          <span>{{button.label}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

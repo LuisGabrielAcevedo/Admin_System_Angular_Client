@@ -1,0 +1,44 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+  <h2 class="mainTitle">Administrador</h2>
+</div>
+
+<form adminForm [formGroup]="forma">
+  <div fxLayout="row" fxLayout.lt-sm="column" class="form__content" fxLayoutAlign="center center">
+    <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" *ngIf="item" class="form__content__div">
+      <div fxLayout="column" fxLayoutAlign="center center">
+          <h4 style="margin-top: 0">Foto de perfil</h4>
+          <app-upload-files [defaultImage]="item.profileImage.url" (fileSelectedEvent)="setFile($event)"></app-upload-files>
+      </div>
+    </div>
+    <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50">
+      <div fxLayout="column">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Email">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Usuario</mat-label>
+          <input matInput formControlName="userName" placeholder="Usuario">
+        </mat-form-field>
+        <mat-form-field *ngIf="!item" appearance="outline">
+          <mat-label>Clave</mat-label>
+          <input matInput formControlName="password" placeholder="Clave">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="firstName" placeholder="Nombre">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido</mat-label>
+          <input matInput formControlName="lastName" placeholder="Apellido">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center" class="form__footer">
+    <button mat-flat-button color="primary" (click)="volver()">Volver</button>
+    <button mat-flat-button color="primary" (click)="buttonActionAdmin()">{{item? 'Actualizar' : 'Guardar' }}</button>
+    <mat-spinner diameter="30" *ngIf="loading"></mat-spinner>
+  </div>
+</form>

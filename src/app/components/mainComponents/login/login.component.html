@@ -1,0 +1,51 @@
+<div class="login-register">
+
+
+
+    <form localForm [formGroup]="form">
+        <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="50" class="form__content__div">
+
+            <mat-card class="login-box">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <h2 class="box-title">Iniciar sesion</h2>
+                </div>
+                <br/>
+                <div fxLayout="column" fxLayoutAlign="space-around center">
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" placeholder="Nombre" size="95">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Clave</mat-label>
+                        <input matInput type="password" formControlName="clave" placeholder="Clave">
+                    </mat-form-field>
+
+                    <mat-checkbox>
+
+                        <!-- <input [formControlName]="'recuerdame'" name="recuerdame" type="checkbox"> -->
+                        <label for="checkbox-signup"> Recuerdame </label>
+                        <a [routerLink]="['/users','forgotpassword']" title="Olvido su clave?" onMouseover="this.style.color='blue'" onMouseout="this.style.color='black'"><i class="material-icons">lock</i>  </a>
+                    </mat-checkbox>
+
+
+                    <br/>
+
+
+
+
+
+                    <button mat-flat-button color="primary" (click)="volver()">Aceptar</button>
+                    <br/>
+                    <!-- <a [routerLink]="['/users','forgotpassword']" id="to-recover" class="text-dark pull-right">
+                        <i class="material-icons">lock</i> Olvido su clave?</a> -->
+
+
+                </div>
+            </mat-card>
+
+        </div>
+
+    </form>
+</div>

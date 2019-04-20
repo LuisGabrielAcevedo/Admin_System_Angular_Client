@@ -1,0 +1,40 @@
+.container {
+    /* background-color: #fafafa; */
+    background-color: #070101;
+    margin: 1rem;
+    padding: 1rem;
+    border: 2px solid #ccc;
+    width: 50%;
+    left: 300px;
+    right: 30px;
+    /* IMPORTANTE */
+    text-align: center;
+}
+
+.login-box {
+    background-color: #c2c1c1cc;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 5%;
+    border-radius: 10px;
+}
+
+.login-register {
+    background: url(../../../../assets/images/fondo_prueba.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+    padding: 2% 0;
+    /*padding: 10% 0*/
+    position: fixed;
+}
+
+.text-dark {
+    color: #343a40 !important;
+}
+
+.pull-right {
+    float: right !important;
+}
