@@ -1,54 +1,59 @@
-<div class="table">
-  <!-- general actions -->
-  <!-- search -->
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <mat-form-field class="example-form-field" appearance="outline">
-      <mat-label>Buscar</mat-label>
-      <input matInput placeholder="Buscar" [formControl]="searchValue" (keydown.enter)="$event.preventDefault(); $event.stopPropagation()">
-    </mat-form-field>
-    <button mat-mini-fab color="primary" [routerLink]="[addRedirect]">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
-  <!-- headers -->
-  <div class="table_header" fxLayout="row" fxLayoutAlign="space-between center">
-    <span *ngIf="multiSelect" class="table_short">
-      <mat-checkbox color="primary" #mainCheckbox (click)="checkedAllAction()"></mat-checkbox>
-    </span>
-    <span class="table_short">#</span>
-    <span *ngFor="let header of headersFormated" [ngClass]="header.class">{{header.label}}</span>
-  </div>
-  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-  <!-- data -->
-  <div #tableData class="table_data">
-    <div class="table_data_row" *ngFor="let item of data; index as i">
-      <app-table-modal [modalData]="modalSelected" (openModal)="assignModal($event)" (itemToOutput)="itemOutput($event)" [position]="i" [item]="item" (activeComponent)="activeComponent($event)"
-        (closeModal)="resetModal()" *ngIf="modalSelected.row === i+1"></app-table-modal>
-      <div class="table_data_header" fxLayouttable="row" fxLayoutAlign="space-between center">
-        <span *ngIf="multiSelect" class="table_short">
-          <mat-checkbox #checkbox color="primary" (click)="$event.stopPropagation(); selectItem(i)"></mat-checkbox>
-        </span>
-        <span class="table_short">{{i + 1}}</span>
-        <div *ngFor="let data of dataFormated" [ngClass]="data.rowClass">
-          <app-table-container [componentType]="data.type" [componentData]="{inputData: {item:item, field: data.value, button:data.button, position:i}}"
-            (openModal)="assignModal($event)" (itemToOutput)="itemOutput($event)"></app-table-container>
-        </div>
-        <!-- <div *ngFor="let button of rowActions">
-          <app-table-button [buttonData]="button" [item]="item" [position]="i" (openModal)="assignModal($event)" (itemToOutput)="itemOutput($event)"></app-table-button>
-        </div> -->
+<div class="table_content">
+  <div class="table_scroll">
+    <div class="table">
+      <!-- general actions -->
+      <!-- search -->
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-form-field class="example-form-field" appearance="outline">
+          <mat-label>Buscar</mat-label>
+          <input matInput placeholder="Buscar" [formControl]="searchValue" (keydown.enter)="$event.preventDefault(); $event.stopPropagation()">
+        </mat-form-field>
+        <button mat-mini-fab color="primary" [routerLink]="[addRedirect]">
+          <mat-icon>add</mat-icon>
+        </button>
       </div>
-      <app-table-container *ngIf="rowSubItemSelected.position === i+1" [componentType]="rowSubItemSelected.data.type" [componentData]="{inputData: {item:item, field: rowSubItemSelected.data.value, position:i}}"></app-table-container>
+      <!-- headers -->
+      <div class="table_header" fxLayout="row" fxLayoutAlign="space-between center">
+        <span *ngIf="multiSelect" class="table_short">
+          <mat-checkbox color="primary" #mainCheckbox (click)="checkedAllAction()"></mat-checkbox>
+        </span>
+        <span class="table_short">#</span>
+        <span *ngFor="let header of headersFormated" [ngClass]="header.class">{{header.label}}</span>
+      </div>
+      <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+      <!-- data -->
+      <div #tableData class="table_data">
+        <div class="table_data_row" *ngFor="let item of data; index as i">
+          <app-table-modal [modalData]="modalSelected" (openModal)="assignModal($event)" (itemToOutput)="itemOutput($event)"
+            [position]="i" [item]="item" (activeComponent)="activeComponent($event)" (closeModal)="resetModal()" *ngIf="modalSelected.row === i+1"></app-table-modal>
+          <div class="table_data_header" fxLayouttable="row" fxLayoutAlign="space-between center">
+            <span *ngIf="multiSelect" class="table_short">
+              <mat-checkbox #checkbox color="primary" (click)="$event.stopPropagation(); selectItem(i)"></mat-checkbox>
+            </span>
+            <span class="table_short">{{i + 1}}</span>
+            <div *ngFor="let data of dataFormated" [ngClass]="data.rowClass">
+              <app-table-container [componentType]="data.type" [componentData]="{inputData: {item:item, field: data.value, button:data.button, position:i}}"
+                (openModal)="assignModal($event)" (itemToOutput)="itemOutput($event)"></app-table-container>
+            </div>
+            <!-- <div *ngFor="let button of rowActions">
+              <app-table-button [buttonData]="button" [item]="item" [position]="i" (openModal)="assignModal($event)" (itemToOutput)="itemOutput($event)"></app-table-button>
+            </div> -->
+          </div>
+          <app-table-container *ngIf="rowSubItemSelected.position === i+1" [componentType]="rowSubItemSelected.data.type"
+            [componentData]="{inputData: {item:item, field: rowSubItemSelected.data.value, position:i}}"></app-table-container>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center" *ngIf="data && data.length === 0">
+        <p>No hay datos encontrados</p>
+      </div>
+      <!-- paginator -->
+      <div fxLayout="row" fxLayoutAlign="center center" *ngIf="tablePagination">
+        <app-table-paginator [tablePagination]="tablePagination" (changePage)="changePageAction($event)"></app-table-paginator>
+      </div>
+    </div>
+    <!-- multi actions -->
+    <div fxLayout="row">
+      <app-table-multi-actions [colors]="colors" [items]="itemsSelected" (unSelectItems)="unSelectItems()"></app-table-multi-actions>
     </div>
   </div>
-  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="data && data.length === 0">
-      <p>No hay datos encontrados</p>
-  </div>
-  <!-- paginator -->
-  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="tablePagination" >
-    <app-table-paginator [tablePagination]="tablePagination" (changePage)="changePageAction($event)"></app-table-paginator>
-  </div>
-</div>
-<!-- multi actions -->
-<div fxLayout="row">
-  <app-table-multi-actions [colors]="colors" [items]="itemsSelected" (unSelectItems)="unSelectItems()"></app-table-multi-actions>
 </div>

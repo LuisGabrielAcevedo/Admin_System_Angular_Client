@@ -19,6 +19,7 @@ export class TableTextComponent implements OnInit {
   }
 
   async formatText() {
-    this.text = await this.httpTableService.formatText(this.item, this.field);
+    const text = await this.httpTableService.formatText(this.item, this.field);
+    this.text = text.length > 22 ? `${text.substr(0, 22)}...` : text;
   }
 }
