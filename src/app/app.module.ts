@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { AppStoreModule } from './store/store.module';
 import { AdminSystemInterceptor } from './configurations/http.interceptor';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
+const config: SocketIoConfig = { url: 'https://adminsystemsocketsserver.herokuapp.com', options: {} };
 
 @NgModule({
   declarations: [
