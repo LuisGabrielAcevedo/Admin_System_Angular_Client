@@ -10,15 +10,20 @@ export class TableImageComponent implements OnInit {
   @Input() field: string;
   @Input() item: object;
   image;
-  constructor( private httpTableService: TableService) {}
+  image2;
+  constructor( private httpTableService: TableService) {
+    this.image = null;
+    this.image2 = null;
+  }
 
   ngOnInit() {
-    // this.formatImage();
+    this.formatImage();
   }
 
   async formatImage() {
-    // const image = await this.httpTableService.formatText(this.item, this.field);
-    // this.image = 'src/assets/images/user.png';
+    const image = await this.httpTableService.formatText(this.item, this.field);
+    if (image.includes('mla')) {
+      this.image2 = image;
+    }
   }
-
 }

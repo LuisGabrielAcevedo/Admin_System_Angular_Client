@@ -1,3 +1,4 @@
 <div class="imagenContainer">
-  <img src="../../../../assets/images/user.png">
+  <img src="../../../../assets/images/user.png" *ngIf="!image2">
+  <img src="{{image2}}" *ngIf="image2">
 </div>
