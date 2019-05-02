@@ -1,10 +1,18 @@
-<div fxLayout="row" fxLayoutAlign="center center">
-  <h2 class="mainTitle">Youtube Api</h2>
+<div class="example-boundary">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <h2 class="mainTitle">Youtube Api</h2>
+  </div>
+  <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+    <iframe #iframe src="https://www.youtube.com/embed/RB-RcX5DS5A">
+    </iframe>
+  </div>
+  <app-table 
+  [colors]="colors" 
+  [headers]="headers" 
+  [data]="data" 
+  [loading]="loading" 
+  (search)="loadVideos($event)"
+  [rowActions]="rowActions"
+  (itemSelected)="itemSelectedAction($event)"
+  ></app-table>
 </div>
-<app-table
-[colors]="colors"
-[headers]="headers"
-[data]="data"
-[loading]="loading"
-(search)="loadVideos($event)"
-></app-table>

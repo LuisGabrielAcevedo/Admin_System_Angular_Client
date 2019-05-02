@@ -2,6 +2,7 @@ import { IImage } from 'src/app/inferfaces/images';
 import { IApplication } from './application';
 import { IUser } from './user';
 import { ICountry } from './country';
+import { ILocal } from './local';
 
 export interface ICompany {
     _id?: string;
@@ -10,8 +11,10 @@ export interface ICompany {
     logo?: IImage;
     createAt?: string;
     updateAt?: string;
-    profileImage?: string;
-    currency?: string;
+    deletedAt?: string;
+    profileImage?: IImage;
+    currencies?: string[];
+    stores: ILocal[];
     admin?: IUser;
     application: IApplication;
 }

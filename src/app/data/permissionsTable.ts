@@ -1,8 +1,8 @@
 import { TableHeader, TableButtonAction } from '../components/sharedComponents/table/table.interfaces';
 export const PermissionsTableHeader: TableHeader[] = [
     {
-        label: 'Modulo',
-        value: 'module',
+        label: 'Id',
+        value: '_id',
         type: 'TableTextComponent',
         class: 'table_long'
     },
@@ -13,11 +13,12 @@ export const PermissionsTableHeader: TableHeader[] = [
         class: 'table_long'
     },
     {
-        label: 'Id',
-        value: '_id',
+        label: 'Modulo',
+        value: 'module',
         type: 'TableTextComponent',
         class: 'table_long'
     }
+    
 ];
 
 export const PermissionRowActions: TableButtonAction[] = [

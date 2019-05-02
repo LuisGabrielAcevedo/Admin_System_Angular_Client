@@ -61,7 +61,7 @@ export class UsersFormComponent implements OnInit {
         userName: new FormControl(this.item.userName),
         firstName: new FormControl(this.item.firstName),
         lastName: new FormControl(this.item.lastName),
-        rol: new FormControl(this.item.rol ? this.item.rol._id : undefined),
+        role: new FormControl(this.item.role ? this.item.role._id : undefined),
         company: new FormControl(this.item.company ? this.item.company._id : null),
         application: new FormControl({
           value: this.item.application ? this.item.application._id : undefined,
@@ -85,8 +85,7 @@ export class UsersFormComponent implements OnInit {
         userName: new FormControl(''),
         firstName: new FormControl('', [Validators.required]),
         lastName: new FormControl('', [Validators.required]),
-        language: new FormControl(''),
-        rol: new FormControl(''),
+        role: new FormControl(''),
         company: new FormControl('', [Validators.required]),
         application: new FormControl('', [Validators.required])
       });
@@ -113,8 +112,8 @@ export class UsersFormComponent implements OnInit {
       }),
 
       // cargamos la lista de Roles para el selector
-      this.roleSandbox.fetchRolesList().subscribe(role => {
-        this.rolesList = role;
+      this.roleSandbox.fetchRolesList().subscribe(roles => {
+        this.rolesList = roles;
       })
     );
   }

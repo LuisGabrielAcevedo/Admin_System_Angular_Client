@@ -8,7 +8,13 @@ export const RolesTableHeader: TableHeader[] = [
         class: 'table_long'
     },
     {
-        label: 'Comapañia',
+        label: 'Descripcion',
+        value: 'description',
+        type: 'TableTextComponent',
+        class: 'table_long'
+    },
+    {
+        label: 'Compañia',
         value: 'company.name',
         type: 'TableTextComponent',
         class: 'table_long'

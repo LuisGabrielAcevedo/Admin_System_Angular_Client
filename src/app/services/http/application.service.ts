@@ -10,7 +10,7 @@ import { TablePagination } from 'src/app/components/sharedComponents/table/table
 @Injectable()
 export class ApplicationService {
     public url;
-    public loadRequestData: ILoadRequest = JSON.parse(JSON.stringify(loadRequestDataDefault));
+    public loadRequestData: ILoadRequest = {...loadRequestDataDefault};
     constructor(private http: HttpClient) {
         this.url = Global.url_api;
     }
@@ -68,7 +68,7 @@ export class ApplicationService {
     }
 
     resetLoadRequest(): Observable<any> {
-        this.loadRequestData = JSON.parse(JSON.stringify(loadRequestDataDefault));
+        this.loadRequestData = {...loadRequestDataDefault};
         return of('change loadResquest');
     }
 }

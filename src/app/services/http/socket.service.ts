@@ -12,12 +12,12 @@ export class SocketService {
 
     checkStatus() {
         this.socket.on('connect', () => {
-            console.log('conectado');
+            // console.log('conectado');
             this.socketStatus = true;
         })
 
         this.socket.on('disconnect', () => {
-            console.log('Desconectado');
+            // console.log('Desconectado');
             this.socketStatus = false;
         })
     }

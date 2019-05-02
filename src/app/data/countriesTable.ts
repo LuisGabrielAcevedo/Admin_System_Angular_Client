@@ -1,7 +1,5 @@
 import { TableHeader, TableButtonAction } from '../components/sharedComponents/table/table.interfaces';
 export const CountriesTableHeader: TableHeader[] = [
-
-
     {
         label: 'Pais',
         value: 'name',

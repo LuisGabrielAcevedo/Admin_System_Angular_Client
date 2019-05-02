@@ -23,7 +23,8 @@ export class TableButtonComponent implements OnInit {
 
   buttonActions() {
     if (this.buttonData.event) {
-      this.buttonData.event();
+      console.log('aqui');
+      this.buttonData.event(this.item);
     }
     if (this.buttonData.modal) {
       const data: TableButtonOuputAction = {

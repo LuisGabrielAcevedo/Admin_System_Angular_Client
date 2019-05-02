@@ -34,7 +34,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 30px;
     height: 30px;
     margin-right: 30px;
-    border: 1px solid #eee;
 }
 
 .form__options_loading {

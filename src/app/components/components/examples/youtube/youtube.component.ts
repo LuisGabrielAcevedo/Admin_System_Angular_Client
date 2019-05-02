@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TableHeader, TableButtonAction } from '../../../sharedComponents/table/table.interfaces';
 import { YoutubeHeader } from '../../../../data/youtube';
 import { YoutubeService } from '../../../../services/exampleEndPoints/http.youtube';
@@ -14,13 +14,16 @@ export class YoutubeComponent implements OnInit {
   colors = ['#E3F2FD', '#64B5F6', '#1976D2'];
   loading = false;
   rowActions: TableButtonAction[];
-  constructor( private httpYoutubeService: YoutubeService) { }
+  videoSelected: string = null;
+  @ViewChild('iframe') iframe: ElementRef;
+  constructor( private httpYoutubeService: YoutubeService) {}
 
   ngOnInit() {
     this.loadVideos('coldplay');
   }
 
   loadVideos(value?: string) {
+    this.rowActions = this.httpYoutubeService.getRowActions();
     this.loading = true;
     this.httpYoutubeService.getVideos(value).subscribe(
       resp => {
@@ -28,6 +31,12 @@ export class YoutubeComponent implements OnInit {
         this.data = resp.items.filter( video => video.id.kind === 'youtube#video');
       }
     );
+  }
+
+  itemSelectedAction(data: any) {
+    console.log(data);
+    const url = `https://www.youtube.com/embed/${data.item.id.videoId}`;
+    this.iframe.nativeElement.src = url;
   }
 
 }

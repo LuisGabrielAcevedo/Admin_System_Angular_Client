@@ -22,8 +22,8 @@ export class TableImageComponent implements OnInit {
 
   async formatImage() {
     const image = await this.httpTableService.formatText(this.item, this.field);
-    if (image.includes('mla')) {
-      this.image2 = image;
+    if (image) {
+      if (image.includes('mla') || image.includes('ytimg')) this.image2 = image;
     }
   }
 }

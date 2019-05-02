@@ -23,12 +23,21 @@ import {
   TableButtonOuputAction,
   ActiveComponentOutputAction,
   TablePagination,
-  TableOutputItemData
+  TableOutputItemData,
+  TableMobileHeader,
+  TableMobileDataDefault
 } from './table.interfaces';
+// @ts-ignore
+import templateDesktop from './table.component.html';
+// @ts-ignore
+import templateMobile from './table.mobile.component.html';
+import { TableService } from './table.service';
+
+const template = window.screen.width < 600 ? templateMobile : templateDesktop;
 
 @Component({
   selector: 'app-table',
-  templateUrl: './table.component.html',
+  templateUrl: templateDesktop,
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements AfterViewInit, OnChanges {
@@ -39,6 +48,7 @@ export class TableComponent implements AfterViewInit, OnChanges {
   checkedAll: boolean = null;
   dataFormated: TableDataFormated[] = [];
   headersFormated: TableHeader[] = [];
+  mobileHeaders: TableMobileHeader = null;
   modalSelected: TableModal = {
     row: 0,
     number: 1
@@ -66,14 +76,14 @@ export class TableComponent implements AfterViewInit, OnChanges {
   @ViewChildren('checkbox') checkboxes: QueryList<MatCheckbox>;
   @ViewChild('mainCheckbox') mainCheckbox: MatCheckbox;
 
-  constructor() {
+  constructor(public httpTableService: TableService ) {
     this.addRedirect = '';
-   }
+  }
 
   ngAfterViewInit() {
     this.subscriptions.push(
       this.searchValue.valueChanges
-        .pipe(debounceTime(500))
+        .pipe(debounceTime(200))
         .subscribe(newValue => {
           this.search.emit(newValue);
         })
@@ -82,6 +92,7 @@ export class TableComponent implements AfterViewInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.addButtons();
+    //this.addButtonsMobile();
   }
 
   addButtons() {
@@ -111,6 +122,18 @@ export class TableComponent implements AfterViewInit, OnChanges {
         });
       });
     }
+  }
+
+  addButtonsMobile() {
+    let tableMobileData: TableMobileHeader = { ...TableMobileDataDefault };
+    const existImage = this.headers.find(header => header.type === "TableImageComponent");
+    tableMobileData.image = existImage ? existImage.value : null;
+    const headerFiltered = existImage ? this.headers.filter(header => header.type !== "TableImageComponent"): this.headers;
+    tableMobileData.title = headerFiltered[0].value;
+    tableMobileData.subtitle = headerFiltered[1].value;
+    tableMobileData.description = headerFiltered[2].value;
+    this.mobileHeaders = tableMobileData;
+    console.log(this.mobileHeaders);
   }
 
   openRow(i: number) {
@@ -220,6 +243,10 @@ export class TableComponent implements AfterViewInit, OnChanges {
 
   itemOutput(data: TableOutputItemData) {
     this.itemSelected.emit(data);
+  }
+
+  formatText(item: object, field: string) {
+    return this.httpTableService.formatText(item,field);
   }
 }
 

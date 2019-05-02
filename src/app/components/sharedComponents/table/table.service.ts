@@ -8,47 +8,51 @@ export class TableService {
     constructor(private http: HttpClient) {
     }
 
-    formatText(item: object, field: string): Promise<string> {
+    formatText(item: object, field: string) {
         let text = '';
-        return new Promise((resolve, reject) => {
-            if (field.indexOf('.') !== -1) {
+        if (field.indexOf('.') !== -1) {
             const fieldSplit_1 = field.split('.');
             if (!item[fieldSplit_1[0]]) {
-                resolve(text);
+                return text;
             }
             switch (fieldSplit_1.length) {
                 case 1:
-                text = item[fieldSplit_1[0]];
-                break;
+                    text = item[fieldSplit_1[0]];
+                    break;
                 case 2:
-                text = item[fieldSplit_1[0]][fieldSplit_1[1]];
-                break;
+                    text = item[fieldSplit_1[0]][fieldSplit_1[1]];
+                    break;
                 case 3:
-                text = item[fieldSplit_1[0]][fieldSplit_1[1]][fieldSplit_1[2]];
-                break;
+                    text = item[fieldSplit_1[0]][fieldSplit_1[1]][fieldSplit_1[2]];
+                    break;
                 case 4:
-                text = item[fieldSplit_1[0]][fieldSplit_1[1]][fieldSplit_1[2]][fieldSplit_1[3]];
-                break;
+                    text = item[fieldSplit_1[0]][fieldSplit_1[1]][fieldSplit_1[2]][fieldSplit_1[3]];
+                    break;
             }
-            resolve(text);
-            } else if (field.indexOf(',') !== -1) {
-                const fieldSplit_2 = field.split(',');
-                fieldSplit_2.forEach(element => {
-                    text += item[element] + ' ';
-                });
-                resolve(text);
-            } else if (field.indexOf('/a/') !== -1) {
-                const fieldSplit_3 = field.split('/a/');
-                text = item[fieldSplit_3[0]] + ' ' + fieldSplit_3[1];
-                resolve(text);
-            } else if (field.indexOf('/b/') !== -1) {
-                const fieldSplit_3 = field.split('/b/');
-                text = fieldSplit_3[1] + ' ' + item[fieldSplit_3[0]];
-                resolve(text);
-            } else {
-                text = item[field];
-                resolve(text);
-            }
-        });
+            return text;
+        } else if (field.indexOf(',') !== -1) {
+            const fieldSplit_2 = field.split(',');
+            fieldSplit_2.forEach(element => {
+                text += item[element] + ' ';
+            });
+            return text;
+        } else if (field.indexOf('/a/') !== -1) {
+            const fieldSplit_3 = field.split('/a/');
+            text = item[fieldSplit_3[0]] + ' ' + fieldSplit_3[1];
+            return text;
+        } else if (field.indexOf('/b/') !== -1) {
+            const fieldSplit_3 = field.split('/b/');
+            text = fieldSplit_3[1] + ' ' + item[fieldSplit_3[0]];
+            return text;
+        } else if (field.indexOf("[]") !== -1) {
+            const fieldSplit5 = field.split("[]");
+            item[fieldSplit5[0]].forEach((i) => {
+                text = text + " " + i
+            });
+            return text;
+        } else {
+            text = item[field];
+            return text;
+        }
     }
 }

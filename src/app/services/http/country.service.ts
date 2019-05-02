@@ -27,15 +27,15 @@ export class CountryService {
 
 
     saveCountry(country: ICountry): Observable<any> {
-        return this.http.post<any>(`${this.url}/country`, country);
+        return this.http.post<any>(`${this.url}/countries`, country);
     }
 
     updateCountry(country: ICountry): Observable<any> {
-        return this.http.put<any>(`${this.url}/country/${country._id}`, country);
+        return this.http.put<any>(`${this.url}/countries/${country._id}`, country);
     }
 
     deleteCountry(country: ICountry): Observable<any> {
-        return this.http.delete<any>(`${this.url}/country/${country._id}`);
+        return this.http.delete<any>(`${this.url}/countries/${country._id}`);
     }
 
     changePagination(pagination: TablePagination): Observable<any> {

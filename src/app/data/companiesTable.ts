@@ -13,8 +13,14 @@ export const CompaniesTableHeader: TableHeader[] = [
         class: 'table_long'
     },
     {
+        label: 'Pais',
+        value: 'country.name',
+        type: 'TableTextComponent',
+        class: 'table_long'
+    },
+    {
         label: 'Moneda',
-        value: 'currency',
+        value: 'currencies[]',
         type: 'TableTextComponent',
         class: 'table_long'
     }

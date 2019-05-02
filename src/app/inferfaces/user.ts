@@ -12,12 +12,19 @@ export interface IUser {
     lastName: string;
     createAt?: string | null;
     updateAt?: string | null;
-    documentType?: string | null;
-    documentNumber?: string | null;
-    rol: IRole;
+    deletedAt?: string | null;
+    ApplicationRole: string;
+    token: string;
+    role: IRole;
     company: ICompany;
     application: IApplication;
-    language?: string | null;
     profileImage?: IImage;
     isActive?: boolean;
+    userConfigurations:IUserConfiguration;
+}
+
+export interface IUserConfiguration {
+    language: string;
+    currentStore: string;
+    paletteSelected: number;
 }

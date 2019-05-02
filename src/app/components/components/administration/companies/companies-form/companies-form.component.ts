@@ -22,6 +22,7 @@ export class CompaniesFormComponent implements OnInit, OnDestroy {
   item: ICompany;
   loading: boolean;
   applicationsList: IApplication[];
+  currenciesList: string[] = ['BS S', 'AR $', 'US $'];
   usersList: any[] = [];
   compareFn: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
   countriesList: ICountry[] = [];
@@ -48,7 +49,7 @@ export class CompaniesFormComponent implements OnInit, OnDestroy {
         name: new FormControl(this.item.name),
         country: new FormControl({ value: this.item.country ? this.item.country._id : undefined, disabled: true }),
         application: new FormControl({ value: this.item.application ? this.item.application._id : undefined, disabled: true }),
-        currency: new FormControl(this.item.currency),
+        currencies: new FormControl({value: this.item.currencies, disabled: true}),
         admin: new FormControl(this.item.admin ? this.item.admin._id : undefined)
       });
     } else {
@@ -56,7 +57,7 @@ export class CompaniesFormComponent implements OnInit, OnDestroy {
         name: new FormControl('', [Validators.required]),
         country: new FormControl('', [Validators.required]),
         application: new FormControl('', [Validators.required]),
-        currency: new FormControl('')
+        currencies: new FormControl([])
       });
     }
   }

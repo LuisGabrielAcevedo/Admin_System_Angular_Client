@@ -14,7 +14,7 @@ export class UploadFilesComponent implements OnInit {
 
   ngOnInit() {
     if (!this.defaultImage) {
-      this.defaultImage = 'https://soygrowers.com/wp-content/uploads/2017/02/default_bio_600x600.jpg';
+      this.defaultImage = '../../../../assets/images/default.png';
     }
   }
 

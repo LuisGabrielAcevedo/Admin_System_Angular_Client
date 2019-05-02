@@ -22,7 +22,7 @@ export class LocalService {
                 params = params.set(param, this.loadRequestData[param]);
             }
         }
-        return this.http.get<any>(`${this.url}/locals`, {params});
+        return this.http.get<any>(`${this.url}/stores`, {params});
     }
 
     getLocalsList(loadRequestData: ILoadRequest): Observable<any> {
@@ -40,19 +40,19 @@ export class LocalService {
                 }
             }
         }
-        return this.http.get<any>(`${this.url}/locals/search/all-list`, {params});
+        return this.http.get<any>(`${this.url}/stores/search/all-list`, {params});
     }
 
     saveLocal(local: ILocal): Observable<any> {
-        return this.http.post<any>(`${this.url}/locals`, local);
+        return this.http.post<any>(`${this.url}/stores`, local);
     }
 
     updateLocal(local: ILocal): Observable<any> {
-        return this.http.put<any>(`${this.url}/locals/${local._id}`, local);
+        return this.http.put<any>(`${this.url}/stores/${local._id}`, local);
     }
 
     deleteLocal(local: ILocal): Observable<any> {
-        return this.http.delete<any>(`${this.url}/locals/${local._id}`);
+        return this.http.delete<any>(`${this.url}/stores/${local._id}`);
     }
 
     changePagination(pagination: TablePagination): Observable<any> {

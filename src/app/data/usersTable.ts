@@ -20,7 +20,7 @@ export const UsersTableHeader: TableHeader[] = [
     },
     {
         label: 'Rol',
-        value: 'rol.name',
+        value: 'role.name',
         type: 'TableTextComponent',
         class: 'table_long'
     }
@@ -59,7 +59,7 @@ export const UsersRowActions: TableButtonAction[] = [
                             'Nombre:/b/firstName',
                             'Apellido:/b/lastName',
                             'Empresa:/b/company.name',
-                            'Rol:/b/rol.name',
+                            'Rol:/b/role.name',
                             'Fecha de registro:/b/createAt',
                             'Fecha de Actualizacion:/b/updateAt'
                         ]

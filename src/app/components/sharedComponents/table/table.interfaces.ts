@@ -9,6 +9,14 @@ export interface TableHeader {
     descending?: boolean;
 }
 
+export interface TableMobileHeader {
+    image: string;
+    title: string;
+    subtitle: string;
+    description: string;
+    rightText: string;
+}
+
 export enum TableContainerComponentType {
     Text = 'TableTextComponent',
     Search = 'TableSearchComponent',
@@ -94,4 +102,12 @@ export const TablePaginationDefault: TablePagination = {
     totalItems: 0,
     itemsPerPage: 5
 };
+
+export const TableMobileDataDefault: TableMobileHeader = {
+    image: '',
+    title: '',
+    subtitle: '',
+    description: '',
+    rightText: ''
+}
 

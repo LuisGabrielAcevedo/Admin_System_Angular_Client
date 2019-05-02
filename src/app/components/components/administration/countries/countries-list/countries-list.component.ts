@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CountrySandbox } from '../../../../../sandbox/country.sandbox';
 import { Subscription } from 'rxjs';
 import {
   TableHeader,
@@ -9,6 +8,7 @@ import {
 import { CountriesTableHeader, CountriesRowActions } from 'src/app/data/countriesTable';
 
 import { filter } from 'rxjs/operators';
+import { CountrySandbox } from 'src/app/sandbox/country.sandbox';
 
 
 @Component({
@@ -31,12 +31,10 @@ export class CountriesListComponent implements OnInit, OnDestroy {
       this.countrySandbox.fetchCountries()
         .subscribe(countries => {
           this.data = countries;
-          console.log(this.data);
         }),
       this.countrySandbox.fetchIsLoadingCountries()
         .subscribe(loading => {
           this.loading = loading;
-          console.log(this.loading);
         }),
       this.countrySandbox.fetchPagination()
         .pipe(filter(pagination => pagination !== null))
@@ -63,7 +61,6 @@ export class CountriesListComponent implements OnInit, OnDestroy {
       this.countrySandbox.deleteCountry(data.item);
     }
   }
-
 
   ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());

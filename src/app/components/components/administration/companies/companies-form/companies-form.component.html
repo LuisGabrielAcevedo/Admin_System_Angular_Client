@@ -7,7 +7,7 @@
         <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" class="form__content__div" *ngIf="item">
             <div fxLayout="column" fxLayoutAlign="center center">
                 <h4 style="margin-top: 0">Foto de perfil</h4>
-                <app-upload-files [defaultImage]="item.profileImage.url" (fileSelectedEvent)="setFile($event)"></app-upload-files>
+                <app-upload-files [defaultImage]="item.profileImage" (fileSelectedEvent)="setFile($event)"></app-upload-files>
             </div>
         </div>
         <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" class="form__content__div">
@@ -17,22 +17,18 @@
                     <input matInput formControlName="name" placeholder="Nombre">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>Moneda</mat-label>
-                    <input matInput formControlName="currency" placeholder="Moneda">
+                    <mat-label>Monedas</mat-label>
+                    <mat-select placeholder="Monedas" formControlName="currencies" multiple>
+                        <mat-option *ngIf="currenciesList.length === 0">
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <p>No hay monedas disponibles</p>
+                            </div>
+                        </mat-option>
+                        <mat-option *ngFor="let currency of currenciesList" [value]="currency">{{currency}}</mat-option>
+                    </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Aplicación</mat-label>
-                    <mat-select placeholder="Aplicación" formControlName="application" [compareWith]="compareFn">
-                        <mat-option *ngIf="applicationsList.length === 0">
-                            <div fxLayout="row" fxLayoutAlign="center center">
-                                <p>No hay aplicaciones disponibles</p>
-                            </div>
-                        </mat-option>
-                        <mat-option *ngFor="let application of applicationsList" [value]="application._id">
-                            {{application.name}}
-                        </mat-option>
-                    </mat-select>
-
                     <mat-select placeholder="Aplicación" formControlName="application" [compareWith]="compareFn">
                         <mat-option *ngIf="applicationsList.length === 0">
                             <div fxLayout="row" fxLayoutAlign="center center">

@@ -26,11 +26,11 @@ export class CompanyService {
     }
 
     saveCompany(company: ICompany): Observable<any> {
-        return this.http.post<any>(`${this.url}/company`, company);
+        return this.http.post<any>(`${this.url}/companies`, company);
     }
 
     deleteCompany(company: ICompany): Observable<any> {
-        return this.http.delete<any>(`${this.url}/company/${company._id}`);
+        return this.http.delete<any>(`${this.url}/companies/${company._id}`);
     }
 
     updateCompany(company: ICompany, file?: File): Observable<any> {
@@ -43,7 +43,7 @@ export class CompanyService {
                 formData.append(element, company[element]);
             }
         }
-        return this.http.put<any>(`${this.url}/company/${company._id}`, formData);
+        return this.http.put<any>(`${this.url}/companies/${company._id}`, formData);
     }
 
 
