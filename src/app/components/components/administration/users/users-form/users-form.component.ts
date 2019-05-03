@@ -32,6 +32,7 @@ export class UsersFormComponent implements OnInit {
   compareFn: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
   autocompleteData: IAutocompleteData = {};
   companiesList: any[] = [];
+  image: string = null;
 
   constructor(
     private userSandbox: UserSandbox,
@@ -52,9 +53,10 @@ export class UsersFormComponent implements OnInit {
     });
     // 2. Setear el placeholder para el autocomplete
     this.autocompleteData.placeholder = 'Empresa';
-
     if (this.item) {
-      // 3. Si existe item lleno el formunario con la data de item
+      // 3. Imagen
+      this.image = this.item.profileImage ? this.item.profileImage.url : null;
+      // 4. Si existe item lleno el formunario con la data de item
       this.form = new FormGroup({
         _id: new FormControl(this.item._id),
         email: new FormControl(this.item.email),
@@ -68,13 +70,13 @@ export class UsersFormComponent implements OnInit {
           disabled: this.item.application ? true : false
         })
       });
-      // 4. Si existe item lleno el autocomplete de companies con la data en item
+      // 5. Si existe item lleno el autocomplete de companies con la data en item
       this.autocompleteData.defaultOption = this.item.company;
       this.autocompleteData.disable = this.item.company ? true : false;
       if (this.item.company) {
         this.roleSandbox.loadRolesList({
           filters: {
-            company: this.item.company._id 
+            company: this.item.company._id
           }
         });
       }
@@ -85,9 +87,9 @@ export class UsersFormComponent implements OnInit {
         userName: new FormControl(''),
         firstName: new FormControl('', [Validators.required]),
         lastName: new FormControl('', [Validators.required]),
-        role: new FormControl(''),
-        company: new FormControl('', [Validators.required]),
-        application: new FormControl('', [Validators.required])
+        role: new FormControl(null),
+        company: new FormControl(null),
+        application: new FormControl(null)
       });
     }
   }

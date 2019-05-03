@@ -7,7 +7,7 @@
         <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" class="form__content__div" *ngIf="item">
             <div fxLayout="column" fxLayoutAlign="center center">
                 <h4 style="margin-top: 0">Foto de perfil</h4>
-                <app-upload-files [defaultImage]="item.profileImage" (fileSelectedEvent)="setFile($event)"></app-upload-files>
+                <app-upload-files [defaultImage]="image" (fileSelectedEvent)="setFile($event)"></app-upload-files>
             </div>
         </div>
         <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" class="form__content__div">

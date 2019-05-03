@@ -27,17 +27,17 @@ import {
   TableMobileHeader,
   TableMobileDataDefault
 } from './table.interfaces';
-// @ts-ignore
-import templateDesktop from './table.component.html';
-// @ts-ignore
-import templateMobile from './table.mobile.component.html';
+// // @ts-ignore
+// import templateDesktop from './table.component.html';
+// // @ts-ignore
+// import templateMobile from './table.mobile.component.html';
 import { TableService } from './table.service';
 
-const template = window.screen.width < 600 ? templateMobile : templateDesktop;
+// const template = window.screen.width < 600 ? templateMobile : templateDesktop;
 
 @Component({
   selector: 'app-table',
-  templateUrl: templateDesktop,
+  templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements AfterViewInit, OnChanges {

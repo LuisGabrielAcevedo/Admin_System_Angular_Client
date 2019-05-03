@@ -23,63 +23,60 @@ export class MainContainerComponent implements OnInit {
         name: 'Administration',
         subItems: [
           {
-            name: 'Administradores',
-            route: '/administration/admins/list'
+            name: 'Usuarios',
+            route: '/administration/users/list'
           },
           {
-            name: 'Aplicaciones',
-            route: '/administration/applications/list'
+            name: 'Roles',
+            route: '/administration/roles/list'
           },
-
           {
-            name: 'Categoria de productos',
-            route: '/administration/product-categories/list'
+            name: 'Permisos',
+            route: '/administration/permissions/list'
+          },
+          {
+            name: 'Empresas',
+            route: '/administration/companies/list'
+          },
+          {
+            name: 'Tiendas',
+            route: '/administration/locals/list'
           },
           {
             name: 'Consumidores',
             route: '/administration/customers/list'
           },
+          // {
+          //   name: 'Administradores',
+          //   route: '/administration/admins/list'
+          // },
           {
-            name: 'Compañias',
-            route: '/administration/companies/list'
-          },
-          {
-            name: 'Licencias',
-            route: '/administration/licenses/list'
-          },
-          {
-            name: 'Locales',
-            route: '/administration/locals/list'
-          },
-          {
-            name: 'Marcas',
-            route: '/administration/brands/list'
+            name: 'Aplicaciones',
+            route: '/administration/applications/list'
           },
           {
             name: 'Paises',
             route: '/administration/countries/list'
           },
           {
-            name: 'Permisos',
-            route: '/administration/permissions/list'
+            name: 'Categoria de productos',
+            route: '/administration/product-categories/list'
           },
-
+          {
+            name: 'Licencias',
+            route: '/administration/licenses/list'
+          },
+          {
+            name: 'Marcas',
+            route: '/administration/brands/list'
+          },
           {
             name: 'Productos',
             route: '/administration/products/list'
           },
           {
-            name: 'Roles',
-            route: '/administration/roles/list'
-          },
-
-          {
             name: 'Tipo de productos',
             route: '/administration/product-types/list'
-          },
-          {
-            name: 'Usuarios',
-            route: '/administration/users/list'
           },
           {
             name: 'Vendedores',

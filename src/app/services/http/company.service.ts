@@ -36,7 +36,7 @@ export class CompanyService {
     updateCompany(company: ICompany, file?: File): Observable<any> {
         const formData = new FormData();
         if (file) {
-            formData.append('image', file, file.name);
+            formData.append('file', file, file.name);
         }
         for (const element in company) {
             if (company.hasOwnProperty(element) && element !== '_id') {
