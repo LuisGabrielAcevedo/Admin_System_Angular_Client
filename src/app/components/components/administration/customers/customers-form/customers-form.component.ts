@@ -23,6 +23,7 @@ export class CustomersFormComponent implements OnInit, OnDestroy {
   loadingCompanies: Boolean = false;
   loading: boolean;
   file: File;
+  image: string = null;
   constructor(
     private customerSandbox: CustomerSandbox,
     private companySandbox: CompanySandbox,
@@ -40,6 +41,7 @@ export class CustomersFormComponent implements OnInit, OnDestroy {
     // 2. Setear el placeholder para el autocomplete
     this.autocompleteData.placeholder = 'Empresa';
     if (this.item) {
+      this.image = this.item.profileImage ? this.item.profileImage.url : null;
       // 3. Si existe item lleno el formunario con la data de item
       this.form = new FormGroup({
         _id: new FormControl(this.item._id),
@@ -47,10 +49,10 @@ export class CustomersFormComponent implements OnInit, OnDestroy {
         firstName: new FormControl(this.item.firstName),
         lastName: new FormControl(this.item.lastName),
         phone: new FormControl(this.item.phone),
-        documentType: new FormControl(this.item.documentType),
-        documentNumber: new FormControl(this.item.documentNumber),
+        documentType: new FormControl(this.item.customerInformation ? this.item.customerInformation.documentType : null),
+        documentNumber: new FormControl(this.item.customerInformation ? this.item.customerInformation.documentNumber : null),
         company: new FormControl(this.item.company ? this.item.company._id : undefined),
-
+        application: new FormControl(this.item.application ? this.item.application._id : undefined),
       });
 
       this.autocompleteData.defaultOption = this.item.company;
@@ -71,6 +73,7 @@ export class CustomersFormComponent implements OnInit, OnDestroy {
         documentType: new FormControl(''),
         documentNumber: new FormControl(''),
         company: new FormControl(''),
+        application: new FormControl('')
       });
     }
   }
@@ -81,7 +84,6 @@ export class CustomersFormComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    // this.companySandbox.loadCompaniesList({});
     this.subscriptions.push(
       this.companySandbox.fetchCompaniesList().subscribe((companies) => {
         this.companiesList = companies;
@@ -89,7 +91,9 @@ export class CustomersFormComponent implements OnInit, OnDestroy {
       this.companySandbox.fetchIsLoadingCompanies().subscribe(loading => {
         this.loadingCompanies = loading;
       }),
-      // circulo cargando loading al oprimir guardar o actualizar
+      this.companySandbox.fetchIsLoadingCompanies().subscribe((loading) => {
+        this.loadingCompanies = loading;
+      }),
       this.customerSandbox.fetchIsLoadingCustomers().subscribe(loading => {
         this.loading = loading;
       }),
@@ -123,7 +127,8 @@ export class CustomersFormComponent implements OnInit, OnDestroy {
 
   patchValue(option: any) {
     this.form.patchValue({
-      company: option._id
+      company: option._id,
+      application: option.application
     });
   }
 

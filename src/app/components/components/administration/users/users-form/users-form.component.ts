@@ -113,6 +113,10 @@ export class UsersFormComponent implements OnInit {
         this.applicationsList = applications;
       }),
 
+      this.companySandbox.fetchIsLoadingCompanies().subscribe((loading) => {
+        this.loadingCompanies = loading;
+      }),
+
       // cargamos la lista de Roles para el selector
       this.roleSandbox.fetchRolesList().subscribe(roles => {
         this.rolesList = roles;

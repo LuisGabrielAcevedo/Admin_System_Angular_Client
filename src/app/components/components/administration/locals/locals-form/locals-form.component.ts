@@ -6,9 +6,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LocalSandbox } from 'src/app/sandbox/local.sandbox';
 import { IApplication } from 'src/app/inferfaces/application';
 import { IAutocompleteData } from 'src/app/inferfaces/autocomplete';
-import { ILocal } from 'src/app/inferfaces/local';
 import { CompanySandbox } from 'src/app/sandbox/company.sandbox';
 import { ApplicationSandbox } from 'src/app/sandbox/application.sandbox';
+import { ILocal } from 'src/app/inferfaces/local';
+import { CountrySandbox } from 'src/app/sandbox/country.sandbox';
+import { ICountry } from 'src/app/inferfaces/country';
 
 @Component({
   selector: 'app-locals-form',
@@ -24,11 +26,13 @@ export class LocalsFormComponent implements OnInit, OnDestroy {
   compareFn: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
   applicationsList: IApplication[] = [];
   companiesList: any[] = [];
+  countriesList: ICountry[] = [];
   autocompleteData: IAutocompleteData = {};
   constructor(
     private localSandbox: LocalSandbox,
     private companySandbox: CompanySandbox,
     private applicationSandbox: ApplicationSandbox,
+    private countrySandbox: CountrySandbox,
     private snackBarSandbox: SnackbarSandbox,
     private route: ActivatedRoute,
     private router: Router
@@ -50,7 +54,9 @@ export class LocalsFormComponent implements OnInit, OnDestroy {
         name: new FormControl(this.item.name),
         company: new FormControl(this.item.company ? this.item.company : undefined),
         application: new FormControl({ value: this.item.application._id, disabled: true }),
+        country: new FormControl({ value: this.item.country._id, disabled: true }),
         address: new FormControl(this.item.address),
+        city: new FormControl(this.item.city),
         description: new FormControl(this.item.description)
       });
       // 4. Si existe item lleno el autocomplete de companies con la data en item
@@ -69,6 +75,8 @@ export class LocalsFormComponent implements OnInit, OnDestroy {
         name: new FormControl('', [Validators.required]),
         company: new FormControl('', [Validators.required]),
         application: new FormControl('', [Validators.required]),
+        country: new FormControl('', [Validators.required]),
+        city: new FormControl(''),
         address: new FormControl(''),
         description: new FormControl('')
       });
@@ -79,12 +87,16 @@ export class LocalsFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.applicationSandbox.loadApplicationsList({});
+    this.countrySandbox.loadCountriesList({});
     this.subscriptions.push(
       this.localSandbox.fetchIsLoadingLocal().subscribe((loading) => {
         this.loading = loading;
       }),
       this.applicationSandbox.fetchApplicationsList().subscribe((applications) => {
         this.applicationsList = applications;
+      }),
+      this.countrySandbox.fetchCountriesList().subscribe(countries => {
+        this.countriesList = countries;
       }),
       this.companySandbox.fetchCompaniesList().subscribe((companies) => {
         this.companiesList = companies;

@@ -15,6 +15,14 @@
           <input matInput formControlName="description" placeholder="Descripcion">
         </mat-form-field>
         <mat-form-field appearance="outline">
+          <mat-label>Pais</mat-label>
+          <mat-select placeholder="Pais" formControlName="country" [compareWith]="compareFn">
+            <mat-option *ngFor="let country of countriesList" [value]="country._id">
+              {{country.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Dirección</mat-label>
           <input matInput formControlName="address" placeholder="Direccion">
         </mat-form-field>
@@ -37,6 +45,10 @@
               {{application.name}}
             </mat-option>
           </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Ciudad</mat-label>
+          <input matInput formControlName="city" placeholder="Ciudad">
         </mat-form-field>
       </div>
     </div>

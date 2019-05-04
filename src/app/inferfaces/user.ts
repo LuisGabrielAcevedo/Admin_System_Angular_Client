@@ -2,6 +2,7 @@ import { IImage } from './images';
 import { IRole } from './role';
 import { ICompany } from './company';
 import { IApplication } from './application';
+import { IInformation } from 'src/app/inferfaces/information';
 
 export interface IUser {
     _id?: string;
@@ -21,6 +22,7 @@ export interface IUser {
     profileImage?: IImage;
     isActive?: boolean;
     userConfigurations:IUserConfiguration;
+    userInformation: IInformation;
 }
 
 export interface IUserConfiguration {
