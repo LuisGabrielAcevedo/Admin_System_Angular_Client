@@ -21,6 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableItemInformationComponent } from './table-item-information/table-item-information.component';
 import { TableItemInformationModule } from './table-item-information/table-item-information.module';
 import { RouterModule } from '@angular/router';
+import { TableApplicationTypeComponent } from './table-application-type/table-application-type.component';
+import { TableApplicationTypeModule } from './table-application-type/table-application-type.module';
 
 @NgModule({
   imports: [
@@ -28,6 +30,7 @@ import { RouterModule } from '@angular/router';
     FlexLayoutModule,
     MaterialModule,
     TableTextModule,
+    TableApplicationTypeModule,
     TableButtonModule,
     TableImageModule,
     TableGalleryModule,
@@ -47,6 +50,7 @@ import { RouterModule } from '@angular/router';
   ],
   entryComponents: [
     TableTextComponent,
+    TableApplicationTypeComponent,
     TableButtonComponent,
     TableImageComponent,
     TableGalleryComponent,

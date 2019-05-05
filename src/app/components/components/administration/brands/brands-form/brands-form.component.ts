@@ -46,7 +46,7 @@ export class BrandsFormComponent implements OnInit, OnDestroy {
         name: new FormControl(this.item.name),
         company: new FormControl(this.item.company ? this.item.company._id : undefined)
       });
-      // 5. Si existe item una compañia seleccionada la agrego a la lista del autocomplete
+      // 5. Si existe item una Empresa seleccionada la agrego a la lista del autocomplete
       this.autocompleteData.defaultOption = this.item.company;
       if (this.item.company) {
         this.companiesList.push({

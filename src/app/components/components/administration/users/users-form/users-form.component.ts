@@ -103,7 +103,7 @@ export class UsersFormComponent implements OnInit {
         this.loading = loading;
       }),
 
-      // cargamos la lista de compañias para el selector
+      // cargamos la lista de Empresas para el selector
       this.companySandbox.fetchCompaniesList().subscribe(companies => {
         this.companiesList = companies;
       }),

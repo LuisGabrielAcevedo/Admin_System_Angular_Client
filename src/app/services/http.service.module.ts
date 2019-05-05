@@ -22,6 +22,7 @@ import { VendorService } from 'src/app/services/http/vendor.service';
 import { OrderService } from 'src/app/services/http/order.service';
 import { SocketService } from './http/socket.service';
 import { MessageService } from './http/message.service';
+import { FollowService } from './http/follow.service';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { MessageService } from './http/message.service';
     VendorService,
     OrderService,
     SocketService,
-    MessageService
+    MessageService,
+    FollowService
   ],
   declarations: []
 })

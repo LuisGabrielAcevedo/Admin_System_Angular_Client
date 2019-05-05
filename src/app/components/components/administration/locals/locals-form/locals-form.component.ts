@@ -61,7 +61,7 @@ export class LocalsFormComponent implements OnInit, OnDestroy {
       });
       // 4. Si existe item lleno el autocomplete de companies con la data en item
       this.autocompleteData.defaultOption = this.item.company;
-      // 5. Si existe item una compañia seleccionada la agrego a la lista del autocomplete
+      // 5. Si existe item una Empresa seleccionada la agrego a la lista del autocomplete
       if (this.item.company) {
         this.companiesList.push({
           _id: this.item.company,

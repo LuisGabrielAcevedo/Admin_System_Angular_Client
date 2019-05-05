@@ -18,14 +18,12 @@ import { MatCheckbox } from '@angular/material/checkbox';
 import {
   TableHeader,
   TableButtonAction,
-  TableDataFormated,
   TableModal,
   TableButtonOuputAction,
   ActiveComponentOutputAction,
   TablePagination,
   TableOutputItemData,
-  TableMobileHeader,
-  TableMobileDataDefault
+  TableActiveComponent
 } from './table.interfaces';
 // // @ts-ignore
 // import templateDesktop from './table.component.html';
@@ -46,18 +44,13 @@ export class TableComponent implements AfterViewInit, OnChanges {
   openRows: number[] = [];
   itemsSelected: object[] = [];
   checkedAll: boolean = null;
-  dataFormated: TableDataFormated[] = [];
-  headersFormated: TableHeader[] = [];
-  mobileHeaders: TableMobileHeader = null;
   modalSelected: TableModal = {
     row: 0,
     number: 1
   };
-  rowSubItemSelected: ActiveComponentOutputAction = {
-    data: {
-      type: ''
-    },
-    position: 0
+  rowSubItemSelected: TableActiveComponent = {
+    row: 0,
+    type: ''
   };
   @Input() headers: TableHeader[];
   @Input() data: object[];
@@ -66,7 +59,7 @@ export class TableComponent implements AfterViewInit, OnChanges {
   @Input() index: boolean | null = null;
   @Input() multiSelect: boolean | null = null;
   @Input() loading: boolean | null = null;
-  @Input() rowActions: TableButtonAction[];
+  @Input() rowActions: TableButtonAction[] = [];
   @Input() addRedirect: string;
   @Input() tablePagination: TablePagination;
   @Output() search: EventEmitter<string> = new EventEmitter();
@@ -76,7 +69,7 @@ export class TableComponent implements AfterViewInit, OnChanges {
   @ViewChildren('checkbox') checkboxes: QueryList<MatCheckbox>;
   @ViewChild('mainCheckbox') mainCheckbox: MatCheckbox;
 
-  constructor(public httpTableService: TableService ) {
+  constructor(public tableService: TableService) {
     this.addRedirect = '';
   }
 
@@ -88,52 +81,25 @@ export class TableComponent implements AfterViewInit, OnChanges {
           this.search.emit(newValue);
         })
     );
+
+    this.tableService.openModal.subscribe(data => {
+      this.assignModal(data);
+    })
+
+    this.tableService.closeModal.subscribe(() => {
+      this.resetModal();
+    })
+
+    this.tableService.itemToOutput.subscribe(data => {
+      this.itemSelected.emit(data);
+    })
+
+    this.tableService.activeComponent.subscribe(data => {
+      this.assignActiveComponent(data);
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.addButtons();
-    //this.addButtonsMobile();
-  }
-
-  addButtons() {
-    this.dataFormated = [];
-    this.headersFormated = [];
-    this.headers.forEach((item) => {
-      this.headersFormated.push(item);
-      this.dataFormated.push({
-        type: item.type,
-        rowClass: 'table_long',
-        value: item.value
-      });
-    });
-    if (this.rowActions) {
-      this.rowActions.forEach((action) => {
-        this.headersFormated.push({
-          label: '',
-          value: '',
-          type: action.type,
-          class: 'table_short'
-        });
-        this.dataFormated.push({
-          type: action.type,
-          rowClass: 'table_short',
-          button: action,
-          value: ''
-        });
-      });
-    }
-  }
-
-  addButtonsMobile() {
-    let tableMobileData: TableMobileHeader = { ...TableMobileDataDefault };
-    const existImage = this.headers.find(header => header.type === "TableImageComponent");
-    tableMobileData.image = existImage ? existImage.value : null;
-    const headerFiltered = existImage ? this.headers.filter(header => header.type !== "TableImageComponent"): this.headers;
-    tableMobileData.title = headerFiltered[0].value;
-    tableMobileData.subtitle = headerFiltered[1].value;
-    tableMobileData.description = headerFiltered[2].value;
-    this.mobileHeaders = tableMobileData;
-    console.log(this.mobileHeaders);
   }
 
   openRow(i: number) {
@@ -173,13 +139,6 @@ export class TableComponent implements AfterViewInit, OnChanges {
         this.itemsSelected.push(item);
       });
     }
-  }
-
-  assignModal(data: TableButtonOuputAction) {
-    this.closeAllRows();
-    this.resetSubItem();
-    this.modalSelected = data.modal;
-    this.modalSelected.row = data.position + 1;
   }
 
   selectItem(i: number) {
@@ -222,31 +181,29 @@ export class TableComponent implements AfterViewInit, OnChanges {
 
   resetSubItem() {
     this.rowSubItemSelected = {
-      data: {
-        type: ''
-      },
-      position: 0
+      row: 0,
+      type: ''
     };
   }
 
-  activeComponent(activeComponent: ActiveComponentOutputAction) {
-    if (!this.openRows.includes(activeComponent.position)) {
-      this.openRow(activeComponent.position);
-    }
-    this.rowSubItemSelected = activeComponent;
-    this.rowSubItemSelected.position++;
+  assignModal(data: TableButtonOuputAction) {
+    this.closeAllRows();
+    this.resetSubItem();
+    this.modalSelected = data.modal;
+    this.modalSelected.row = data.position + 1;
+  }
+
+  assignActiveComponent(data: ActiveComponentOutputAction) {
+    this.rowSubItemSelected = data.activeComponent;
+    this.rowSubItemSelected.row = data.position + 1;
   }
 
   changePageAction(newPagination: TablePagination) {
     this.changePage.emit(newPagination);
   }
 
-  itemOutput(data: TableOutputItemData) {
-    this.itemSelected.emit(data);
-  }
-
   formatText(item: object, field: string) {
-    return this.httpTableService.formatText(item,field);
+    return this.tableService.formatText(item, field);
   }
 }
 

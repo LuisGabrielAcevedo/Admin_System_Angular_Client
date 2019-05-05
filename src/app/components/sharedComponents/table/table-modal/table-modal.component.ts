@@ -1,8 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { TableModal,
-  TableButtonOuputAction,
-  TableButtonAction, ActiveComponentOutputAction, TableOutputItemData } from '../table.interfaces';
-import { Router, NavigationExtras } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
+import { TableModal,TableButtonAction } from '../table.interfaces';
+import { TableService } from 'src/app/components/sharedComponents/table/table.service';
 
 @Component({
   selector: 'app-table-modal',
@@ -14,66 +12,29 @@ export class TableModalComponent implements OnInit {
   @Input() modalData: TableModal;
   @Input() item: object;
   @Input() position: number;
-  @Output() closeModal: EventEmitter<any> = new EventEmitter();
-  @Output() activeComponent: EventEmitter<ActiveComponentOutputAction> = new EventEmitter();
-  @Output() openModal: EventEmitter<TableButtonOuputAction> = new EventEmitter();
-  @Output() itemToOutput: EventEmitter<TableOutputItemData> = new EventEmitter();
   constructor(
-    private router: Router
+    public tableService: TableService
   ) { }
 
   ngOnInit() {
   }
 
-  close() {
-    this.closeModal.emit();
-  }
-
   buttonActions(button: TableButtonAction) {
-    if (button.event) {
-      button.event(this.item);
-    }
-    if (button.modal) {
-      const data: TableButtonOuputAction = {
-        modal: button.modal,
-        position: this.position
-      };
-      this.openModal.emit(data);
-    }
-    if (button.activeComponet) {
-      this.buttonSelected = button.icon;
-      const data: ActiveComponentOutputAction = {
-        data: button.activeComponet,
-        position: this.position
-      };
-      this.activeComponent.emit(data);
-    }
-    if (button.redirectTo) {
-      const itemCopy = JSON.parse(JSON.stringify(this.item));
-      const navigationExtras: NavigationExtras = {
-        queryParams: {
-          item: JSON.stringify(itemCopy)
-        }
-      };
-      this.router.navigate([button.redirectTo], navigationExtras);
-    }
-    if (button.outputItemAction) {
-      this.outputItem(button.outputItemAction);
-    }
+    this.buttonSelected = button.label;
+    this.tableService.buttonActions(button, this.position, this.item);
   }
 
   modalSuccesActions() {
     if (this.modalData.successButtonEvent) {
-      this.outputItem(this.modalData.successButtonEvent);
+      this.tableService.outputItem(this.modalData.successButtonEvent, this.item);
     }
   }
 
-  outputItem(action: string) {
-    const itemCopy = JSON.parse(JSON.stringify(this.item));
-      this.itemToOutput.emit({
-        action: action,
-        item: itemCopy
-      });
-      this.close();
+  visibleButton(button: TableButtonAction) {
+    return button.visible ? button.visible(this.item) : true;
+  }
+
+  color(button: TableButtonAction) {
+    return this.buttonSelected === button.label ? {'color': '#3f51b5'}:{'color' : '#a7a7a7'};
   }
 }

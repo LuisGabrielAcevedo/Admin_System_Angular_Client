@@ -8,7 +8,7 @@ export const LocalsTableHeader: TableHeader[] = [
         class: 'table_long'
     },
     {
-        label: 'Compañia',
+        label: 'Empresa',
         value: 'company.name',
         type: 'TableTextComponent',
         class: 'table_long'
@@ -16,7 +16,7 @@ export const LocalsTableHeader: TableHeader[] = [
     {
         label: 'Aplicacion',
         value: 'application.name',
-        type: 'TableTextComponent',
+        type: 'TableApplicationTypeComponent',
         class: 'table_long'
     }
 ];

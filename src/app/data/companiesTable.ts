@@ -1,6 +1,12 @@
 import { TableHeader, TableButtonAction } from '../components/sharedComponents/table/table.interfaces';
 export const CompaniesTableHeader: TableHeader[] = [
     {
+        label: 'Aplicacion',
+        value: 'application.name',
+        type: 'TableApplicationTypeComponent',
+        class: 'table_long'
+    },
+    {
         label: '',
         value: 'profileImage.url',
         type: 'TableImageComponent',
@@ -15,12 +21,6 @@ export const CompaniesTableHeader: TableHeader[] = [
     {
         label: 'Pais',
         value: 'country.name',
-        type: 'TableTextComponent',
-        class: 'table_long'
-    },
-    {
-        label: 'Moneda',
-        value: 'currencies[]',
         type: 'TableTextComponent',
         class: 'table_long'
     }

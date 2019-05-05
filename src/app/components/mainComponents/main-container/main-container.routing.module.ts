@@ -4,7 +4,7 @@ import { MainContainerComponent } from './main-container.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'examples',
+    redirectTo: 'administration',
     pathMatch: 'full'
   },
   {

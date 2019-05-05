@@ -1,24 +1,26 @@
 <div class="modalFondo">
   <div class="modalContainer">
-    <div *ngIf="modalData.number === 1" fxLayout="row" fxLayoutAlign="space-between center">
-      <button mat-icon-button color="primary" (click)="close()">
+    <div *ngIf="modalData.number === 1" fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 10px;">
+      <button mat-icon-button color="primary" (click)="tableService.closeModal.emit()">
         <mat-icon>chevron_right</mat-icon>
       </button>
       <span>{{modalData.question}}</span>
       <mat-divider></mat-divider>
       <button mat-flat-button color="primary" (click)="modalSuccesActions()">Yes</button>
-      <button mat-flat-button color="primary" (click)="close()">No</button>
+      <button mat-flat-button color="primary" (click)="tableService.closeModal.emit()">No</button>
     </div>
     <div *ngIf="modalData.number === 2">
       <div fxLayout="row" fxLayoutAlign="start center">
-        <button mat-icon-button color="primary" (click)="close()">
+        <button mat-icon-button color="primary" (click)="tableService.closeModal.emit()">
           <mat-icon>chevron_right</mat-icon>
         </button>
-        <div *ngFor="let button of modalData.buttons" (click)="buttonActions(button)" fxLayout="column" fxLayoutAlign="space-between center" class="buttons" [ngClass]="{'selectButton': buttonSelected === button.icon}">
-          <button mat-icon-button color="primary">
-            <mat-icon>{{button.icon}}</mat-icon>
-          </button>
-          <span>{{button.label}}</span>
+        <div *ngFor="let button of modalData.buttons" (click)="buttonActions(button)">
+          <div fxLayout="column" *ngIf="visibleButton(button)" fxLayoutAlign="space-between center" class="buttons" [ngClass]="{'selectButton': buttonSelected === button.label}">
+            <button mat-icon-button>
+              <mat-icon [ngStyle]="color(button)">{{button.icon}}</mat-icon>
+            </button>
+            <span>{{button.label}}</span>
+          </div>
         </div>
       </div>
     </div>

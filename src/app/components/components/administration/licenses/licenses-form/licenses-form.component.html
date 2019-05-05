@@ -26,11 +26,11 @@
 
             <div fxLayout="column">
                 <mat-form-field appearance="outline">
-                    <mat-select placeholder="Compañia" formControlName="company" [compareWith]="compareFn">
-                        <mat-label>Compañia</mat-label>
+                    <mat-select placeholder="Empresa" formControlName="company" [compareWith]="compareFn">
+                        <mat-label>Empresa</mat-label>
                         <mat-option *ngIf="companiesList.length === 0">
                             <div fxLayout="row" fxLayoutAlign="center center">
-                                <p>No hay compañias disponibles</p>
+                                <p>No hay Empresas disponibles</p>
                             </div>
                         </mat-option>
 

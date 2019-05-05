@@ -1,7 +1,6 @@
 <div class="table_content">
   <div class="table_scroll">
     <div class="table">
-      <!-- general actions -->
       <!-- search -->
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <mat-form-field class="example-form-field" appearance="outline">
@@ -14,33 +13,56 @@
       </div>
       <!-- headers -->
       <div class="table_header" fxLayout="row" fxLayoutAlign="space-between center">
-        <span *ngIf="multiSelect" class="table_short">
+        <span *ngIf="multiSelect">
           <mat-checkbox color="primary" #mainCheckbox (click)="checkedAllAction()"></mat-checkbox>
         </span>
-        <span class="table_short">#</span>
-        <span *ngFor="let header of headersFormated" [ngClass]="header.class">{{header.label}}</span>
+        <!-- <span>#</span> -->
+        <span *ngFor="let header of headers" fxFlex>{{header.label}}</span>
+        <span *ngFor="let button of rowActions" fxFlex="5"></span>
       </div>
       <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
       <!-- data -->
       <div #tableData class="table_data">
         <div class="table_data_row" *ngFor="let item of data; index as i">
-          <app-table-modal [modalData]="modalSelected" (openModal)="assignModal($event)" (itemToOutput)="itemOutput($event)"
-            [position]="i" [item]="item" (activeComponent)="activeComponent($event)" (closeModal)="resetModal()" *ngIf="modalSelected.row === i+1"></app-table-modal>
+          <app-table-modal [modalData]="modalSelected"
+            [position]="i" [item]="item" *ngIf="modalSelected.row === i+1"></app-table-modal>
           <div class="table_data_header" fxLayouttable="row" fxLayoutAlign="space-between center">
-            <span *ngIf="multiSelect" class="table_short">
+            <span *ngIf="multiSelect">
               <mat-checkbox #checkbox color="primary" (click)="$event.stopPropagation(); selectItem(i)"></mat-checkbox>
             </span>
-            <span class="table_short">{{i + 1}}</span>
-            <div *ngFor="let data of dataFormated" [ngClass]="data.rowClass">
-              <app-table-container [componentType]="data.type" [componentData]="{inputData: {item:item, field: data.value, button:data.button, position:i}}"
-                (openModal)="assignModal($event)" (itemToOutput)="itemOutput($event)"></app-table-container>
+            <!-- <span>{{i + 1}}</span> -->
+            <div *ngFor="let data of headers" fxFlex>
+              <app-table-container 
+                [componentType]="data.type" 
+                [componentData]="{
+                      item: item, 
+                      field: data.value, 
+                      position:i
+                  }"
+              ></app-table-container>
             </div>
-            <!-- <div *ngFor="let button of rowActions">
-              <app-table-button [buttonData]="button" [item]="item" [position]="i" (openModal)="assignModal($event)" (itemToOutput)="itemOutput($event)"></app-table-button>
-            </div> -->
+            <div *ngFor="let button of rowActions" fxFlex="5">
+                <app-table-container 
+                [componentType]="button.type" 
+                [componentData]="{
+                      item: item,
+                      button: button,
+                      position: i
+                  }"
+              ></app-table-container>
+            </div>
           </div>
-          <app-table-container *ngIf="rowSubItemSelected.position === i+1" [componentType]="rowSubItemSelected.data.type"
-            [componentData]="{inputData: {item:item, field: rowSubItemSelected.data.value, position:i}}"></app-table-container>
+          <app-table-container 
+            *ngIf="rowSubItemSelected.row === i+1" 
+            [componentType]="rowSubItemSelected.type"
+            [componentData]="{
+                  item: item,
+                  field: rowSubItemSelected.data.field,
+                  event: rowSubItemSelected.data.event,
+                  observable: rowSubItemSelected.data.observable, 
+                  position: i
+              }"
+            ></app-table-container>
         </div>
       </div>
       <div fxLayout="row" fxLayoutAlign="center center" *ngIf="data && data.length === 0">

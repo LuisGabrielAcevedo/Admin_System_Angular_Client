@@ -53,7 +53,7 @@ export class ProductTypesFormComponent implements OnInit, OnDestroy {
         company: new FormControl(this.item.company ? this.item.company._id : undefined),
         apiTypeProduct: new FormControl(this.item.apiTypeProduct)
       });
-      // 5. Si existe item una compañia seleccionada la agrego a la lista del autocomplete
+      // 5. Si existe item una Empresa seleccionada la agrego a la lista del autocomplete
       this.autocompleteData.defaultOption = this.item.company;
       if (this.item.company) {
         this.companiesList.push({

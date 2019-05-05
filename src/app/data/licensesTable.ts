@@ -7,7 +7,7 @@ export const LicensesTableHeader: TableHeader[] = [
         class: 'table_long'
     },
     {
-        label: 'Compañia',
+        label: 'Empresa',
         value: 'company.name',
         type: 'TableTextComponent',
         class: 'table_long'

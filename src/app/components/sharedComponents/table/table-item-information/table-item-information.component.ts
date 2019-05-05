@@ -22,8 +22,9 @@ export class TableItemInformationComponent implements OnInit {
     const dataFormated: string[] = [];
     this.field.forEach(element => {
       const dataSplit = element.split('/b/');
-      const data = this.httpTableService.formatText(this.item, dataSplit[1]);
-      dataFormated.push(dataSplit[0] + ' ' + data);
+      let text = this.httpTableService.formatText(this.item, dataSplit[1]);
+      text = text ? text : 'No data';
+      dataFormated.push(dataSplit[0] + ' ' + text);
     });
     this.dataFormated = dataFormated;
     this.show = true;

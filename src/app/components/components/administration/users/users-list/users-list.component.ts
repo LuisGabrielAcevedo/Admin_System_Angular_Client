@@ -3,7 +3,7 @@ import { UserSandbox } from '../../../../../sandbox/user.sandbox';
 import { Subscription } from 'rxjs';
 import { TableHeader, TableButtonAction,
   TablePagination, TablePaginationDefault, TableOutputItemData } from '../../../../sharedComponents/table/table.interfaces';
-import { UsersTableHeader, UsersRowActions } from '../../../../../data/usersTable';
+import { UsersTableHeader } from '../../../../../data/usersTable';
 import { UserService } from '../../../../../services/http/user.service';
 import { filter } from 'rxjs/operators';
 
@@ -17,13 +17,16 @@ export class UsersListComponent implements OnInit, OnDestroy {
   data: object[];
   headers: TableHeader[] = UsersTableHeader;
   loading = false;
-  rowActions: TableButtonAction[] = UsersRowActions;
+  rowActions: TableButtonAction[] = [];
   colors = ['#E3F2FD', '#64B5F6', '#1976D2'];
   pagination: TablePagination = TablePaginationDefault;
   constructor(
     private userSandbox: UserSandbox,
-    private httpUserService: UserService
-  ) { }
+    private httpUserService: UserService,
+    private userService: UserService
+  ) { 
+    this.rowActions = this.userService.getRowActions();
+  }
 
   ngOnInit() {
     this.loadUsers();

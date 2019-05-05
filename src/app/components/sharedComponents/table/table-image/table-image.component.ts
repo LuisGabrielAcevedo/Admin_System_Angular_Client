@@ -7,7 +7,7 @@ import { TableService } from '../table.service';
   styleUrls: ['./table-image.component.css']
 })
 export class TableImageComponent implements OnInit {
-  @Input() field: string;
+  @Input() field: string | string[];
   @Input() item: object;
   image;
   image2;
@@ -21,9 +21,10 @@ export class TableImageComponent implements OnInit {
   }
 
   async formatImage() {
-    const image = await this.httpTableService.formatText(this.item, this.field);
-    if (image) {
-      if (image.includes('mla') || image.includes('ytimg')) this.image2 = image;
-    }
+    const image = await this.httpTableService.formatText(this.item, (this.field as string));
+    this.image2 = image;
+    // if (image) {
+    //   if (image.includes('mla') || image.includes('ytimg')) this.image2 = image;
+    // }
   }
 }

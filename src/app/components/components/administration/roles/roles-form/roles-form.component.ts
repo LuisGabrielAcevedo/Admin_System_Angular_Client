@@ -116,7 +116,7 @@ export class RolesFormComponent implements OnInit {
       this.companySandbox.fetchCompaniesList().subscribe(companies => {
         this.companiesList = companies;
       }),
-      // cargamos loading para el buscador de compañias
+      // cargamos loading para el buscador de Empresas
       this.companySandbox.fetchIsLoadingCompanies().subscribe((loading) => {
         this.loadingCompanies = loading;
       }),

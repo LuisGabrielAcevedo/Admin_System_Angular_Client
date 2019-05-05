@@ -3,9 +3,8 @@
     top: 0px;
     right: 0px;
     height: 60px; 
-    width: 60%;
     background: #E3F2FD;
-    padding: 0 5px;
+    padding: 0 10px;
 }
 
 .modalFondo {
@@ -28,7 +27,8 @@ button {
 }
 
 .selectButton {
-    background: #BBDEFB;
-    color: #1976D2;
-    font-weight: bold;
+    color: #3f51b5 !important;
+    border-bottom: 2px solid #3f51b5;
+    font-weight: 400;
+    padding: 0px;
 }

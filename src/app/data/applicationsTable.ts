@@ -1,6 +1,12 @@
 import { TableHeader, TableButtonAction } from '../components/sharedComponents/table/table.interfaces';
 export const ApplicationsTableHeader: TableHeader[] = [
     {
+        label: 'Id',
+        value: '_id',
+        type: 'TableApplicationTypeComponent',
+        class: 'table_long'
+    },
+    {
         label: 'Code',
         value: 'code',
         type: 'TableTextComponent',

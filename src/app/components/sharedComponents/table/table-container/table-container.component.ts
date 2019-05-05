@@ -10,6 +10,7 @@ import { TableButtonComponent } from '../table-button/table-button.component';
 import { TableGalleryComponent } from '../table-gallery/table-gallery.component';
 import { TableImageComponent } from '../table-image/table-image.component';
 import { TableItemInformationComponent } from '../table-item-information/table-item-information.component';
+import { TableApplicationTypeComponent } from '../table-application-type/table-application-type.component';
 
 @Component({
   selector: 'app-table-container',
@@ -19,8 +20,7 @@ export class TableContainerComponent implements OnInit, OnChanges {
   @ViewChild(TableDirective) adHost: TableDirective;
   @Input() componentType: TableContainerComponentType;
   @Input() componentData: TableContainerComponentData;
-  @Output() openModal = new EventEmitter();
-  @Output() itemToOutput: EventEmitter<TableOutputItemData> = new EventEmitter();
+  // @Output() itemToOutput: EventEmitter<TableOutputItemData> = new EventEmitter();
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
@@ -30,10 +30,8 @@ export class TableContainerComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const cData: SimpleChange = changes.componentData;
     const cType: SimpleChange = changes.componentType;
-    if (cData) {
-      this.componentData = Object.assign(cData.currentValue);
-    }
-    this.componentType = cType.currentValue;
+    if (cData) this.componentData = { ...cData.currentValue };
+    if (cType) this.componentType = cType.currentValue;
     this.loadComponent();
   }
 
@@ -45,53 +43,58 @@ export class TableContainerComponent implements OnInit, OnChanges {
       case TableContainerComponentType.Button: {
         const tableRowItem = new ComponentItem(TableButtonComponent, this.componentData);
         const componentInstance = this.generateInstance<TableButtonComponent>(tableRowItem);
-        if (tableRowItem.data.inputData) {
-          componentInstance.item = tableRowItem.data.inputData.item;
-          componentInstance.field = tableRowItem.data.inputData.field;
-          componentInstance.buttonData = tableRowItem.data.inputData.button;
-          componentInstance.position = tableRowItem.data.inputData.position;
+        if (tableRowItem.data) {
+          componentInstance.item = tableRowItem.data.item;
+          componentInstance.field = tableRowItem.data.field;
+          componentInstance.button = tableRowItem.data.button;
+          componentInstance.position = tableRowItem.data.position;
         }
-        componentInstance.openModal.subscribe(data => {
-          this.openModal.emit(data);
-        });
-        componentInstance.itemToOutput.subscribe(data => {
-          this.itemToOutput.emit(data);
-        });
         break;
       }
       case TableContainerComponentType.Text: {
         const tableRowItem = new ComponentItem(TableTextComponent, this.componentData);
         const componentInstance = this.generateInstance<TableTextComponent>(tableRowItem);
-        if (tableRowItem.data.inputData) {
-          componentInstance.item = tableRowItem.data.inputData.item;
-          componentInstance.field = tableRowItem.data.inputData.field;
+        if (tableRowItem.data) {
+          componentInstance.item = tableRowItem.data.item;
+          componentInstance.field = tableRowItem.data.field;
+        }
+        break;
+      }
+      case TableContainerComponentType.ApplicationType: {
+        const tableRowItem = new ComponentItem(TableApplicationTypeComponent, this.componentData);
+        const componentInstance = this.generateInstance<TableApplicationTypeComponent>(tableRowItem);
+        if (tableRowItem.data) {
+          componentInstance.item = tableRowItem.data.item;
+          componentInstance.field = tableRowItem.data.field;
         }
         break;
       }
       case TableContainerComponentType.Image: {
         const tableRowItem = new ComponentItem(TableImageComponent, this.componentData);
         const componentInstance = this.generateInstance<TableImageComponent>(tableRowItem);
-        if (tableRowItem.data.inputData) {
-          componentInstance.item = tableRowItem.data.inputData.item;
-          componentInstance.field = tableRowItem.data.inputData.field;
+        if (tableRowItem.data) {
+          componentInstance.item = tableRowItem.data.item;
+          componentInstance.field = tableRowItem.data.field;
         }
         break;
       }
       case TableContainerComponentType.Gallery: {
         const tableRowItem = new ComponentItem(TableGalleryComponent, this.componentData);
         const componentInstance = this.generateInstance<TableGalleryComponent>(tableRowItem);
-        if (tableRowItem.data.inputData) {
-          componentInstance.item = tableRowItem.data.inputData.item;
-          componentInstance.field = tableRowItem.data.inputData.field;
+        if (tableRowItem.data) {
+          componentInstance.item = tableRowItem.data.item;
+          componentInstance.field = tableRowItem.data.field;
+          componentInstance.event = tableRowItem.data.event;
+          componentInstance.observable = tableRowItem.data.observable;
         }
         break;
       }
       case TableContainerComponentType.Information: {
         const tableRowItem = new ComponentItem(TableItemInformationComponent, this.componentData);
         const componentInstance = this.generateInstance<TableItemInformationComponent>(tableRowItem);
-        if (tableRowItem.data.inputData) {
-          componentInstance.item = tableRowItem.data.inputData.item;
-          componentInstance.field = tableRowItem.data.inputData.field;
+        if (tableRowItem.data) {
+          componentInstance.item = tableRowItem.data.item;
+          componentInstance.field = tableRowItem.data.field;
         }
         break;
       }

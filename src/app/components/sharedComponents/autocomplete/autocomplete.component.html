@@ -12,7 +12,7 @@
             <p style="margin-top:0px;">{{defaultMessage}}</p>
         </div>
         <div fxLayout="row" fxLayoutAlign="start center" *ngFor="let option of options" (click)="pathOption(option)" [ngClass]="{'form__autocomplete__active': optionSelected._id === option._id}">
-            <img src="{{option.profileImage ? option.profileImage.url : '../../../assets/images/default.png'}}"
+            <img src="{{option.profileImage ? option.profileImage.url : '../../../assets/images/default.jpg'}}"
                 class="form__option__image">
             <p style="margin-top:0px;">{{option[fieldToShow]}}</p>
         </div>

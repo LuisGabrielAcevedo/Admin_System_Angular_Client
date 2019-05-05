@@ -1,4 +1,4 @@
-import { EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export interface TableHeader {
     label: string;
@@ -9,65 +9,38 @@ export interface TableHeader {
     descending?: boolean;
 }
 
-export interface TableMobileHeader {
-    image: string;
-    title: string;
-    subtitle: string;
-    description: string;
-    rightText: string;
-}
-
 export enum TableContainerComponentType {
     Text = 'TableTextComponent',
     Search = 'TableSearchComponent',
     Button = 'TableButtonComponent',
     Image = 'TableImageComponent',
     Gallery = 'TableGalleryComponent',
+    ApplicationType = 'TableApplicationTypeComponent',
     Information = 'TableItemInformationComponent'
 }
 
 export interface TableContainerComponentData {
-    inputData?: {
-        item?: object;
-        field?: string;
-        button?: TableButtonAction;
-        position?: number;
-    };
+    item?: object;
+    field?: string | string[];
+    button?: TableButtonAction;
+    event?: (...arg: any[]) => void;
+    observable?: (...arg: any[]) => Observable<any>;
+    position?: number;
 }
 
 
 export interface TableButtonAction {
-    icon: string;
+    icon?: string;
     class?: string;
     label?: string;
     event?: (...arg: any[]) => void;
     modal?: TableModal;
     type?: string;
-    activeComponet?: ActiveComponentData;
+    activeComponet?: TableActiveComponent;
     redirectTo?: string;
     outputItemAction?: string;
-}
-
-export interface TableOutputItemData {
-    action: string;
-    item: any;
-}
-
-export interface ActiveComponentData {
-    type: string;
-    value?: string | string[];
-    event?: (...arg: any[]) => void;
-    inputData?: TableContainerComponentData;
-}
-
-export interface TableButtonOuputAction {
-    modal: TableModal;
-    position: number;
-}
-
-export interface ActiveComponentOutputAction {
-    data: ActiveComponentData;
-    position: number;
+    visible?: (...arg: any[]) => boolean;
+    disabled?: (...arg: any[]) => boolean;
 }
 
 export interface TableModal {
@@ -84,11 +57,25 @@ export interface TableModal {
     buttons?: TableButtonAction[];
 }
 
-export interface TableDataFormated {
-    button?: TableButtonAction;
-    rowClass: string;
+export interface TableActiveComponent {
     type: string;
-    value: string;
+    row: number;
+    data?: TableContainerComponentData;
+}
+
+export interface TableOutputItemData {
+    action: string;
+    item: any;
+}
+
+export interface TableButtonOuputAction {
+    modal: TableModal;
+    position: number;
+}
+
+export interface ActiveComponentOutputAction {
+    activeComponent: TableActiveComponent;
+    position: number;
 }
 
 export interface TablePagination {
@@ -102,12 +89,4 @@ export const TablePaginationDefault: TablePagination = {
     totalItems: 0,
     itemsPerPage: 5
 };
-
-export const TableMobileDataDefault: TableMobileHeader = {
-    image: '',
-    title: '',
-    subtitle: '',
-    description: '',
-    rightText: ''
-}
 

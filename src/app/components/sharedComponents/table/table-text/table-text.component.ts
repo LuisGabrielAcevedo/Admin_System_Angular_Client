@@ -7,7 +7,7 @@ import { TableService } from '../table.service';
   styleUrls: ['./table-text.component.css']
 })
 export class TableTextComponent implements OnInit {
-  @Input() field: string;
+  @Input() field: string | string[];
   @Input() item: object;
   text;
   constructor(private httpTableService: TableService) {
@@ -18,8 +18,9 @@ export class TableTextComponent implements OnInit {
     this.formatText();
   }
 
-  async formatText() {
-    const text = this.httpTableService.formatText(this.item, this.field);
+  formatText() {
+    let text = this.httpTableService.formatText(this.item, (this.field as string));
+    text = text ? text : 'No data'; 
     this.text = text.length > 22 ? `${text.substr(0, 22)}...` : text;
   }
 }

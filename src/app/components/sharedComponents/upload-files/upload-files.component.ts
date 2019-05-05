@@ -14,7 +14,7 @@ export class UploadFilesComponent implements OnInit {
 
   ngOnInit() {
     if (!this.defaultImage) {
-      this.defaultImage = '../../../../assets/images/default.png';
+      this.defaultImage = '../../../../assets/images/default.jpg';
     }
   }
 

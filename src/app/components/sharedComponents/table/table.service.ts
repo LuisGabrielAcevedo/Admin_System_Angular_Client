@@ -1,11 +1,65 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { TableButtonAction, TableButtonOuputAction, TableOutputItemData, ActiveComponentOutputAction } from './table.interfaces';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Injectable()
 export class TableService {
-    constructor(private http: HttpClient) {
+    openModal: EventEmitter<TableButtonOuputAction> = new EventEmitter();
+    itemToOutput: EventEmitter<TableOutputItemData> = new EventEmitter();
+    closeModal: EventEmitter<any> = new EventEmitter();
+    activeComponent: EventEmitter<ActiveComponentOutputAction> = new EventEmitter();
+    con = 0
+    constructor(
+        private router: Router,
+        private http: HttpClient
+    ) {
+    }
+
+    buttonActions(button: TableButtonAction, position: number, item: object) {
+        // 1. Function
+        if (button.event) {
+            button.event(item);
+        }
+        // 2. Open Modal 
+        if (button.modal) {
+            const data: TableButtonOuputAction = {
+                modal: button.modal,
+                position: position
+            };
+            this.openModal.emit(data);
+        }
+        // 3. Redirect
+        if (button.redirectTo) {
+            const itemCopy = JSON.parse(JSON.stringify(item));
+            const navigationExtras: NavigationExtras = {
+                queryParams: {
+                    item: JSON.stringify(itemCopy)
+                }
+            };
+            this.router.navigate([button.redirectTo], navigationExtras);
+        }
+        // 4. Output item
+        if (button.outputItemAction) {
+            this.outputItem(button.outputItemAction, item);
+        }
+        // 5. Active component
+        if (button.activeComponet) {
+            const data: ActiveComponentOutputAction = {
+              activeComponent: button.activeComponet,
+              position: position
+            };
+            this.activeComponent.emit(data);
+        }
+    }
+
+    outputItem(action: string, item: object) {
+        const itemCopy = JSON.parse(JSON.stringify(item));
+        this.itemToOutput.emit({
+            action: action,
+            item: itemCopy
+        });
+        this.closeModal.emit();
     }
 
     formatText(item: object, field: string) {

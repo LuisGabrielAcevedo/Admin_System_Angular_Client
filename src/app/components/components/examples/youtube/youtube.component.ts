@@ -34,7 +34,6 @@ export class YoutubeComponent implements OnInit {
   }
 
   itemSelectedAction(data: any) {
-    console.log(data);
     const url = `https://www.youtube.com/embed/${data.item.id.videoId}`;
     this.iframe.nativeElement.src = url;
   }
