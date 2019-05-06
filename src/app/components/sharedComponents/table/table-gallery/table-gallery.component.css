@@ -19,3 +19,20 @@
 	width: 180px;
 	height: 200px;
 }
+
+.userCardContainer {
+  background: white;
+  height: 100%;
+  width: 100%;
+}
+
+.userCardImage {
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+}
+
+.userCardTitle {
+  font-weight: 600;
+  margin: 5px;
+}

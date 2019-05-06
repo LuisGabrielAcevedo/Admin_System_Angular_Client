@@ -23,9 +23,19 @@ export interface TableContainerComponentData {
     item?: object;
     field?: string | string[];
     button?: TableButtonAction;
-    event?: (...arg: any[]) => void;
     observable?: (...arg: any[]) => Observable<any>;
+    galleryConfig?: TableGalleryConfig;
     position?: number;
+}
+
+export interface TableGalleryConfig {
+    galleryType?: string;
+    galleryListData?: string;
+    galleryImage?: string;
+    galleryTitle?: string;
+    gallerySubTitle?: string;
+    galleryDescription?: string;
+    button?: TableButtonAction;
 }
 
 
@@ -48,6 +58,7 @@ export interface TableModal {
     row: number;
     question?: string;
     successButtonText?: string;
+    successButtonDisabled?: (...arg: any[]) => boolean;
     successButtonClass?: string;
     successButtonEvent?: string;
     cancelButtonText?: string;

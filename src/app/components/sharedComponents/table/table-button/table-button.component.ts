@@ -19,6 +19,10 @@ export class TableButtonComponent implements OnInit {
   ngOnInit() {
   }
 
+  disabledButton(button: TableButtonAction) {
+    return button.disabled ? button.disabled(this.item) : false;
+  }
+
   buttonActions() {
     this.tableService.buttonActions(this.button, this.position, this.item);
   }

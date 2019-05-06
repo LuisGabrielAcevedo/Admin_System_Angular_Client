@@ -26,7 +26,7 @@ export class TableApplicationTypeComponent implements OnInit {
   formatText() {
     let text = this.httpTableService.formatText(this.item, (this.field as string));
     text = text ? text : 'No data';
-    this.text = text.length > 22 ? `${text.substr(0, 22)}...` : text;
+    this.text = text.length > 20 ? `${text.substr(0, 20)}...` : text;
   }
 
   margin() {

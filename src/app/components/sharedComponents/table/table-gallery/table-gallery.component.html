@@ -1,12 +1,26 @@
-<div *ngIf="list">
-    <div class="galleryContainer" *ngIf="list.length">
-        <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="cdkItem">
-            <div class="itemContainer" *cdkVirtualFor="let item of list">
-                <img class="itemImage" src="../../../../assets/images/default.jpg">
-            </div>
-        </cdk-virtual-scroll-viewport>
+<div>
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="galleryLoading">
+        <mat-spinner diameter="30" style="margin: 10px;"></mat-spinner>
     </div>
-    <div *ngIf="!list.length">
-        <p>No hay imagenes disponibles</p>
+    <div *ngIf="galleryList">
+        <div class="galleryContainer" *ngIf="galleryList.length">
+            <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="cdkItem">
+                <div class="itemContainer" *cdkVirtualFor="let item of galleryList">
+                    <!-- <img class="itemImage" src="../../../../assets/images/default.jpg"> -->
+                    <!-- <img class="itemImage" src="{{formatImage(item,galleryConfig.galleryImage)}}"> -->
+                    <!-- user gallery -->
+                    <div class="userCardContainer" fxLayout="column" fxLayoutAlign="center center">
+                        <img *ngIf="!formatImage(item,galleryConfig.galleryImage)" class="userCardImage" src="../../../../assets/images/default.jpg">
+                        <img *ngIf="formatImage(item,galleryConfig.galleryImage)" class="userCardImage" src="{{formatImage(item,galleryConfig.galleryImage)}}">
+                        <span class="userCardTitle">{{formatText(item,galleryConfig.galleryTitle)}}</span>
+                        <span>{{formatText(item,galleryConfig.gallerySubTitle)}}</span>
+                        <app-table-button [button]="galleryConfig.button"></app-table-button>
+                    </div>
+                </div>
+            </cdk-virtual-scroll-viewport>
+        </div>
+        <div *ngIf="!galleryList.length">
+            <p>No hay imagenes disponibles</p>
+        </div>
     </div>
 </div>

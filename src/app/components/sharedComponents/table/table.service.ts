@@ -63,7 +63,7 @@ export class TableService {
     }
 
     formatText(item: object, field: string) {
-        let text = '';
+        let text: any = '';
         if (field.indexOf('.') !== -1) {
             const fieldSplit_1 = field.split('.');
             if (!item[fieldSplit_1[0]]) {

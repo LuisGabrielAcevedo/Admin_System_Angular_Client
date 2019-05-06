@@ -84,8 +84,8 @@ export class TableContainerComponent implements OnInit, OnChanges {
         if (tableRowItem.data) {
           componentInstance.item = tableRowItem.data.item;
           componentInstance.field = tableRowItem.data.field;
-          componentInstance.event = tableRowItem.data.event;
           componentInstance.observable = tableRowItem.data.observable;
+          componentInstance.galleryConfig = tableRowItem.data.galleryConfig;
         }
         break;
       }

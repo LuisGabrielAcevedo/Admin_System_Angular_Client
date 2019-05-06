@@ -25,25 +25,3 @@ export const CompaniesTableHeader: TableHeader[] = [
         class: 'table_long'
     }
 ];
-
-export const CompaniesRowActions: TableButtonAction[] = [
-    {
-        icon: 'edit',
-        label: 'Editar',
-        type: 'TableButtonComponent',
-        redirectTo: '/administration/companies/form'
-    },
-    {
-        icon: 'delete',
-        label: 'Borrar',
-        type: 'TableButtonComponent',
-        modal: {
-            number: 1,
-            row: 0,
-            question: 'Esta seguro que desea borrar la empresa?',
-            successButtonText: 'Si',
-            successButtonEvent: 'delete',
-            cancelButtonText: 'No'
-        }
-    }
-];

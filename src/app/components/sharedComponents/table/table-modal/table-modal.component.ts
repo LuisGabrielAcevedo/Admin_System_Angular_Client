@@ -34,7 +34,11 @@ export class TableModalComponent implements OnInit {
     return button.visible ? button.visible(this.item) : true;
   }
 
+  disabledButton(button: TableButtonAction) {
+    return button.disabled ? button.disabled(this.item) : false;
+  }
+
   color(button: TableButtonAction) {
-    return this.buttonSelected === button.label ? {'color': '#3f51b5'}:{'color' : '#a7a7a7'};
+    return this.buttonSelected === button.label ? {'color': '#3f51b5'}:{'color' : '#d8d8d8'};
   }
 }

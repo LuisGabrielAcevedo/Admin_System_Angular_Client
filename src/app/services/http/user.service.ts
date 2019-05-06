@@ -96,6 +96,12 @@ export class UserService {
                     row: 0,
                     buttons: [
                         {
+                            icon: 'edit',
+                            label: 'Editar',
+                            type: 'TableButtonComponent',
+                            redirectTo: '/administration/users/form'
+                        },
+                        {
                             icon: 'info',
                             label: 'Informacion',
                             type: 'TableButtonComponent',
@@ -117,12 +123,6 @@ export class UserService {
                             }
                         },
                         {
-                            icon: 'edit',
-                            label: 'Editar',
-                            type: 'TableButtonComponent',
-                            redirectTo: '/administration/users/form'
-                        },
-                        {
                             icon: 'group',
                             label: 'Seguidores',
                             type: 'TableButtonComponent',
@@ -131,7 +131,18 @@ export class UserService {
                                 row: 0,
                                 data: {
                                     observable: (arg) => {
-                                        return this.getFollowed(arg);
+                                        return this.getFollowing(arg);
+                                    },
+                                    galleryConfig: {
+                                        galleryType: 'GALLERY_USER',
+                                        galleryListData: 'data',
+                                        galleryImage: 'following.profileImage.url',
+                                        galleryTitle: 'following.firstName',
+                                        gallerySubTitle: 'following.email',
+                                        galleryDescription: '',
+                                        button: {
+                                            icon: 'subdirectory_arrow_right'
+                                        }
                                     }
                                 }
                             },
@@ -146,7 +157,18 @@ export class UserService {
                                 row: 0,
                                 data: {
                                     observable: (arg) => {
-                                        return this.getFollowing(arg);
+                                        return this.getFollowed(arg);
+                                    },
+                                    galleryConfig: {
+                                        galleryType: 'GALLERY_USER',
+                                        galleryListData: 'data',
+                                        galleryImage: 'followed.profileImage.url',
+                                        galleryTitle: 'followed.firstName',
+                                        gallerySubTitle: 'followed.email',
+                                        galleryDescription: '',
+                                        button: {
+                                            icon: 'subdirectory_arrow_right'
+                                        }
                                     }
                                 }
                             },
@@ -163,6 +185,7 @@ export class UserService {
                                 row: 0,
                                 question: 'Esta seguro que desea borrar el Usuario?',
                                 successButtonText: 'Si',
+                                successButtonDisabled: (arg) => { return true },
                                 successButtonEvent: 'delete',
                                 cancelButtonText: 'No'
                             }
@@ -174,13 +197,13 @@ export class UserService {
         return actions;
     }
 
-    getFollowing(user: IUser) : Observable<any> {
+    getFollowing(user: IUser): Observable<any> {
         return this.followService.getFollows({
             filters: { followed: user._id }
         })
     }
 
-    getFollowed(user: IUser) : Observable<any>{
+    getFollowed(user: IUser): Observable<any> {
         return this.followService.getFollows({
             filters: { following: user._id }
         })

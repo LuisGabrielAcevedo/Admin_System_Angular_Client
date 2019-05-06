@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
+import { TableGalleryConfig } from '../table.interfaces';
+import { TableService } from '../table.service';
 
 @Component({
   selector: 'app-table-gallery',
@@ -10,18 +12,34 @@ import { Observable } from 'rxjs';
 export class TableGalleryComponent implements OnInit {
   @Input() field: string | string[];
   @Input() item: object;
-  @Input() event: (...arg: any[]) => void;
   @Input() observable: (...arg: any[]) => Observable<any>
-  public list = null;
-  constructor() { }
+  @Input() galleryConfig: TableGalleryConfig;
+  public galleryLoading: boolean = null;
+  public galleryList: object[] = null;
+  constructor(
+    private tableService: TableService
+  ) { }
+
   ngOnInit() {
-    this.loadFollows();
+    this.galleryLoading = true;
+    this.loadList();
   }
 
-  loadFollows() {
+  loadList() {
     const observable = this.observable(this.item);
     observable.subscribe(resp => {
-      this.list = resp.data;
+      this.galleryList = this.tableService.formatText(resp, this.galleryConfig.galleryListData);
+      this.galleryLoading = false;
     })
+  }
+
+  formatImage(item: object, field: string) {
+    return this.tableService.formatText(item, field);
+  }
+
+  formatText(item: object, field: string) {
+    let text = this.tableService.formatText(item, field);
+    text = text ? text : 'No data'; 
+    return text.length > 18 ? `${text.substr(0, 18)}...` : text;
   }
 }

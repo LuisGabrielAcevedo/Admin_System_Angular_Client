@@ -5,8 +5,8 @@ import { CompaniesTableHeader } from 'src/app/data/companiesTable';
 import {TableHeader,
   TableButtonAction, TablePagination, TablePaginationDefault
 } from 'src/app/components/sharedComponents/table/table.interfaces';
-import { CompaniesRowActions } from 'src/app/data/companiesTable';
 import { filter } from 'rxjs/operators';
+import { CompanyService } from 'src/app/services/http/company.service';
 
 @Component({
   selector: 'app-companies-list',
@@ -18,11 +18,15 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
   data: object[];
   headers: TableHeader[] = CompaniesTableHeader;
   loading = false;
-  rowActions: TableButtonAction[] = CompaniesRowActions;
+  rowActions: TableButtonAction[] = [];
   pagination: TablePagination = TablePaginationDefault;
-  constructor(private companySandbox: CompanySandbox) { }
+  constructor(
+    private companySandbox: CompanySandbox,
+    private companyService: CompanyService
+    ) { }
 
   ngOnInit() {
+    this.rowActions = this.companyService.getRowActions();
     this.loadCompanies();
     this.subscriptions.push(
       this.companySandbox.fetchCompanies()

@@ -8,7 +8,7 @@ import { TablePagination } from '../../components/sharedComponents/table/table.i
 
 
 @Injectable()
-export class LocalService {
+export class StoreService {
     public url;
     public loadRequestData: ILoadRequest = JSON.parse(JSON.stringify(loadRequestDataDefault));
     constructor(private http: HttpClient) {

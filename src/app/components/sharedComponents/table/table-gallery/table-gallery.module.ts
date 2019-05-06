@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableGalleryComponent } from './table-gallery.component';
-import { MaterialModule } from '../../../../material/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from 'src/app/material/material.module';
+import { TableButtonModule } from '../table-button/table-button.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule,
+    TableButtonModule
   ],
   declarations: [TableGalleryComponent]
 })

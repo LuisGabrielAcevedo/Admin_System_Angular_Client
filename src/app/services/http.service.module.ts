@@ -11,7 +11,7 @@ import { MercadoLibreService } from './exampleEndPoints/http.mercadolibre';
 import { TableService } from '../components/sharedComponents/table/table.service';
 import { YoutubeService } from './exampleEndPoints/http.youtube';
 import { AdminService } from './http/admin.service';
-import { LocalService } from './http/local.service';
+import { StoreService } from './http/local.service';
 import { RoleService } from './http/role.service';
 import { BrandService } from './http/brand.service';
 import { ProductCategoryService } from './http/productCategory.service';
@@ -38,7 +38,7 @@ import { FollowService } from './http/follow.service';
     ApplicationService,
     CompanyService,
     LicenseService,
-    LocalService,
+    StoreService,
     CustomerService,
     RoleService,
     PermissionService,
