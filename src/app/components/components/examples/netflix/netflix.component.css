@@ -1,0 +1,20 @@
+.netflix-container {
+    position: fixed;
+    width: 100%;
+}
+
+.netflix-toolbar {
+    background: #141414
+}
+
+.netflix-toolbar-item {
+    color: #e5e5e5;
+    margin-left: 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.netflix-content {
+    background: #141414;
+    padding: 20px;
+}

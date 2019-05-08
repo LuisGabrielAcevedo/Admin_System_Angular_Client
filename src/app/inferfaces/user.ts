@@ -30,3 +30,8 @@ export interface IUserConfiguration {
     currentStore: string;
     paletteSelected: number;
 }
+
+export interface ILoginRequest {
+    email: string;
+    password: string;
+}

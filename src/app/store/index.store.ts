@@ -18,6 +18,7 @@ import * as fromProductCategory from './productCategory/productCategory.reducers
 import * as fromProductType from './productType/productType.reducers';
 import * as fromProduct from './product/product.reducers';
 import * as fromVendor from './vendor/vendor.reducers';
+import * as fromAuthUser from './auth/auth.reducers';
 
 
 export interface State {
@@ -38,6 +39,7 @@ export interface State {
     productType: fromProductType.ProductTypeState;
     product: fromProduct.ProductState;
     vendor: fromVendor.VendorState;
+    auth: fromAuthUser.UserState
 
 }
 
@@ -58,7 +60,8 @@ export const reducers: ActionReducerMap<State> = {
     productCategory: fromProductCategory.ProductCategoryReducer,
     productType: fromProductType.ProductTypeReducer,
     product: fromProduct.ProductReducer,
-    vendor: fromVendor.VendorReducer
+    vendor: fromVendor.VendorReducer,
+    auth: fromAuthUser.AuthReducer
 };
 
 export const getUserState = (state: State) => state.user;
@@ -78,6 +81,14 @@ export const getProductCategoryState = (state: State) => state.productCategory;
 export const getProductTypeState = (state: State) => state.productType;
 export const getProductState = (state: State) => state.product;
 export const getVendorState = (state: State) => state.vendor;
+export const getAuthState = (state: State) => state.auth;
+
+// Auth Selectors
+export const getUser = createSelector(getAuthState, fromAuthUser.getUser);
+export const getIsLogged = createSelector(getAuthState, fromAuthUser.getIsLogged);
+export const getToken = createSelector(getAuthState, fromAuthUser.getToken);
+export const getRole = createSelector(getAuthState, fromAuthUser.getRole);
+export const getIsLoadingAuth = createSelector(getAuthState, fromAuthUser.getIsLoading);
 
 // User selectors
 export const getUsers = createSelector(getUserState, fromUser.getUsers);

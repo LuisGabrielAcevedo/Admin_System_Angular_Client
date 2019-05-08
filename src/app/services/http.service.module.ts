@@ -23,6 +23,7 @@ import { OrderService } from 'src/app/services/http/order.service';
 import { SocketService } from './http/socket.service';
 import { MessageService } from './http/message.service';
 import { FollowService } from './http/follow.service';
+import { NetflixService } from './exampleEndPoints/netflix.service';
 
 @NgModule({
   imports: [
@@ -51,7 +52,8 @@ import { FollowService } from './http/follow.service';
     OrderService,
     SocketService,
     MessageService,
-    FollowService
+    FollowService,
+    NetflixService
   ],
   declarations: []
 })

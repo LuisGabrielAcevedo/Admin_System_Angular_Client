@@ -1,11 +1,15 @@
 import { Routes, RouterModule } from '@angular/router';
-import { CartModule } from 'src/app/components/components/examples/cart/cart.module';
+
 
 export const routes: Routes = [
   {
     path: '',
     redirectTo: 'mercado-libre',
     pathMatch: 'full'
+  },
+  {
+    path: 'netflix',
+    loadChildren: './netflix/netflix.module#NetflixModule'
   },
   {
     path: 'mercado-libre',

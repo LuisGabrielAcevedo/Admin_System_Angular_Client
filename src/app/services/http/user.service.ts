@@ -18,6 +18,10 @@ export class UserService {
         this.url = Global.url_api;
     }
 
+    login(user: object) : Observable<any>  {
+        return this.http.post<any>(`${this.url}/users/login`, user);
+    }
+
     getUsers(): Observable<any> {
         let params = new HttpParams();
         for (const param in this.loadRequestData) {

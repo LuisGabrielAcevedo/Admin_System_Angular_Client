@@ -58,47 +58,50 @@ export class MainContainerComponent implements OnInit {
             name: 'Paises',
             route: '/administration/countries/list'
           },
-          {
-            name: 'Categoria de productos',
-            route: '/administration/product-categories/list'
-          },
-          {
-            name: 'Licencias',
-            route: '/administration/licenses/list'
-          },
-          {
-            name: 'Marcas',
-            route: '/administration/brands/list'
-          },
-          {
-            name: 'Productos',
-            route: '/administration/products/list'
-          },
-          {
-            name: 'Tipo de productos',
-            route: '/administration/product-types/list'
-          },
-          {
-            name: 'Vendedores',
-            route: '/administration/vendors/list'
-          }
-
+          // {
+          //   name: 'Categoria de productos',
+          //   route: '/administration/product-categories/list'
+          // },
+          // {
+          //   name: 'Licencias',
+          //   route: '/administration/licenses/list'
+          // },
+          // {
+          //   name: 'Marcas',
+          //   route: '/administration/brands/list'
+          // },
+          // {
+          //   name: 'Productos',
+          //   route: '/administration/products/list'
+          // },
+          // {
+          //   name: 'Tipo de productos',
+          //   route: '/administration/product-types/list'
+          // },
+          // {
+          //   name: 'Vendedores',
+          //   route: '/administration/vendors/list'
+          // }
         ]
       },
       {
         name: 'Examples',
         subItems: [
           {
-            name: 'Mercado libre',
+            name: 'Mercado libre (data-table)',
             route: '/examples/mercado-libre'
           },
           {
-            name: 'Youtube',
+            name: 'Youtube (data-table)',
             route: '/examples/youtube'
           },
           {
             name: 'Cart',
             route: '/examples/cart'
+          },
+          {
+            name: 'Netflix',
+            route: '/examples/netflix'
           }
         ]
       }

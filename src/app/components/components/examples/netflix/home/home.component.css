@@ -1,0 +1,21 @@
+.galleryContainer .cdkItem {
+    height: 226px;
+    width: 100%;
+}
+.galleryContainer .cdkItem .cdk-virtual-scroll-content-wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 0px 2.5px;
+}
+  
+.galleryContainer .itemContainer {
+    width: 300px;
+    height: 200px;
+    margin: 5px 2.5px 5px 2.5px;
+    cursor: pointer;
+}
+  
+.itemImage {
+    width: 300px;
+    height: 200px;
+}

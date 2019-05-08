@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule} from 'src/app/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material';
+import { SnackbarModule } from 'src/app/components/sharedComponents/snackbar/snackbar.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MatCardModule } from '@angular/material';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    SnackbarModule
   ]
 })
 export class LoginModule { }

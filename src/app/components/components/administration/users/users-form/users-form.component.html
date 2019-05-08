@@ -5,13 +5,13 @@
 <form UserForm [formGroup]="form">
     <div fxLayout="row" fxLayout.lt-sm="column" class="form__content" fxLayoutAlign="center center">
         <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" class="form__content__div" *ngIf="item">
-            <div fxLayout="column" fxLayoutAlign="center center">
+            <div fxLayout="column" fxLayoutAlign="space-around center">
                 <h4 style="margin-top: 0">Foto de perfil</h4>
                 <app-upload-files [defaultImage]="image" (fileSelectedEvent)="setFile($event)"></app-upload-files>
             </div>
         </div>
         <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" class="form__content__div">
-            <div fxLayout="column">
+            <div fxLayout="column" fxLayoutAlign="space-around center">
                 <mat-form-field appearance="outline">
                     <mat-label>Correo</mat-label>
                     <input matInput formControlName="email" placeholder="Correo">
@@ -32,10 +32,12 @@
                     <mat-label>Apellido</mat-label>
                     <input matInput formControlName="lastName" placeholder="Apellido">
                 </mat-form-field>
-                <app-autocomplete [optionsAutocomplete]="companiesList" [defaultMessage]="'No hay empresas encontradas'"
-                [autocompleteData]="autocompleteData" [optionsLoading]="loadingCompanies" (searchValues)="searchValues($event)"
-                (patchValue)="patchValue($event)">
-                </app-autocomplete>
+                <div style="width: 100%;">
+                    <app-autocomplete [optionsAutocomplete]="companiesList" [defaultMessage]="'No hay empresas encontradas'"
+                        [autocompleteData]="autocompleteData" [optionsLoading]="loadingCompanies" (searchValues)="searchValues($event)"
+                        (patchValue)="patchValue($event)">
+                    </app-autocomplete>
+                </div>
                 <mat-form-field appearance="outline">
                     <mat-label>Aplicación</mat-label>
                     <mat-select placeholder="Aplicación" formControlName="application" [compareWith]="compareFn">

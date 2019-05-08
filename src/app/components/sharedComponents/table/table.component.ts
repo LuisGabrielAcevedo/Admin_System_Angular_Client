@@ -194,6 +194,9 @@ export class TableComponent implements AfterViewInit, OnChanges {
   }
 
   assignActiveComponent(data: ActiveComponentOutputAction) {
+    if (!this.openRows.includes(data.position)){
+      this.openRow(data.position);
+    }
     this.rowSubItemSelected = data.activeComponent;
     this.rowSubItemSelected.row = data.position + 1;
   }

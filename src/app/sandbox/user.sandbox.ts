@@ -20,29 +20,24 @@ export class UserSandbox {
     fetchIsLoadingUsers(): Observable<boolean> {
         return this.store.select(fromRoot.getIsLoadingUsers);
     }
-
     fetchIsLoadingUser(): Observable<boolean> {
         return this.store.select(fromRoot.getIsLoadingUser);
     }
     fetchPagination(): Observable<TablePagination> {
         return this.store.select(fromRoot.getPaginationUser);
     }
-
     loadUsers(): void {
         this.store.dispatch(new UserActions.LoadUsersAction());
     }
-
     loadUsersList(loadRequest: ILoadRequest): void {
         this.store.dispatch(new UserActions.LoadUsersListAction(loadRequest));
     }
-
     saveUser(user: IUser): void {
         this.store.dispatch(new UserActions.SaveUserAction(user));
     }
     updateUser(user: IUser, file: File): void {
         this.store.dispatch(new UserActions.UpdateUserAction({ user: user, file: file }));
     }
-
     deleteUser(user: IUser): void {
         this.store.dispatch(new UserActions.DeleteUserAction(user));
     }
@@ -55,6 +50,5 @@ export class UserSandbox {
     resetLoadRequest(): void {
         this.store.dispatch(new UserActions.ResetLoadRequestAction());
     }
-
 }
 

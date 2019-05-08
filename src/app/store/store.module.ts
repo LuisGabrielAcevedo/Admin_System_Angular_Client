@@ -37,6 +37,8 @@ import { AdminSystemEffects } from './adminSystem/adminSystem.effects';
 import { AdminSystemSandbox } from 'src/app/sandbox/adminSystem.sandbox';
 import { VendorSandbox } from 'src/app/sandbox/vendor.sandbox';
 import { VendorEffects } from 'src/app/store/vendor/vendor.effects';
+import { AuthEffects } from './auth/auth.effects';
+import { AuthSandbox } from 'src/app/sandbox/authSanbox';
 
 @NgModule({
     imports: [
@@ -59,7 +61,8 @@ import { VendorEffects } from 'src/app/store/vendor/vendor.effects';
             ProductEffects,
             ProductTypeEffects,
             AdminSystemEffects,
-            VendorEffects
+            VendorEffects,
+            AuthEffects
         ])
     ],
     exports: [],
@@ -81,7 +84,8 @@ import { VendorEffects } from 'src/app/store/vendor/vendor.effects';
         ProductSandbox,
         AdminSystemSandbox,
         ProductTypeSandbox,
-        VendorSandbox
+        VendorSandbox,
+        AuthSandbox
     ]
 })
 
