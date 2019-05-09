@@ -1,6 +1,6 @@
 
 <div class="galleryContainer">
-<cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="cdkItem">
+<cdk-virtual-scroll-viewport orientation="horizontal" itemSize="20" class="cdkItem" (scrolledIndexChange)="scrollIndex($event)">
   <div class="itemContainer" *cdkVirtualFor="let movie of movies" style="color:white;">
     <img class="itemImage" src="{{formatImage(movie.backdrop_path)}}">
   </div>

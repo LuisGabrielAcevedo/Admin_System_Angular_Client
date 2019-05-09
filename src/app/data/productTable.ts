@@ -19,23 +19,35 @@ export const ProductsTableHeader: TableHeader[] = [
         class: 'table_long'
     },
     {
-        label: 'Marca',
-        value: 'brand.name',
+        label: 'Precio',
+        value: 'price/b/$ AR',
         type: 'TableTextComponent',
         class: 'table_long'
     },
     {
-        label: 'Tipo',
-        value: 'type.name',
-        type: 'TableTextComponent',
-        class: 'table_long'
-    },
-    {
-        label: 'Categoria',
-        value: 'category.name',
+        label: 'Cantidad',
+        value: 'totalAvailable',
         type: 'TableTextComponent',
         class: 'table_long'
     }
+    // {
+    //     label: 'Marca',
+    //     value: 'brand.name',
+    //     type: 'TableTextComponent',
+    //     class: 'table_long'
+    // },
+    // {
+    //     label: 'Tipo',
+    //     value: 'type.name',
+    //     type: 'TableTextComponent',
+    //     class: 'table_long'
+    // },
+    // {
+    //     label: 'Categoria',
+    //     value: 'category.name',
+    //     type: 'TableTextComponent',
+    //     class: 'table_long'
+    // }
 ];
 
 export const ProductsRowActions: TableButtonAction[] = [

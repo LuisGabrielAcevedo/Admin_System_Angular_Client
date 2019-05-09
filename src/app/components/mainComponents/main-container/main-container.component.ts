@@ -70,10 +70,10 @@ export class MainContainerComponent implements OnInit {
           //   name: 'Marcas',
           //   route: '/administration/brands/list'
           // },
-          // {
-          //   name: 'Productos',
-          //   route: '/administration/products/list'
-          // },
+          {
+            name: 'Productos',
+            route: '/administration/products/list'
+          },
           // {
           //   name: 'Tipo de productos',
           //   route: '/administration/product-types/list'

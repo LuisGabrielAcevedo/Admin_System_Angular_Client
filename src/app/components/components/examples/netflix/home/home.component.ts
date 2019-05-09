@@ -16,11 +16,16 @@ export class HomeComponent implements OnInit {
 
   loadMovies() {
     this.netflixService.geMovies().subscribe(resp => {
-      this.movies = resp.results;
+      this.movies = [...this.movies, ...resp.results];
     })
   }
 
   formatImage(movie: string) {
     return 'https://image.tmdb.org/t/p/w500' + movie;
+  }
+
+  scrollIndex(index: number) {
+    console.log(index);
+    if (index === 269) this.loadMovies();
   }
 }
