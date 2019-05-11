@@ -3,26 +3,22 @@ export const ApplicationsTableHeader: TableHeader[] = [
     {
         label: 'Id',
         value: '_id',
-        type: 'TableApplicationTypeComponent',
-        class: 'table_long'
+        type: 'TableApplicationTypeComponent'
     },
     {
         label: 'Code',
         value: 'code',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Name',
         value: 'name',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'descripcion',
         value: 'description',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     }
 ];
 

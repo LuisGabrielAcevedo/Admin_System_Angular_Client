@@ -4,20 +4,17 @@ export const CustomersTableHeader: TableHeader[] = [
     {
         label: 'Nombre',
         value: 'firstName',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Apellido',
         value: 'lastName',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Telefono',
         value: 'phone',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     }
 ];
 

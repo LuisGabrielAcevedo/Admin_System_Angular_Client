@@ -3,20 +3,17 @@ export const LicensesTableHeader: TableHeader[] = [
     {
         label: 'Codigo',
         value: 'code',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Empresa',
         value: 'company.name',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Fecha de Vencimiento',
         value: 'expirateAt',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     }
 ];
 

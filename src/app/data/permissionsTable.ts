@@ -3,20 +3,17 @@ export const PermissionsTableHeader: TableHeader[] = [
     {
         label: 'Id',
         value: '_id',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Nombre',
         value: 'name',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Modulo',
         value: 'module',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     }
     
 ];

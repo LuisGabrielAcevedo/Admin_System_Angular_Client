@@ -100,9 +100,15 @@ export class TableService {
             return text;
         } else if (field.indexOf("[]") !== -1) {
             const fieldSplit5 = field.split("[]");
-            item[fieldSplit5[0]].forEach((i) => {
-                text = text + " " + i
-            });
+            if (fieldSplit5[1]) {
+                item[fieldSplit5[0]].forEach((value, i) => {
+                    text += i === 0 ? value[fieldSplit5[1]] : `, ${value[fieldSplit5[1]]}`;
+                });
+            } else {
+                item[fieldSplit5[0]].forEach((value) => {
+                    text = text + " " + value
+                });
+            }
             return text;
         } else {
             text = item[field];

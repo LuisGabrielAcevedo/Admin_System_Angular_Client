@@ -4,7 +4,6 @@ export interface TableHeader {
     label: string;
     value: string;
     type: string;
-    class: string;
     sortable?: boolean;
     descending?: boolean;
 }
@@ -16,7 +15,8 @@ export enum TableContainerComponentType {
     Image = 'TableImageComponent',
     Gallery = 'TableGalleryComponent',
     ApplicationType = 'TableApplicationTypeComponent',
-    Information = 'TableItemInformationComponent'
+    Information = 'TableItemInformationComponent',
+    secondTable = 'TableSecondTableComponent'
 }
 
 export interface TableContainerComponentData {
@@ -25,6 +25,7 @@ export interface TableContainerComponentData {
     button?: TableButtonAction;
     observable?: (...arg: any[]) => Observable<any>;
     galleryConfig?: TableGalleryConfig;
+    secondTableConfig?: TableSecondTableConfig;
     position?: number;
 }
 
@@ -36,6 +37,17 @@ export interface TableGalleryConfig {
     gallerySubTitle?: string;
     galleryDescription?: string;
     button?: TableButtonAction;
+}
+
+export interface TableSecondTableConfig {
+    rowActions?: TableButtonAction[];
+    multiSelect?: boolean;
+    secondTableListData?: string;
+    fields: Array<{
+        label: string;
+        value: string;
+        type: string;
+    }>;
 }
 
 

@@ -3,31 +3,26 @@ export const UsersTableHeader: TableHeader[] = [
     {
         label: 'Aplicacion',
         value: 'application.name',
-        type: 'TableApplicationTypeComponent',
-        class: 'table_long'
+        type: 'TableApplicationTypeComponent'
     },
     {
         label: '',
         value: 'profileImage.url',
-        type: 'TableImageComponent',
-        class: 'table_long'
+        type: 'TableImageComponent'
     },
     {
         label: 'Nombre',
         value: 'firstName,lastName',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Empresa',
         value: 'company.name',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Api rol',
         value: 'applicationRole',
-        type: 'TableApplicationTypeComponent',
-        class: 'table_long'
+        type: 'TableApplicationTypeComponent'
     }
 ];

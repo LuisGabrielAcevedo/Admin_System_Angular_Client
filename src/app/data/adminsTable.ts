@@ -3,26 +3,22 @@ export const AdminsTableHeader: TableHeader[] = [
     {
         label: '',
         value: 'profileImage.url',
-        type: 'TableImageComponent',
-        class: 'table_long'
+        type: 'TableImageComponent'
     },
     {
         label: 'Nombre',
         value: 'firstName',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Apellido',
         value: 'lastName',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Correo',
         value: 'email',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     }
 ];
 

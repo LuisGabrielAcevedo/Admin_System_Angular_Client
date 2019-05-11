@@ -3,25 +3,21 @@ export const CompaniesTableHeader: TableHeader[] = [
     {
         label: 'Aplicacion',
         value: 'application.name',
-        type: 'TableApplicationTypeComponent',
-        class: 'table_long'
+        type: 'TableApplicationTypeComponent'
     },
     {
         label: '',
         value: 'profileImage.url',
-        type: 'TableImageComponent',
-        class: 'table_long'
+        type: 'TableImageComponent'
     },
     {
         label: 'Nombre',
         value: 'name',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Pais',
         value: 'country.name',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     }
 ];

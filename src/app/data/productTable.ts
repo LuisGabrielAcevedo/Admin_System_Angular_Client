@@ -3,32 +3,27 @@ export const ProductsTableHeader: TableHeader[] = [
     {
         label: '',
         value: 'profileImage.url',
-        type: 'TableImageComponent',
-        class: 'table_long'
+        type: 'TableImageComponent'
     },
     {
         label: 'Empresa',
         value: 'company.name',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Nombre',
         value: 'name',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Precio',
         value: 'price/b/$ AR',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Cantidad',
         value: 'totalAvailable',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     }
     // {
     //     label: 'Marca',

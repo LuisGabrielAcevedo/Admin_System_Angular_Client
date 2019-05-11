@@ -3,20 +3,17 @@ export const CountriesTableHeader: TableHeader[] = [
     {
         label: 'Pais',
         value: 'name',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Lenguaje',
         value: 'language',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Moneda',
         value: 'currency',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     }
 ];
 

@@ -3,20 +3,17 @@ export const VendorsTableHeader: TableHeader[] = [
     {
         label: 'Nombre',
         value: 'vendorName',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Empresa',
         value: 'companyName',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Creado por',
         value: 'createdBy.name',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     }
 ];
 

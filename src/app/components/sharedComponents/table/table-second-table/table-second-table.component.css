@@ -1,0 +1,12 @@
+.second-table-container {
+    padding: 10px 10px 20px 20px;
+}
+.second-table-container-row {
+    border-bottom: 1px solid #1976D2;
+}
+.second-table-container-row  p {
+    margin: 8px;
+}
+.second-table-container-label {
+    font-weight: 500;
+}

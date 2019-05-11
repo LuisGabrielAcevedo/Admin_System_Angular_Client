@@ -4,14 +4,12 @@ export const ProductCategoriesTableHeader: TableHeader[] = [
     {
         label: 'Nombre',
         value: 'name',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Comapañia',
         value: 'company.name',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
 
 ];

@@ -3,31 +3,26 @@ export const MercadoLibreHeader: TableHeader[] = [
   {
     label: '',
     value: 'thumbnail',
-    type: 'TableImageComponent',
-    class: 'table_long'
+    type: 'TableImageComponent'
   },
   {
     label: 'Id',
     value: 'id',
-    type: 'TableTextComponent',
-    class: 'table_long'
+    type: 'TableTextComponent'
   },
   {
     label: 'Titulo',
     value: 'title',
-    type: 'TableTextComponent',
-    class: 'table_long'
+    type: 'TableTextComponent'
   },
   {
     label: 'Precio',
     value: 'price/b/$ AR',
-    type: 'TableTextComponent',
-    class: 'table_long'
+    type: 'TableTextComponent'
   },
   {
     label: 'Barrio',
     value: 'seller_address.city.name',
-    type: 'TableTextComponent',
-    class: 'table_long'
+    type: 'TableTextComponent'
   }
 ];

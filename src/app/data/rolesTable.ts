@@ -3,26 +3,22 @@ export const RolesTableHeader: TableHeader[] = [
     {
         label: 'Nombre',
         value: 'name',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Descripcion',
         value: 'description',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Empresa',
         value: 'company.name',
-        type: 'TableTextComponent',
-        class: 'table_long'
+        type: 'TableTextComponent'
     },
     {
         label: 'Aplicacion',
         value: 'application.name',
-        type: 'TableApplicationTypeComponent',
-        class: 'table_long'
+        type: 'TableApplicationTypeComponent'
     }
 ];
 

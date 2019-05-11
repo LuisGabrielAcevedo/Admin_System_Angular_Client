@@ -7,6 +7,9 @@ import { TablePagination, TableButtonAction } from 'src/app/components/sharedCom
 import { Global } from 'src/app/services/http/url';
 import { UserService } from './user.service';
 import { StoreService } from './local.service';
+import { CustomerService } from './customer.service';
+import { ProductService } from './product.service';
+import { OrderService } from './order.service';
 
 
 @Injectable()
@@ -16,7 +19,10 @@ export class CompanyService {
     constructor(
         private http: HttpClient,
         private userService: UserService,
-        private storeService: StoreService
+        private storeService: StoreService,
+        private customerService: CustomerService,
+        private productService: ProductService,
+        private orderService: OrderService
     ) {
         this.url = Global.url_api;
     }
@@ -103,6 +109,101 @@ export class CompanyService {
                             redirectTo: '/administration/companies/form'
                         },
                         {
+                            icon: 'store_mall_directory',
+                            label: 'Tiendas',
+                            type: 'TableButtonComponent',
+                            activeComponet: {
+                                type: 'TableGalleryComponent',
+                                row: 0,
+                                data: {
+                                    observable: (arg) => {
+                                        return this.getStores(arg);
+                                    },
+                                    galleryConfig: {
+                                        galleryType: 'GALLERY_INFO_CARD',
+                                        galleryListData: 'data',
+                                        galleryImage: 'profileImage.url',
+                                        galleryTitle: 'name',
+                                        gallerySubTitle: 'description',
+                                        galleryDescription: '',
+                                        button: {
+                                            icon: 'subdirectory_arrow_right'
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            icon: 'view_compact',
+                            label: 'Productos',
+                            type: 'TableButtonComponent',
+                            activeComponet: {
+                                type: 'TableGalleryComponent',
+                                row: 0,
+                                data: {
+                                    observable: (arg) => {
+                                        return this.getProducts(arg);
+                                    },
+                                    galleryConfig: {
+                                        galleryType: 'GALLERY_IMAGE_CARD',
+                                        galleryListData: 'data',
+                                        galleryImage: 'profileImage.url',
+                                        galleryTitle: 'name',
+                                        gallerySubTitle: 'totalAvailable/b/Disponible:',
+                                        galleryDescription: '',
+                                        button: {
+                                            icon: 'subdirectory_arrow_right'
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            icon: 'list',
+                            label: 'Ordenes',
+                            type: 'TableButtonComponent',
+                            activeComponet: {
+                                type: 'TableSecondTableComponent',
+                                row: 0,
+                                data: {
+                                    observable: (arg) => {
+                                        return this.getOrders(arg);
+                                    },
+                                    secondTableConfig: {
+                                        secondTableListData: 'data',
+                                        multiSelect: true,
+                                        fields: [
+                                            {
+                                                label: 'Id',
+                                                value: '_id',
+                                                type: 'TableTextComponent'
+                                            },
+                                            {
+                                                label: 'Usuario',
+                                                value: 'user.firstName',
+                                                type: 'TableTextComponent'
+                                            },
+                                            {
+                                                label: 'Cliente',
+                                                value: 'customer.firstName',
+                                                type: 'TableTextComponent'
+                                            },
+                                            {
+                                                label: 'Total',
+                                                value: 'total/b/ AR $',
+                                                type: 'TableTextComponent'
+                                            },
+                                            {
+                                                label: 'Estado',
+                                                value: 'status',
+                                                type: 'TableTextComponent'
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        {
                             icon: 'group',
                             label: 'Empleados',
                             type: 'TableButtonComponent',
@@ -128,22 +229,22 @@ export class CompanyService {
                             }
                         },
                         {
-                            icon: 'store_mall_directory',
-                            label: 'Tiendas',
+                            icon: 'people',
+                            label: 'Clientes',
                             type: 'TableButtonComponent',
                             activeComponet: {
                                 type: 'TableGalleryComponent',
                                 row: 0,
                                 data: {
                                     observable: (arg) => {
-                                        return this.getStores(arg);
+                                        return this.getCustomers(arg);
                                     },
                                     galleryConfig: {
                                         galleryType: 'GALLERY_USER',
                                         galleryListData: 'data',
                                         galleryImage: 'profileImage.url',
-                                        galleryTitle: 'name',
-                                        gallerySubTitle: 'description',
+                                        galleryTitle: 'firstName,lastName',
+                                        gallerySubTitle: 'email',
                                         galleryDescription: '',
                                         button: {
                                             icon: 'subdirectory_arrow_right'
@@ -181,6 +282,24 @@ export class CompanyService {
 
     getStores(company: ICompany): Observable<any> {
         return this.storeService.getLocalsList({
+            filters: { company: company._id }
+        })
+    }
+
+    getCustomers(company: ICompany): Observable<any> {
+        return this.customerService.getCustomersList({
+            filters: { company: company._id }
+        })
+    }
+
+    getProducts(company: ICompany): Observable<any> {
+        return this.productService.getProductsList({
+            filters: { company: company._id }
+        })
+    }
+
+    getOrders(company: ICompany): Observable<any> {
+        return this.orderService.getOrdersList({
             filters: { company: company._id }
         })
     }

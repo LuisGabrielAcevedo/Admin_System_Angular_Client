@@ -1,0 +1,21 @@
+<div>
+  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="secondTableLoading">
+    <mat-spinner diameter="30" style="margin: 10px;"></mat-spinner>
+  </div>
+  <div *ngIf="secondTableList">
+    <div class="second-table-container" *ngIf="secondTableList.length">
+      <div class="second-table-container-row" *ngFor="let item of secondTableList" fxLayouttable="row" fxLayoutAlign="space-between center">
+        <div *ngIf="secondTableConfig.multiSelect" fxFlex="5">
+          <mat-checkbox #checkbox color="primary"></mat-checkbox>
+        </div>
+        <div *ngFor="let field of secondTableConfig.fields" fxFlex>
+          <p class="second-table-container-label">{{field.label}}</p>
+          <p >{{formatText(item, field.value)}}</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!secondTableList.length">
+      <p style="margin: 10px;">No hay datos disponibles</p>
+    </div>
+  </div>
+</div>

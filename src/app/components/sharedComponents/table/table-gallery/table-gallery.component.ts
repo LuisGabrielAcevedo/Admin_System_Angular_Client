@@ -21,11 +21,11 @@ export class TableGalleryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.galleryLoading = true;
     this.loadList();
   }
 
   loadList() {
+    this.galleryLoading = true;
     const observable = this.observable(this.item);
     observable.subscribe(resp => {
       this.galleryList = this.tableService.formatText(resp, this.galleryConfig.galleryListData);

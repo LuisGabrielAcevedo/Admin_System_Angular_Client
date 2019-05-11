@@ -23,6 +23,8 @@ import { TableItemInformationModule } from './table-item-information/table-item-
 import { RouterModule } from '@angular/router';
 import { TableApplicationTypeComponent } from './table-application-type/table-application-type.component';
 import { TableApplicationTypeModule } from './table-application-type/table-application-type.module';
+import { TableSecondTableModule } from './table-second-table/table-second-table.module';
+import { TableSecondTableComponent } from './table-second-table/table-second-table.component';
 
 @NgModule({
   imports: [
@@ -32,6 +34,7 @@ import { TableApplicationTypeModule } from './table-application-type/table-appli
     TableTextModule,
     TableApplicationTypeModule,
     TableButtonModule,
+    TableSecondTableModule,
     TableImageModule,
     TableGalleryModule,
     TableItemInformationModule,
@@ -54,7 +57,8 @@ import { TableApplicationTypeModule } from './table-application-type/table-appli
     TableButtonComponent,
     TableImageComponent,
     TableGalleryComponent,
-    TableItemInformationComponent
+    TableItemInformationComponent,
+    TableSecondTableComponent
   ],
   exports: [TableComponent]
 })

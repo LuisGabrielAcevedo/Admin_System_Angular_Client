@@ -11,6 +11,7 @@ import { TableGalleryComponent } from '../table-gallery/table-gallery.component'
 import { TableImageComponent } from '../table-image/table-image.component';
 import { TableItemInformationComponent } from '../table-item-information/table-item-information.component';
 import { TableApplicationTypeComponent } from '../table-application-type/table-application-type.component';
+import { TableSecondTableComponent } from '../table-second-table/table-second-table.component';
 
 @Component({
   selector: 'app-table-container',
@@ -20,7 +21,6 @@ export class TableContainerComponent implements OnInit, OnChanges {
   @ViewChild(TableDirective) adHost: TableDirective;
   @Input() componentType: TableContainerComponentType;
   @Input() componentData: TableContainerComponentData;
-  // @Output() itemToOutput: EventEmitter<TableOutputItemData> = new EventEmitter();
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
@@ -95,6 +95,17 @@ export class TableContainerComponent implements OnInit, OnChanges {
         if (tableRowItem.data) {
           componentInstance.item = tableRowItem.data.item;
           componentInstance.field = tableRowItem.data.field;
+        }
+        break;
+      }
+      case TableContainerComponentType.secondTable: {
+        const tableRowItem = new ComponentItem(TableSecondTableComponent, this.componentData);
+        const componentInstance = this.generateInstance<TableSecondTableComponent>(tableRowItem);
+        if (tableRowItem.data) {
+          componentInstance.item = tableRowItem.data.item;
+          componentInstance.field = tableRowItem.data.field;
+          componentInstance.observable = tableRowItem.data.observable;
+          componentInstance.secondTableConfig = tableRowItem.data.secondTableConfig;
         }
         break;
       }
