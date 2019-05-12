@@ -12,14 +12,14 @@ export class AppComponent implements OnInit, OnDestroy {
   menssageSubscription: Subscription;
   constructor(
     public messageService: MessageService,
-    public socketService: SocketService
+    // public socketService: SocketService
   ) { }
 
   ngOnInit() {
-    this.messageService.sendMessage('Hola desde angular');
-    this.menssageSubscription = this.messageService.getMessages().subscribe(msg => {
-      console.log(msg);
-    })
+    // this.messageService.sendMessage('Hola desde angular');
+    // this.menssageSubscription = this.messageService.getMessages().subscribe(msg => {
+    //   console.log(msg);
+    // })
   }
 
   ngOnDestroy() {

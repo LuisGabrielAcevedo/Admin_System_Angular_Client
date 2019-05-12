@@ -72,14 +72,21 @@ export class UsersFormComponent implements OnInit {
       });
       // 5. Si existe item lleno el autocomplete de companies con la data en item
       this.autocompleteData.defaultOption = this.item.company;
-      this.autocompleteData.disable = this.item.company ? true : false;
-      if (this.item.company) {
-        this.roleSandbox.loadRolesList({
-          filters: {
-            company: this.item.company._id
-          }
-        });
-      }
+      this.autocompleteData.disabled = this.item.company ? true : false;
+      // if (this.item.company) {
+      //   this.roleSandbox.loadRolesList({
+      //     filters: {
+      //       company: this.item.company._id
+      //     }
+      //   });
+      // }
+      // if (this.item.role) {
+      //   this.roleSandbox.loadRolesList({
+      //     filters: {
+      //       company: this.item.company._id
+      //     }
+      //   })
+      // }
     } else {
       this.form = new FormGroup({
         email: new FormControl('', [Validators.required]),
@@ -95,7 +102,11 @@ export class UsersFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.applicationSandbox.loadApplicationsList({});
+    // if (this.item) {
+    //   if (this.item.application) {
+    //     this.applicationSandbox.loadApplicationsList({});
+    //   }
+    // }
 
     this.subscriptions.push(
       // circulo cargando loading al oprimir guardar o actualizar
@@ -161,6 +172,8 @@ export class UsersFormComponent implements OnInit {
       company: option._id,
       application: option.application._id
     });
+
+    this.applicationSandbox.loadApplicationsList({});
 
     this.roleSandbox.loadRolesList({
       filters: {

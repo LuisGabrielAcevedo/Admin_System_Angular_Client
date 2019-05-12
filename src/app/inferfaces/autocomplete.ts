@@ -4,5 +4,5 @@ export interface IAutocompleteData {
     placeholder?: string;
     validations?: ValidatorFn[];
     defaultOption?: any;
-    disable?: Boolean;
+    disabled?: Boolean;
 }

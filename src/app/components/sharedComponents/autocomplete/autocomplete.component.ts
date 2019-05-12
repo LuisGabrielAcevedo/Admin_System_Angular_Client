@@ -36,10 +36,10 @@ export class AutocompleteComponent implements OnInit, OnChanges {
             this.optionSelected = this.autocompleteData.defaultOption;
         }
         this.autocompleteData.defaultOption ?
-            this.autocompleteData.disable ?
+            this.autocompleteData.disabled ?
             this.search = new FormControl({
                 value: this.autocompleteData.defaultOption[this.fieldToShow],
-                disabled: this.autocompleteData.disable })
+                disabled: this.autocompleteData.disabled })
             : this.search = new FormControl(this.autocompleteData.defaultOption[this.fieldToShow])
             : this.search = new FormControl('', this.autocompleteData.validations);
         this.search.valueChanges

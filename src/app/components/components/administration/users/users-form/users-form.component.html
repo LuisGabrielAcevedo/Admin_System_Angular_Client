@@ -44,11 +44,16 @@
                         <mat-option *ngFor="let application of applicationsList" [value]="application._id">
                             {{application.name}}
                         </mat-option>
+                        <mat-option *ngIf="applicationsList.length === 0">
+                            <div fxLayout="row" fxLayoutAlign="center center">
+                                <p>No hay aplicaciones disponibles</p>
+                            </div>
+                        </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>Rol</mat-label>
-                    <mat-select placeholder="Rol" formControlName="role" [compareWith]="compareFn">
+                    <mat-label>Role</mat-label>
+                    <mat-select placeholder="Role" formControlName="role" [compareWith]="compareFn">
                         <mat-option *ngIf="rolesList.length === 0">
                             <div fxLayout="row" fxLayoutAlign="center center">
                                 <p>No hay roles disponibles</p>
