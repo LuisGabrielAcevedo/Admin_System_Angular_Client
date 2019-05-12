@@ -27,6 +27,7 @@ export class CompaniesFormComponent implements OnInit, OnDestroy {
   compareFn: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
   countriesList: ICountry[] = [];
   file: File;
+  image: string = null;
   constructor(
     private companySandbox: CompanySandbox,
     private applicationSandbox: ApplicationSandbox,
@@ -44,6 +45,7 @@ export class CompaniesFormComponent implements OnInit, OnDestroy {
       }
     });
     if (this.item) {
+      this.image = this.item.profileImage ? this.item.profileImage.url : null;
       this.form = new FormGroup({
         _id: new FormControl(this.item._id),
         name: new FormControl(this.item.name),

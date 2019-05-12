@@ -56,3 +56,6 @@
     width: 80px;
 }
 
+.table_data_header span, table_header span{
+    margin-right: 6px;
+}

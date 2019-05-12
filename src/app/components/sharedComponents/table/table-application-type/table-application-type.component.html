@@ -1,5 +1,8 @@
-<div *ngIf="text" class="type" [ngStyle]="color()">
-  <p class="text" [ngStyle]="margin()">
-    {{text}}
-  </p>
+<div fxLayout="row" class="type">
+  <div fxFlex="30" [ngStyle]="color()" class="leftColumn">
+    <mat-icon style="margin-top: 6px;">{{icon()}}</mat-icon>
+  </div>
+  <div fxFlex="70" style="padding-top: 7px;">
+    <span class="text">{{text}}</span>
+  </div>
 </div>

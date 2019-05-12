@@ -1,10 +1,18 @@
 .type {
-    margin: 5px;
-    height: 40px;
-    padding: 5px;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #c8ced3;
+    border-radius: 5px;
     text-align: center;
 }
 
 .text {
-    font-size: 16px;
+    font-size: 14px;
+}
+
+.leftColumn {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-right: 1px solid #c8ced3;
+    height: 100%;
 }

@@ -3,8 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TableHeader,
    TableButtonAction, TablePagination, TablePaginationDefault } from 'src/app/components/sharedComponents/table/table.interfaces';
-import { AdminsTableHeader } from 'src/app/data/adminsTable';
-import { CustomersRowActions } from 'src/app/data/customersTable';
+import {  CustomersTableHeader } from 'src/app/data/customersTable';
 import { filter } from 'rxjs/operators';
 import { CustomerService } from '../../../../../services/http/customer.service';
 
@@ -16,7 +15,7 @@ import { CustomerService } from '../../../../../services/http/customer.service';
 export class CustomersListComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   data: object[];
-  headers: TableHeader[] = AdminsTableHeader;
+  headers: TableHeader[] = CustomersTableHeader;
   loading = false;
   rowActions: TableButtonAction[] = [];
   pagination: TablePagination = TablePaginationDefault;

@@ -1,6 +1,16 @@
 import { TableHeader, TableButtonAction } from '../components/sharedComponents/table/table.interfaces';
 export const RolesTableHeader: TableHeader[] = [
     {
+        label: 'Aplicacion',
+        value: 'application.name',
+        type: 'TableApplicationTypeComponent'
+    },
+    {
+        label: 'Empresa',
+        value: 'company.name',
+        type: 'TableTextComponent'
+    },
+    {
         label: 'Nombre',
         value: 'name',
         type: 'TableTextComponent'
@@ -9,16 +19,6 @@ export const RolesTableHeader: TableHeader[] = [
         label: 'Descripcion',
         value: 'description',
         type: 'TableTextComponent'
-    },
-    {
-        label: 'Empresa',
-        value: 'company.name',
-        type: 'TableTextComponent'
-    },
-    {
-        label: 'Aplicacion',
-        value: 'application.name',
-        type: 'TableApplicationTypeComponent'
     }
 ];
 

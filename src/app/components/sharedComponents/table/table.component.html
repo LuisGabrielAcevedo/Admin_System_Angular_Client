@@ -32,20 +32,20 @@
               <mat-checkbox #checkbox color="primary" (click)="$event.stopPropagation(); selectItem(i)"></mat-checkbox>
             </span>
             <!-- <span>{{i + 1}}</span> -->
-            <div *ngFor="let data of headers" fxFlex>
+            <span *ngFor="let data of headers" fxFlex>
               <app-table-container [componentType]="data.type" [componentData]="{
                       item: item, 
                       field: data.value, 
                       position:i
                   }"></app-table-container>
-            </div>
-            <div *ngFor="let button of rowActions" fxFlex="5">
+            </span>
+            <span *ngFor="let button of rowActions" fxFlex="5">
               <app-table-container [componentType]="button.type" [componentData]="{
                       item: item,
                       button: button,
                       position: i
                   }"></app-table-container>
-            </div>
+            </span>
           </div>
           <app-table-container *ngIf="rowSubItemSelected.row === i+1" [componentType]="rowSubItemSelected.type"
             [componentData]="{

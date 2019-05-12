@@ -1,6 +1,10 @@
 import { TableHeader, TableButtonAction } from '../components/sharedComponents/table/table.interfaces';
 export const LocalsTableHeader: TableHeader[] = [
-
+    {
+        label: 'Aplicacion',
+        value: 'application.name',
+        type: 'TableApplicationTypeComponent'
+    },
     {
         label: 'Nombre',
         value: 'name',
@@ -10,11 +14,6 @@ export const LocalsTableHeader: TableHeader[] = [
         label: 'Empresa',
         value: 'company.name',
         type: 'TableTextComponent'
-    },
-    {
-        label: 'Aplicacion',
-        value: 'application.name',
-        type: 'TableApplicationTypeComponent'
     }
 ];
 
