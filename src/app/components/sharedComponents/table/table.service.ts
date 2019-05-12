@@ -1,12 +1,13 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TableButtonAction, TableButtonOuputAction, TableOutputItemData, ActiveComponentOutputAction } from './table.interfaces';
+import { TableButtonAction, TableButtonOuputAction, TableOutputItemData, ActiveComponentOutputAction, TableDialog } from './table.interfaces';
 import { Router, NavigationExtras } from '@angular/router';
 
 @Injectable()
 export class TableService {
     openModal: EventEmitter<TableButtonOuputAction> = new EventEmitter();
     itemToOutput: EventEmitter<TableOutputItemData> = new EventEmitter();
+    openDialog: EventEmitter<TableDialog> = new EventEmitter();
     closeModal: EventEmitter<any> = new EventEmitter();
     activeComponent: EventEmitter<ActiveComponentOutputAction> = new EventEmitter();
     con = 0
@@ -16,7 +17,7 @@ export class TableService {
     ) {
     }
 
-    buttonActions(button: TableButtonAction, position: number, item: object) {
+    buttonActions(button: TableButtonAction, position: number, item: object | object[]) {
         // 1. Function
         if (button.event) {
             button.event(item);
@@ -50,6 +51,11 @@ export class TableService {
               position: position
             };
             this.activeComponent.emit(data);
+        }
+        // 6. Active dialog
+        if (button.dialog) {
+            button.dialog.data.item = item;
+            this.openDialog.emit(button.dialog);
         }
     }
 

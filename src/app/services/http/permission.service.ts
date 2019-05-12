@@ -4,13 +4,16 @@ import { Observable, of } from 'rxjs';
 import { ILoadRequest, loadRequestDataDefault } from '../../inferfaces/loadRequest';
 import { Global } from './url';
 import { IPermission } from '../../inferfaces/permission';
-import { TablePagination } from '../../components/sharedComponents/table/table.interfaces';
-
+import { TablePagination, TableButtonAction } from '../../components/sharedComponents/table/table.interfaces';
+import { SelectApplicationsComponent } from '../../components/dialogComponents/select-applications/select-applications.component';
+import { IApplication } from '../../inferfaces/application';
 @Injectable()
 export class PermissionService {
     public url;
     public loadRequestData: ILoadRequest = JSON.parse(JSON.stringify(loadRequestDataDefault));
-    constructor(private http: HttpClient) {
+    constructor(
+        private http: HttpClient
+    ) {
         this.url = Global.url_api;
     }
 
@@ -39,7 +42,7 @@ export class PermissionService {
                 }
             }
         }
-        return this.http.get<any>(`${this.url}/permissions/search/all-list`, {params});
+        return this.http.get<any>(`${this.url}/permissions/search/all-list`, { params });
     }
 
     savePermission(permission: IPermission): Observable<any> {
@@ -69,5 +72,67 @@ export class PermissionService {
     resetLoadRequest(): Observable<any> {
         this.loadRequestData = JSON.parse(JSON.stringify(loadRequestDataDefault));
         return of('change loadResquest');
+    }
+
+    getMultiActions(): TableButtonAction[] {
+        return [
+            {
+                icon: 'settings',
+                label: 'Seleccionar aplicacion',
+                type: 'TableButtonComponent',
+                dialog: {
+                    component: SelectApplicationsComponent,
+                    height: '240px',
+                    width: '400px',
+                    data: {
+                        observable: (arg1, arg2) => {
+                            return this.updateManyPermissions(arg1, arg2);
+                        }
+                    }
+                }
+            }
+        ]
+    }
+
+    getRowActions(): TableButtonAction[] {
+        return [
+            {
+                icon: 'chevron_left',
+                type: 'TableButtonComponent',
+                modal: {
+                    number: 2,
+                    row: 0,
+                    buttons: [
+                        {
+                            icon: 'edit',
+                            label: 'Editar',
+                            type: 'TableButtonComponent',
+                            redirectTo: '/administration/permissions/form'
+                        },
+                        {
+                            icon: 'close',
+                            label: 'Eliminar',
+                            type: 'TableButtonComponent',
+                            modal: {
+                                number: 1,
+                                row: 0,
+                                question: 'Esta seguro que desea borrar el Permiso?',
+                                successButtonText: 'Si',
+                                successButtonDisabled: (arg) => { return true },
+                                successButtonEvent: 'delete',
+                                cancelButtonText: 'No'
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+
+    updateManyPermissions(permissions: IPermission[], applications: IApplication[]) :Observable<any>{
+        return this.http.put<any>(`${this.url}/permissions`, {
+            permissions,
+            applications
+        });
     }
 }

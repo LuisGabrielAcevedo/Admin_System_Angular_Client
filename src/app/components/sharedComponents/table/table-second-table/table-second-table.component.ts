@@ -34,7 +34,7 @@ export class TableSecondTableComponent implements OnInit {
 
   formatText(item: object, field: string) {
     let text = this.tableService.formatText(item, field);
-    text = text ? text : 'No data'; 
+    text = text ? text : 'Sin información'; 
     return text.length > 18 ? `${text.substr(0, 18)}...` : text;
   }
 }

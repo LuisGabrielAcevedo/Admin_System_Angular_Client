@@ -6,6 +6,7 @@ import { TableHeader,
 import { AdminsTableHeader } from 'src/app/data/adminsTable';
 import { CustomersRowActions } from 'src/app/data/customersTable';
 import { filter } from 'rxjs/operators';
+import { CustomerService } from '../../../../../services/http/customer.service';
 
 @Component({
   selector: 'app-customers-list',
@@ -17,12 +18,16 @@ export class CustomersListComponent implements OnInit, OnDestroy {
   data: object[];
   headers: TableHeader[] = AdminsTableHeader;
   loading = false;
-  rowActions: TableButtonAction[] = CustomersRowActions;
+  rowActions: TableButtonAction[] = [];
   pagination: TablePagination = TablePaginationDefault;
 
-  constructor(private customerSandbox: CustomerSandbox) { }
+  constructor(
+    private customerSandbox: CustomerSandbox,
+    private customerService: CustomerService
+  ) { }
 
   ngOnInit() {
+    this.rowActions = this.customerService.getRowActions();
     this.loadCustomers();
       this.subscriptions.push(
       this.customerSandbox.fetchCustomers()

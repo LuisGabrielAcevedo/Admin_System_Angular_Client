@@ -1,5 +1,6 @@
 import {
   Component,
+  Inject,
   AfterViewInit,
   QueryList,
   Input,
@@ -9,7 +10,8 @@ import {
   SimpleChanges,
   ElementRef,
   ViewChildren,
-  ViewChild
+  ViewChild,
+  OnDestroy
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
@@ -23,13 +25,15 @@ import {
   ActiveComponentOutputAction,
   TablePagination,
   TableOutputItemData,
-  TableActiveComponent
+  TableActiveComponent,
+  TableDialog
 } from './table.interfaces';
 // // @ts-ignore
 // import templateDesktop from './table.component.html';
 // // @ts-ignore
 // import templateMobile from './table.mobile.component.html';
 import { TableService } from './table.service';
+import { MatDialog } from '@angular/material';
 
 // const template = window.screen.width < 600 ? templateMobile : templateDesktop;
 
@@ -38,7 +42,7 @@ import { TableService } from './table.service';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements AfterViewInit, OnChanges {
+export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
   searchValue = new FormControl();
   private subscriptions: Subscription[] = [];
   openRows: number[] = [];
@@ -60,16 +64,21 @@ export class TableComponent implements AfterViewInit, OnChanges {
   @Input() multiSelect: boolean | null = null;
   @Input() loading: boolean | null = null;
   @Input() rowActions: TableButtonAction[] = [];
+  @Input() multiActions: TableButtonAction[] = [];
   @Input() addRedirect: string;
   @Input() tablePagination: TablePagination;
   @Output() search: EventEmitter<string> = new EventEmitter();
   @Output() changePage: EventEmitter<TablePagination> = new EventEmitter();
   @Output() itemSelected: EventEmitter<TableOutputItemData> = new EventEmitter();
+  @Output() reloadData: EventEmitter<TableOutputItemData> = new EventEmitter();
   @ViewChild('tableData') rows: ElementRef;
   @ViewChildren('checkbox') checkboxes: QueryList<MatCheckbox>;
   @ViewChild('mainCheckbox') mainCheckbox: MatCheckbox;
 
-  constructor(public tableService: TableService) {
+  constructor(
+    public tableService: TableService,
+    public dialog: MatDialog
+  ) {
     this.addRedirect = '';
   }
 
@@ -79,24 +88,27 @@ export class TableComponent implements AfterViewInit, OnChanges {
         .pipe(debounceTime(200))
         .subscribe(newValue => {
           this.search.emit(newValue);
-        })
+        }),
+      this.tableService.openModal.subscribe(data => {
+        this.assignModal(data);
+      }),
+
+      this.tableService.closeModal.subscribe(() => {
+        this.resetModal();
+      }),
+
+      this.tableService.itemToOutput.subscribe(data => {
+        this.itemSelected.emit(data);
+      }),
+
+      this.tableService.activeComponent.subscribe(data => {
+        this.assignActiveComponent(data);
+      }),
+
+      this.tableService.openDialog.subscribe(data => {
+        this.openDialog(data);
+      })
     );
-
-    this.tableService.openModal.subscribe(data => {
-      this.assignModal(data);
-    })
-
-    this.tableService.closeModal.subscribe(() => {
-      this.resetModal();
-    })
-
-    this.tableService.itemToOutput.subscribe(data => {
-      this.itemSelected.emit(data);
-    })
-
-    this.tableService.activeComponent.subscribe(data => {
-      this.assignActiveComponent(data);
-    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -163,6 +175,7 @@ export class TableComponent implements AfterViewInit, OnChanges {
   }
 
   unSelectItems() {
+    this.checkedAll = false;
     this.itemsSelected = [];
     this.mainCheckbox.indeterminate = false;
     this.mainCheckbox.checked = false;
@@ -194,11 +207,30 @@ export class TableComponent implements AfterViewInit, OnChanges {
   }
 
   assignActiveComponent(data: ActiveComponentOutputAction) {
-    if (!this.openRows.includes(data.position)){
+    if (!this.openRows.includes(data.position)) {
       this.openRow(data.position);
     }
     this.rowSubItemSelected = data.activeComponent;
     this.rowSubItemSelected.row = data.position + 1;
+  }
+
+  openDialog(data: TableDialog) {
+    const dialogRef = this.dialog.open(data.component, {
+      width: data.width ? data.width : '300px',
+      height: data.height ? data.height : '300px',
+      data: data,
+      autoFocus: false,
+      panelClass: 'custom-dialog-container'
+    });
+
+    dialogRef.afterClosed().subscribe((resp) => {
+      if (resp) {
+        this.reloadData.emit();
+        this.unSelectItems();
+      }
+      this.resetModal();
+      this.resetSubItem();
+    });
   }
 
   changePageAction(newPagination: TablePagination) {
@@ -208,6 +240,8 @@ export class TableComponent implements AfterViewInit, OnChanges {
   formatText(item: object, field: string) {
     return this.tableService.formatText(item, field);
   }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
 }
-
-

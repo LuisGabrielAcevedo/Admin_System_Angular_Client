@@ -23,18 +23,6 @@ export class MainContainerComponent implements OnInit {
         name: 'Administration',
         subItems: [
           {
-            name: 'Usuarios',
-            route: '/administration/users/list'
-          },
-          {
-            name: 'Roles',
-            route: '/administration/roles/list'
-          },
-          {
-            name: 'Permisos',
-            route: '/administration/permissions/list'
-          },
-          {
             name: 'Empresas',
             route: '/administration/companies/list'
           },
@@ -43,8 +31,24 @@ export class MainContainerComponent implements OnInit {
             route: '/administration/locals/list'
           },
           {
-            name: 'Consumidores',
+            name: 'Productos',
+            route: '/administration/products/list'
+          },
+          {
+            name: 'Usuarios',
+            route: '/administration/users/list'
+          },
+          {
+            name: 'Clientes',
             route: '/administration/customers/list'
+          },
+          {
+            name: 'Roles',
+            route: '/administration/roles/list'
+          },
+          {
+            name: 'Permisos',
+            route: '/administration/permissions/list'
           },
           // {
           //   name: 'Administradores',
@@ -70,10 +74,6 @@ export class MainContainerComponent implements OnInit {
           //   name: 'Marcas',
           //   route: '/administration/brands/list'
           // },
-          {
-            name: 'Productos',
-            route: '/administration/products/list'
-          },
           // {
           //   name: 'Tipo de productos',
           //   route: '/administration/product-types/list'

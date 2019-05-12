@@ -67,3 +67,7 @@ mat-form-field {
     width: 100%;
 }
 
+.custom-dialog-container .mat-dialog-container {
+    padding: 5px !important;
+    overflow: hidden !important;
+}

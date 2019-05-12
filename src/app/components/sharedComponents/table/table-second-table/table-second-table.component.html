@@ -5,9 +5,9 @@
   <div *ngIf="secondTableList">
     <div class="second-table-container" *ngIf="secondTableList.length">
       <div class="second-table-container-row" *ngFor="let item of secondTableList" fxLayouttable="row" fxLayoutAlign="space-between center">
-        <div *ngIf="secondTableConfig.multiSelect" fxFlex="5">
+        <!-- <div *ngIf="secondTableConfig.multiSelect" fxFlex="5">
           <mat-checkbox #checkbox color="primary"></mat-checkbox>
-        </div>
+        </div> -->
         <div *ngFor="let field of secondTableConfig.fields" fxFlex>
           <p class="second-table-container-label">{{field.label}}</p>
           <p >{{formatText(item, field.value)}}</p>

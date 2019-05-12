@@ -4,7 +4,8 @@ import { Observable, of } from 'rxjs';
 import { ILoadRequest, loadRequestDataDefault } from 'src/app/inferfaces/loadRequest';
 import { Global } from 'src/app/services/http/url';
 import { ICustomer } from 'src/app/inferfaces/customer';
-import { TablePagination } from '../../components/sharedComponents/table/table.interfaces';
+import { TablePagination, TableButtonAction } from '../../components/sharedComponents/table/table.interfaces';
+import { ProfileCardComponent } from 'src/app/components/dialogComponents/profile-card/profile-card.component';
 
 
 @Injectable()
@@ -23,7 +24,7 @@ export class CustomerService {
                 params = params.set(param, this.loadRequestData[param]);
             }
         }
-        return this.http.get<any>(`${this.url}/customers`, {params});
+        return this.http.get<any>(`${this.url}/customers`, { params });
     }
 
     getCustomersList(loadRequestData: ILoadRequest): Observable<any> {
@@ -41,7 +42,7 @@ export class CustomerService {
                 }
             }
         }
-        return this.http.get<any>(`${this.url}/customers/search/all-list`, {params});
+        return this.http.get<any>(`${this.url}/customers/search/all-list`, { params });
     }
 
 
@@ -82,5 +83,85 @@ export class CustomerService {
     resetLoadRequest(): Observable<any> {
         this.loadRequestData = JSON.parse(JSON.stringify(loadRequestDataDefault));
         return of('change loadResquest');
+    }
+
+    getRowActions() {
+        let actions: TableButtonAction[] = [
+            {
+                icon: 'chevron_left',
+                type: 'TableButtonComponent',
+                modal: {
+                    number: 2,
+                    row: 0,
+                    buttons: [
+                        {
+                            icon: 'edit',
+                            label: 'Editar',
+                            type: 'TableButtonComponent',
+                            redirectTo: '/administration/customers/form'
+                        },
+                        {
+                            icon: 'info',
+                            label: 'Informacion',
+                            type: 'TableButtonComponent',
+                            dialog: {
+                                component: ProfileCardComponent,
+                                height: '432px',
+                                width: '400px',
+                                data: {
+                                    cardConfig: {
+                                        cardType: 'CARD_USER',
+                                        cardImage: 'profileImage.url',
+                                        cardTitle: 'firstName,lastName',
+                                        cardSubTitle: 'email',
+                                        labels: [
+                                            'Id',
+                                            'Empresa',
+                                            'Dni',
+                                            'Telefono',
+                                            'Registro',
+                                            'Actualizacion'
+                                        ],
+                                        columnData: [
+                                            '_id',
+                                            'company.name',
+                                            'customerInformation.documentNumber',
+                                            'phone',
+                                            'createdAt',
+                                            'updatedAt'
+                                        ],
+                                        rowActions: [
+                                            {
+                                                label: 'mail_outline',
+                                                icon: 'mail_outline'
+                                            },
+                                            {
+                                                label: 'phone',
+                                                icon: 'phone'
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            icon: 'close',
+                            label: 'Eliminar',
+                            type: 'TableButtonComponent',
+                            modal: {
+                                number: 1,
+                                row: 0,
+                                question: 'Esta seguro que desea borrar el Cliente?',
+                                successButtonText: 'Si',
+                                successButtonDisabled: (arg) => { return true },
+                                successButtonEvent: 'delete',
+                                cancelButtonText: 'No'
+                            }
+                        }
+                    ]
+                }
+            }
+        ];
+        return actions;
     }
 }

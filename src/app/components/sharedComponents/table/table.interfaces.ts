@@ -20,12 +20,13 @@ export enum TableContainerComponentType {
 }
 
 export interface TableContainerComponentData {
-    item?: object;
+    item?: object | object[];
     field?: string | string[];
     button?: TableButtonAction;
     observable?: (...arg: any[]) => Observable<any>;
     galleryConfig?: TableGalleryConfig;
     secondTableConfig?: TableSecondTableConfig;
+    cardConfig?: TableCardConfig;
     position?: number;
 }
 
@@ -37,6 +38,16 @@ export interface TableGalleryConfig {
     gallerySubTitle?: string;
     galleryDescription?: string;
     button?: TableButtonAction;
+}
+
+export interface TableCardConfig {
+    cardType: string;
+    cardImage?: string;
+    cardTitle?: string;
+    cardSubTitle?: string;
+    labels?: string[];
+    columnData: string[];
+    rowActions?: TableButtonAction[];
 }
 
 export interface TableSecondTableConfig {
@@ -59,6 +70,7 @@ export interface TableButtonAction {
     modal?: TableModal;
     type?: string;
     activeComponet?: TableActiveComponent;
+    dialog?: TableDialog;
     redirectTo?: string;
     outputItemAction?: string;
     visible?: (...arg: any[]) => boolean;
@@ -78,6 +90,13 @@ export interface TableModal {
     cancelButtonClass?: string;
     buttonsClass?: string;
     buttons?: TableButtonAction[];
+}
+
+export interface TableDialog {
+    component: any;
+    width?: string;
+    height?: string;
+    data: TableContainerComponentData;
 }
 
 export interface TableActiveComponent {

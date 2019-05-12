@@ -1,9 +1,14 @@
 .multiActions{
     position: fixed;
     bottom: 0;
-    height: 80px;
+    height: 70px;
     width: 100%;
-    background: #1976D2;
+    background: rgba(25,118,210, 0.9);
     color: white;
     padding: 10px;
+}
+
+.divider {
+    margin-left: 20px;
+    border-left: 1px solid white;
 }

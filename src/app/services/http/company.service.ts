@@ -10,6 +10,7 @@ import { StoreService } from './local.service';
 import { CustomerService } from './customer.service';
 import { ProductService } from './product.service';
 import { OrderService } from './order.service';
+import { ProfileCardComponent } from 'src/app/components/dialogComponents/profile-card/profile-card.component';
 
 
 @Injectable()
@@ -109,6 +110,46 @@ export class CompanyService {
                             redirectTo: '/administration/companies/form'
                         },
                         {
+                            icon: 'info',
+                            label: 'Informacion',
+                            type: 'TableButtonComponent',
+                            dialog: {
+                                component: ProfileCardComponent,
+                                height: '442px',
+                                width: '408px',
+                                data: {
+                                    cardConfig: {
+                                        cardType: 'CARD_IMAGE',
+                                        cardImage: 'profileImage.url',
+                                        cardTitle: 'name',
+                                        cardSubTitle: 'country.name',
+                                        labels: [
+                                            'Id',
+                                            'Pais',
+                                            'Aplicacion',
+                                            'Monedas',
+                                            'Administrador',
+                                            'Registro',
+                                            'Actualizacion'
+                                        ],
+                                        columnData: [
+                                            '_id',
+                                            'country.name',
+                                            'application.name',
+                                            'currencies',
+                                            'admin.firstName',
+                                            'createdAt',
+                                            'updatedAt'
+                                        ],
+                                        rowActions: [{
+                                            label: 'mail_outline',
+                                            icon: 'mail_outline'
+                                        }]
+                                    }
+                                }
+                            }
+                        },
+                        {
                             icon: 'store_mall_directory',
                             label: 'Tiendas',
                             type: 'TableButtonComponent',
@@ -120,7 +161,7 @@ export class CompanyService {
                                         return this.getStores(arg);
                                     },
                                     galleryConfig: {
-                                        galleryType: 'GALLERY_INFO_CARD',
+                                        galleryType: 'GALLERY_IMAGE',
                                         galleryListData: 'data',
                                         galleryImage: 'profileImage.url',
                                         galleryTitle: 'name',

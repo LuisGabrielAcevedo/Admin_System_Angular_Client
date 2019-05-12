@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TableService } from '../table.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class TableItemInformationComponent implements OnInit {
     this.field.forEach(element => {
       const dataSplit = element.split('/b/');
       let text = this.httpTableService.formatText(this.item, dataSplit[1]);
-      text = text ? text : 'No data';
+      text = text ? text : 'Sin información';
       dataFormated.push(dataSplit[0] + ' ' + text);
     });
     this.dataFormated = dataFormated;

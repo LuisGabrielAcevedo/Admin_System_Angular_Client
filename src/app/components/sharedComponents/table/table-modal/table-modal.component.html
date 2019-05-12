@@ -6,7 +6,7 @@
       </button>
       <span>{{modalData.question}}</span>
       <mat-divider></mat-divider>
-      <button mat-flat-button color="primary" (click)="modalSuccesActions()" disabled>Yes</button>
+      <button mat-flat-button color="primary" (click)="modalSuccesActions()">Yes</button>
       <button mat-flat-button color="primary" (click)="tableService.closeModal.emit()">No</button>
     </div>
     <div *ngIf="modalData.number === 2">

@@ -25,7 +25,8 @@ import { TableApplicationTypeComponent } from './table-application-type/table-ap
 import { TableApplicationTypeModule } from './table-application-type/table-application-type.module';
 import { TableSecondTableModule } from './table-second-table/table-second-table.module';
 import { TableSecondTableComponent } from './table-second-table/table-second-table.component';
-
+import { SelectApplicationsComponent } from '../../dialogComponents/select-applications/select-applications.component';
+import { ProfileCardComponent } from 'src/app/components/dialogComponents/profile-card/profile-card.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -49,7 +50,9 @@ import { TableSecondTableComponent } from './table-second-table/table-second-tab
     TableSearchComponent,
     TableContainerComponent,
     TableDirective,
-    TableMultiActionsComponent
+    TableMultiActionsComponent,
+    SelectApplicationsComponent,
+    ProfileCardComponent
   ],
   entryComponents: [
     TableTextComponent,
@@ -58,7 +61,9 @@ import { TableSecondTableComponent } from './table-second-table/table-second-tab
     TableImageComponent,
     TableGalleryComponent,
     TableItemInformationComponent,
-    TableSecondTableComponent
+    TableSecondTableComponent,
+    SelectApplicationsComponent,
+    ProfileCardComponent
   ],
   exports: [TableComponent]
 })

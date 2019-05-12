@@ -6,6 +6,7 @@ import { ILoadRequest, loadRequestDataDefault } from 'src/app/inferfaces/loadReq
 import { Global } from './url';
 import { IUser } from '../../inferfaces/user';
 import { FollowService } from './follow.service';
+import { ProfileCardComponent } from 'src/app/components/dialogComponents/profile-card/profile-card.component';
 
 @Injectable()
 export class UserService {
@@ -18,7 +19,7 @@ export class UserService {
         this.url = Global.url_api;
     }
 
-    login(user: object) : Observable<any>  {
+    login(user: object): Observable<any> {
         return this.http.post<any>(`${this.url}/users/login`, user);
     }
 
@@ -109,20 +110,35 @@ export class UserService {
                             icon: 'info',
                             label: 'Informacion',
                             type: 'TableButtonComponent',
-                            activeComponet: {
-                                type: 'TableItemInformationComponent',
-                                row: 0,
+                            dialog: {
+                                component: ProfileCardComponent,
+                                height: '402px',
+                                width: '400px',
                                 data: {
-                                    field: [
-                                        'Id:/b/_id',
-                                        'Email:/b/email',
-                                        'Nombre:/b/firstName',
-                                        'Apellido:/b/lastName',
-                                        'Empresa:/b/company.name',
-                                        'Rol:/b/role.name',
-                                        'Fecha de registro:/b/createdAt',
-                                        'Fecha de Actualizacion:/b/updatedAt'
-                                    ]
+                                    cardConfig: {
+                                        cardType: 'CARD_USER',
+                                        cardImage: 'profileImage.url',
+                                        cardTitle: 'firstName,lastName',
+                                        cardSubTitle: 'email',
+                                        labels: [
+                                            'Id',
+                                            'Empresa',
+                                            'Rol',
+                                            'Registro',
+                                            'Actualizacion'
+                                        ],
+                                        columnData: [
+                                            '_id',
+                                            'company.name',
+                                            'role.name',
+                                            'createdAt',
+                                            'updatedAt'
+                                        ],
+                                        rowActions: [{
+                                            label: 'mail_outline',
+                                            icon: 'mail_outline'
+                                        }]
+                                    }
                                 }
                             }
                         },

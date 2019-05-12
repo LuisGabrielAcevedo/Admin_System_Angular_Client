@@ -13,7 +13,7 @@ interface ITableItem {
 })
 export class TableApplicationTypeComponent implements OnInit {
   @Input() field: string | string[];
-  @Input() item: ITableItem;
+  @Input() item: any;
   text;
   constructor(private httpTableService: TableService) {
     this.text = null;
@@ -25,7 +25,7 @@ export class TableApplicationTypeComponent implements OnInit {
 
   formatText() {
     let text = this.httpTableService.formatText(this.item, (this.field as string));
-    text = text ? text : 'No data';
+    text = text ? text : 'Sin información';
     this.text = text.length > 20 ? `${text.substr(0, 20)}...` : text;
   }
 

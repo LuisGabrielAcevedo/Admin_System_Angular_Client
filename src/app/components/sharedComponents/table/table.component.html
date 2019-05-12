@@ -15,7 +15,7 @@
       </div>
       <!-- headers -->
       <div class="table_header" fxLayout="row" fxLayoutAlign="space-between center">
-        <span *ngIf="multiSelect">
+        <span *ngIf="multiSelect" fxFlex="5">
           <mat-checkbox color="primary" #mainCheckbox (click)="checkedAllAction()"></mat-checkbox>
         </span>
         <!-- <span>#</span> -->
@@ -28,7 +28,7 @@
         <div class="table_data_row" *ngFor="let item of data; index as i">
           <app-table-modal [modalData]="modalSelected" [position]="i" [item]="item" *ngIf="modalSelected.row === i+1"></app-table-modal>
           <div class="table_data_header" fxLayouttable="row" fxLayoutAlign="space-between center">
-            <span *ngIf="multiSelect">
+            <span *ngIf="multiSelect" fxFlex="5">
               <mat-checkbox #checkbox color="primary" (click)="$event.stopPropagation(); selectItem(i)"></mat-checkbox>
             </span>
             <!-- <span>{{i + 1}}</span> -->
@@ -68,7 +68,12 @@
     </div>
     <!-- multi actions -->
     <div fxLayout="row">
-      <app-table-multi-actions [colors]="colors" [items]="itemsSelected" (unSelectItems)="unSelectItems()"></app-table-multi-actions>
+      <app-table-multi-actions 
+      [colors]="colors" 
+      [items]="itemsSelected" 
+      (unSelectItems)="unSelectItems()"
+      [multiActions]="multiActions"
+      ></app-table-multi-actions>
     </div>
   </div>
 </div>

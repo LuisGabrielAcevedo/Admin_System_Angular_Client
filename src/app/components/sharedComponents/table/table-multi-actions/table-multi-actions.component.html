@@ -1,7 +1,18 @@
-<div class="multiActions" #multiActions fxLayout="row" fxLayoutAlign="space-between center" *ngIf="items.length > 0">
-  <span *ngIf="items.length === 1">{{items.length}} item seleccionado</span>
-  <span *ngIf="items.length > 1">{{items.length}} items seleccionados</span>
-  <button mat-mini-fab color="primary" (click)="unSelect()">
-    <mat-icon>close</mat-icon>
-  </button>
+<div class="multiActions" fxLayout="row" fxLayoutAlign="start center" *ngIf="items.length > 0">
+  <span fxFlex="15">{{items.length}}</span>
+  <div *ngFor="let button of multiActions" fxFlex="85" (click)="buttonActions(button)">
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <div fxLayout="column" *ngIf="visibleButton(button)" fxLayoutAlign="space-between center" class="buttons">
+        <button mat-icon-button>
+          <mat-icon>{{button.icon}}</mat-icon>
+        </button>
+        <!-- <span>{{button.label}}</span> -->
+      </div>
+      <div class="divider">
+        <button mat-icon-button style="color: white;" (click)="unSelect()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

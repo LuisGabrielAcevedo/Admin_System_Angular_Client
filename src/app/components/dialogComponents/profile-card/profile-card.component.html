@@ -1,0 +1,36 @@
+<div style="width: 100%;position: relative;">
+    <div class="cardClose" (click)="onNoClick()">
+        <mat-icon style="font-size:18px;margin-top: 3px;">close</mat-icon>
+    </div>
+    <div *ngIf="data.data.cardConfig.cardType === 'CARD_USER'" class="cardUserHeader" fxLayout="column" fxLayoutAlign="center center">
+        <img *ngIf="!formatImage(data.data.item, data.data.cardConfig.cardImage)" class="cardUserImage" src="../../../../assets/images/default.jpg">
+        <img *ngIf="formatImage(data.data.item, data.data.cardConfig.cardImage)" class="cardUserImage" src="{{formatImage(data.data.item, data.data.cardConfig.cardImage)}}">
+        <span class="cardTitle">{{formatText(data.data.item,data.data.cardConfig.cardTitle)}}</span>
+        <span class="cardSubTilte">{{formatText(data.data.item,data.data.cardConfig.cardSubTitle)}}</span>
+    </div>
+    <div *ngIf="data.data.cardConfig.cardType === 'CARD_IMAGE'" class="cardImageHeader">
+        <img *ngIf="!formatImage(data.data.item, data.data.cardConfig.cardImage)" class="cardImageImage" src="../../../../assets/images/default.jpg">
+        <img *ngIf="formatImage(data.data.item, data.data.cardConfig.cardImage)" class="cardImageImage" src="{{formatImage(data.data.item, data.data.cardConfig.cardImage)}}">
+        <div class="cardImageFooter" fxLayout="row" fxLayoutAlign="center center">
+            <span class="cardTitle">{{formatText(data.data.item,data.data.cardConfig.cardTitle)}}</span>
+            <!-- <span class="cardSubTilte">{{formatText(data.data.item,data.data.cardConfig.cardSubTitle)}}</span> -->
+        </div>
+    </div>
+    <div fxLayout="row" style="margin-top:10px;" mat-dialog-content>
+        <div fxFlex="35">
+            <div fxLayout="column" fxLayoutAlign="start end">
+                <span class="cardLabel" *ngFor="let label of data.data.cardConfig.labels">{{label}}:</span>
+            </div>
+        </div>
+        <div fxFlex="65" class="secondColumn">
+            <div fxLayout="column" fxLayoutAlign="start start">
+                <span class="cardText" *ngFor="let text of data.data.cardConfig.columnData">{{formatText(data.data.item,text)}}</span>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions fxLayout="row" fxLayoutAlign="center end" class="cardFooter">
+        <mat-icon class="cardIcons" *ngFor="let button of data.data.cardConfig.rowActions" style="margin: 5px;">
+            {{button.icon}}
+        </mat-icon>
+    </div>
+</div>

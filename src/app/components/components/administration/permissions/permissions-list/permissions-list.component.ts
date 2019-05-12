@@ -8,6 +8,7 @@ import {
 } from '../../../../sharedComponents/table/table.interfaces';
 import { filter } from 'rxjs/operators';
 import { PermissionsTableHeader, PermissionRowActions } from 'src/app/data/permissionsTable';
+import { PermissionService } from '../../../../../services/http/permission.service';
 
 @Component({
   selector: 'app-permissions-list',
@@ -19,9 +20,16 @@ export class PermissionsListComponent implements OnInit, OnDestroy {
   data: object[];
   headers: TableHeader[] = PermissionsTableHeader;
   loading = false;
-  rowActions: TableButtonAction[] = PermissionRowActions;
+  rowActions: TableButtonAction[] = [];
+  multiActions: TableButtonAction[] = [];
   pagination: TablePagination = TablePaginationDefault;
-  constructor(private permissionSandbox: PermissionSandbox) { }
+  constructor(
+    private permissionSandbox: PermissionSandbox,
+    private permissionService: PermissionService
+  ) {
+    this.rowActions = this.permissionService.getRowActions();
+    this.multiActions = this.permissionService.getMultiActions();
+  }
 
   ngOnInit() {
     this.loadPermissions();
@@ -58,6 +66,10 @@ export class PermissionsListComponent implements OnInit, OnDestroy {
 
   search(value: string) {
     this.permissionSandbox.changeSearchValue(value);
+  }
+
+  reloadData() {
+    this.permissionSandbox.loadPermissions();
   }
 
   ngOnDestroy() {
