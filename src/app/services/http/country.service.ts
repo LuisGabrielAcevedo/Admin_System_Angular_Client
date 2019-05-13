@@ -25,6 +25,9 @@ export class CountryService {
         return this.http.get<any>(`${this.url}/countries`, {params});
     }
 
+    getCountry(id: string): Observable<any> {
+        return this.http.get<any>(`${this.url}/countries/${id}`);
+    }
 
     saveCountry(country: ICountry): Observable<any> {
         return this.http.post<any>(`${this.url}/countries`, country);

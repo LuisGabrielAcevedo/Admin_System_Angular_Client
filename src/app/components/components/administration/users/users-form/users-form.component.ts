@@ -2,16 +2,15 @@ import { IApplication } from 'src/app/inferfaces/application';
 import { IUser } from 'src/app/inferfaces/user';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs/internal/Subscription';
 import { SnackbarSandbox } from 'src/app/sandbox/snackbar.sandbox';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserSandbox } from 'src/app/sandbox/user.sandbox';
-import { RoleSandbox } from 'src/app/sandbox/role.sandbox';
-import { CompanySandbox } from 'src/app/sandbox/company.sandbox';
-import { ApplicationSandbox } from 'src/app/sandbox/application.sandbox';
 import { IAutocompleteData } from 'src/app/inferfaces/autocomplete';
-import { TableOutputItemData } from 'src/app/components/sharedComponents/table/table.interfaces';
 import { IRole } from 'src/app/inferfaces/role';
+import { UserService } from 'src/app/services/http/user.service';
+import { CompanyService } from 'src/app/services/http/company.service';
+import { ApplicationService } from 'src/app/services/http/application.service';
+import { RoleService } from 'src/app/services/http/role.service';
+import { ILoadRequest, IApiResponse } from 'src/app/inferfaces/loadRequest';
 
 
 @Component({
@@ -20,10 +19,9 @@ import { IRole } from 'src/app/inferfaces/role';
   styleUrls: ['./users-form.component.css']
 })
 export class UsersFormComponent implements OnInit {
-  [x: string]: any;
-  subscriptions: Subscription[] = [];
   form: FormGroup;
   item: IUser;
+  loadingForm: boolean;
   loading: boolean;
   loadingCompanies: Boolean = false;
   file: File;
@@ -35,28 +33,32 @@ export class UsersFormComponent implements OnInit {
   image: string = null;
 
   constructor(
-    private userSandbox: UserSandbox,
-    private roleSandbox: RoleSandbox,
-    private companySandbox: CompanySandbox,
-    private applicationSandbox: ApplicationSandbox,
+    private userService: UserService,
+    private roleService: RoleService,
+    private companyService: CompanyService,
+    private applicationService: ApplicationService,
     private snackBarSandbox: SnackbarSandbox,
     private route: ActivatedRoute,
     private router: Router
   ) {
-
-    // 1. Revisar si viene data en la ruta
-    this.route.queryParams.subscribe((params) => {
-      const item = params['item'];
-      if (item) {
-        this.item = JSON.parse(item);
-      }
+    this.loadingForm = true;
+    this.route.paramMap.subscribe(params => {
+      const id : string = params.get("id");
+      id ? this.findUser(id) : this.loadForm();
     });
-    // 2. Setear el placeholder para el autocomplete
-    this.autocompleteData.placeholder = 'Empresa';
+  }
+
+  findUser(id: string) {
+    this.userService.getUser(id).subscribe(resp => {
+      this.item = resp.data;
+      this.loadForm();
+    })
+  }
+
+  loadForm() {
     if (this.item) {
-      // 3. Imagen
+      this.autocompleteData.placeholder = 'Empresa';
       this.image = this.item.profileImage ? this.item.profileImage.url : null;
-      // 4. Si existe item lleno el formunario con la data de item
       this.form = new FormGroup({
         _id: new FormControl(this.item._id),
         email: new FormControl(this.item.email),
@@ -70,23 +72,16 @@ export class UsersFormComponent implements OnInit {
           disabled: this.item.application ? true : false
         })
       });
-      // 5. Si existe item lleno el autocomplete de companies con la data en item
       this.autocompleteData.defaultOption = this.item.company;
       this.autocompleteData.disabled = this.item.company ? true : false;
-      // if (this.item.company) {
-      //   this.roleSandbox.loadRolesList({
-      //     filters: {
-      //       company: this.item.company._id
-      //     }
-      //   });
-      // }
-      // if (this.item.role) {
-      //   this.roleSandbox.loadRolesList({
-      //     filters: {
-      //       company: this.item.company._id
-      //     }
-      //   })
-      // }
+      this.loadApplications({});
+      if (this.item.company) {
+        this.loadRoles({
+          filters: {
+            company: this.item.company._id
+          }
+        });
+      }
     } else {
       this.form = new FormGroup({
         email: new FormControl('', [Validators.required]),
@@ -99,40 +94,10 @@ export class UsersFormComponent implements OnInit {
         application: new FormControl(null)
       });
     }
+    this.loadingForm = false;
   }
 
   ngOnInit() {
-    // if (this.item) {
-    //   if (this.item.application) {
-    //     this.applicationSandbox.loadApplicationsList({});
-    //   }
-    // }
-
-    this.subscriptions.push(
-      // circulo cargando loading al oprimir guardar o actualizar
-      this.userSandbox.fetchIsLoadingUsers().subscribe((loading) => {
-        this.loading = loading;
-      }),
-
-      // cargamos la lista de Empresas para el selector
-      this.companySandbox.fetchCompaniesList().subscribe(companies => {
-        this.companiesList = companies;
-      }),
-
-      // cargamos la lista de aplicaciones para el selector
-      this.applicationSandbox.fetchApplicationsList().subscribe(applications => {
-        this.applicationsList = applications;
-      }),
-
-      this.companySandbox.fetchIsLoadingCompanies().subscribe((loading) => {
-        this.loadingCompanies = loading;
-      }),
-
-      // cargamos la lista de Roles para el selector
-      this.roleSandbox.fetchRolesList().subscribe(roles => {
-        this.rolesList = roles;
-      })
-    );
   }
 
   setFile(file: File) {
@@ -143,8 +108,25 @@ export class UsersFormComponent implements OnInit {
     this.form.status === 'INVALID'
       ? this.snackBarSandbox.sendMessage({ message: 'Datos incompletos' })
       : this.item
-        ? this.userSandbox.updateUser(this.form.value, this.file)
-        : this.userSandbox.saveUser(this.form.value);
+        ? this.action('UPDATE')
+        : this.action('SAVE')
+  }
+
+  action(action: string) {
+    this.loading = true;
+    action === 'UPDATE'
+    ? this.userService.updateUser(this.form.value, this.file).subscribe(
+      resp => this.afterButtonActionSucces(resp),
+      error => console.log(error))
+    : this.userService.saveUser(this.form.value).subscribe(
+      resp => this.afterButtonActionSucces(resp),
+      error => console.log(error));
+  }
+
+  afterButtonActionSucces(resp: IApiResponse) {
+    this.snackBarSandbox.sendMessage({action: '', message: resp.msg});
+    this.loading= false;
+    this.volver();
   }
 
   compareByValue(f1: any, f2: any) {
@@ -155,14 +137,8 @@ export class UsersFormComponent implements OnInit {
     this.router.navigate(['/administration/users/list']);
   }
 
-  itemSelectedAction(data: TableOutputItemData) {
-    if (data.action === 'delete') {
-      this.adminSandbox.deleteAdmin(data.item);
-    }
-  }
-
   searchValues(value: string) {
-    this.companySandbox.loadCompaniesList({
+    this.loadCompanies({
       search: value
     });
   }
@@ -172,13 +148,31 @@ export class UsersFormComponent implements OnInit {
       company: option._id,
       application: option.application._id
     });
-
-    this.applicationSandbox.loadApplicationsList({});
-
-    this.roleSandbox.loadRolesList({
+    this.loadApplications({});
+    this.loadRoles({
       filters: {
         company: option._id
       }
     });
+  }
+
+  loadRoles(loadRequestData: ILoadRequest) {
+    this.roleService.getRolesList(loadRequestData).subscribe(roles => {
+      this.rolesList = roles.data;
+    })
+  }
+
+  loadCompanies(loadRequestData: ILoadRequest) {
+    this.loadingCompanies = true;
+    this.companyService.getCompaniesList(loadRequestData).subscribe(companies => {
+      this.companiesList = companies.data;
+      this.loadingCompanies = false;
+    })
+  }
+
+  loadApplications(loadRequestData: ILoadRequest) {
+    this.applicationService.getApplicationsList(loadRequestData).subscribe(applications => {
+      this.applicationsList = applications.data;
+    })
   }
 }

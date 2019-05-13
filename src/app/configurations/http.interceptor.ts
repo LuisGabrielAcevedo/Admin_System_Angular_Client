@@ -20,8 +20,7 @@ export class AdminSystemInterceptor implements HttpInterceptor {
     const n = request.url.search("google");
     const updatedRequest = n < 0 ? request.clone({
       headers: request.headers.set("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblVzZXIiOnsic2VjcmV0IjoiYWRtaW5TeXN0ZW1TZXJ2ZXI1OTYiLCJwcm9maWxlSW1hZ2UiOnsiZmlsZU5hbWUiOiI1YzlmYzRmMWVmYzU0MDdiMmVjMzVkZjQ3NjU0X0lNQUdFX0FETUlOLmpwZWciLCJ1cmwiOiJodHRwOi8vbG9jYWxob3N0OjM1MDAvYXBpL3YxL2FkbWlucy9pbWFnZS81YzlmYzRmMWVmYzU0MDdiMmVjMzVkZjQvNWM5ZmM0ZjFlZmM1NDA3YjJlYzM1ZGY0NzY1NF9JTUFHRV9BRE1JTi5qcGVnIiwiZGlyZWN0b3J5IjoiL1VzZXJzL2x1aXNnYWJyaWVsYWNldmVkb3JhbWlyZXovV29ya3NwYWNlL2FkbWluIHNlcnZlciBhbmd1bGFyL0FkbWluLVN5c3RlbS1TZXJ2ZXIvdXBsb2Fkcy9hZG1pbi81YzlmYzRmMWVmYzU0MDdiMmVjMzVkZjQifSwiZmlyc3ROYW1lIjoiTHVpcyBHYWJyaWVsIiwibGFzdE5hbWUiOiJBY2V2ZWRvIFJhbcOtcmV6IiwiY3JlYXRlZEF0IjoiU2F0LCBNYXIgMzAsIDIwMTkgNDozNSBQTSIsInVwZGF0ZWRBdCI6IlNhdCwgTWFyIDMwLCAyMDE5IDQ6MzYgUE0iLCJkZWxldGVkQXQiOm51bGwsIl9pZCI6IjVjOWZjNGYxZWZjNTQwN2IyZWMzNWRmNCIsImVtYWlsIjoibHVpc2dhYnJpZWxfYWNlQGhvdG1haWwuY29tIiwidXNlck5hbWUiOiJNdXNpY2FnYSJ9LCJpYXQiOjE1NTY1ODY2MDYsImV4cCI6MTU2MDE4NjYwNn0.mQlZjcq79KexskR6WHTU8tAUSivxtk8gV_6qDSpDdVQ")
-    }): request ;
-    console.log(updatedRequest);
+    }): request;
     return next.handle(updatedRequest).pipe(
       tap(
         event => {

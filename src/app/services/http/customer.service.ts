@@ -45,6 +45,9 @@ export class CustomerService {
         return this.http.get<any>(`${this.url}/customers/search/all-list`, { params });
     }
 
+    getCustomer(id: string): Observable<any> {
+        return this.http.get<any>(`${this.url}/customers/${id}`);
+    }
 
     saveCustomer(customer: ICustomer): Observable<any> {
         return this.http.post<any>(`${this.url}/customers`, customer);

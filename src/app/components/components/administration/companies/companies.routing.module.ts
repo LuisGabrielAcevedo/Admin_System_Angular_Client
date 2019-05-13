@@ -13,6 +13,10 @@ export const routes: Routes = [
   {
     path: 'form',
     loadChildren: './companies-form/companies-form.module#CompaniesFormModule'
+  },
+  {
+    path: 'form/:id',
+    loadChildren: './companies-form/companies-form.module#CompaniesFormModule'
   }
 ];
 

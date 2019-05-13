@@ -11,7 +11,7 @@ import { CustomerService } from './customer.service';
 import { ProductService } from './product.service';
 import { OrderService } from './order.service';
 import { ProfileCardComponent } from 'src/app/components/dialogComponents/profile-card/profile-card.component';
-
+import { Router } from '@angular/router';
 
 @Injectable()
 export class CompanyService {
@@ -23,7 +23,8 @@ export class CompanyService {
         private storeService: StoreService,
         private customerService: CustomerService,
         private productService: ProductService,
-        private orderService: OrderService
+        private orderService: OrderService,
+        private router: Router
     ) {
         this.url = Global.url_api;
     }
@@ -36,6 +37,10 @@ export class CompanyService {
             }
         }
         return this.http.get<any>(`${this.url}/companies`, { params });
+    }
+
+    getCompany(id: string): Observable<any> {
+        return this.http.get<any>(`${this.url}/companies/${id}`);
     }
 
     saveCompany(company: ICompany): Observable<any> {
@@ -107,7 +112,9 @@ export class CompanyService {
                             icon: 'edit',
                             label: 'Editar',
                             type: 'TableButtonComponent',
-                            redirectTo: '/administration/companies/form'
+                            event: (arg) => {
+                                this.router.navigate(['/administration/companies/form', arg._id]);
+                            }
                         },
                         {
                             icon: 'info',

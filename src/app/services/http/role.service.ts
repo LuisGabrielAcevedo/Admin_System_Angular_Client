@@ -45,6 +45,9 @@ export class RoleService {
         return this.http.get<any>(`${this.url}/roles/search/all-list`, {params});
     }
 
+    getRole(id: string): Observable<any> {
+        return this.http.get<any>(`${this.url}/roles/${id}`);
+    }
 
     saveRole(role: IRole): Observable<any> {
         return this.http.post<any>(`${this.url}/roles`, role);

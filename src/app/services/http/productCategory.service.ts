@@ -42,6 +42,10 @@ export class ProductCategoryService {
         return this.http.get<any>(`${this.url}/product-categories/search/all-list`, {params});
     }
 
+    getProductCategory(id: string): Observable<any> {
+        return this.http.get<any>(`${this.url}/product-categories/${id}`);
+    }
+
     saveProductCategory(productCategory: IProductCategory): Observable<any> {
         return this.http.post<any>(`${this.url}/product-categories`, productCategory);
     }

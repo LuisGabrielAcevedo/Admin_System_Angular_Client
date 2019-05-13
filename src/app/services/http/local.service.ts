@@ -43,6 +43,10 @@ export class StoreService {
         return this.http.get<any>(`${this.url}/stores/search/all-list`, {params});
     }
 
+    getLocal(id: string): Observable<any> {
+        return this.http.get<any>(`${this.url}/stores/${id}`);
+    }
+
     saveLocal(local: ILocal): Observable<any> {
         return this.http.post<any>(`${this.url}/stores`, local);
     }

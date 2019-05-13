@@ -42,6 +42,10 @@ export class BrandService {
         return this.http.get<any>(`${this.url}/brands/search/all-list`, {params});
     }
 
+    getBrand(id: string): Observable<any> {
+        return this.http.get<any>(`${this.url}/brands/${id}`);
+    }
+
     saveBrand(brand: IBrand): Observable<any> {
         return this.http.post<any>(`${this.url}/brands`, brand);
     }

@@ -15,3 +15,14 @@ export const loadRequestDataDefault: ILoadRequest = {
     filters: null
 };
 
+export interface IApiResponse {
+    code: number;
+    currentPage: number;
+    data: any[];
+    itemsPerPage: 10
+    msg: string;
+    status: string;
+    totalItems: number;
+    totalPages: number;
+}
+

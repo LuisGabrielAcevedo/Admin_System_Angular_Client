@@ -11,10 +11,6 @@ export const routes: Routes = [
     loadChildren: './users/users.module#UsersModule'
   },
   {
-    path: 'admins',
-    loadChildren: './admins/admins.module#AdminsModule'
-  },
-  {
     path: 'countries',
     loadChildren: './countries/countries.module#CountriesModule'
   },

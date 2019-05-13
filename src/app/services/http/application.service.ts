@@ -43,6 +43,10 @@ export class ApplicationService {
         return this.http.get<any>(`${this.url}/applications/search/all-list`, {params});
     }
 
+    getApplication(id: string): Observable<any> {
+        return this.http.get<any>(`${this.url}/applications/${id}`);
+    }
+
     saveApplication(application: IApplication): Observable<any> {
         return this.http.post<any>(`${this.url}/applications`, application);
     }

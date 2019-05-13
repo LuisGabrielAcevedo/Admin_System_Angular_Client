@@ -1,15 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { SnackbarSandbox } from 'src/app/sandbox/snackbar.sandbox';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICompany } from 'src/app/inferfaces/company';
 import { IApplication } from 'src/app/inferfaces/application';
 import { ICountry } from 'src/app/inferfaces/country';
-import { CompanySandbox } from 'src/app/sandbox/company.sandbox';
-import { ApplicationSandbox } from 'src/app/sandbox/application.sandbox';
-import { UserSandbox } from 'src/app/sandbox/user.sandbox';
-import { CountrySandbox } from 'src/app/sandbox/country.sandbox';
+import { CompanyService } from 'src/app/services/http/company.service';
+import { ApplicationService } from 'src/app/services/http/application.service';
+import { UserService } from 'src/app/services/http/user.service';
+import { CountryService } from 'src/app/services/http/country.service';
+import { ILoadRequest, IApiResponse } from 'src/app/inferfaces/loadRequest';
 
 @Component({
   selector: 'app-companies-form',
@@ -17,11 +17,11 @@ import { CountrySandbox } from 'src/app/sandbox/country.sandbox';
   styleUrls: ['./companies-form.component.css']
 })
 export class CompaniesFormComponent implements OnInit, OnDestroy {
-  subscriptions: Subscription[] = [];
+  loadingForm: boolean;
   form: FormGroup;
   item: ICompany;
   loading: boolean;
-  applicationsList: IApplication[];
+  applicationsList: IApplication[] = [];
   currenciesList: string[] = ['BS S', 'AR $', 'US $'];
   usersList: any[] = [];
   compareFn: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
@@ -29,21 +29,22 @@ export class CompaniesFormComponent implements OnInit, OnDestroy {
   file: File;
   image: string = null;
   constructor(
-    private companySandbox: CompanySandbox,
-    private applicationSandbox: ApplicationSandbox,
-    private userSanbox: UserSandbox,
-    private countrySandbox: CountrySandbox,
+    private companyService: CompanyService,
+    private applicationService: ApplicationService,
+    private userService: UserService,
+    private countryService: CountryService,
     private snackBarSandbox: SnackbarSandbox,
     private route: ActivatedRoute,
     private router: Router
   ) {
-    // 1. Revisar si viene data en la ruta
-    this.route.queryParams.subscribe((params) => {
-      const item = params['item'];
-      if (item) {
-        this.item = JSON.parse(item);
-      }
+    this.loadingForm = true;
+    this.route.paramMap.subscribe(params => {
+      const id : string = params.get("id");
+      id ? this.findCompany(id) : this.loadForm();
     });
+  }
+
+  loadForm() {
     if (this.item) {
       this.image = this.item.profileImage ? this.item.profileImage.url : null;
       this.form = new FormGroup({
@@ -54,6 +55,11 @@ export class CompaniesFormComponent implements OnInit, OnDestroy {
         currencies: new FormControl({value: this.item.currencies, disabled: true}),
         admin: new FormControl(this.item.admin ? this.item.admin._id : undefined)
       });
+      this.loadUsers({
+        filters: {
+          company: this.item._id
+        }
+      });
     } else {
       this.form = new FormGroup({
         name: new FormControl('', [Validators.required]),
@@ -62,32 +68,19 @@ export class CompaniesFormComponent implements OnInit, OnDestroy {
         currencies: new FormControl([])
       });
     }
+    this.loadingForm = false;
   }
 
   ngOnInit() {
-    this.applicationSandbox.loadApplicationsList({});
-    this.countrySandbox.loadCountriesList({});
-    if (this.item) {
-      this.userSanbox.loadUsersList({
-        filters: {
-          company: this.item._id
-        }
-      });
-    }
-    this.subscriptions.push(
-      this.applicationSandbox.fetchApplicationsList().subscribe(applications => {
-        this.applicationsList = applications;
-      }),
-      this.countrySandbox.fetchCountriesList().subscribe(countries => {
-        this.countriesList = countries;
-      }),
-      this.userSanbox.fetchUsersList().subscribe(users => {
-        this.usersList = users;
-      }),
-      this.companySandbox.fetchIsLoadingCompany().subscribe(loading => {
-        this.loading = loading;
-      })
-    );
+    this.loadApplications({});
+    this.loadCountries({});
+  }
+
+  findCompany(id: string) {
+    this.companyService.getCompany(id).subscribe(resp => {
+      this.item = resp.data;
+      this.loadForm();
+    })
   }
 
   volver() {
@@ -98,8 +91,25 @@ export class CompaniesFormComponent implements OnInit, OnDestroy {
     this.form.status === 'INVALID'
       ? this.snackBarSandbox.sendMessage({ message: 'Datos incompletos' })
       : this.item
-        ? this.companySandbox.updateCompany(this.form.value, this.file)
-        : this.companySandbox.saveCompany(this.form.value);
+      ? this.action('UPDATE')
+      : this.action('SAVE')
+  }
+
+  action(action: string) {
+    this.loading = true;
+    action === 'UPDATE'
+    ? this.companyService.updateCompany(this.form.value, this.file).subscribe(
+      resp => this.afterButtonActionSucces(resp),
+      error => console.log(error))
+    : this.userService.saveUser(this.form.value).subscribe(
+      resp => this.afterButtonActionSucces(resp),
+      error => console.log(error));
+  }
+
+  afterButtonActionSucces(resp: IApiResponse) {
+    this.snackBarSandbox.sendMessage({action: '', message: resp.msg});
+    this.loading= false;
+    this.volver();
   }
 
   compareByValue(f1: any, f2: any) {
@@ -110,7 +120,23 @@ export class CompaniesFormComponent implements OnInit, OnDestroy {
     this.file = file;
   }
 
-  ngOnDestroy() {
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
+  ngOnDestroy() {}
+
+  loadApplications(loadRequestData: ILoadRequest) {
+    this.applicationService.getApplicationsList(loadRequestData).subscribe(applications => {
+      this.applicationsList = applications.data;
+    })
+  }
+
+  loadCountries(loadRequestData: ILoadRequest) {
+    this.countryService.getCountriesList(loadRequestData).subscribe(countries => {
+      this.countriesList = countries.data;
+    })
+  }
+
+  loadUsers(loadRequestData: ILoadRequest) {
+    this.userService.getUsersList(loadRequestData).subscribe(users => {
+      this.usersList = users.data;
+    })
   }
 }

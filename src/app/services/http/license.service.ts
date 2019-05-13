@@ -41,9 +41,12 @@ export class LicenseService {
                 }
             }
         }
-        return this.http.get<any>(`${this.url}/companies/search/all-list`, {params});
+        return this.http.get<any>(`${this.url}/licenses/search/all-list`, {params});
     }
 
+    getLicense(id: string): Observable<any> {
+        return this.http.get<any>(`${this.url}/licenses/${id}`);
+    }
 
     saveLicense(license: ILicense): Observable<any> {
         return this.http.post<any>(`${this.url}/license`, license);

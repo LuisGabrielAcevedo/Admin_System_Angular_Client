@@ -42,6 +42,10 @@ export class ProductTypeService {
         return this.http.get<any>(`${this.url}/product-types/search/all-list`, {params});
     }
 
+    getProductType(id: string): Observable<any> {
+        return this.http.get<any>(`${this.url}/product-types/${id}`);
+    }
+
     saveProductType(productType: IProductType): Observable<any> {
         return this.http.post<any>(`${this.url}/product-types`, productType);
     }

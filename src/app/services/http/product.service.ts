@@ -42,6 +42,10 @@ export class ProductService {
         return this.http.get<any>(`${this.url}/products/search/all-list`, {params});
     }
 
+    getProduct(id: string): Observable<any> {
+        return this.http.get<any>(`${this.url}/products/${id}`);
+    }
+
     saveProduct(product: IProduct): Observable<any> {
         return this.http.post<any>(`${this.url}/products`, product);
     }

@@ -13,6 +13,10 @@ export const routes: Routes = [
   {
     path: 'form',
     loadChildren: './users-form/users-form.module#UsersFormModule'
+  },
+  {
+    path: 'form/:id',
+    loadChildren: './users-form/users-form.module#UsersFormModule'
   }
 ];
 

@@ -43,6 +43,10 @@ export class VendorService {
         return this.http.get<any>(`${this.url}/vendors/search/all-list`, {params});
     }
 
+    getVendor(id: string): Observable<any> {
+        return this.http.get<any>(`${this.url}/vendors/${id}`);
+    }
+
     saveVendor(vendor: IVendor): Observable<any> {
         return this.http.post<any>(`${this.url}/vendors`, vendor);
     }

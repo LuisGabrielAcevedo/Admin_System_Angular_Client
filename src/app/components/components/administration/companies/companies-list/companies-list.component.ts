@@ -5,8 +5,9 @@ import { CompaniesTableHeader } from 'src/app/data/companiesTable';
 import {TableHeader,
   TableButtonAction, TablePagination, TablePaginationDefault
 } from 'src/app/components/sharedComponents/table/table.interfaces';
-import { filter } from 'rxjs/operators';
 import { CompanyService } from 'src/app/services/http/company.service';
+import { IApiResponse } from 'src/app/inferfaces/loadRequest';
+import { SnackbarSandbox } from 'src/app/sandbox/snackbar.sandbox';
 
 @Component({
   selector: 'app-companies-list',
@@ -22,48 +23,51 @@ export class CompaniesListComponent implements OnInit, OnDestroy {
   pagination: TablePagination = TablePaginationDefault;
   constructor(
     private companySandbox: CompanySandbox,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private snackBarSandbox: SnackbarSandbox
     ) { }
 
   ngOnInit() {
     this.rowActions = this.companyService.getRowActions();
     this.loadCompanies();
-    this.subscriptions.push(
-      this.companySandbox.fetchCompanies()
-        .subscribe(companies => {
-          this.data = companies;
-        }),
-      this.companySandbox.fetchIsLoadingCompanies()
-        .subscribe(loading => {
-          this.loading = loading;
-        }),
-      this.companySandbox.fetchPagination()
-        .pipe(filter(pagination => pagination !== null))
-        .subscribe(pagination => {
-          this.pagination = pagination;
-        })
-    );
   }
 
   loadCompanies() {
-    this.companySandbox.loadCompanies();
+    this.loading= true;
+    this.companyService.getCompanies().subscribe(resp => this.setData(resp));
+  }
+
+  setData(resp: IApiResponse) {
+    this.data = resp.data;
+    this.pagination = {
+      currentPage: resp.currentPage,
+      totalItems: resp.totalItems,
+      itemsPerPage: resp.itemsPerPage
+    }
+    this.loading = false;
   }
 
   changePageAction(newPagination: TablePagination) {
-    this.companySandbox.changePagination(newPagination);
+    this.companyService.changePagination(newPagination);
+    this.loadCompanies();
   }
 
   search(value: string) {
-    this.companySandbox.changeSearchValue(value);
+    this.companyService.changeSearchValue(value);
+    this.loadCompanies();
   }
 
   itemSelectedAction(data: any) {
     if (data.action === 'delete') {
-      this.companySandbox.deleteCompany(data.item);
+      this.companyService.deleteCompany(data.item).subscribe(
+        resp => {
+          this.snackBarSandbox.sendMessage({action: '', message: resp.msg});
+          this.loadCompanies();
+        },
+        error => console.log(error)
+      );;
     }
   }
 
-  ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
-  }
+  ngOnDestroy() {}
 }

@@ -6,6 +6,7 @@ import { ILoadRequest, loadRequestDataDefault } from 'src/app/inferfaces/loadReq
 import { Global } from './url';
 import { IUser } from '../../inferfaces/user';
 import { FollowService } from './follow.service';
+import { Router } from '@angular/router';
 import { ProfileCardComponent } from 'src/app/components/dialogComponents/profile-card/profile-card.component';
 
 @Injectable()
@@ -14,6 +15,7 @@ export class UserService {
     public loadRequestData: ILoadRequest = JSON.parse(JSON.stringify(loadRequestDataDefault));
     constructor(
         private http: HttpClient,
+        private router: Router,
         public followService: FollowService
     ) {
         this.url = Global.url_api;
@@ -52,6 +54,9 @@ export class UserService {
         return this.http.get<any>(`${this.url}/users/search/all-list`, { params });
     }
 
+    getUser(id: string): Observable<any> {
+        return this.http.get<any>(`${this.url}/users/${id}`);
+    }
 
     saveUser(user: IUser): Observable<any> {
         return this.http.post<any>(`${this.url}/users/register`, user);
@@ -104,7 +109,9 @@ export class UserService {
                             icon: 'edit',
                             label: 'Editar',
                             type: 'TableButtonComponent',
-                            redirectTo: '/administration/users/form'
+                            event: (arg) => {
+                                this.router.navigate(['/administration/users/form', arg._id]);
+                            }
                         },
                         {
                             icon: 'info',

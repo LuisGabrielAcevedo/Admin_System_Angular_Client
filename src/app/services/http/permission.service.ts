@@ -45,6 +45,10 @@ export class PermissionService {
         return this.http.get<any>(`${this.url}/permissions/search/all-list`, { params });
     }
 
+    getPermission(id: string): Observable<any> {
+        return this.http.get<any>(`${this.url}/permissions/${id}`);
+    }
+
     savePermission(permission: IPermission): Observable<any> {
         return this.http.post<any>(`${this.url}/permissions`, permission);
     }

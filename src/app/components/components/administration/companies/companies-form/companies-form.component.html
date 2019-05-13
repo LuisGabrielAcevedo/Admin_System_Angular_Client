@@ -1,77 +1,82 @@
-<div fxLayout="row" fxLayoutAlign="center center">
-    <h2 class="mainTitle">Empresa</h2>
+<div *ngIf="loadingForm" fxLayout="row" fxLayoutAlign="center center">
+     <mat-spinner diameter="30" style="margin: 50px;"></mat-spinner>
 </div>
+<div *ngIf="!loadingForm">
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <h2 class="mainTitle">Empresa</h2>
+    </div>
 
-<form companyForm [formGroup]="form">
-    <div fxLayout="row" fxLayout.lt-sm="column" class="form__content" fxLayoutAlign="center center">
-        <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" class="form__content__div" *ngIf="item">
-            <div fxLayout="column" fxLayoutAlign="center center">
-                <h4 style="margin-top: 0">Foto de perfil</h4>
-                <app-upload-files [defaultImage]="image" (fileSelectedEvent)="setFile($event)"></app-upload-files>
+    <form companyForm [formGroup]="form">
+        <div fxLayout="row" fxLayout.lt-sm="column" class="form__content" fxLayoutAlign="center center">
+            <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" class="form__content__div" *ngIf="item">
+                <div fxLayout="column" fxLayoutAlign="center center">
+                    <h4 style="margin-top: 0">Foto de perfil</h4>
+                    <app-upload-files [defaultImage]="image" (fileSelectedEvent)="setFile($event)"></app-upload-files>
+                </div>
+            </div>
+            <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" class="form__content__div">
+                <div fxLayout="column">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" placeholder="Nombre">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Monedas</mat-label>
+                        <mat-select placeholder="Monedas" formControlName="currencies" multiple>
+                            <mat-option *ngIf="currenciesList.length === 0">
+                                <div fxLayout="row" fxLayoutAlign="center center">
+                                    <p>No hay monedas disponibles</p>
+                                </div>
+                            </mat-option>
+                            <mat-option *ngFor="let currency of currenciesList" [value]="currency">{{currency}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Aplicación</mat-label>
+                        <mat-select placeholder="Aplicación" formControlName="application" [compareWith]="compareFn">
+                            <mat-option *ngIf="applicationsList.length === 0">
+                                <div fxLayout="row" fxLayoutAlign="center center">
+                                    <p>No hay aplicaciones disponibles</p>
+                                </div>
+                            </mat-option>
+                            <mat-option *ngFor="let application of applicationsList" [value]="application._id">
+                                {{application.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Pais</mat-label>
+                        <mat-select placeholder="Pais" formControlName="country" [compareWith]="compareFn">
+                            <mat-option *ngIf="countriesList.length === 0">
+                                <div fxLayout="row" fxLayoutAlign="center center">
+                                    <p>No hay paises disponibles</p>
+                                </div>
+                            </mat-option>
+                            <mat-option *ngFor="let country of countriesList" [value]="country._id">
+                                {{country.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" *ngIf="item">
+                        <mat-label>Administrador</mat-label>
+                        <mat-select placeholder="Administrador" formControlName="admin" [compareWith]="compareFn">
+                            <mat-option *ngIf="usersList.length === 0">
+                                <div fxLayout="row" fxLayoutAlign="center center">
+                                    <p>No hay usuarios registrados para esta empresa</p>
+                                </div>
+                            </mat-option>
+                            <mat-option *ngFor="let user of usersList" [value]="user._id">
+                                {{user.firstName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
             </div>
         </div>
-        <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="50" class="form__content__div">
-            <div fxLayout="column">
-                <mat-form-field appearance="outline">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput formControlName="name" placeholder="Nombre">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Monedas</mat-label>
-                    <mat-select placeholder="Monedas" formControlName="currencies" multiple>
-                        <mat-option *ngIf="currenciesList.length === 0">
-                            <div fxLayout="row" fxLayoutAlign="center center">
-                                <p>No hay monedas disponibles</p>
-                            </div>
-                        </mat-option>
-                        <mat-option *ngFor="let currency of currenciesList" [value]="currency">{{currency}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Aplicación</mat-label>
-                    <mat-select placeholder="Aplicación" formControlName="application" [compareWith]="compareFn">
-                        <mat-option *ngIf="applicationsList.length === 0">
-                            <div fxLayout="row" fxLayoutAlign="center center">
-                                <p>No hay aplicaciones disponibles</p>
-                            </div>
-                        </mat-option>
-                        <mat-option *ngFor="let application of applicationsList" [value]="application._id">
-                            {{application.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Pais</mat-label>
-                    <mat-select placeholder="Pais" formControlName="country" [compareWith]="compareFn">
-                        <mat-option *ngIf="countriesList.length === 0">
-                            <div fxLayout="row" fxLayoutAlign="center center">
-                                <p>No hay paises disponibles</p>
-                            </div>
-                        </mat-option>
-                        <mat-option *ngFor="let country of countriesList" [value]="country._id">
-                            {{country.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="outline" *ngIf="item">
-                    <mat-label>Administrador</mat-label>
-                    <mat-select placeholder="Administrador" formControlName="admin" [compareWith]="compareFn">
-                        <mat-option *ngIf="usersList.length === 0">
-                            <div fxLayout="row" fxLayoutAlign="center center">
-                                <p>No hay usuarios registrados para esta empresa</p>
-                            </div>
-                        </mat-option>
-                        <mat-option *ngFor="let user of usersList" [value]="user._id">
-                            {{user.firstName}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
+        <div fxLayout="row" fxLayoutAlign="center center" class="form__footer">
+            <button mat-flat-button color="primary" (click)="volver()">Volver</button>
+            <button mat-flat-button color="primary" (click)="buttonActionCompany()">{{item? 'Actualizar' : 'Guardar' }}</button>
+            <mat-spinner diameter="30" *ngIf="loading"></mat-spinner>
         </div>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="center center" class="form__footer">
-        <button mat-flat-button color="primary" (click)="volver()">Volver</button>
-        <button mat-flat-button color="primary" (click)="buttonActionCompany()">{{item? 'Actualizar' : 'Guardar' }}</button>
-        <mat-spinner diameter="30" *ngIf="loading"></mat-spinner>
-    </div>
-</form>
+    </form>
+</div>
