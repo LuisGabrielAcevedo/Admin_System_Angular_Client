@@ -1,6 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
 
-
 export const routes: Routes = [
   {
     path: '',
@@ -22,6 +21,10 @@ export const routes: Routes = [
   {
     path: 'cart',
     loadChildren: './cart/cart.module#CartModule'
+  },
+  {
+    path: 'chat',
+    loadChildren: './chat/chat.module#ChatModule'
   }
 ];
 

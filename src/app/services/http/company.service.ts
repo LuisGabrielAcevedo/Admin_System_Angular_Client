@@ -270,7 +270,10 @@ export class CompanyService {
                                         gallerySubTitle: 'email',
                                         galleryDescription: '',
                                         button: {
-                                            icon: 'subdirectory_arrow_right'
+                                            icon: 'subdirectory_arrow_right',
+                                            event: (arg) => {
+                                                this.router.navigate(['/administration/users/form', arg._id]);
+                                            }
                                         }
                                     }
                                 }

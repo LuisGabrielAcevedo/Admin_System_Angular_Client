@@ -14,7 +14,7 @@
                         <img *ngIf="formatImage(item,galleryConfig.galleryImage)" class="userCardImage" src="{{formatImage(item,galleryConfig.galleryImage)}}">
                         <span class="userCardTitle">{{formatText(item,galleryConfig.galleryTitle)}}</span>
                         <span>{{formatText(item,galleryConfig.gallerySubTitle)}}</span>
-                        <app-table-button [button]="galleryConfig.button"></app-table-button>
+                        <app-table-button [button]="galleryConfig.button" [item]="item"></app-table-button>
                     </div>
                 </div>
             </cdk-virtual-scroll-viewport>

@@ -39,6 +39,6 @@ export class TableModalComponent implements OnInit {
   }
 
   color(button: TableButtonAction) {
-    return this.buttonSelected === button.label ? {'color': '#3f51b5'}:{'color' : '#d8d8d8'};
+    return this.buttonSelected === button.label ? {'color': '#3f51b5'}:{'color' : 'rgba(127,127,127,0.5)'};
   }
 }

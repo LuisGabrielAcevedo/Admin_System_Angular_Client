@@ -11,6 +11,7 @@
 [colors]="colors" 
 [addRedirect]="'/administration/users/form'" 
 [tablePagination]="pagination" 
+[multiSelect]="true"
 (changePage)="changePageAction($event)" 
 (itemSelected)="itemSelectedAction($event)"
 (search)="search($event)"></app-table>
