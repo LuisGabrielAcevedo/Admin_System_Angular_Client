@@ -1,0 +1,16 @@
+<div [formGroup]="form" *ngIf="visibleValue">
+  <mat-form-field appearance="{{appearance}}">
+    <mat-label>{{label()}}</mat-label>
+    <mat-select placeholder="{{placeholder()}}" [disableControl]="disableValue" [formControlName]="key()" [compareWith]="compareFn">
+      <mat-option *ngFor="let option of options" [value]="option['value']">
+        {{option['text']}}
+      </mat-option>
+      <mat-option *ngIf="!options.length">
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <p>No data available</p>
+        </div>
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="validateControl()">{{errorMessage()}}</mat-error>
+  </mat-form-field>
+</div>

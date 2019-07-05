@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TableModal,TableButtonAction } from '../table.interfaces';
+import { TableModal, TableButtonAction } from '../table.interfaces';
 import { TableService } from 'src/app/components/sharedComponents/table/table.service';
 
 @Component({
@@ -39,6 +39,6 @@ export class TableModalComponent implements OnInit {
   }
 
   color(button: TableButtonAction) {
-    return this.buttonSelected === button.label ? {'color': '#3f51b5'}:{'color' : 'rgba(127,127,127,0.5)'};
+    return this.buttonSelected === button.label ? {'color': '#3f51b5'} : {'color' : 'rgba(127,127,127,0.5)'};
   }
 }

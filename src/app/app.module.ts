@@ -25,7 +25,7 @@ const config: SocketIoConfig = { url: 'https://adminsystemsocketsserver.herokuap
     ServiceModule,
     AppRoutingModule,
     AppStoreModule,
-    //SocketIoModule.forRoot(config)
+    // SocketIoModule.forRoot(config)
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -100,7 +100,7 @@ export class CompanyService {
         return this.http.get<any>(`${this.url}/companies/search/all-list`, { params });
     }
     getRowActions() {
-        let actions: TableButtonAction[] = [
+        const actions: TableButtonAction[] = [
             {
                 icon: 'chevron_left',
                 type: 'TableButtonComponent',
@@ -313,7 +313,7 @@ export class CompanyService {
                                 row: 0,
                                 question: 'Esta seguro que desea borrar la empresa?',
                                 successButtonText: 'Si',
-                                successButtonDisabled: (arg) => { return true },
+                                successButtonDisabled: (arg) => true,
                                 successButtonEvent: 'delete',
                                 cancelButtonText: 'No'
                             }
@@ -321,37 +321,37 @@ export class CompanyService {
                     ]
                 }
             }
-        ]
+        ];
         return actions;
     }
 
     getUsers(company: ICompany): Observable<any> {
         return this.userService.getUsersList({
             filters: { company: company._id }
-        })
+        });
     }
 
     getStores(company: ICompany): Observable<any> {
         return this.storeService.getLocalsList({
             filters: { company: company._id }
-        })
+        });
     }
 
     getCustomers(company: ICompany): Observable<any> {
         return this.customerService.getCustomersList({
             filters: { company: company._id }
-        })
+        });
     }
 
     getProducts(company: ICompany): Observable<any> {
         return this.productService.getProductsList({
             filters: { company: company._id }
-        })
+        });
     }
 
     getOrders(company: ICompany): Observable<any> {
         return this.orderService.getOrdersList({
             filters: { company: company._id }
-        })
+        });
     }
 }

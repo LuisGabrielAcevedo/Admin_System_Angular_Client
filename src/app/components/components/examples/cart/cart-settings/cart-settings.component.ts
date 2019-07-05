@@ -13,7 +13,7 @@ export class CartSettingsComponent implements OnInit {
     { icon: 'people' },
     { icon: 'local_atm' }
   ];
-  public value : number = 0;
+  public value = 0;
   constructor() { }
 
   ngOnInit() {
@@ -21,14 +21,14 @@ export class CartSettingsComponent implements OnInit {
 
   changeValue(value: number) {
     this.value = value;
-  };
+  }
 
   style(i: number) {
     return {
       'background': `${this.value === i ? '#3f51b5' : ''}`,
       'color': `${this.value !== i ? '#3f51b5 !important' : 'white !important'}`,
       'cursor': 'pointer'
-    }
+    };
   }
 
 }

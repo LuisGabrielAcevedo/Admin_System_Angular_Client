@@ -10,7 +10,7 @@ export class TableService {
     openDialog: EventEmitter<TableDialog> = new EventEmitter();
     closeModal: EventEmitter<any> = new EventEmitter();
     activeComponent: EventEmitter<ActiveComponentOutputAction> = new EventEmitter();
-    con = 0
+    con = 0;
     constructor(
         private router: Router,
         private http: HttpClient
@@ -22,7 +22,7 @@ export class TableService {
         if (button.event) {
             button.event(item);
         }
-        // 2. Open Modal 
+        // 2. Open Modal
         if (button.modal) {
             const data: TableButtonOuputAction = {
                 modal: button.modal,
@@ -104,15 +104,15 @@ export class TableService {
             const fieldSplit_3 = field.split('/b/');
             text = fieldSplit_3[1] + ' ' + item[fieldSplit_3[0]];
             return text;
-        } else if (field.indexOf("[]") !== -1) {
-            const fieldSplit5 = field.split("[]");
+        } else if (field.indexOf('[]') !== -1) {
+            const fieldSplit5 = field.split('[]');
             if (fieldSplit5[1]) {
                 item[fieldSplit5[0]].forEach((value, i) => {
                     text += i === 0 ? value[fieldSplit5[1]] : `, ${value[fieldSplit5[1]]}`;
                 });
             } else {
                 item[fieldSplit5[0]].forEach((value) => {
-                    text = text + " " + value
+                    text = text + ' ' + value;
                 });
             }
             return text;

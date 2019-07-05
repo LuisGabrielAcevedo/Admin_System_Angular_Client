@@ -1,0 +1,30 @@
+<div class="form-container">
+  <form novalidate #dynamicFormComponent [formGroup]="form">
+    <div *ngIf="tabsFormatted.length === 1">
+      <app-simple-form
+        [tab]="tabsFormatted" 
+        [form]="form"
+        [id]="id"
+        [appearance]="appearance"
+      ></app-simple-form>
+    </div>
+    <div *ngIf="tabsFormatted.length > 1">
+      <div *ngIf="formType === 'tabs'">
+        <app-tabs-form
+        [tabs]="tabsFormatted" 
+        [form]="form"
+        [id]="id"
+        [appearance]="appearance"
+        ></app-tabs-form>
+      </div>
+      <div *ngIf="formType === 'steps'">
+        <app-steps-form
+        [tabs]="tabsFormatted" 
+        [form]="form"
+        [id]="id"
+        [appearance]="appearance"
+        ></app-steps-form>
+      </div>
+    </div>
+  </form>
+</div>

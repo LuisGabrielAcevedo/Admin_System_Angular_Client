@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   loadMovies() {
     this.netflixService.geMovies().subscribe(resp => {
       this.movies = [...this.movies, ...resp.results];
-    })
+    });
   }
 
   formatImage(movie: string) {
@@ -26,6 +26,6 @@ export class HomeComponent implements OnInit {
 
   scrollIndex(index: number) {
     console.log(index);
-    if (index === 269) this.loadMovies();
+    if (index === 269) { this.loadMovies(); }
   }
 }

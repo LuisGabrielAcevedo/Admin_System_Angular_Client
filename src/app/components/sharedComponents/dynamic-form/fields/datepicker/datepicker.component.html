@@ -1,0 +1,9 @@
+<div [formGroup]="form" *ngIf="visibleValue">
+  <mat-form-field appearance="{{appearance}}">
+    <mat-label>{{label()}}</mat-label>
+    <input matInput [matDatepicker]="picker" [disableControl]="disableValue" [formControlName]="key()" placeholder="{{placeholder()}}">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="validateControl()">{{errorMessage()}}</mat-error>
+  </mat-form-field>
+</div>

@@ -19,7 +19,7 @@ export interface IApiResponse {
     code: number;
     currentPage: number;
     data: any[];
-    itemsPerPage: 10
+    itemsPerPage: 10;
     msg: string;
     status: string;
     totalItems: number;

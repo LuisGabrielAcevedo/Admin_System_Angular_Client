@@ -21,7 +21,7 @@ export interface IUser {
     application: IApplication;
     profileImage?: IImage;
     isActive?: boolean;
-    userConfigurations:IUserConfiguration;
+    userConfigurations: IUserConfiguration;
     userInformation: IInformation;
 }
 

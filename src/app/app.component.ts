@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketService } from './services/http/socket.service';
 import { MessageService } from './services/http/message.service';
-import { Subscription } from 'rxjs'; 
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',

@@ -1,0 +1,9 @@
+<div fxLayout="column" *ngIf="visibleValue" [formGroup]="form" style="margin-bottom: 10px;">
+  <label style="margin-bottom: 10px;">{{label()}}</label>
+  <mat-radio-group  [formControlName]="key()" [disableControl]="disableValue">
+    <mat-radio-button color="primary" style="margin: 5px;" *ngFor="let option of options" [value]="option.value">
+      <span [ngClass]="{'form-error':validateControl()}">{{option.text}}</span>
+    </mat-radio-button>
+  </mat-radio-group>
+  <span class="error-message" *ngIf="validateControl()">{{errorMessage()}}</span>
+</div>

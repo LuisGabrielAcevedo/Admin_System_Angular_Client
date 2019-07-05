@@ -24,4 +24,4 @@ export class AuthErrorAction implements Action {
 export type Actions
     = AuthUserAction
     | AuthUserSuccessAction
-    | AuthErrorAction
+    | AuthErrorAction;

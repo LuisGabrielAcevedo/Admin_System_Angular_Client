@@ -95,7 +95,7 @@ export class PermissionService {
                     }
                 }
             }
-        ]
+        ];
     }
 
     getRowActions(): TableButtonAction[] {
@@ -122,7 +122,7 @@ export class PermissionService {
                                 row: 0,
                                 question: 'Esta seguro que desea borrar el Permiso?',
                                 successButtonText: 'Si',
-                                successButtonDisabled: (arg) => { return true },
+                                successButtonDisabled: (arg) => true,
                                 successButtonEvent: 'delete',
                                 cancelButtonText: 'No'
                             }
@@ -130,10 +130,10 @@ export class PermissionService {
                     ]
                 }
             }
-        ]
+        ];
     }
 
-    updateManyPermissions(permissions: IPermission[], applications: IApplication[]) :Observable<any>{
+    updateManyPermissions(permissions: IPermission[], applications: IApplication[]): Observable<any> {
         return this.http.put<any>(`${this.url}/permissions`, {
             permissions,
             applications

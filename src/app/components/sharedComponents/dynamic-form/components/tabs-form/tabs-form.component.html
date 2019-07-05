@@ -1,0 +1,19 @@
+<div>
+  <mat-tab-group>
+    <mat-tab *ngFor="let tab of tabs" label="{{tab.name}}">
+      <div fxLayout="row" fxLayout.lt-sm="column" class="tabs-content">
+        <div fxFlex="20" *ngIf="tab.leftFieldGroup.length">
+
+        </div>
+        <div fxFlex>
+          <div *ngFor="let fields of tab.fields">
+            <app-row [fields]="fields" [form]="form" [id]="id" [appearance]="appearance"></app-row>
+          </div>
+        </div>
+        <div fxFlex="20" *ngIf="tab.rightFieldGroup.length">
+
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

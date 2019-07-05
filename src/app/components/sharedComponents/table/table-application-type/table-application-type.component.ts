@@ -3,7 +3,7 @@ import { TableService } from '../table.service';
 interface ITableItem {
   application?: {
     _id: string;
-  }
+  };
 }
 
 @Component({
@@ -38,23 +38,22 @@ export class TableApplicationTypeComponent implements OnInit {
       fontWeight = '600';
       background = this.background(this.item.application._id);
     } else if (this.field === 'applicationRole') {
-      color = this.item[this.field] === "USER" ? 'none' : 'white';
-      fontWeight = this.item[this.field] === "USER" ? 'none' : '600';
-      background = this.item[this.field] === "USER" ? 'none' : '#1976D2';
+      color = this.item[this.field] === 'USER' ? 'none' : 'white';
+      fontWeight = this.item[this.field] === 'USER' ? 'none' : '600';
+      background = this.item[this.field] === 'USER' ? 'none' : '#1976D2';
     } else if (this.field === '_id') {
       color = 'white';
       fontWeight = '600';
       background = this.background(this.item[this.field]);
-    }
-    else if (!this.item.application) {
+    } else if (!this.item.application) {
       color = 'white';
       background = '#e0e0e0';
-    } 
+    }
     return {
       'background': background,
       'color': color,
       'font-weight': fontWeight
-    }
+    };
   }
 
   background(value) {
@@ -93,13 +92,12 @@ export class TableApplicationTypeComponent implements OnInit {
     if (this.item.application && this.field !== 'applicationRole') {
       icon = this.selectIcon(this.item.application._id);
     } else if (this.field === 'applicationRole') {
-      
+
     } else if (this.field === '_id') {
       icon = this.selectIcon(this.item[this.field]);
+    } else if (!this.item.application) {
+
     }
-    else if (!this.item.application) {
-      
-    } 
     return icon;
   }
 
