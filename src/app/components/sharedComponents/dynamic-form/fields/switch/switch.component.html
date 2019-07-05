@@ -1,0 +1,4 @@
+<div fxLayout="column" *ngIf="visibleValue" [formGroup]="form" style="margin-top: 20px;">
+  <mat-slide-toggle [formControlName]="key()" [disableControl]="disableValue" color="primary"><span [ngClass]="{'form-error':validateControl()}">{{label()}}</span></mat-slide-toggle>
+  <span class="error-message" *ngIf="validateControl()">{{errorMessage()}}</span>
+</div>

@@ -1,0 +1,4 @@
+<div fxLayout="column" *ngIf="visibleValue" [formGroup]="form" style="margin-top: 20px;">
+  <mat-checkbox [formControlName]="key()" [disableControl]="disableValue" color="primary"><span [ngClass]="{'form-error':validateControl()}">{{label()}}</span></mat-checkbox>
+  <span class="error-message" *ngIf="validateControl()">{{errorMessage()}}</span>
+</div>

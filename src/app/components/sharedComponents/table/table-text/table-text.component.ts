@@ -20,7 +20,7 @@ export class TableTextComponent implements OnInit {
 
   formatText() {
     let text = this.httpTableService.formatText(this.item, (this.field as string));
-    text = text ? text : 'Sin información'; 
+    text = text ? text : 'Sin información';
     this.text = text.length > 22 ? `${text.substr(0, 22)}...` : text;
   }
 }

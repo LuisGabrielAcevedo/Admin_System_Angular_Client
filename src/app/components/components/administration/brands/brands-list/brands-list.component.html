@@ -1,5 +1,0 @@
-<div fxLayout="row" fxLayoutAlign="center center">
-    <h2 class="mainTitle">Marcas</h2>
-</div>
-<app-table [headers]="headers" [data]="data" [loading]="loading" [rowActions]="rowActions" [addRedirect]="'/administration/brands/form'" [tablePagination]="pagination" (changePage)="changePageAction($event)" (itemSelected)="itemSelectedAction($event)"
-    (search)="search($event)"></app-table>

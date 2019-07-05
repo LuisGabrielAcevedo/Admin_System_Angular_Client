@@ -33,7 +33,7 @@ export class SelectApplicationsComponent implements OnInit {
     loadApplications() {
         this.applicationService.getApplicationsList({}).subscribe(resp => {
             this.applicationsList = resp.data;
-        })
+        });
     }
 
     compareByValue(f1: any, f2: any) {
@@ -47,9 +47,9 @@ export class SelectApplicationsComponent implements OnInit {
         observable.subscribe(resp => {
             this.snackBar.sendMessage({
                 action: '', message: resp.msg
-            }) 
+            });
             this.loading = false;
             this.dialogRef.close(true);
-        })
+        });
     }
 }

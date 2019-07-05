@@ -1,39 +1,40 @@
 
-import { Injectable } from "@angular/core";
-import { tap } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { map, catchError } from 'rxjs/operators';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpResponse
-} from "@angular/common/http";
-import { Observable, of } from 'rxjs';
+  HttpErrorResponse
+} from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { TokenService } from '../services/http/token.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AdminSystemInterceptor implements HttpInterceptor {
-  constructor() { }
+  constructor(
+    private tokenService: TokenService,
+    private router: Router
+  ) { }
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const n = request.url.search("google");
+    const token = this.tokenService.getToken();
+    const n = request.url.search('google');
     const updatedRequest = n < 0 ? request.clone({
-      headers: request.headers.set("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlblVzZXIiOnsic2VjcmV0IjoiYWRtaW5TeXN0ZW1TZXJ2ZXI1OTYiLCJwcm9maWxlSW1hZ2UiOnsiZmlsZU5hbWUiOiI1YzlmYzRmMWVmYzU0MDdiMmVjMzVkZjQ3NjU0X0lNQUdFX0FETUlOLmpwZWciLCJ1cmwiOiJodHRwOi8vbG9jYWxob3N0OjM1MDAvYXBpL3YxL2FkbWlucy9pbWFnZS81YzlmYzRmMWVmYzU0MDdiMmVjMzVkZjQvNWM5ZmM0ZjFlZmM1NDA3YjJlYzM1ZGY0NzY1NF9JTUFHRV9BRE1JTi5qcGVnIiwiZGlyZWN0b3J5IjoiL1VzZXJzL2x1aXNnYWJyaWVsYWNldmVkb3JhbWlyZXovV29ya3NwYWNlL2FkbWluIHNlcnZlciBhbmd1bGFyL0FkbWluLVN5c3RlbS1TZXJ2ZXIvdXBsb2Fkcy9hZG1pbi81YzlmYzRmMWVmYzU0MDdiMmVjMzVkZjQifSwiZmlyc3ROYW1lIjoiTHVpcyBHYWJyaWVsIiwibGFzdE5hbWUiOiJBY2V2ZWRvIFJhbcOtcmV6IiwiY3JlYXRlZEF0IjoiU2F0LCBNYXIgMzAsIDIwMTkgNDozNSBQTSIsInVwZGF0ZWRBdCI6IlNhdCwgTWFyIDMwLCAyMDE5IDQ6MzYgUE0iLCJkZWxldGVkQXQiOm51bGwsIl9pZCI6IjVjOWZjNGYxZWZjNTQwN2IyZWMzNWRmNCIsImVtYWlsIjoibHVpc2dhYnJpZWxfYWNlQGhvdG1haWwuY29tIiwidXNlck5hbWUiOiJNdXNpY2FnYSJ9LCJpYXQiOjE1NTY1ODY2MDYsImV4cCI6MTU2MDE4NjYwNn0.mQlZjcq79KexskR6WHTU8tAUSivxtk8gV_6qDSpDdVQ")
-    }): request;
+      headers: request.headers.set('Authorization', token ? token : '')
+    }) : request;
+
     return next.handle(updatedRequest).pipe(
-      tap(
-        event => {
-          if (event instanceof HttpResponse) {
-            // console.log("api call success :", event);
-          }
-        },
-        error => {
-          if (event instanceof HttpResponse) {
-            // console.log("api call error :", event);
-          }
+      catchError((err: HttpErrorResponse) => {
+        if (err.error.code === 401) {
+          this.router.navigate(['login']);
         }
-      )
+        return throwError(err);
+      })
     );
   }
 }

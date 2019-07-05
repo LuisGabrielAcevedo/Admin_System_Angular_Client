@@ -30,8 +30,8 @@ export class SnackbarComponent implements OnInit, OnDestroy {
     const config = new MatSnackBarConfig();
     config.duration = 5000;
     if (typeof newMessage.message === 'object') {
-      for(const msg in newMessage.message) {
-        if(newMessage.message[msg]) {
+      for (const msg in newMessage.message) {
+        if (newMessage.message[msg]) {
           this.snackBar.open(newMessage.message[msg], newMessage.action ? newMessage.action : null, config);
         }
       }

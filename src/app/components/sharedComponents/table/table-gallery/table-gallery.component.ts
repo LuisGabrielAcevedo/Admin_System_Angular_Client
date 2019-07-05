@@ -12,7 +12,7 @@ import { TableService } from '../table.service';
 export class TableGalleryComponent implements OnInit {
   @Input() field: string | string[];
   @Input() item: object;
-  @Input() observable: (...arg: any[]) => Observable<any>
+  @Input() observable: (...arg: any[]) => Observable<any>;
   @Input() galleryConfig: TableGalleryConfig;
   public galleryLoading: boolean = null;
   public galleryList: object[] = null;
@@ -30,7 +30,7 @@ export class TableGalleryComponent implements OnInit {
     observable.subscribe(resp => {
       this.galleryList = this.tableService.formatText(resp, this.galleryConfig.galleryListData);
       this.galleryLoading = false;
-    })
+    });
   }
 
   formatImage(item: object, field: string) {
@@ -39,7 +39,7 @@ export class TableGalleryComponent implements OnInit {
 
   formatText(item: object, field: string) {
     let text = this.tableService.formatText(item, field);
-    text = text ? text : 'Sin información'; 
+    text = text ? text : 'Sin información';
     return text.length > 18 ? `${text.substr(0, 18)}...` : text;
   }
 }

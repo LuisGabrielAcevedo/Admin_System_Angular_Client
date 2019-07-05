@@ -24,6 +24,8 @@ import { OrderService } from 'src/app/services/http/order.service';
 import { MessageService } from './http/message.service';
 import { FollowService } from './http/follow.service';
 import { NetflixService } from './exampleEndPoints/netflix.service';
+import { TokenService } from './http/token.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   imports: [
@@ -50,10 +52,11 @@ import { NetflixService } from './exampleEndPoints/netflix.service';
     AdminSystemService,
     VendorService,
     OrderService,
-    // SocketService,
     MessageService,
     FollowService,
-    NetflixService
+    NetflixService,
+    TokenService,
+    CookieService
   ],
   declarations: []
 })

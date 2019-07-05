@@ -4,7 +4,7 @@ import { MainContainerComponent } from './main-container.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'administration',
+    redirectTo: 'admin-system',
     pathMatch: 'full'
   },
   {
@@ -13,9 +13,9 @@ export const routes: Routes = [
     loadChildren: 'src/app/components/components/examples/examples.module#ExamplesModule'
   },
   {
-    path: 'administration',
+    path: 'admin-system',
     component: MainContainerComponent,
-    loadChildren: 'src/app/components/components/administration/administration.module#AdministrationModule'
+    loadChildren: 'src/app/components/components/admin-system/admin-system.module#AdminSystemModule'
   }
 ];
 

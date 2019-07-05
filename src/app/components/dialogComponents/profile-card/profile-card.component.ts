@@ -30,7 +30,7 @@ export class ProfileCardComponent implements OnInit {
     formatText(item: object, field: string) {
         let text = this.tableService.formatText(item, field);
         if (['createdAt', 'updatedAt'].includes(field)) {
-            const date: string = moment(text, "YYYY-MM-DDTHH:mm:ss.SSS[Z]").format('L');
+            const date: string = moment(text, 'YYYY-MM-DDTHH:mm:ss.SSS[Z]').format('L');
             return date;
         } else {
             text = text ? text : 'Sin información';

@@ -37,7 +37,7 @@ export function AuthReducer(state = initialState, action: AuthActions.Actions): 
                 isLoading: false,
                 user: action.payload
             });
-        } 
+        }
         case AuthActions.AUTH_ERROR: {
             return Object.assign({}, state, {
                 isLoading: false

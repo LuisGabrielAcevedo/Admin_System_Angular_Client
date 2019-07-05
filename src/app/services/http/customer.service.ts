@@ -89,7 +89,7 @@ export class CustomerService {
     }
 
     getRowActions() {
-        let actions: TableButtonAction[] = [
+        const actions: TableButtonAction[] = [
             {
                 icon: 'chevron_left',
                 type: 'TableButtonComponent',
@@ -156,7 +156,7 @@ export class CustomerService {
                                 row: 0,
                                 question: 'Esta seguro que desea borrar el Cliente?',
                                 successButtonText: 'Si',
-                                successButtonDisabled: (arg) => { return true },
+                                successButtonDisabled: (arg) => true,
                                 successButtonEvent: 'delete',
                                 cancelButtonText: 'No'
                             }

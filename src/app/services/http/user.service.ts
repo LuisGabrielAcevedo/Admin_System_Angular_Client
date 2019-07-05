@@ -97,7 +97,7 @@ export class UserService {
     }
 
     getRowActions() {
-        let actions: TableButtonAction[] = [
+        const actions: TableButtonAction[] = [
             {
                 icon: 'chevron_left',
                 type: 'TableButtonComponent',
@@ -173,7 +173,7 @@ export class UserService {
                                     }
                                 }
                             },
-                            visible: (arg) => { return arg.application && arg.application._id === '5cca3732a342520bbcd24563' }
+                            visible: (arg) => arg.application && arg.application._id === '5cca3732a342520bbcd24563'
                         },
                         {
                             icon: 'group',
@@ -200,7 +200,7 @@ export class UserService {
                                 }
                             },
                             visible: (arg) => {
-                                return arg.application && arg.application._id === '5cca3732a342520bbcd24563'
+                                return arg.application && arg.application._id === '5cca3732a342520bbcd24563';
                             }
                         },
                         {
@@ -212,7 +212,7 @@ export class UserService {
                                 row: 0,
                                 question: 'Esta seguro que desea borrar el Usuario?',
                                 successButtonText: 'Si',
-                                successButtonDisabled: (arg) => { return true },
+                                successButtonDisabled: (arg) => true,
                                 successButtonEvent: 'delete',
                                 cancelButtonText: 'No'
                             }
@@ -227,12 +227,12 @@ export class UserService {
     getFollowing(user: IUser): Observable<any> {
         return this.followService.getFollows({
             filters: { followed: user._id }
-        })
+        });
     }
 
     getFollowed(user: IUser): Observable<any> {
         return this.followService.getFollows({
             filters: { following: user._id }
-        })
+        });
     }
 }

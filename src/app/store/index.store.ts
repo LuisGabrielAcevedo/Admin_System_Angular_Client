@@ -39,7 +39,7 @@ export interface State {
     productType: fromProductType.ProductTypeState;
     product: fromProduct.ProductState;
     vendor: fromVendor.VendorState;
-    auth: fromAuthUser.UserState
+    auth: fromAuthUser.UserState;
 
 }
 

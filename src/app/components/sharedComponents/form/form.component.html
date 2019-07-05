@@ -1,11 +1,19 @@
-<div *ngIf="fields" fxLayout="column" fxLayoutAlign="center center">
-    <form>
-        <div *ngFor="let field of fields">
-            <app-form-container 
-            (changeValue)="changeValue($event)"
-            [componentType]="field.type"
-            [componentData]="{inputData: {placeholder:field.placeholder, value: model[field.value], field:field.value}}"
-            ></app-form-container>
-        </div>
-    </form>
+<div>
+  <h4 class="main-title">{{title}}</h4>
+  <div *ngIf="loading" fxLayout="row" fxLayoutAlign="center center">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+  <app-dynamic-form
+    #dynamicForm
+    [fieldsConfig]="fieldsConfig"
+    [model]="model"
+  ></app-dynamic-form>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <button mat-raised-button color="primary" (click)="$event.preventDefault();save()">
+      Save
+    </button>
+    <button mat-raised-button color="warn" (click)="$event.preventDefault();cancel()">
+      Cancel
+    </button>
+  </div>
 </div>

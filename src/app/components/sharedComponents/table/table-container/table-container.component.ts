@@ -30,8 +30,8 @@ export class TableContainerComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const cData: SimpleChange = changes.componentData;
     const cType: SimpleChange = changes.componentType;
-    if (cData) this.componentData = { ...cData.currentValue };
-    if (cType) this.componentType = cType.currentValue;
+    if (cData) { this.componentData = { ...cData.currentValue }; }
+    if (cType) { this.componentType = cType.currentValue; }
     this.loadComponent();
   }
 

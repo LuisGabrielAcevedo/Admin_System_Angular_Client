@@ -15,7 +15,7 @@ export const PermissionsTableHeader: TableHeader[] = [
         value: 'module',
         type: 'TableTextComponent'
     }
-    
+
 ];
 
 export const PermissionRowActions: TableButtonAction[] = [

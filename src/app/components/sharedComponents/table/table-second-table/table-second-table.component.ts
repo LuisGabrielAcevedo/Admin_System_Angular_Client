@@ -11,7 +11,7 @@ import { TableService } from '../table.service';
 export class TableSecondTableComponent implements OnInit {
   @Input() field: string | string[];
   @Input() item: object;
-  @Input() observable: (...arg: any[]) => Observable<any>
+  @Input() observable: (...arg: any[]) => Observable<any>;
   @Input() secondTableConfig: TableSecondTableConfig;
   public secondTableLoading: boolean = null;
   public secondTableList: object[] = null;
@@ -29,12 +29,12 @@ export class TableSecondTableComponent implements OnInit {
     observable.subscribe(resp => {
       this.secondTableList = this.tableService.formatText(resp, this.secondTableConfig.secondTableListData);
       this.secondTableLoading = false;
-    })
+    });
   }
 
   formatText(item: object, field: string) {
     let text = this.tableService.formatText(item, field);
-    text = text ? text : 'Sin información'; 
+    text = text ? text : 'Sin información';
     return text.length > 18 ? `${text.substr(0, 18)}...` : text;
   }
 }

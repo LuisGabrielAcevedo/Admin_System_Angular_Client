@@ -27,6 +27,7 @@ import { TableSecondTableModule } from './table-second-table/table-second-table.
 import { TableSecondTableComponent } from './table-second-table/table-second-table.component';
 import { SelectApplicationsComponent } from '../../dialogComponents/select-applications/select-applications.component';
 import { ProfileCardComponent } from 'src/app/components/dialogComponents/profile-card/profile-card.component';
+
 @NgModule({
   imports: [
     CommonModule,

@@ -6,7 +6,7 @@ import { CartCheckoutComponent } from './cart-checkout.component';
   declarations: [CartCheckoutComponent],
   imports: [
     CommonModule
-  ], 
+  ],
   exports: [CartCheckoutComponent]
 })
 export class CartCheckoutModule { }
