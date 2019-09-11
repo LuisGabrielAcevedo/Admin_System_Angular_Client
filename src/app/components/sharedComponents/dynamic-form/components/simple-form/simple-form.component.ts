@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormTabs, FormModel } from '../../dynamic-form.interfaces';
+import { FormMainGroup, FormModel } from '../../dynamic-form.interfaces';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,7 +8,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./simple-form.component.css']
 })
 export class SimpleFormComponent implements OnInit {
-  @Input() public tab: FormTabs;
+  @Input() public mainGroups: FormMainGroup;
   @Input() public form: FormGroup;
   @Input() public appearance: string;
   @Input() public id: string;

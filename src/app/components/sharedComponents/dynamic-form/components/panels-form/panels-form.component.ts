@@ -3,11 +3,11 @@ import { FormMainGroup } from '../../dynamic-form.interfaces';
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-steps-form',
-  templateUrl: './steps-form.component.html',
-  styleUrls: ['./steps-form.component.css']
+  selector: 'app-panels-form',
+  templateUrl: './panels-form.component.html',
+  styleUrls: ['./panels-form.component.css']
 })
-export class StepsFormComponent implements OnInit {
+export class PanelsFormComponent implements OnInit {
   @Input() public mainGroups: FormMainGroup[];
   @Input() public form: FormGroup;
   @Input() public appearance: string;

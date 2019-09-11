@@ -1,8 +1,9 @@
-import { ValidatorFn } from '@angular/forms';
+import { ValidatorFn, FormGroup } from '@angular/forms';
+import { DynamicFormValidator } from './validate/dynamin-form-validator';
 
 export type VisibleCallback = (arg: FormModel) => boolean;
 export type DisableCallback = (arg: FormModel) => boolean;
-export type ValidationCallback = (arg: FormModel) => boolean;
+export type ValidatorCallback = (form: FormGroup) => ValidatorFn;
 
 export enum FormFieldTypes {
   autocomplete = 'AutocompleteComponent',
@@ -32,12 +33,12 @@ export interface FormField {
   component?: FormFieldTypes;
   dynamicComponent?: any;
   defaultValue?: any;
-  tab?: any;
+  mainGroup?: any;
   options?: {
     selectOptions?: (...arg: any[]) => Promise<any> | any;
     placeholder?: string;
     defaultImageField?: string;
-    validationRules?: Array<FormFieldValidation | ValidationCallback>;
+    validators?: DynamicFormValidator[];
     visibleCondition?: VisibleCallback;
     disableCondition?: DisableCallback;
     enumSelectOptions?: Option[];
@@ -49,11 +50,10 @@ export interface FormField {
     flex?: number;
     group?: FormLateralGroup;
     rowTitle?: string;
-    vuetifyProps?: object;
   };
 }
 
-export interface FormTabs {
+export interface FormMainGroup {
   order: number | null;
   name: string;
   fields: FormField[] | FormField[][];
@@ -80,15 +80,9 @@ export enum FormLateralGroup {
   right = 'right',
 }
 
-export interface FormFieldValidation {
-  rule: string;
-  message?: string;
-}
-
-export interface VeeValidateDictionary {
-  custom?: {
-    [key: string]: any;
-  };
+export interface FormattedValidations {
+  validations: ValidatorFn[];
+  errorMessages: object;
 }
 
 export interface FormResponse {

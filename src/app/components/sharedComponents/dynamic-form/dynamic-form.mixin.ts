@@ -1,5 +1,5 @@
 import { Input } from '@angular/core';
-import { FormModel, FormField, FormTabs, FormLateralGroup } from './dynamic-form.interfaces';
+import { FormModel, FormField, FormMainGroup, FormLateralGroup, FormattedValidations } from './dynamic-form.interfaces';
 import chunk from 'lodash/chunk';
 import groupBy from 'lodash/groupBy';
 import sortBy from 'lodash/sortBy';
@@ -13,7 +13,7 @@ export class FormComponent {
     protected currentModel: FormModel = {};
     protected editedFieldsModel: FormModel = {};
     public form: FormGroup;
-    public tabsFormatted: FormTabs[] = [];
+    public tabsFormatted: FormMainGroup[] = [];
     @Input() protected fieldsConfig!: FormField[];
     @Input() protected model: FormModel;
     @Input() protected formType = 'tabs';
@@ -22,15 +22,18 @@ export class FormComponent {
 
     constructor(public fb: FormBuilder, public dynamicFormService: DynamicFormService) { }
 
-    protected formatFields(): FormTabs[] {
-        let tabsFormatted: FormTabs[] = [];
+    protected formatFields(): FormMainGroup[] {
+        let tabsFormatted: FormMainGroup[] = [];
         this.form = this.fb.group({});
         this.fieldsConfig.forEach((field) => {
-            this.form.addControl(field.key, this.fb.control(field.defaultValue));
-            if (field.options && field.options.validationRules) {
-                this.dynamicFormService.addValidationsAction(this.form.controls[field.key], field.options.validationRules, this.form);
+            if (field.options && field.options.validators) {
+                const formattedValidations: FormattedValidations = this.dynamicFormService.formatValidations(field.options.validators, this.form);
+                this.form.addControl(field.key, this.fb.control(field.defaultValue, formattedValidations.validations));
+                this.form.controls[field.key]['errorMessages'] = formattedValidations.errorMessages;
+            } else {
+                this.form.addControl(field.key, this.fb.control(field.defaultValue));
             }
-            const tab: string | undefined = field.tab as string;
+            const tab: string | undefined = field.mainGroup as string;
             const order: number = tab ? +tab!.split('/')[1] : 0;
             const name: string = tab ? tab!.split('/')[0] : 'Default tab';
             const group: string | null = field.options ? field.options.group! : null;
@@ -43,7 +46,7 @@ export class FormComponent {
                     (item.fields as FormField[]).push(field);
                 }
             } else {
-                const tabNewItem: FormTabs = {
+                const tabNewItem: FormMainGroup = {
                     order: isNaN(order) ? 0 : order,
                     name,
                     fields: [],
@@ -64,8 +67,8 @@ export class FormComponent {
         return tabsFormatted;
     }
 
-    protected buildColumns(tabs: FormTabs[]): FormTabs[] {
-        let tabsFormatted: FormTabs[] = [];
+    protected buildColumns(tabs: FormMainGroup[]): FormMainGroup[] {
+        let tabsFormatted: FormMainGroup[] = [];
         tabsFormatted = tabs.map((tab, i) => {
             if (tab.fields.length === 1) {
                 if (!(tab.fields as FormField[])[0].options) {

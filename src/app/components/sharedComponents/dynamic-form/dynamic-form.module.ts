@@ -37,6 +37,7 @@ import { SelectFieldComponent } from './components/select-field/select-field.ins
 import { FormFieldDirective } from './components/select-field/select-field.directive';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DynamicFormService } from './dynamic-form.service';
+import { PanelsFormComponent } from './components/panels-form/panels-form.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { DynamicFormService } from './dynamic-form.service';
     TabsFormComponent,
     StepsFormComponent,
     SelectFieldComponent,
+    PanelsFormComponent,
     FormFieldDirective
   ],
   imports: [
