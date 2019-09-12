@@ -13,7 +13,7 @@ export class FormComponent {
     protected currentModel: FormModel = {};
     protected editedFieldsModel: FormModel = {};
     public form: FormGroup;
-    public tabsFormatted: FormMainGroup[] = [];
+    public mainGroupsFormatted: FormMainGroup[] = [];
     @Input() protected fieldsConfig!: FormField[];
     @Input() protected model: FormModel;
     @Input() protected formType = 'tabs';
@@ -23,7 +23,7 @@ export class FormComponent {
     constructor(public fb: FormBuilder, public dynamicFormService: DynamicFormService) { }
 
     protected formatFields(): FormMainGroup[] {
-        let tabsFormatted: FormMainGroup[] = [];
+        let mainGroupsFormatted: FormMainGroup[] = [];
         this.form = this.fb.group({});
         this.fieldsConfig.forEach((field) => {
             if (field.options && field.options.validators) {
@@ -37,7 +37,7 @@ export class FormComponent {
             const order: number = tab ? +tab!.split('/')[1] : 0;
             const name: string = tab ? tab!.split('/')[0] : 'Default tab';
             const group: string | null = field.options ? field.options.group! : null;
-            const item = tabsFormatted.find((tabFormatted) => tabFormatted.name === name);
+            const item = mainGroupsFormatted.find((tabFormatted) => tabFormatted.name === name);
             if (item) {
                 if (group) {
                     group === FormLateralGroup.left ? item.leftFieldGroup!.push(field)
@@ -59,31 +59,31 @@ export class FormComponent {
                 } else {
                     (tabNewItem.fields as FormField[]).push(field);
                 }
-                tabsFormatted.push(tabNewItem);
+                mainGroupsFormatted.push(tabNewItem);
             }
         });
-        tabsFormatted = sortBy(tabsFormatted, ['order']);
-        tabsFormatted = this.buildColumns(tabsFormatted);
-        return tabsFormatted;
+        mainGroupsFormatted = sortBy(mainGroupsFormatted, ['order']);
+        mainGroupsFormatted = this.buildColumns(mainGroupsFormatted);
+        return mainGroupsFormatted;
     }
 
-    protected buildColumns(tabs: FormMainGroup[]): FormMainGroup[] {
-        let tabsFormatted: FormMainGroup[] = [];
-        tabsFormatted = tabs.map((tab, i) => {
-            if (tab.fields.length === 1) {
-                if (!(tab.fields as FormField[])[0].options) {
-                    (tab.fields as FormField[])[0].options = {};
+    protected buildColumns(mainGroups: FormMainGroup[]): FormMainGroup[] {
+        let mainGroupsFormatted: FormMainGroup[] = [];
+        mainGroupsFormatted = mainGroups.map((group) => {
+            if (group.fields.length === 1) {
+                if (!(group.fields as FormField[])[0].options) {
+                    (group.fields as FormField[])[0].options = {};
                 }
-                (tab.fields as FormField[])[0].options!.flex = 100;
-                tab.fields = [tab.fields as FormField[]];
+                (group.fields as FormField[])[0].options!.flex = 100;
+                group.fields = [group.fields as FormField[]];
             } else {
-                tab.fields = this.columns
-                    ? this.buildRowsByColumns(tab.fields as FormField[])
-                    : this.buildRows(tab.fields as FormField[]);
+                group.fields = this.columns
+                    ? this.buildRowsByColumns(group.fields as FormField[])
+                    : this.buildRows(group.fields as FormField[]);
             }
-            return tab;
+            return group;
         });
-        return tabsFormatted;
+        return mainGroupsFormatted;
     }
 
     protected buildRows(fields: FormField[]): FormField[][] {

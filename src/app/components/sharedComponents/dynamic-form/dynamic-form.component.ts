@@ -23,7 +23,7 @@ export class DynamicFormComponent extends FormComponent implements OnInit, OnCha
     const fields: FormField[] = changes.fieldsConfig ? changes.fieldsConfig.currentValue : undefined;
     const model: FormModel = changes.model ? changes.model.currentValue : undefined;
     if (fields && fields.length) {
-      this.tabsFormatted = cloneDeep(this.formatFields());
+      this.mainGroupsFormatted = cloneDeep(this.formatFields());
       // console.log(this.tabsFormatted);
       // console.log(this.form.value);
     }

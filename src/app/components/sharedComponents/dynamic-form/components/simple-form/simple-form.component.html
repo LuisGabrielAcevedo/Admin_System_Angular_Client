@@ -1,9 +1,9 @@
 <div fxLayout="row" fxLayout.lt-sm="column">
-  <div fxFlex="20" *ngIf="tab[0].leftFieldGroup.length">
+  <div fxFlex="20" *ngIf="mainGroups[0].leftFieldGroup.length">
     
   </div>
   <div fxFlex>
-      <div *ngFor="let fields of tab[0].fields">
+      <div *ngFor="let fields of mainGroups[0].fields">
           <app-row
           [fields]="fields" 
           [form]="form"
@@ -12,7 +12,7 @@
           ></app-row>
       </div>
   </div>
-  <div fxFlex="20" *ngIf="tab[0].rightFieldGroup.length">
+  <div fxFlex="20" *ngIf="mainGroups[0].rightFieldGroup.length">
     
   </div>
 </div>

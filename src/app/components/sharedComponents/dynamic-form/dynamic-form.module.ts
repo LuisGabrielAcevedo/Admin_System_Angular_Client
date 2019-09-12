@@ -38,6 +38,7 @@ import { FormFieldDirective } from './components/select-field/select-field.direc
 import { MatTabsModule } from '@angular/material/tabs';
 import { DynamicFormService } from './dynamic-form.service';
 import { PanelsFormComponent } from './components/panels-form/panels-form.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { PanelsFormComponent } from './components/panels-form/panels-form.compon
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule
   ],
   entryComponents: [
     AsyncAutocompleteComponent,
