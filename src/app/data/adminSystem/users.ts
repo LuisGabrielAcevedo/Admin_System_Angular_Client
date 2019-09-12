@@ -20,6 +20,9 @@ const userFields: FormField[] = [
                 const resp = await Company.all();
                 return resp.data;
             },
+            validators: [
+                DynamicFormValidators.required()
+            ],
             associationText: 'name',
             associationValue: '_id'
         }

@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BaseFieldComponent } from '../base-field.mixin';
-import { FormControl } from '@angular/forms';
+import { FormControl, ValidatorFn } from '@angular/forms';
 import { DynamicFormService } from '../../dynamic-form.service';
+import { FormattedValidations } from '../../dynamic-form.interfaces';
 
 @Component({
   selector: 'app-autocomplete',
@@ -19,7 +20,13 @@ export class AutocompleteComponent extends BaseFieldComponent implements OnInit,
   public selectedOption: any;
 
   ngOnInit() {
-    this.search = new FormControl('');
+    if (this.field.options && this.field.options.validators) {
+      const formattedValidations: FormattedValidations = this.dynamicFormService.formatValidations(this.field.options.validators, this.form);
+      this.search = new FormControl('', formattedValidations.validations);
+      this.search['errorMessages'] = formattedValidations.errorMessages;
+    } else {
+      this.search = new FormControl('');
+    }
     this.addSubscriptions();
     this.initAutocomplete();
   }
@@ -60,7 +67,10 @@ export class AutocompleteComponent extends BaseFieldComponent implements OnInit,
               });
             }
           }
-        })
+        }),
+      this.dynamicFormService.validateControls.subscribe(() => {
+        this.search.markAsTouched({ onlySelf: true });
+      })
     );
   }
 

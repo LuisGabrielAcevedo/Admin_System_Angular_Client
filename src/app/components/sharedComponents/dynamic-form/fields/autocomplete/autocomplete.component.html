@@ -3,6 +3,7 @@
     <mat-label>{{label()}}</mat-label>
     <input [disableControl]="disableValue" matInput [formControl]="search" placeholder="{{placeholder()}}"
       autocomplete="off" (input)="filterOptions($event.target.value)">
+    <mat-error *ngIf="validateControl()">{{errorMessage()}}</mat-error>
   </mat-form-field>
   <div class="autocomplete-content" *ngIf="showOptions">
     <div fxLayout="row" *ngIf="!filteredOptions.length && defaultMessage" class="autocomplete-default-message" fxLayoutAlign="center center">

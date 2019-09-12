@@ -24,8 +24,6 @@ export class DynamicFormComponent extends FormComponent implements OnInit, OnCha
     const model: FormModel = changes.model ? changes.model.currentValue : undefined;
     if (fields && fields.length) {
       this.mainGroupsFormatted = cloneDeep(this.formatFields());
-      // console.log(this.tabsFormatted);
-      // console.log(this.form.value);
     }
     if (model) {
       this.currentModel = cloneDeep(model);
@@ -41,7 +39,7 @@ export class DynamicFormComponent extends FormComponent implements OnInit, OnCha
       console.log(this.currentModel);
     } else {
       this.validateForm(this.form);
-      console.log(this.form);
+      this.dynamicFormService.validateControls.emit();
     }
   }
 }
