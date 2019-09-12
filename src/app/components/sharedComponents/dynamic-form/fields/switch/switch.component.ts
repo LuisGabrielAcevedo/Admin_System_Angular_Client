@@ -4,7 +4,7 @@ import { BaseFieldComponent } from '../base-field.mixin';
 @Component({
   selector: 'app-switch',
   templateUrl: './switch.component.html',
-  styleUrls: ['./switch.component.css']
+  styleUrls: ['../../dynamic-form.component.css']
 })
 export class SwitchComponent extends BaseFieldComponent implements OnInit {
   ngOnInit() {

@@ -4,7 +4,7 @@ import { BaseFieldComponent } from '../base-field.mixin';
 @Component({
   selector: 'app-radio-group',
   templateUrl: './radio-group.component.html',
-  styleUrls: ['./radio-group.component.css']
+  styleUrls: ['../../dynamic-form.component.css']
 })
 export class RadioGroupComponent extends BaseFieldComponent implements OnInit {
   ngOnInit() {

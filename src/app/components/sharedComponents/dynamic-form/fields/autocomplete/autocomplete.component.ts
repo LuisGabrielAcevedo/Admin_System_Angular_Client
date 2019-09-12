@@ -1,27 +1,27 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BaseFieldComponent } from '../base-field.mixin';
-import { FormControl, ValidatorFn } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { DynamicFormService } from '../../dynamic-form.service';
 import { FormattedValidations } from '../../dynamic-form.interfaces';
 
 @Component({
   selector: 'app-autocomplete',
   templateUrl: './autocomplete.component.html',
-  styleUrls: ['./autocomplete.component.css']
+  styleUrls: ['../../dynamic-form.component.css']
 })
 export class AutocompleteComponent extends BaseFieldComponent implements OnInit, OnDestroy {
   constructor(public dynamicFormService: DynamicFormService) {
     super();
   }
   public search: FormControl;
-  public showOptions = false;
+  public showOptions: boolean = false;
   public filteredOptions: any[] = [];
   public defaultMessage: string;
   public selectedOption: any;
 
   ngOnInit() {
-    if (this.field.options && this.field.options.validators) {
-      const formattedValidations: FormattedValidations = this.dynamicFormService.formatValidations(this.field.options.validators, this.form);
+    if (this.field.validators) {
+      const formattedValidations: FormattedValidations = this.dynamicFormService.formatValidations(this.field.validators, this.form);
       this.search = new FormControl('', formattedValidations.validations);
       this.search['errorMessages'] = formattedValidations.errorMessages;
     } else {
@@ -32,7 +32,6 @@ export class AutocompleteComponent extends BaseFieldComponent implements OnInit,
   }
 
   public async initAutocomplete() {
-    await this.loadSelectOptions();
     if (this.field.options.depend) {
       this.subscriptions.push(
         this.dynamicFormService.dependEvent.subscribe(async (data) => {
@@ -48,7 +47,8 @@ export class AutocompleteComponent extends BaseFieldComponent implements OnInit,
     }
     this.subscriptions.push(
       this.form.controls[this.field.key].valueChanges
-        .subscribe(value => {
+        .subscribe(async (value) => {
+          if (!this.options.length) await this.loadSelectOptions();
           if (this.selectedOption) {
             this.search.patchValue(this.selectedOption[this.field.options.associationText]);
             this.dynamicFormService.dependEvent.emit({
@@ -58,11 +58,11 @@ export class AutocompleteComponent extends BaseFieldComponent implements OnInit,
             });
           } else {
             if (value) {
-              const optionSelected = this.options.find(option => option[this.field.options.associationValue] === value);
-              this.search.patchValue(optionSelected[this.field.options.associationText]);
+              const selectedOption = this.options.find(option => option[this.field.options.associationValue] === value);
+              this.search.patchValue(selectedOption[this.field.options.associationText]);
               this.dynamicFormService.dependEvent.emit({
                 key: this.field.key,
-                value: optionSelected[this.field.options.associationValue],
+                value: selectedOption[this.field.options.associationValue],
                 clear: false
               });
             }
@@ -74,11 +74,18 @@ export class AutocompleteComponent extends BaseFieldComponent implements OnInit,
     );
   }
 
+  showOptionsToggle(value: boolean) {
+    this.showOptions = value;
+  }
+
   public filterOptions(value: string) {
-    this.showOptions = true;
     this.defaultMessage = 'No data available';
     const filterValue = new RegExp(value, 'gi');
     this.filteredOptions = this.options.filter(option => option[this.field.options.associationText].toLowerCase().match(filterValue));
+  }
+
+  public searchValidateControl(): boolean {
+    return !this.search.valid && this.search.touched;
   }
 
   public selectOption(option: any) {
@@ -89,7 +96,6 @@ export class AutocompleteComponent extends BaseFieldComponent implements OnInit,
 
   public closeAutocomplete() {
     this.defaultMessage = null;
-    this.showOptions = false;
     this.filteredOptions = [];
   }
 

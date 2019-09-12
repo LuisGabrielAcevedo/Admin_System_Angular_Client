@@ -4,7 +4,7 @@ import { BaseFieldComponent } from '../base-field.mixin';
 @Component({
   selector: 'app-enum-select',
   templateUrl: './enum-select.component.html',
-  styleUrls: ['./enum-select.component.css']
+  styleUrls: ['../../dynamic-form.component.css']
 })
 export class EnumSelectComponent extends BaseFieldComponent implements OnInit {
   ngOnInit() {

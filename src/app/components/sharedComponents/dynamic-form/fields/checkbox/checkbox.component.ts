@@ -4,7 +4,7 @@ import { BaseFieldComponent } from '../base-field.mixin';
 @Component({
   selector: 'app-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.css']
+  styleUrls: ['../../dynamic-form.component.css']
 })
 export class CheckboxComponent extends BaseFieldComponent implements OnInit {
   ngOnInit() {

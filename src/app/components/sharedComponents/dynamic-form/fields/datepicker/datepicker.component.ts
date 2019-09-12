@@ -4,7 +4,7 @@ import { BaseFieldComponent } from '../base-field.mixin';
 @Component({
   selector: 'app-datepicker',
   templateUrl: './datepicker.component.html',
-  styleUrls: ['./datepicker.component.css']
+  styleUrls: ['../../dynamic-form.component.css']
 })
 export class DatepickerComponent extends BaseFieldComponent implements OnInit {
   ngOnInit() {

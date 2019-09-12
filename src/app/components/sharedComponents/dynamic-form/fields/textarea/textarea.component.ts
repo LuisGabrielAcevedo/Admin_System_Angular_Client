@@ -4,7 +4,7 @@ import { BaseFieldComponent } from '../base-field.mixin';
 @Component({
   selector: 'app-textarea',
   templateUrl: './textarea.component.html',
-  styleUrls: ['./textarea.component.css']
+  styleUrls: ['../../dynamic-form.component.css']
 })
 export class TextareaComponent extends BaseFieldComponent implements OnInit {
   ngOnInit() {

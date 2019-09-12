@@ -93,6 +93,14 @@ export class DynamicFormValidators {
         );
     }
 
+    public static onlyCapitalCase(data?: ValidatorData): DynamicFormValidator {
+        return new DynamicFormValidator(
+            'onlyCapitalCase',
+            data && data.message ? data.message : 'Must contain only uppercase',
+            (form: FormGroup) => DynamicFormValidationsFunctions.patternValidator(/^[A-Z ]+$/, { onlycapitalcase: true })
+        );
+    }
+
     public static hasSmallCase(data?: ValidatorData): DynamicFormValidator {
         return new DynamicFormValidator(
             'hasSmallCase',

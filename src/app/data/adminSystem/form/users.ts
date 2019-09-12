@@ -1,10 +1,10 @@
 import { FormField, FormFieldTypes } from 'src/app/components/sharedComponents/dynamic-form/dynamic-form.interfaces';
-import Application from '../../models/adminSystem/applications';
-import Role from '../../models/adminSystem/roles';
-import Company from '../../models/adminSystem/companies';
-import Store from '../../models/adminSystem/stores';
 import ObjectID from 'bson-objectid';
 import { DynamicFormValidators } from 'src/app/components/sharedComponents/dynamic-form/validate/dynamic-form-validators';
+import Company from 'src/app/models/adminSystem/companies';
+import Application from 'src/app/models/adminSystem/applications';
+import Role from 'src/app/models/adminSystem/roles';
+import Store from 'src/app/models/adminSystem/stores';
 
 const userFields: FormField[] = [
     {
@@ -12,17 +12,19 @@ const userFields: FormField[] = [
         key: 'company',
         component: FormFieldTypes.autocomplete,
         mainGroup: 'App info',
-        options: {
+        flexConfig: {
             row: 1,
-            flex: 100,
+            flex: 100
+        },
+        validators: [
+            DynamicFormValidators.required()
+        ],
+        options: {
             placeholder: 'Select a company',
             selectOptions: async () => {
                 const resp = await Company.all();
                 return resp.data;
             },
-            validators: [
-                DynamicFormValidators.required()
-            ],
             associationText: 'name',
             associationValue: '_id'
         }
@@ -32,9 +34,14 @@ const userFields: FormField[] = [
         key: 'application',
         component: FormFieldTypes.asyncAutocomplete,
         mainGroup: 'App info',
-        options: {
+        flexConfig: {
             row: 2,
-            flex: 50,
+            flex: 50
+        },
+        validators: [
+            DynamicFormValidators.required()
+        ],
+        options: {
             placeholder: 'Select a application',
             selectOptions: async (arg) => {
                 if (ObjectID.isValid(arg)) {
@@ -54,9 +61,11 @@ const userFields: FormField[] = [
         key: 'applicationRole',
         component: FormFieldTypes.enum,
         mainGroup: 'App info',
-        options: {
+        flexConfig: {
             row: 2,
-            flex: 50,
+            flex: 50
+        },
+        options: {
             placeholder: 'Select a language',
             enumSelectOptions: [
                 { text: 'Admin', value: 'ADMIN' },
@@ -69,26 +78,28 @@ const userFields: FormField[] = [
         key: 'isActive',
         component: FormFieldTypes.switch,
         mainGroup: 'App info',
-        options: {
+        flexConfig: {
             row: 3,
-            flex: 100,
-            validators: [
-                DynamicFormValidators.requiredTrue({ message: 'The field active user is required'})
-            ]
-        }
+            flex: 100
+        },
+        validators: [
+            DynamicFormValidators.requiredTrue({ message: 'The field active user is required'})
+        ]
     },
     {
         name: 'First name',
         key: 'firstName',
         component: FormFieldTypes.textField,
         mainGroup: 'Basic info',
-        options: {
-            placeholder: 'Write your fisrt name',
-            validators: [
-                DynamicFormValidators.required({ message: 'The field first name is required' })
-            ],
+        flexConfig: {
             row: 2,
             flex: 50
+        },
+        validators: [
+            DynamicFormValidators.required({ message: 'The field first name is required' })
+        ],
+        options: {
+            placeholder: 'Write your fisrt name',
         }
     },
     {
@@ -96,13 +107,15 @@ const userFields: FormField[] = [
         key: 'lastName',
         component: FormFieldTypes.textField,
         mainGroup: 'Basic info',
-        options: {
-            placeholder: 'Write your last name',
-            validators: [
-                DynamicFormValidators.required()
-            ],
+        flexConfig: {
             row: 2,
             flex: 50
+        },
+        validators: [
+            DynamicFormValidators.required()
+        ],
+        options: {
+            placeholder: 'Write your last name'
         }
     },
     {
@@ -110,10 +123,12 @@ const userFields: FormField[] = [
         key: 'userName',
         component: FormFieldTypes.textField,
         mainGroup: 'Basic info',
-        options: {
-            placeholder: 'Write your user name',
+        flexConfig: {
             row: 1,
             flex: 100
+        },
+        options: {
+            placeholder: 'Write your user name'
         }
     },
     {
@@ -121,13 +136,15 @@ const userFields: FormField[] = [
         key: 'userInformation.documentType',
         component: FormFieldTypes.enum,
         mainGroup: 'Basic info',
+        flexConfig: {
+            row: 3,
+            flex: 15
+        },
+        validators: [
+            DynamicFormValidators.required({ message: 'The field document type is required' })
+        ],
         options: {
             placeholder: 'Select a type of document',
-            row: 3,
-            flex: 15,
-            validators: [
-                DynamicFormValidators.required({ message: 'The field document type is required' })
-            ],
             enumSelectOptions: [
                 { value: 'dni', text: 'DNI' },
                 { value: 'passport', text: 'Passport' }
@@ -139,10 +156,12 @@ const userFields: FormField[] = [
         key: 'userInformation.documentNumber',
         component: FormFieldTypes.textField,
         mainGroup: 'Basic info',
-        options: {
-            placeholder: 'Write your document number',
+        flexConfig: {
             row: 3,
             flex: 35
+        },
+        options: {
+            placeholder: 'Write your document number'
         }
     },
     {
@@ -150,13 +169,15 @@ const userFields: FormField[] = [
         key: 'userInformation.birthdate',
         component: FormFieldTypes.datepicker,
         mainGroup: 'Basic info',
-        options: {
-            placeholder: 'White your birthdate',
-            validators: [
-                DynamicFormValidators.required({message: 'The field birthdate is required'})
-            ],
+        flexConfig: {
             row: 3,
             flex: 25
+        },
+        validators: [
+            DynamicFormValidators.required({message: 'The field birthdate is required'})
+        ],
+        options: {
+            placeholder: 'White your birthdate'
         }
     },
     {
@@ -164,15 +185,17 @@ const userFields: FormField[] = [
         key: 'userInformation.age',
         component: FormFieldTypes.numericField,
         mainGroup: 'Basic info',
-        options: {
-            placeholder: 'White your age',
-            validators: [
-                DynamicFormValidators.required({ message: 'The field age is required' }),
-                DynamicFormValidators.min(2),
-                DynamicFormValidators.max(5)
-            ],
+        flexConfig: {
             row: 3,
             flex: 25
+        },
+        validators: [
+            DynamicFormValidators.required({ message: 'The field age is required' }),
+            DynamicFormValidators.min(2),
+            DynamicFormValidators.max(5)
+        ],
+        options: {
+            placeholder: 'White your age'
         }
     },
     {
@@ -180,15 +203,17 @@ const userFields: FormField[] = [
         key: 'userInformation.gender',
         component: FormFieldTypes.radioGroup,
         mainGroup: 'Basic info',
-        options: {
+        flexConfig: {
             row: 4,
-            flex: 100,
+            flex: 100
+        },
+        validators: [
+            DynamicFormValidators.required({message: 'The field gender is required'})
+        ],
+        options: {
             radioGroupOptions: [
                 { text: 'Male', value: 'male' },
                 { text: 'Female', value: 'female' }
-            ],
-            validators: [
-                DynamicFormValidators.required({message: 'The field gender is required'})
             ]
         }
     },
@@ -197,12 +222,12 @@ const userFields: FormField[] = [
         key: 'email',
         component: FormFieldTypes.textField,
         mainGroup: 'Basic info',
+        validators: [
+            DynamicFormValidators.required({message: 'The email is required'}),
+            DynamicFormValidators.email()
+        ],
         options: {
-            placeholder: 'Write your email',
-            validators: [
-                DynamicFormValidators.required({message: 'The email is required'}),
-                DynamicFormValidators.email()
-            ]
+            placeholder: 'Write your email'
         }
     },
     {
@@ -210,16 +235,16 @@ const userFields: FormField[] = [
         key: 'password',
         component: FormFieldTypes.passwordField,
         mainGroup: 'Basic info',
+        validators: [
+            DynamicFormValidators.required({message: 'The field password is required'}),
+            DynamicFormValidators.minLength(10),
+            DynamicFormValidators.hasNumber(),
+            DynamicFormValidators.hasCapitalCase(),
+            DynamicFormValidators.hasSpecialCharacters(),
+            DynamicFormValidators.hasSmallCase()
+        ],
         options: {
-            placeholder: 'Write your password',
-            validators: [
-                DynamicFormValidators.required({message: 'The field password is required'}),
-                DynamicFormValidators.minLength(10),
-                DynamicFormValidators.hasNumber(),
-                DynamicFormValidators.hasCapitalCase(),
-                DynamicFormValidators.hasSpecialCharacters(),
-                DynamicFormValidators.hasSmallCase()
-            ]
+            placeholder: 'Write your password'
         }
     },
     {
@@ -227,12 +252,12 @@ const userFields: FormField[] = [
         key: 'confirm_password',
         component: FormFieldTypes.passwordField,
         mainGroup: 'Basic info',
+        validators: [
+            DynamicFormValidators.required({message: 'The confirm is required'}),
+            DynamicFormValidators.confirm('password')
+        ],
         options: {
-            placeholder: 'Confirm your password',
-            validators: [
-                DynamicFormValidators.required({message: 'The confirm is required'}),
-                DynamicFormValidators.confirm('password')
-            ]
+            placeholder: 'Confirm your password'
         }
     },
     {
@@ -240,14 +265,16 @@ const userFields: FormField[] = [
         key: 'userInformation.phone',
         component: FormFieldTypes.textField,
         mainGroup: 'More info',
-        options: {
-            validators: [
-                DynamicFormValidators.required(),
-                DynamicFormValidators.digits(10),
-            ],
-            placeholder: 'Write your phone',
+        flexConfig: {
             row: 2,
             flex: 50
+        },
+        validators: [
+            DynamicFormValidators.required(),
+            DynamicFormValidators.digits(10),
+        ],
+        options: {
+            placeholder: 'Write your phone'
         }
     },
     {
@@ -255,10 +282,12 @@ const userFields: FormField[] = [
         key: 'userInformation.cellPhone',
         component: FormFieldTypes.textField,
         mainGroup: 'More info',
-        options: {
-            placeholder: 'Write your phone',
+        flexConfig: {
             row: 2,
             flex: 50
+        },
+        options: {
+            placeholder: 'Write your phone'
         }
     },
     {
@@ -266,13 +295,15 @@ const userFields: FormField[] = [
         key: 'userInformation.note',
         component: FormFieldTypes.textarea,
         mainGroup: 'More info',
-        options: {
-            placeholder: 'Additional Information',
-            validators: [
-                DynamicFormValidators.required({message: 'The field note is required'})
-            ],
+        flexConfig: {
             row: 3,
             flex: 100
+        },
+        validators: [
+            DynamicFormValidators.required({message: 'The field note is required'})
+        ],
+        options: {
+            placeholder: 'Additional Information'
         }
     },
     {
@@ -280,15 +311,15 @@ const userFields: FormField[] = [
         key: 'role',
         component: FormFieldTypes.select,
         mainGroup: 'Basic info',
+        validators: [
+            DynamicFormValidators.required({message: 'The field role is required'})
+        ],
         options: {
             placeholder: 'Select a role',
             selectOptions: async (arg) => {
                 const resp = arg ? await Role.where('company', arg).all() : await Role.all();
                 return resp.data;
             },
-            validators: [
-                DynamicFormValidators.required({message: 'The field role is required'})
-            ],
             associationText: 'name',
             associationValue: '_id',
             depend: 'company'
@@ -299,15 +330,15 @@ const userFields: FormField[] = [
         key: 'userConfigurations.currentStore',
         component: FormFieldTypes.autocomplete,
         mainGroup: 'Configurations',
+        validators: [
+            DynamicFormValidators.required({message: 'The field current store is required'})
+        ],
         options: {
             placeholder: 'Select a store',
             selectOptions: async (arg) => {
                 const resp = arg ? await Store.where('company', arg).all() : await Store.all();
                 return resp.data;
             },
-            validators: [
-                DynamicFormValidators.required({message: 'The field current store is required'})
-            ],
             associationText: 'name',
             associationValue: '_id',
             depend: 'company'

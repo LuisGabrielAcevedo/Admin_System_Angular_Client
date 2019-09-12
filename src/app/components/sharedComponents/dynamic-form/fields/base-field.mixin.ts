@@ -27,7 +27,7 @@ export class BaseFieldComponent {
     }
 
     public addSubscriptions() {
-        if (this.field.options.visibleCondition || this.field.options.disableCondition) {
+        if (this.field.options && (this.field.options.visibleCondition || this.field.options.disableCondition)) {
             this.subscriptions.push(
                 this.form.valueChanges
                     .pipe(debounceTime(200))
@@ -84,6 +84,7 @@ export class BaseFieldComponent {
 
     public errorMessage(): string {
         const control: AbstractControl = this.form.controls[this.field.key];
+        if (!control.errors) return '';
         const rule: string = Object.keys(control.errors)[0];
         return control['errorMessages'][rule];
     }

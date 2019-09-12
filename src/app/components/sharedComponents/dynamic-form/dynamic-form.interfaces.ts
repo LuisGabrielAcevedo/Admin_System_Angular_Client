@@ -1,5 +1,6 @@
-import { ValidatorFn, FormGroup } from '@angular/forms';
+import { ValidatorFn, FormGroup, ValidationErrors } from '@angular/forms';
 import { DynamicFormValidator } from './validate/dynamin-form-validator';
+import { Observable } from 'rxjs';
 
 export type VisibleCallback = (arg: FormModel) => boolean;
 export type DisableCallback = (arg: FormModel) => boolean;
@@ -34,22 +35,25 @@ export interface FormField {
   dynamicComponent?: any;
   defaultValue?: any;
   mainGroup?: any;
-  options?: {
-    selectOptions?: (...arg: any[]) => Promise<any> | any;
-    placeholder?: string;
-    defaultImageField?: string;
-    validators?: DynamicFormValidator[];
-    visibleCondition?: VisibleCallback;
-    disableCondition?: DisableCallback;
-    enumSelectOptions?: Option[];
-    associationValue?: string;
-    associationText?: string;
-    radioGroupOptions?: Option[];
-    depend?: string;
+  flexConfig?: {
+    rowTitle?: string;
     row?: number;
     flex?: number;
     group?: FormLateralGroup;
-    rowTitle?: string;
+  };
+  validators?: DynamicFormValidator[];
+  options?: {
+    selectOptions?: (...arg: any[]) => Promise<any> | any;
+    placeholder?: string;
+    label?: string;
+    enumSelectOptions?: Option[];
+    radioGroupOptions?: Option[];
+    visibleCondition?: VisibleCallback;
+    disableCondition?: DisableCallback;
+    associationValue?: string;
+    associationText?: string;
+    defaultImageField?: string;
+    depend?: string;
   };
 }
 
@@ -88,6 +92,7 @@ export interface FormattedValidations {
 export interface FormResponse {
   valid: boolean;
   currentModel?: FormModel;
-  errors?: any;
+  errors?: ValidationErrors;
   editedFields?: FormModel;
 }
+

@@ -5,7 +5,7 @@ import { DynamicFormService } from '../../dynamic-form.service';
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.css']
+  styleUrls: ['../../dynamic-form.component.css']
 })
 export class SelectComponent extends BaseFieldComponent implements OnInit, OnDestroy {
   constructor(public dynamicFormService: DynamicFormService) {

@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayout.lt-sm="column">
-    <div *ngFor="let field of fields" fxFlex.xs="100" fxFlex.sm="{{field.options.flex || 100}}" fxFlex.md="{{field.options.flex || 100}}" fxFlex.lg="{{field.options.flex || 100}}" fxFlex.xl="{{field.options.flex || 100}}" style="padding: 5px;">
+    <div *ngFor="let field of fields" fxFlex.xs="100" fxFlex.sm="{{field.flexConfig.flex || 100}}" fxFlex.md="{{field.flexConfig.flex || 100}}" fxFlex.lg="{{field.flexConfig.flex || 100}}" fxFlex.xl="{{field.flexConfig.flex || 100}}" style="padding: 5px;">
         <app-select-field
         [data]="{
           field: field,

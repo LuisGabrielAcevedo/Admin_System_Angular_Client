@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AxiosquentModel } from 'src/app/axioquent';
 import { FormField } from '../dynamic-form/dynamic-form.interfaces';
+import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 declare const require: any;
 
 @Component({
@@ -10,7 +11,7 @@ declare const require: any;
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-  @ViewChild('dynamicForm') public form: any;
+  @ViewChild('dynamicForm') public form: DynamicFormComponent;
   loading: boolean;
   model: AxiosquentModel;
   resource: string;
@@ -26,9 +27,9 @@ export class FormComponent implements OnInit {
       this.resource = params.get('resource');
       this.title = this.resource;
       this.id = params.get('id');
-      this.fieldsConfig = require(`src/app/data/adminSystem/${this.resource}`).default;
+      this.fieldsConfig = require(`src/app/data/adminSystem/form/${this.resource}`).default;
       this.modelClass = require(`src/app/models/adminSystem/${this.resource}`).default;
-      // this.loadData();
+      this.loadData();
     });
   }
 
@@ -45,7 +46,9 @@ export class FormComponent implements OnInit {
   }
 
   save() {
-    this.form.submit();
+    this.form.submit().subscribe(resp => {
+      console.log(resp);
+    });
   }
 
   cancel() {

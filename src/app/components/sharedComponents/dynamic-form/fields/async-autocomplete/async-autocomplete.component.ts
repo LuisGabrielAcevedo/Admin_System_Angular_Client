@@ -3,11 +3,12 @@ import { BaseFieldComponent } from '../base-field.mixin';
 import { FormControl } from '@angular/forms';
 import debounce from 'lodash/debounce';
 import { DynamicFormService } from '../../dynamic-form.service';
+import { FormattedValidations } from '../../dynamic-form.interfaces';
 
 @Component({
   selector: 'app-async-autocomplete',
   templateUrl: './async-autocomplete.component.html',
-  styleUrls: ['./async-autocomplete.component.css']
+  styleUrls: ['../../dynamic-form.component.css']
 })
 export class AsyncAutocompleteComponent extends BaseFieldComponent implements OnInit, OnDestroy {
   constructor(public dynamicFormService: DynamicFormService) {
@@ -23,7 +24,13 @@ export class AsyncAutocompleteComponent extends BaseFieldComponent implements On
     async (value: string) => this.filteredOptions = await this.loadAsyncSelectOptions(value), 500);
 
   ngOnInit() {
-    this.search = new FormControl('');
+    if (this.field.validators) {
+      const formattedValidations: FormattedValidations = this.dynamicFormService.formatValidations(this.field.validators, this.form);
+      this.search = new FormControl('', formattedValidations.validations);
+      this.search['errorMessages'] = formattedValidations.errorMessages;
+    } else {
+      this.search = new FormControl('');
+    }
     this.addSubscriptions();
     this.initAutocomplete();
   }
@@ -49,6 +56,9 @@ export class AsyncAutocompleteComponent extends BaseFieldComponent implements On
               clear: false
             });
           }
+        }),
+        this.dynamicFormService.validateControls.subscribe(() => {
+          this.search.markAsTouched({ onlySelf: true });
         })
     );
   }
@@ -58,6 +68,10 @@ export class AsyncAutocompleteComponent extends BaseFieldComponent implements On
     this.defaultMessage = 'No data available';
     const filterValue = value.toLowerCase();
     this.debounce(filterValue);
+  }
+
+  public searchValidateControl(): boolean {
+    return !this.search.valid && this.search.touched;
   }
 
   public selectOption(option: any) {

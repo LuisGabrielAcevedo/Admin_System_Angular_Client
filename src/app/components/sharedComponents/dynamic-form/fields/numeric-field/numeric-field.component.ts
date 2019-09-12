@@ -4,7 +4,7 @@ import { BaseFieldComponent } from '../base-field.mixin';
 @Component({
   selector: 'app-numeric-field',
   templateUrl: './numeric-field.component.html',
-  styleUrls: ['./numeric-field.component.css']
+  styleUrls: ['../../dynamic-form.component.css']
 })
 export class NumericFieldComponent extends BaseFieldComponent implements OnInit {
   ngOnInit() {

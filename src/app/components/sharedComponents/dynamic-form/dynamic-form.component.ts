@@ -3,8 +3,9 @@ import { FormComponent } from './dynamic-form.mixin';
 import { FormBuilder } from '@angular/forms';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/set';
-import { FormField, FormModel } from './dynamic-form.interfaces';
+import { FormField, FormModel, FormResponse } from './dynamic-form.interfaces';
 import { DynamicFormService } from './dynamic-form.service';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -31,15 +32,25 @@ export class DynamicFormComponent extends FormComponent implements OnInit, OnCha
     }
   }
 
-  public submit() {
+  public submit(): Observable<FormResponse> {
+    Object.keys(this.form.value).forEach(key => {
+      set(this.currentModel, key!, this.form.value[key]);
+    });
     if (this.form.valid) {
-      Object.keys(this.form.value).forEach(key => {
-        set(this.currentModel, key!, this.form.value[key]);
+      return of({ 
+        valid: true, 
+        currentModel: this.currentModel,
+        errors: null
       });
-      console.log(this.currentModel);
     } else {
-      this.validateForm(this.form);
+      this.errors = {};
       this.dynamicFormService.validateControls.emit();
+      this.validateForm(this.form);
+      return of({ 
+        valid: false, 
+        currentModel: this.currentModel,
+        errors: this.errors 
+      });
     }
   }
 }
