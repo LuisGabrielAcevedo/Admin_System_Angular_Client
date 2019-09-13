@@ -1,10 +1,11 @@
-import { ValidatorFn, FormGroup, ValidationErrors } from '@angular/forms';
+import { ValidatorFn, FormGroup, ValidationErrors, AbstractControl } from '@angular/forms';
 import { DynamicFormValidator } from './validate/dynamin-form-validator';
 import { Observable } from 'rxjs';
 
 export type VisibleCallback = (arg: FormModel) => boolean;
 export type DisableCallback = (arg: FormModel) => boolean;
 export type ValidatorCallback = (form: FormGroup) => ValidatorFn;
+export type AsyncValidatorCallback = (control: AbstractControl) => Observable<ValidationErrors>;
 
 export enum FormFieldTypes {
   autocomplete = 'AutocompleteComponent',
@@ -22,10 +23,9 @@ export enum FormFieldTypes {
   passwordField = 'PasswordFieldComponent',
 }
 
-export interface FormData {
-  field: FormField;
-  appearance: string;
-  id: string;
+export interface MaterialFormData {
+  appearance?: string;
+  floatLabel?: string;
 }
 
 export interface FormField {
@@ -34,7 +34,7 @@ export interface FormField {
   component?: FormFieldTypes;
   dynamicComponent?: any;
   defaultValue?: any;
-  mainGroup?: any;
+  mainGroup?: string;
   flexConfig?: {
     rowTitle?: string;
     row?: number;
@@ -42,6 +42,7 @@ export interface FormField {
     group?: FormLateralGroup;
   };
   validators?: DynamicFormValidator[];
+  asyncValidator?: AsyncValidatorCallback;
   options?: {
     selectOptions?: (...arg: any[]) => Promise<any> | any;
     placeholder?: string;

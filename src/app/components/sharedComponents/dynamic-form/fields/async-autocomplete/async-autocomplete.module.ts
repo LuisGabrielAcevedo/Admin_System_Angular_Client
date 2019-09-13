@@ -6,7 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormDirectivesModule } from '../../directives/dynamic-form-directives.module';
 import { AsyncAutocompleteComponent } from './async-autocomplete.component';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [AsyncAutocompleteComponent],
@@ -17,7 +17,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     FlexLayoutModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatProgressBarModule,
+    MatProgressSpinnerModule,
     DynamicFormDirectivesModule
   ]
 })

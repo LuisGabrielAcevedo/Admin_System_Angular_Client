@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormField } from '../../dynamic-form.interfaces';
+import { FormField, MaterialFormData } from '../../dynamic-form.interfaces';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -10,8 +10,7 @@ import { FormGroup } from '@angular/forms';
 export class RowComponent implements OnInit {
   @Input() public fields: FormField[];
   @Input() public form: FormGroup;
-  @Input() public appearance: string;
-  @Input() public id: string;
+  @Input() public materialData: MaterialFormData;
   constructor() { }
 
   ngOnInit() {

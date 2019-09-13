@@ -2,7 +2,6 @@ import { Component, OnInit, SimpleChanges, OnChanges } from '@angular/core';
 import { FormComponent } from './dynamic-form.mixin';
 import { FormBuilder } from '@angular/forms';
 import cloneDeep from 'lodash/cloneDeep';
-import set from 'lodash/set';
 import { FormField, FormModel, FormResponse } from './dynamic-form.interfaces';
 import { DynamicFormService } from './dynamic-form.service';
 import { Observable, of } from 'rxjs';
@@ -28,14 +27,12 @@ export class DynamicFormComponent extends FormComponent implements OnInit, OnCha
     }
     if (model) {
       this.currentModel = cloneDeep(model);
-      this.updateForm(model);
+      this.updateForm(model); 
     }
   }
 
   public submit(): Observable<FormResponse> {
-    Object.keys(this.form.value).forEach(key => {
-      set(this.currentModel, key!, this.form.value[key]);
-    });
+    this.updateModel();
     if (this.form.valid) {
       return of({ 
         valid: true, 
@@ -44,7 +41,6 @@ export class DynamicFormComponent extends FormComponent implements OnInit, OnCha
       });
     } else {
       this.errors = {};
-      this.dynamicFormService.validateControls.emit();
       this.validateForm(this.form);
       return of({ 
         valid: false, 

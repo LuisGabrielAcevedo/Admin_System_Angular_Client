@@ -1,6 +1,6 @@
 <div [formGroup]="form" *ngIf="visibleValue">
-  <mat-form-field appearance="{{appearance}}">
-    <mat-label>{{label()}}</mat-label>
+  <mat-form-field appearance="{{appearance()}}" [floatLabel]="floatLabel()">
+    <mat-label>{{label()}}<span class="form-required" *ngIf="required()">*</span></mat-label>
     <input matInput [matDatepicker]="picker" [disableControl]="disableValue" [formControlName]="key()" placeholder="{{placeholder()}}">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>

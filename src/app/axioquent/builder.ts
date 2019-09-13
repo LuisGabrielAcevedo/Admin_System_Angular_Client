@@ -20,7 +20,7 @@ export class Builder implements QueryMethods {
 
     constructor(
         modelType: typeof Model,
-        baseModelType?: string,
+        baseModelType?: string
     ) {
         this.modelType = modelType;
         this.headers = [];
@@ -32,15 +32,20 @@ export class Builder implements QueryMethods {
     }
 
     public async find(page?: number, perPage?: number): Promise<any> {
-        this.setHeaders();
-        if (page) { this.query.getPaginationSpec().setPage(page); }
-        if (perPage) { this.query.getPaginationSpec().setPerPage(perPage); }
-        const resp: HttpClientResponse = await this.getHttpClient().get(this.query.toString());
-        const data: any = {
-            data: resp.getData()
-        };
-        if (resp.getPagination()) { data.pagination = resp.getPagination(); }
-        return data;
+        try {
+            this.setHeaders();
+            if (page) { this.query.getPaginationSpec().setPage(page); }
+            if (perPage) { this.query.getPaginationSpec().setPerPage(perPage); }
+            const resp: HttpClientResponse = await this.getHttpClient().get(this.query.toString());
+            const data: any = {
+                data: resp.getData()
+            };
+            if (resp.getPagination()) { data.pagination = resp.getPagination(); }
+            return data;
+        } 
+        catch (e) {
+            return Promise.reject(e.response.data);
+        }
     }
 
     public findRx(page?: number, perPage?: number): Observable<any> {
@@ -48,9 +53,13 @@ export class Builder implements QueryMethods {
     }
 
     public async findById(id: number): Promise<any> {
-        this.setHeaders();
-        const resp: HttpClientResponse = await this.getHttpClient().get(this.query.toString(id));
-        return resp.getData();
+        try {
+            this.setHeaders();
+            const resp: HttpClientResponse = await this.getHttpClient().get(this.query.toString(id));
+            return resp.getData();
+        } catch(e) {
+            return Promise.reject(e.response.data);
+        }
     }
 
     public findByIdRx(id: number): Observable<any> {

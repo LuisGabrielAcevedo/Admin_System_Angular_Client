@@ -8,7 +8,7 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { FormFieldDirective } from './select-field.directive';
-import { FormData, FormFieldTypes, FormModel } from '../../dynamic-form.interfaces';
+import { FormFieldTypes, MaterialFormData, FormField } from '../../dynamic-form.interfaces';
 import { FormFieldComponent } from './select-field.component';
 import { AsyncAutocompleteComponent } from '../../fields/async-autocomplete/async-autocomplete.component';
 import { TextFieldComponent } from '../../fields/text-field/text-field.component';
@@ -31,7 +31,8 @@ import { FormGroup } from '@angular/forms';
 })
 export class SelectFieldComponent implements OnInit, OnChanges {
     @ViewChild(FormFieldDirective) formfieldDirective: FormFieldDirective;
-    @Input() data: FormData;
+    @Input() field: FormField;
+    @Input() materialData: MaterialFormData;
     @Input() form: FormGroup;
     constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
@@ -39,25 +40,25 @@ export class SelectFieldComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        const data: FormData = changes.data ? changes.data.currentValue : undefined;
-        if (data) {
-            this.data = data;
+        const field: FormField = changes.field ? changes.field.currentValue : undefined;
+        if (field) {
+            this.field = field;
             this.loadComponent();
         }
     }
 
     loadComponent() {
-        const component: any = this.components()[this.data.field.component];
-        const formField = new FormFieldComponent(component, this.data, this.form);
+        const component: any = this.components()[this.field.component];
+        const formField = new FormFieldComponent(
+            component, 
+            this.field, 
+            this.materialData, 
+            this.form
+        );
         const componentInstance = this.generateInstance<any>(formField);
-        if (formField.formData) {
-            componentInstance.field = formField.formData.field;
-            componentInstance.appearance = formField.formData.appearance;
-            componentInstance.id = formField.formData.id;
-        }
-        if (formField.form) {
-            componentInstance.form = formField.form;
-        }
+        if (formField.field) componentInstance.field = formField.field;
+        if (formField.form) componentInstance.form = formField.form;
+        componentInstance.materialData = formField.materialData;
     }
 
     components() {

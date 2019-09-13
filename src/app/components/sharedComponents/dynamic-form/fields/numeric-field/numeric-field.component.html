@@ -1,6 +1,6 @@
 <div [formGroup]="form" *ngIf="visibleValue">
-  <mat-form-field appearance="{{appearance}}">
-    <mat-label>{{label()}}</mat-label>
+  <mat-form-field appearance="{{appearance()}}" [floatLabel]="floatLabel()">
+    <mat-label>{{label()}}<span class="form-required" *ngIf="required()">*</span></mat-label>
     <input type="number" [disableControl]="disableValue" [formControlName]="key()" matInput
       placeholder="{{placeholder()}}">
     <mat-error *ngIf="validateControl()">{{errorMessage()}}</mat-error>

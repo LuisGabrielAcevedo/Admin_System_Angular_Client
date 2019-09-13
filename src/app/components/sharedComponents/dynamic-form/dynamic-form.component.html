@@ -4,8 +4,7 @@
       <app-simple-form
         [mainGroups]="mainGroupsFormatted" 
         [form]="form"
-        [id]="id"
-        [appearance]="appearance"
+        [materialData]="materialData"
       ></app-simple-form>
     </div>
     <div *ngIf="mainGroupsFormatted.length > 1">
@@ -13,24 +12,21 @@
         <app-tabs-form
         [mainGroups]="mainGroupsFormatted" 
         [form]="form"
-        [id]="id"
-        [appearance]="appearance"
+        [materialData]="materialData"
         ></app-tabs-form>
       </div>
       <div *ngIf="formType === 'steps'">
         <app-steps-form
         [mainGroups]="mainGroupsFormatted" 
         [form]="form"
-        [id]="id"
-        [appearance]="appearance"
+        [materialData]="materialData"
         ></app-steps-form>
       </div>
       <div *ngIf="formType === 'panels'">
         <app-panels-form
         [mainGroups]="mainGroupsFormatted" 
         [form]="form"
-        [id]="id"
-        [appearance]="appearance"
+        [materialData]="materialData"
         ></app-panels-form>
       </div>
     </div>

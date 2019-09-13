@@ -5,8 +5,7 @@ import { DynamicFormValidator } from './validate/dynamin-form-validator';
 
 @Injectable()
 export class DynamicFormService {
-    public dependEvent: EventEmitter<{key: string, value: any, clear: boolean}> = new EventEmitter();
-    public validateControls: EventEmitter<any> = new EventEmitter();
+    public resetControl: EventEmitter<any> = new EventEmitter();
 
     public formatValidations(validations: DynamicFormValidator[], form: FormGroup): FormattedValidations {
         let errorMessages: object = {};
