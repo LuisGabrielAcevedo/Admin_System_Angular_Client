@@ -33,8 +33,9 @@ export class ListComponent implements OnInit {
   }
 
   async loadData() {
-    const resp = await this.modelClass.all(1, 10);
-    this.data = resp.data;
+    this.modelClass.findRx(1, 10).subscribe(resp => {
+      this.data = resp.data;
+    });
   }
 
   async loadAspects() {

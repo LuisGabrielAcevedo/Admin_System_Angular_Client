@@ -1,4 +1,4 @@
-import { Model, AxiosquentHeaders } from '../../axioquent';
+import { Model, AxiosquentHeaders } from 'src/app/axioquent/index';
 
 export class Base extends Model {
     public baseUrl(): string {

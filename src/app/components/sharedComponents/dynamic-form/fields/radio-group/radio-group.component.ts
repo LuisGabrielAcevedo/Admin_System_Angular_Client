@@ -8,8 +8,8 @@ import { BaseFieldComponent } from '../base-field.mixin';
 })
 export class RadioGroupComponent extends BaseFieldComponent implements OnInit {
   ngOnInit() {
-    this.loadRadioGroupOptions();
     this.addSubscriptions();
+    this.loadFieldptions().subscribe(data => this.options = data);
   }
   ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());

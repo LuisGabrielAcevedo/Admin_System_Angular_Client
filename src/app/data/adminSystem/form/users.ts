@@ -5,6 +5,7 @@ import Company from 'src/app/models/adminSystem/companies';
 import Application from 'src/app/models/adminSystem/applications';
 import Role from 'src/app/models/adminSystem/roles';
 import Store from 'src/app/models/adminSystem/stores';
+import { of } from 'rxjs';
 
 const userFields: FormField[] = [
     {
@@ -22,7 +23,7 @@ const userFields: FormField[] = [
         options: {
             placeholder: 'Select a company',
             selectOptions: async () => {
-                const resp = await Company.all();
+                const resp = await Company.find();
                 return resp.data;
             },
             associationText: 'name',
@@ -45,10 +46,10 @@ const userFields: FormField[] = [
             placeholder: 'Select a application',
             selectOptions: async (arg) => {
                 if (ObjectID.isValid(arg)) {
-                    const resp = await Application.find(arg);
+                    const resp = await Application.findById(arg);
                     return [resp];
                 } else {
-                    const resp = await Application.option('search', arg).all();
+                    const resp = await Application.option('search', arg).find();
                     return resp.data;
                 }
             },
@@ -67,10 +68,10 @@ const userFields: FormField[] = [
         },
         options: {
             placeholder: 'Select a language',
-            enumSelectOptions: [
+            fieldOptions: () => of([
                 { text: 'Admin', value: 'ADMIN' },
                 { text: 'User', value: 'USER' }
-            ]
+            ])
         }
     },
     {
@@ -145,10 +146,10 @@ const userFields: FormField[] = [
         ],
         options: {
             placeholder: 'Select a type of document',
-            enumSelectOptions: [
+            fieldOptions: () => of([
                 { value: 'dni', text: 'DNI' },
                 { value: 'passport', text: 'Passport' }
-            ]
+            ])
         }
     },
     {
@@ -211,10 +212,10 @@ const userFields: FormField[] = [
             DynamicFormValidators.required({message: 'The field gender is required'})
         ],
         options: {
-            radioGroupOptions: [
+            fieldOptions: () => of([
                 { text: 'Male', value: 'male' },
                 { text: 'Female', value: 'female' }
-            ]
+            ])
         }
     },
     {
@@ -317,7 +318,7 @@ const userFields: FormField[] = [
         options: {
             placeholder: 'Select a role',
             selectOptions: async (arg) => {
-                const resp = arg ? await Role.where('company', arg).all() : await Role.all();
+                const resp = arg ? await Role.where('company', arg).find() : await Role.find();
                 return resp.data;
             },
             associationText: 'name',
@@ -336,7 +337,7 @@ const userFields: FormField[] = [
         options: {
             placeholder: 'Select a store',
             selectOptions: async (arg) => {
-                const resp = arg ? await Store.where('company', arg).all() : await Store.all();
+                const resp = arg ? await Store.where('company', arg).find() : await Store.find();
                 return resp.data;
             },
             associationText: 'name',
@@ -351,10 +352,10 @@ const userFields: FormField[] = [
         mainGroup: 'Configurations',
         options: {
             placeholder: 'Select a language',
-            enumSelectOptions: [
+            fieldOptions: () => of([
                 { text: 'Spanish', value: 'es' },
                 { text: 'English', value: 'en' }
-            ]
+            ])
         }
     }
 ];

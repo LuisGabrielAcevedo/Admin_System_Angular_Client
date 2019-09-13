@@ -1,5 +1,6 @@
 import { FormField, FormFieldTypes } from 'src/app/components/sharedComponents/dynamic-form/dynamic-form.interfaces';
 import { DynamicFormValidators } from 'src/app/components/sharedComponents/dynamic-form/validate/dynamic-form-validators';
+import { of } from 'rxjs';
 
 const countryFields: FormField[] = [
     {
@@ -47,10 +48,10 @@ const countryFields: FormField[] = [
             DynamicFormValidators.required()
         ],
         options: {
-            enumSelectOptions: [
+            fieldOptions: () => of([
                 { text: 'Spanish', value: 'es' },
                 { text: 'English', value: 'en' }
-            ]
+            ])
         },
         flexConfig: {
             row: 2,
@@ -65,10 +66,10 @@ const countryFields: FormField[] = [
             DynamicFormValidators.required()
         ],
         options: {
-            enumSelectOptions: [
+            fieldOptions: () => of([
                 { text: 'BS S', value: 'BS S' },
                 { text: 'AR $', value: 'AR $' }
-            ]
+            ])
         },
         flexConfig: {
             row: 3,

@@ -47,19 +47,21 @@ export class AsyncAutocompleteComponent extends BaseFieldComponent implements On
               clear: true
             });
           } else {
-            this.showOptions = true;
-            const optionSelected = await this.loadAsyncSelectOptions(value);
-            this.search.patchValue(optionSelected[0][this.field.options.associationText]);
-            this.dynamicFormService.dependEvent.emit({
-              key: this.field.key,
-              value: optionSelected[this.field.options.associationValue],
-              clear: false
-            });
+            if (value) {
+              this.showOptions = true;
+              const optionSelected = await this.loadAsyncSelectOptions(value);
+              this.search.patchValue(optionSelected[0][this.field.options.associationText]);
+              this.dynamicFormService.dependEvent.emit({
+                key: this.field.key,
+                value: optionSelected[this.field.options.associationValue],
+                clear: false
+              });
+            }
           }
         }),
-        this.dynamicFormService.validateControls.subscribe(() => {
-          this.search.markAsTouched({ onlySelf: true });
-        })
+      this.dynamicFormService.validateControls.subscribe(() => {
+        this.search.markAsTouched({ onlySelf: true });
+      })
     );
   }
 

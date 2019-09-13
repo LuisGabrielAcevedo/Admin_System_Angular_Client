@@ -5,6 +5,7 @@ import { AttributesMap } from './attribute/attributes.map';
 import { Builder } from './builder';
 import { AxiosquentHeaders } from './interfaces/axiosquent-headers';
 import { AxiosquentModel } from './interfaces/axiosquent-model';
+import { Observable, from } from 'rxjs';
 
 export abstract class Model {
 
@@ -16,7 +17,7 @@ export abstract class Model {
     }
     private static httpClient: HttpClient;
     public resource!: string;
-    private id: number | undefined;
+    private id: number | string | undefined;
     private attributes: AttributesMap<any>;
     public base_url!: string;
 
@@ -24,12 +25,20 @@ export abstract class Model {
         return this.httpClient;
     }
 
-    public static all(page?: number, perPage?: number): Promise<any> {
-        return new Builder(this).all(page, perPage);
+    public static find(page?: number, perPage?: number): Promise<any> {
+        return new Builder(this).find(page, perPage);
     }
 
-    public static find(id: number): Promise<any> {
-        return new Builder(this).find(id);
+    public static findRx(page?: number, perPage?: number): Observable<any> {
+        return new Builder(this).findRx(page, perPage);
+    }
+
+    public static findById(id: number): Promise<any> {
+        return new Builder(this).findById(id);
+    }
+
+    public static findByIdRx(id: number): Observable<any> {
+        return new Builder(this).findByIdRx(id);
     }
 
     public static where(attribute: string, value: string): Builder {
@@ -73,7 +82,7 @@ export abstract class Model {
 
     public getResource = (): string => this.resource;
 
-    public getApiId = (): number | undefined => this.id;
+    public getApiId = (): number | string | undefined => this.id;
 
     public aspects = async (): Promise<any> => {
         const resp: HttpClientResponse = await Model.httpClient.get(`${this.getResource()}/aspects`);
@@ -84,36 +93,55 @@ export abstract class Model {
         Model.httpClient.setBaseUrl(this.baseUrl());
         Model.httpClient.setHeaders(this.headers());
     }
-
-    public async save(): Promise<any> {
-        try {
-            const payload: any = this.attributes.toArray();
-            let resp: HttpClientResponse;
-            resp = this.id
-                ? await Model.httpClient.put(this.getResource() + `/${this.id}`, payload)
-                : await Model.httpClient.post(this.getResource(), payload);
-            return resp.getData();
-        } catch (e) {
-            return Promise.reject(e.response.data);
-        }
-    }
-
+    
     public create(AxiosquentModel: AxiosquentModel): void {
-        this.id = AxiosquentModel.id ? AxiosquentModel.id : undefined;
+        this.id = AxiosquentModel.id || AxiosquentModel._id || undefined;
         for (const key in AxiosquentModel) {
             this.setAttribute(key, AxiosquentModel[key]);
         }
     }
 
-    public async destroy(id?: number): Promise<any> {
+    public async save(): Promise<any> {
         try {
-            if (id) { this.id = id; }
-            if (!this.id) { throw new Error('Cannot delete a model with no ID.'); }
+            const payload: any = this.attributes.toArray();
+            const resp: HttpClientResponse = await Model.httpClient.post(this.getResource(), payload);;
+            return resp.getData();
+        } catch (e) {
+            return Promise.reject(e.response.data);
+        }
+    }
+
+    public rxSave(): Observable<any> {
+        return from(this.save());
+    }
+
+    public async update(): Promise<any> {
+        try {
+            const payload: any = this.attributes.toArray();
+            const resp: HttpClientResponse = await Model.httpClient.put(this.getResource() + `/${this.id}`, payload);
+            return resp.getData();
+        }
+        catch (e) {
+            return Promise.reject(e.response.data);
+        }
+    }
+
+    public rxUpdate(): Observable<any> {
+        return from(this.update());
+    }
+
+    public async destroy(id: number | string): Promise<any> {
+        try {
+            if (!id) { throw new Error('Cannot delete a model with no ID.'); }
             const resp: HttpClientResponse = await Model.httpClient.delete(this.getResource() + `/${this.id}`);
             return resp.getData();
         } catch (e) {
             return Promise.reject(e.response.data);
         }
+    }
+
+    public rxDestroy(id: number | string): Observable<any> {
+        return from(this.destroy(id));
     }
 
     protected setAttribute(attributeName: string, value: any): void {

@@ -46,13 +46,11 @@ export interface FormField {
     selectOptions?: (...arg: any[]) => Promise<any> | any;
     placeholder?: string;
     label?: string;
-    enumSelectOptions?: Option[];
-    radioGroupOptions?: Option[];
+    fieldOptions?: (...arg: any[]) => Observable<any>;  
     visibleCondition?: VisibleCallback;
     disableCondition?: DisableCallback;
     associationValue?: string;
     associationText?: string;
-    defaultImageField?: string;
     depend?: string;
   };
 }

@@ -10,6 +10,7 @@ import { HttpClient } from './axios/interfaces/http-client';
 import { UrlSpec } from './url/url-spec';
 import { HeaderSpec } from './header/header-spec';
 import { HttpClientResponse } from './axios/interfaces/http-client-response';
+import { Observable, from } from 'rxjs';
 
 export class Builder implements QueryMethods {
     protected modelType: typeof Model;
@@ -30,7 +31,7 @@ export class Builder implements QueryMethods {
         this.initPaginationSpec();
     }
 
-    public async all(page?: number, perPage?: number): Promise<any> {
+    public async find(page?: number, perPage?: number): Promise<any> {
         this.setHeaders();
         if (page) { this.query.getPaginationSpec().setPage(page); }
         if (perPage) { this.query.getPaginationSpec().setPerPage(perPage); }
@@ -42,10 +43,18 @@ export class Builder implements QueryMethods {
         return data;
     }
 
-    public async find(id: number): Promise<any> {
+    public findRx(page?: number, perPage?: number): Observable<any> {
+        return from(this.find(page, perPage));
+    }
+
+    public async findById(id: number): Promise<any> {
         this.setHeaders();
         const resp: HttpClientResponse = await this.getHttpClient().get(this.query.toString(id));
         return resp.getData();
+    }
+
+    public findByIdRx(id: number): Observable<any> {
+        return from(this.findById(id));
     }
 
     public where(attribute: string, value: string): Builder {

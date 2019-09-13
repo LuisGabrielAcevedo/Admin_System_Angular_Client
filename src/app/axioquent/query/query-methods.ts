@@ -1,9 +1,12 @@
 import { Builder } from '../builder';
 import { SortDirection } from '../sort/sort-directions';
+import { Observable } from 'rxjs';
 
 export interface QueryMethods {
-    all(page: number, perPage: number): Promise<any>;
-    find(id: number): Promise<any>;
+    find(page: number, perPage: number): Promise<any>;
+    findById(id: number): Promise<any>;
+    findRx(page: number, perPage: number): Observable<any>;
+    findByIdRx(id: number): Observable<any>;
     where(attribute: string, value: string): Builder;
     andWhere(attribute: string, value: string): Builder;
     orWhere(attribute: string | string [], value: string, type?: string): Builder;

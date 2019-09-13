@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AxiosquentModel } from 'src/app/axioquent';
-import { FormField } from '../dynamic-form/dynamic-form.interfaces';
+import { FormField, FormModel } from '../dynamic-form/dynamic-form.interfaces';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 declare const require: any;
 
@@ -36,17 +36,37 @@ export class FormComponent implements OnInit {
   ngOnInit() {
   }
 
-  async loadData() {
+  loadData() {
     this.loading = true;
-    const resp = await this.modelClass
+    this.modelClass
       .option('populate', 'userInformation,userConfigurations')
-      .find(this.id);
-    this.loading = false;
-    this.model = resp;
+      .findByIdRx(this.id)
+      .subscribe(resp => {
+        this.model = resp;
+        this.loading = false;
+      });
   }
 
-  save() {
+  save(): void {
     this.form.submit().subscribe(resp => {
+      if (resp.valid) {
+        resp.currentModel._id ? this.updateAction(resp.currentModel) : this.saveAction(resp.currentModel);
+      }
+    });
+  }
+
+  saveAction(model: FormModel): void {
+    const modelClass = new this.modelClass();
+    modelClass.create(model);
+    modelClass.rxSave().subscribe(resp => {
+      console.log(resp);
+    });
+  }
+
+  updateAction(model: FormModel): void {
+    const modelClass = new this.modelClass();
+    modelClass.create(model);
+    modelClass.rxUpdate().subscribe(resp => {
       console.log(resp);
     });
   }

@@ -1,7 +1,7 @@
 import { Input } from '@angular/core';
 import { FormField, Option, FormModel } from '../dynamic-form.interfaces';
 import { FormGroup, AbstractControl } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable, of } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 export class BaseFieldComponent {
@@ -47,16 +47,10 @@ export class BaseFieldComponent {
         }
     }
 
-    public loadEmunSelectOptions(): void {
-        if (this.field.options!.enumSelectOptions) {
-            this.options = this.field.options.enumSelectOptions;
-        }
-    }
-
-    public loadRadioGroupOptions(): void {
-        if (this.field.options!.radioGroupOptions) {
-            this.options = this.field.options.radioGroupOptions;
-        }
+    public loadFieldptions(): Observable<any> {
+        return this.field.options && this.field.options.fieldOptions
+            ? this.field.options.fieldOptions()
+            : of([])
     }
 
     public visible(currentModel: FormModel): void {
