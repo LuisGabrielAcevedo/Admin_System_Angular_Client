@@ -1,6 +1,8 @@
 import { DynamicFormValidator } from './dynamin-form-validator';
 import { Validators, FormGroup } from '@angular/forms';
 import { DynamicFormValidationsFunctions } from './dynamic-form-validations';
+import { Observable } from 'rxjs';
+import { AsyncValidatorCallback } from '../dynamic-form.interfaces';
 
 export class DynamicFormValidators {
     public static required(data?: ValidatorData): DynamicFormValidator {

@@ -41,7 +41,7 @@ export abstract class Model {
         return new Builder(this).findByIdRx(id);
     }
 
-    public static where(attribute: string, value: string): Builder {
+    public static where(attribute: string, value: any): Builder {
         return new Builder(this).where(attribute, value);
     }
 
@@ -111,7 +111,7 @@ export abstract class Model {
         }
     }
 
-    public rxSave(): Observable<any> {
+    public saveRx(): Observable<any> {
         return from(this.save());
     }
 
@@ -126,7 +126,7 @@ export abstract class Model {
         }
     }
 
-    public rxUpdate(): Observable<any> {
+    public updateRx(): Observable<any> {
         return from(this.update());
     }
 
@@ -140,7 +140,7 @@ export abstract class Model {
         }
     }
 
-    public rxDestroy(id: number | string): Observable<any> {
+    public destroyRx(id: number | string): Observable<any> {
         return from(this.destroy(id));
     }
 

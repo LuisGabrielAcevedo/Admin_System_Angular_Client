@@ -1,5 +1,5 @@
 import { Input } from '@angular/core';
-import { FormField, Option, FormModel } from '../dynamic-form.interfaces';
+import { FormField, Option, FormModel, MaterialFormData } from '../dynamic-form.interfaces';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { Subscription, Observable, of } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -7,20 +7,22 @@ import { debounceTime } from 'rxjs/operators';
 export class BaseFieldComponent {
     @Input() public field: FormField;
     @Input() public form: FormGroup;
-    @Input() public id: string;
-    @Input() public appearance: string;
+    @Input() public materialData: MaterialFormData;
     protected subscriptions: Subscription[] = [];
     public options: Option[] = [];
     public loading = false;
     public compareFn: ((f1: any, f2: any) => boolean) | null = this.compareByValue;
     public visibleValue = true;
     public disableValue = false;
+    public key = () => this.field.key;
+    public appearance = () => this.materialData.appearance || 'legacy';
+    public floatLabel = () => this.materialData.floatLabel || '';
+    public label = () => this.field.options && this.field.options.label 
+        ? this.field.options.label 
+        : this.field.name;
     public placeholder = () => this.field.options && this.field.options.placeholder
         ? this.field.options.placeholder
-        : ''
-
-    public label = () => this.field.name || '';
-    public key = () => this.field.key;
+        : '';
 
     public compareByValue(f1: any, f2: any) {
         return f1 && f2 && f1 === f2;
@@ -81,5 +83,10 @@ export class BaseFieldComponent {
         if (!control.errors) return '';
         const rule: string = Object.keys(control.errors)[0];
         return control['errorMessages'][rule];
+    }
+
+    public required() {
+        const control: AbstractControl = this.form.controls[this.field.key];
+        return control['errorMessages'] && control['errorMessages']['required'];;
     }
 }

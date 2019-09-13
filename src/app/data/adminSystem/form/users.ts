@@ -6,6 +6,8 @@ import Application from 'src/app/models/adminSystem/applications';
 import Role from 'src/app/models/adminSystem/roles';
 import Store from 'src/app/models/adminSystem/stores';
 import { of } from 'rxjs';
+import User from 'src/app/models/adminSystem/users';
+import { map, debounceTime } from 'rxjs/operators';
 
 const userFields: FormField[] = [
     {
@@ -227,6 +229,13 @@ const userFields: FormField[] = [
             DynamicFormValidators.required({message: 'The email is required'}),
             DynamicFormValidators.email()
         ],
+        asyncValidator: (control) => User.where('email', control.value).findRx().pipe(
+            debounceTime(5000),
+            map((data) => {
+                console.log(data);
+                return null
+            })
+        ),
         options: {
             placeholder: 'Write your email'
         }

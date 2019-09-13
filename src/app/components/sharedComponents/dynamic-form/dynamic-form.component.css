@@ -21,6 +21,20 @@ mat-icon {
     color: #f44336;
 }
 
+.form-required {
+    color: #f44336;
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+.form-normal-label {
+    color: rgba(0,0,0,.54);
+}
+
+.form-label {
+    font-size: 12px;
+}
+
 /* Autocomplete classes */
 .autocomplete-content {
     position: absolute;

@@ -1,11 +1,12 @@
 import { Type } from '@angular/core';
-import { FormData, FormModel } from '../../dynamic-form.interfaces';
+import { FormField, MaterialFormData } from '../../dynamic-form.interfaces';
 import { FormGroup } from '@angular/forms';
 
 export class FormFieldComponent {
     constructor(
         public component: Type<any>,
-        public formData: FormData,
+        public field: FormField,
+        public materialData: MaterialFormData,
         public form: FormGroup
     ) { }
 }

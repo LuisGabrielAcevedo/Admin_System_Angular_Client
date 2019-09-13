@@ -1,6 +1,6 @@
 <div [formGroup]="form" style="position: relative;" *ngIf="visibleValue">
-  <mat-form-field appearance="{{appearance}}">
-    <mat-label>{{label()}}</mat-label>
+  <mat-form-field appearance="{{appearance()}}" [floatLabel]="floatLabel()">
+    <mat-label>{{label()}}<span class="form-required" *ngIf="required()">*</span></mat-label>
     <input 
       matInput
       [disableControl]="disableValue" 

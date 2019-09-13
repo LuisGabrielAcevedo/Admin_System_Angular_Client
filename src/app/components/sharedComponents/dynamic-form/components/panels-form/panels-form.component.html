@@ -12,7 +12,7 @@
         </div>
         <div fxFlex>
           <div *ngFor="let fields of group.fields">
-            <app-row [fields]="fields" [form]="form" [id]="id" [appearance]="appearance"></app-row>
+            <app-row [fields]="fields" [form]="form" [materialData]="materialData"></app-row>
           </div>
         </div>
         <div fxFlex="20" *ngIf="group.rightFieldGroup.length">

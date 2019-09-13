@@ -1,5 +1,5 @@
 import { Input } from '@angular/core';
-import { FormModel, FormField, FormMainGroup, FormLateralGroup, FormattedValidations } from './dynamic-form.interfaces';
+import { FormModel, FormField, FormMainGroup, FormLateralGroup, FormattedValidations, MaterialFormData } from './dynamic-form.interfaces';
 import chunk from 'lodash/chunk';
 import groupBy from 'lodash/groupBy';
 import get from 'lodash/get';
@@ -18,10 +18,10 @@ export class FormComponent {
     @Input() protected fieldsConfig!: FormField[];
     @Input() protected model: FormModel;
     @Input() protected formType = 'tabs';
-    @Input() protected appearance: string;
     @Input() protected columns: number;
+    @Input() protected materialData: MaterialFormData;
 
-    constructor(public fb: FormBuilder, public dynamicFormService: DynamicFormService) { }
+    constructor(public fb: FormBuilder, public dynamicFormService: DynamicFormService) {}
 
     protected formatFields(): FormMainGroup[] {
         let mainGroupsFormatted: FormMainGroup[] = [];
@@ -36,6 +36,9 @@ export class FormComponent {
             } else {
                 this.form.addControl(field.key, this.fb.control(field.defaultValue));
             }
+            // if (field.asyncValidator) {
+            //     this.form.controls[field.key].setAsyncValidators(field.asyncValidator);
+            // }
             const tab: string = field.mainGroup;
             const name: string = tab || 'Default tab';
             const group: string | null = field.flexConfig ? field.flexConfig.group : null;
