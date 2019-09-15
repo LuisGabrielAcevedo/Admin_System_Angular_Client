@@ -28,6 +28,12 @@ export class AsyncAutocompleteComponent extends BaseFieldComponent implements On
     );
   }
 
+  public autocompleteOptionSelected(option: MatAutocompleteSelectedEvent) {
+    this.dynamicFormService.resetControl.emit({
+      key: this.field.key
+    });
+  }
+
   public displayFn(option: object): string {
     return !option ? '' : option[this.field.options.associationText]; 
   }

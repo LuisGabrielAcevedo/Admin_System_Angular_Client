@@ -1,8 +1,8 @@
 import { FormField, FormFieldTypes } from 'src/app/components/sharedComponents/dynamic-form/dynamic-form.interfaces';
 import { DynamicFormValidators } from 'src/app/components/sharedComponents/dynamic-form/validate/dynamic-form-validators';
 import Country from 'src/app/models/adminSystem/countries';
-import ObjectID from 'bson-objectid';
 import { map } from 'rxjs/operators';
+import Application from 'src/app/models/adminSystem/applications';
 
 const companyAspects: FormField[] = [
     {
@@ -20,12 +20,29 @@ const companyAspects: FormField[] = [
     {
         name: 'Country',
         key: 'country',
-        component: FormFieldTypes.asyncAutocomplete,
+        component: FormFieldTypes.autocomplete,
         validators: [
             DynamicFormValidators.required()
         ],
         options: {
-            fieldOptions: (arg) => Country.option('search', arg).findRx().pipe(map(resp => resp.data)),
+            fieldOptions: () => Country.findRx().pipe(map(resp => resp.data)),
+            associationValue: '_id',
+            associationText: 'name'
+        },
+        flexConfig: {
+            row: 1,
+            flex: 50
+        }
+    },
+    {
+        name: 'Application',
+        key: 'application',
+        component: FormFieldTypes.autocomplete,
+        validators: [
+            DynamicFormValidators.required()
+        ],
+        options: {
+            fieldOptions: () => Application.findRx().pipe(map(resp => resp.data)),
             associationValue: '_id',
             associationText: 'name'
         },

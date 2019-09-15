@@ -12,28 +12,30 @@ declare const require: any;
 })
 export class FormComponent implements OnInit {
   @ViewChild('dynamicForm') public form: DynamicFormComponent;
-  materialData: MaterialFormData = {
-    appearance: 'outline',
+  public materialData: MaterialFormData = {
+    appearance: 'fill',
     floatLabel: 'always'
-  } 
-  loading: boolean;
-  model: AxiosquentModel;
-  resource: string;
-  id: string;
-  modelClass: any;
-  fieldsConfig: FormField[];
-  title: string;
+  };
+  public loading: boolean;
+  public model: AxiosquentModel;
+  public resource: string;
+  public id: string;
+  public modelClass: any;
+  public fieldsConfig: FormField[];
+  public title: string;
+  public buttonLabel: string;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
   ) {
     this.route.paramMap.subscribe(params => {
       this.resource = params.get('resource');
-      this.title = this.resource;
       this.id = params.get('id');
+      this.title = this.id ? `${this.resource}.edit.title`:`${this.resource}.new.title`;
+      this.buttonLabel = this.id ? 'edit' : 'save';
       this.fieldsConfig = require(`src/app/data/adminSystem/form/${this.resource}`).default;
       this.modelClass = require(`src/app/models/adminSystem/${this.resource}`).default;
-      this.loadData();
+      if (this.id) this.loadData();
     });
   }
 
@@ -64,7 +66,8 @@ export class FormComponent implements OnInit {
   public with(): string {
     const populateData = {
       users: 'company,application,userConfigurations.currentStore,userInformation,role',
-      companies: 'country'
+      companies: 'application,country',
+      applications: ''
     }
     return populateData[this.resource];
   }

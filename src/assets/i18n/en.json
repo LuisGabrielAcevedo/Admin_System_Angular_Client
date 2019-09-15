@@ -1,0 +1,29 @@
+{
+    "applications": {
+        "edit": {
+            "title": "Edit application"
+        },
+        "new": {
+            "title": "New application"
+        }
+    },
+    "users": {
+        "edit": {
+            "title": "Edit user"
+        },
+        "new": {
+            "title": "New user"
+        }
+    },
+    "companies": {
+        "edit": {
+            "title": "Edit company"
+        },
+        "new": {
+            "title": "New company"
+        }
+    },
+    "save":"Save",
+    "edit":"Edit",
+    "cancle":"Cancel"
+}

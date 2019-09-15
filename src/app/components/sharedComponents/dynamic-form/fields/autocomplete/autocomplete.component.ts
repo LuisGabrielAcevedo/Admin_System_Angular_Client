@@ -3,6 +3,8 @@ import { BaseFieldComponent } from '../base-field.mixin';
 import { DynamicFormService } from '../../dynamic-form.service';
 import { Observable } from 'rxjs';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
+import { filter } from 'rxjs/operators';
+import ObjectID from 'bson-objectid';
 
 @Component({
   selector: 'app-autocomplete',
@@ -17,7 +19,9 @@ export class AutocompleteComponent extends BaseFieldComponent implements OnInit,
   ngOnInit() {
     if (this.field.options.depend) {
       this.subscriptions.push(
-        this.form.controls[this.field.options.depend].valueChanges.subscribe(dependValue => {
+        this.form.controls[this.field.options.depend].valueChanges.pipe(
+          filter(value => ObjectID.isValid(value['_id' || 'id']))
+        ).subscribe(dependValue => {
           this.loadData(dependValue['_id' || 'id']).subscribe(options => this.options = options);
         }),
         this.dynamicFormService.resetControl.subscribe(value => {

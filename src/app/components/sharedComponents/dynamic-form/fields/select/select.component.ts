@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BaseFieldComponent } from '../base-field.mixin';
 import { DynamicFormService } from '../../dynamic-form.service';
 import { Observable } from 'rxjs';
+import { MatSelectChange } from '@angular/material';
 
 @Component({
   selector: 'app-select',
@@ -32,11 +33,10 @@ export class SelectComponent extends BaseFieldComponent implements OnInit, OnDes
     return this.loadFieldOptions(value);
   }
 
-  public selectOptionSelected(option) {
-    console.log(option);
-    // this.dynamicFormService.resetControl.emit({
-    //   key: this.field.key
-    // });
+  public selectOptionSelected(option: MatSelectChange) {
+    this.dynamicFormService.resetControl.emit({
+      key: this.field.key
+    });
   }
 
   ngOnDestroy() {

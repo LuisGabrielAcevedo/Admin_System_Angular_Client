@@ -13,7 +13,11 @@ export const routes: Routes = [
     component: ListComponent
   },
   {
-    path: ':resource/:id',
+    path: ':resource/new',
+    component: FormComponent
+  },
+  {
+    path: ':resource/edit/:id',
     component: FormComponent
   }
 ];

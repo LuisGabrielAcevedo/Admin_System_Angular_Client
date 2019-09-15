@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SocketService } from './services/http/socket.service';
+import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from './services/http/message.service';
 import { Subscription } from 'rxjs';
 
@@ -12,14 +12,13 @@ export class AppComponent implements OnInit, OnDestroy {
   menssageSubscription: Subscription;
   constructor(
     public messageService: MessageService,
-    // public socketService: SocketService
-  ) { }
+    public translateService: TranslateService
+  ) {
+    this.translateService.addLangs(['es', 'en']);
+    this.translateService.setDefaultLang('en');
+   }
 
   ngOnInit() {
-    // this.messageService.sendMessage('Hola desde angular');
-    // this.menssageSubscription = this.messageService.getMessages().subscribe(msg => {
-    //   console.log(msg);
-    // })
   }
 
   ngOnDestroy() {

@@ -4,7 +4,7 @@
     <input matInput type="text" [disableControl]="disableValue" [formControlName]="key()"
       placeholder="{{placeholder()}}" [matAutocomplete]="auto">
     <mat-error *ngIf="validateControl()">{{errorMessage()}}</mat-error>
-    <mat-autocomplete #auto="matAutocomplete"
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="autocompleteOptionSelected($event)"
       [displayWith]="displayFn.bind(this)">
       <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading">
           <mat-spinner style="margin: 10px;" diameter="30"></mat-spinner>

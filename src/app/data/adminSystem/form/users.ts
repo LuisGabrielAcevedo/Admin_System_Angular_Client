@@ -12,7 +12,7 @@ const userFields: FormField[] = [
     {
         name: 'Company',
         key: 'company',
-        component: FormFieldTypes.select,
+        component: FormFieldTypes.asyncAutocomplete,
         mainGroup: 'App info',
         flexConfig: {
             row: 1,
@@ -23,7 +23,7 @@ const userFields: FormField[] = [
         ],
         options: {
             placeholder: 'Select a company',
-            fieldOptions: (arg) => Company.findRx().pipe(map(resp => resp.data)),
+            fieldOptions: () => Company.findRx().pipe(map(resp => resp.data)),
             associationText: 'name',
             associationValue: '_id'
         }
@@ -307,7 +307,7 @@ const userFields: FormField[] = [
     {
         name: 'Role',
         key: 'role',
-        component: FormFieldTypes.select,
+        component: FormFieldTypes.autocomplete,
         mainGroup: 'Basic info',
         validators: [
             DynamicFormValidators.required({message: 'The field role is required'})

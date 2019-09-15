@@ -29,8 +29,7 @@ export class BaseFieldComponent {
     }
 
     public compareByValueObject(f1: any, f2: any) {
-        //console.log(f1[this.field.options.associationValue], f2._id[this.field.options.associationValue]);
-        return f1 && f2 && f1[this.field.options.associationValue] === f2[this.field.options.associationValue];
+        return f1 && f2 && f1['_id'] === f2['_id'];
     }
 
     public addSubscriptions() {
@@ -61,7 +60,7 @@ export class BaseFieldComponent {
     }
 
     public disable(currentModel: FormModel): void {
-        this.disableValue = this.field.options.disableCondition(currentModel);
+        this.disableValue = !this.field.options.disableCondition(currentModel);
     }
 
     public validateControl(): boolean {
