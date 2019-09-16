@@ -1,5 +1,4 @@
 import { FormField, FormFieldTypes } from 'src/app/components/sharedComponents/dynamic-form/dynamic-form.interfaces';
-import ObjectID from 'bson-objectid';
 import { DynamicFormValidators } from 'src/app/components/sharedComponents/dynamic-form/validate/dynamic-form-validators';
 import Company from 'src/app/models/adminSystem/companies';
 import Application from 'src/app/models/adminSystem/applications';
@@ -13,7 +12,7 @@ const userFields: FormField[] = [
     {
         name: 'Company',
         key: 'company',
-        component: FormFieldTypes.autocomplete,
+        component: FormFieldTypes.asyncAutocomplete,
         mainGroup: 'App info',
         flexConfig: {
             row: 1,
@@ -24,10 +23,7 @@ const userFields: FormField[] = [
         ],
         options: {
             placeholder: 'Select a company',
-            selectOptions: async () => {
-                const resp = await Company.find();
-                return resp.data;
-            },
+            fieldOptions: (arg) => Company.option('search', arg).findRx().pipe(map(resp => resp.data)),
             associationText: 'name',
             associationValue: '_id'
         }
@@ -45,16 +41,8 @@ const userFields: FormField[] = [
             DynamicFormValidators.required()
         ],
         options: {
+            fieldOptions: (arg) => Application.option('search', arg).findRx().pipe(map(resp => resp.data)),
             placeholder: 'Select a application',
-            selectOptions: async (arg) => {
-                if (ObjectID.isValid(arg)) {
-                    const resp = await Application.findById(arg);
-                    return [resp];
-                } else {
-                    const resp = await Application.option('search', arg).find();
-                    return resp.data;
-                }
-            },
             associationText: 'name',
             associationValue: '_id'
         }
@@ -229,13 +217,13 @@ const userFields: FormField[] = [
             DynamicFormValidators.required({message: 'The email is required'}),
             DynamicFormValidators.email()
         ],
-        asyncValidator: (control) => User.where('email', control.value).findRx().pipe(
-            debounceTime(5000),
-            map((data) => {
-                console.log(data);
-                return null
-            })
-        ),
+        // asyncValidator: (control) => User.where('email', control.value).findRx().pipe(
+        //     debounceTime(5000),
+        //     map((data) => {
+        //         console.log(data);
+        //         return null
+        //     })
+        // ),
         options: {
             placeholder: 'Write your email'
         }
@@ -319,16 +307,17 @@ const userFields: FormField[] = [
     {
         name: 'Role',
         key: 'role',
-        component: FormFieldTypes.select,
+        component: FormFieldTypes.autocomplete,
         mainGroup: 'Basic info',
         validators: [
             DynamicFormValidators.required({message: 'The field role is required'})
         ],
         options: {
             placeholder: 'Select a role',
-            selectOptions: async (arg) => {
-                const resp = arg ? await Role.where('company', arg).find() : await Role.find();
-                return resp.data;
+            fieldOptions: (arg) => {
+                return arg 
+                ? Role.where('company', arg).findRx().pipe(map(resp => resp.data))
+                : Role.findRx().pipe(map(resp => resp.data))
             },
             associationText: 'name',
             associationValue: '_id',
@@ -345,9 +334,10 @@ const userFields: FormField[] = [
         ],
         options: {
             placeholder: 'Select a store',
-            selectOptions: async (arg) => {
-                const resp = arg ? await Store.where('company', arg).find() : await Store.find();
-                return resp.data;
+            fieldOptions: (arg) => {
+                return arg 
+                ? Store.where('company', arg).findRx().pipe(map(resp => resp.data))
+                : Store.findRx().pipe(map(resp => resp.data))
             },
             associationText: 'name',
             associationValue: '_id',

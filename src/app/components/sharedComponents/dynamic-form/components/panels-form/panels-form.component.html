@@ -1,6 +1,10 @@
 <div>
   <mat-accordion>
-    <mat-expansion-panel *ngFor="let group of mainGroups">
+    <mat-expansion-panel 
+      *ngFor="let group of mainGroups; index as i"
+      [expanded]="selectedPanel.value === i " 
+      (opened)="selectedPanel.setValue(i)"
+      >
       <mat-expansion-panel-header>
         <mat-panel-title>
           {{group.name}}

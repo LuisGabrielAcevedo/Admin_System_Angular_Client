@@ -28,7 +28,7 @@ export class MainContainerComponent implements OnInit {
           },
           {
             name: 'Tiendas',
-            route: '/admin-system/locals'
+            route: '/admin-system/stores'
           },
           {
             name: 'Productos',

@@ -1,0 +1,45 @@
+{
+    "applications": {
+        "edit": {
+            "title": "Edit application"
+        },
+        "new": {
+            "title": "New application"
+        }
+    },
+    "users": {
+        "edit": {
+            "title": "Edit user"
+        },
+        "new": {
+            "title": "New user"
+        }
+    },
+    "companies": {
+        "edit": {
+            "title": "Edit company"
+        },
+        "new": {
+            "title": "New company"
+        }
+    },
+    "countries": {
+        "edit": {
+            "title": "Edit country"
+        },
+        "new": {
+            "title": "New country"
+        }
+    },
+    "stores": {
+        "edit": {
+            "title": "Edit store"
+        },
+        "new": {
+            "title": "New store"
+        }
+    },
+    "save":"Save",
+    "edit":"Edit",
+    "cancle":"Cancel"
+}

@@ -11,8 +11,14 @@ export class RowComponent implements OnInit {
   @Input() public fields: FormField[];
   @Input() public form: FormGroup;
   @Input() public materialData: MaterialFormData;
-  constructor() { }
+  public rowTitle: string = null;
+  constructor() {
+  }
 
   ngOnInit() {
+    this.fields.forEach((field) => {
+      if (field.flexConfig && field.flexConfig.rowTitle)
+        this.rowTitle = field.flexConfig!.rowTitle!;
+    });
   }
 }

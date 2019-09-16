@@ -52,6 +52,7 @@ export interface FormField {
     disableCondition?: DisableCallback;
     associationValue?: string;
     associationText?: string;
+    multiple?: boolean;
     depend?: string;
   };
 }

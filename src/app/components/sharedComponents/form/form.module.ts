@@ -4,6 +4,7 @@ import { FormComponent } from './form.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from 'src/app/material/material.module';
 import { DynamicFormModule } from '../dynamic-form/dynamic-form.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [FormComponent],
@@ -11,7 +12,8 @@ import { DynamicFormModule } from '../dynamic-form/dynamic-form.module';
     CommonModule,
     FlexLayoutModule,
     MaterialModule,
-    DynamicFormModule
+    DynamicFormModule,
+    TranslateModule
   ]
 })
 export class FormModule { }

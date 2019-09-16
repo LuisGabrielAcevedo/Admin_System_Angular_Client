@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 declare const require: any;
 
 @Component({
@@ -8,37 +9,46 @@ declare const require: any;
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit {
-  data: any[] = [];
-  loading: boolean;
-  resource: string;
-  modelClass: any;
+export class ListComponent implements OnInit, OnDestroy {
+  public subscriptions: Subscription[] = [];
+  public data: any[] = [];
+  public loading: boolean;
+  public resource: string;
+  public modelClass: any;
   constructor(
-    private router: Router
+    public router: Router
   ) {
-    this.router.events
+    this.subscriptions.push(this.router.events
       .pipe(
-        filter((event: ActivationEnd) => event instanceof ActivationEnd)
+        filter((event: ActivationEnd) => 
+          event instanceof ActivationEnd 
+          && event.snapshot.params['resource']
+          && event.snapshot.params['resource'] !== this.resource
+        ),
+        map(event => event.snapshot.params['resource'])
       )
-      .subscribe(resp => {
-        this.resource = resp.snapshot.params['resource'];
-        if (this.resource) {
-          this.modelClass = require(`src/app/models/adminSystem/${this.resource}`).default;
-          this.loadData();
-        }
-      });
+      .subscribe(resource => {
+        this.resource = resource;
+        this.modelClass = require(`src/app/models/adminSystem/${this.resource}`).default;
+        this.loadData();
+      })
+    );
   }
 
-  ngOnInit() {
+  ngOnInit(){
   }
 
-  async loadData() {
+  public loadData(): void {
     this.modelClass.findRx(1, 10).subscribe(resp => {
       this.data = resp.data;
     });
   }
 
-  async loadAspects() {
+  public goToForm(): void {
+    this.router.navigate([`/admin-system/${this.resource}/new`]);
   }
 
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
 }

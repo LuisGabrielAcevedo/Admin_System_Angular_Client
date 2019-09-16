@@ -1,24 +1,14 @@
-<div [formGroup]="form" style="position: relative;" *ngIf="visibleValue">
+<div [formGroup]="form" *ngIf="visibleValue">
   <mat-form-field appearance="{{appearance()}}" [floatLabel]="floatLabel()">
     <mat-label>{{label()}}<span class="form-required" *ngIf="required()">*</span></mat-label>
-    <input 
-      matInput
-      [disableControl]="disableValue" 
-      [formControl]="search" 
-      placeholder="{{placeholder()}}"
-      autocomplete="off" 
-      (input)="filterOptions($event.target.value)"
-      (focus)="showOptionsToggle(true)"
-    >
-    <mat-error *ngIf="searchValidateControl()">{{errorMessage()}}</mat-error>
+    <input matInput type="text" [disableControl]="disableValue" [formControlName]="key()"
+      placeholder="{{placeholder()}}" [matAutocomplete]="auto">
+    <mat-error *ngIf="validateControl()">{{errorMessage()}}</mat-error>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="autocompleteOptionSelected($event)"
+      [displayWith]="displayFn.bind(this)">
+      <mat-option *ngFor="let option of options" [value]="option">
+        {{option[this.field.options.associationText]}}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
-  <div class="autocomplete-content" *ngIf="showOptions">
-    <div fxLayout="row" *ngIf="!filteredOptions.length && defaultMessage" class="autocomplete-default-message" fxLayoutAlign="center center">
-      <p style="margin-top:0px;">{{defaultMessage}}</p>
-    </div>
-    <div class="autocomplete-item" fxLayout="row" fxLayoutAlign="start center" *ngFor="let option of filteredOptions"
-      (click)="selectOption(option)">
-      <p style="margin-top:0px;">{{option[field.options.associationText]}}</p>
-    </div>
-  </div>
 </div>
