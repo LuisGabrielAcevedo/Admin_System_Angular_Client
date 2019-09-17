@@ -1,4 +1,4 @@
-.container {
+.sidenav-container {
 	height: 100%;
 	background: white;
 }
@@ -6,6 +6,23 @@
 	width: 240px;
 	padding: 20px 0;
 }
-.sidebarSubItem {
+.sidenav-item {
 	cursor: pointer;
+	margin-left: 20px; 
+}
+.sidenav-subitem {
+	cursor: pointer;
+	margin-left: 20px; 
+}
+mat-toolbar {
+	padding-left: 0px;
+}
+
+mat-expansion-panel {
+	box-shadow: none !important;
+	border-radius: none !important;
+}
+
+mat-expansion-panel-header {
+	padding-left: 0px !important;
 }

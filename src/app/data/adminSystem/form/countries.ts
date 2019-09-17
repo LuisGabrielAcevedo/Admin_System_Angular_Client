@@ -1,6 +1,7 @@
 import { FormField, FormFieldTypes } from 'src/app/components/sharedComponents/dynamic-form/dynamic-form.interfaces';
 import { DynamicFormValidators } from 'src/app/components/sharedComponents/dynamic-form/validate/dynamic-form-validators';
-import { of } from 'rxjs';
+import AdminSystem from 'src/app/models/adminSystem/admin-system';
+import { map, tap } from 'rxjs/operators';
 
 const countryFields: FormField[] = [
     {
@@ -29,7 +30,7 @@ const countryFields: FormField[] = [
     },
     {
         name: 'Code',
-        key: 'nameInitials',
+        key: 'code',
         component: FormFieldTypes.textField,
         validators: [
             DynamicFormValidators.required(),
@@ -41,17 +42,22 @@ const countryFields: FormField[] = [
         }
     },
     {
-        name: 'Language',
-        key: 'language',
+        name: 'Languages',
+        key: 'languages',
         component: FormFieldTypes.enum,
         validators: [
             DynamicFormValidators.required()
         ],
         options: {
-            fieldOptions: () => of([
-                { text: 'Spanish', value: 'es' },
-                { text: 'English', value: 'en' }
-            ])
+            fieldOptions: () => AdminSystem.setUrl('languages').findRx().pipe(
+                map(resp => resp.data.map(item => {
+                    return {
+                        text: item.name,
+                        value: item.id
+                    }
+                }))
+            ),
+            multiple: true
         },
         flexConfig: {
             row: 2,
@@ -59,17 +65,22 @@ const countryFields: FormField[] = [
         }
     },
     {
-        name: 'Currency',
-        key: 'currency',
+        name: 'Currencies',
+        key: 'currencies',
         component: FormFieldTypes.enum,
         validators: [
             DynamicFormValidators.required()
         ],
         options: {
-            fieldOptions: () => of([
-                { text: 'BS S', value: 'BS S' },
-                { text: 'AR $', value: 'AR $' }
-            ])
+            fieldOptions: () => AdminSystem.setUrl('currencies').findRx().pipe(
+                map(resp => resp.data.map(item => {
+                    return {
+                        text: item.symbol,
+                        value: item.id
+                    }
+                }))
+            ),
+            multiple: true
         },
         flexConfig: {
             row: 3,

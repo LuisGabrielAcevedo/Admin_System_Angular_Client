@@ -1,3 +1,8 @@
-<div>
-    <button (click)="goToForm()">New</button>
+<div fxLayout="row" fxLayoutAlign="space-between center" class="main-header">
+    <h4 class="main-title primary">{{title | translate}}</h4>
+    <div fxLayout="row" fxLayoutAlign="centr center">
+        <button mat-mini-fab color="primary" (click)="goToForm()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
 </div>

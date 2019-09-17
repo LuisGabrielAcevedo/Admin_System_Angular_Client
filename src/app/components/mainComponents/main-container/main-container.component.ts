@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { ISidebarItem } from '../../../inferfaces/sideBar';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-main-container',
@@ -13,83 +14,40 @@ export class MainContainerComponent implements OnInit {
   sidebarItems: ISidebarItem[];
   constructor(
     private router: Router,
+    public translateService: TranslateService
   ) {
     this.sidebarItems = [
       {
-        name: 'Home',
-        subItems: []
-      },
-      {
-        name: 'admin-system',
+        name: this.translateService.instant('admin_system.plural_name'),
         subItems: [
           {
-            name: 'Empresas',
+            name: this.translateService.instant('companies.plural_name'),
             route: '/admin-system/companies'
           },
           {
-            name: 'Tiendas',
+            name: this.translateService.instant('stores.plural_name'),
             route: '/admin-system/stores'
           },
           {
-            name: 'Productos',
-            route: '/admin-system/products'
-          },
-          {
-            name: 'Usuarios',
+            name: this.translateService.instant('users.plural_name'),
             route: '/admin-system/users'
           },
           {
-            name: 'Clientes',
-            route: '/admin-system/customers'
-          },
-          {
-            name: 'Roles',
-            route: '/admin-system/roles'
-          },
-          {
-            name: 'Permisos',
-            route: '/admin-system/permissions'
-          },
-          // {
-          //   name: 'Administradores',
-          //   route: '/admin-system/admins'
-          // },
-          {
-            name: 'Aplicaciones',
+            name: this.translateService.instant('applications.plural_name'),
             route: '/admin-system/applications'
           },
           {
-            name: 'Paises',
+            name: this.translateService.instant('countries.plural_name'),
             route: '/admin-system/countries'
           },
           {
-            name: 'Estados',
+            name: this.translateService.instant('states.plural_name'),
             route: '/admin-system/states'
-          },
-          // {
-          //   name: 'Categoria de productos',
-          //   route: '/admin-system/product-categories'
-          // },
-          // {
-          //   name: 'Licencias',
-          //   route: '/admin-system/licenses'
-          // },
-          // {
-          //   name: 'Marcas',
-          //   route: '/admin-system/brands'
-          // },
-          // {
-          //   name: 'Tipo de productos',
-          //   route: '/admin-system/product-types'
-          // },
-          // {
-          //   name: 'Vendedores',
-          //   route: '/admin-system/vendors'
-          // }
+          }
         ]
       },
       {
-        name: 'Examples',
+        name: this.translateService.instant('examples'),
         subItems: [
           {
             name: 'Mercado libre (data-table)',
@@ -119,5 +77,4 @@ export class MainContainerComponent implements OnInit {
     this.router.navigate([route]);
     this.sidebar.toggle();
   }
-
 }

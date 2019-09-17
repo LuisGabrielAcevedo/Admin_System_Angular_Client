@@ -15,6 +15,7 @@ export class ListComponent implements OnInit, OnDestroy {
   public loading: boolean;
   public resource: string;
   public modelClass: any;
+  public title: string;
   constructor(
     public router: Router
   ) {
@@ -29,6 +30,7 @@ export class ListComponent implements OnInit, OnDestroy {
       )
       .subscribe(resource => {
         this.resource = resource;
+        this.title = `${this.resource}.list.title`;
         this.modelClass = require(`src/app/models/adminSystem/${this.resource}`).default;
         this.loadData();
       })

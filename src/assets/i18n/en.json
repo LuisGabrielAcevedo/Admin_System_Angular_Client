@@ -5,7 +5,12 @@
         },
         "new": {
             "title": "New application"
-        }
+        },
+        "list": {
+            "title": "Applications"
+        },
+        "plural_name": "Applications",
+        "singular_name": "Applications"
     },
     "users": {
         "edit": {
@@ -13,7 +18,12 @@
         },
         "new": {
             "title": "New user"
-        }
+        },
+        "list": {
+            "title": "Users"
+        },
+        "plural_name": "Users",
+        "singular_name": "User"
     },
     "companies": {
         "edit": {
@@ -21,7 +31,12 @@
         },
         "new": {
             "title": "New company"
-        }
+        },
+        "list": {
+            "title": "Companies"
+        },
+        "plural_name": "Companies",
+        "singular_name": "Company"
     },
     "countries": {
         "edit": {
@@ -29,7 +44,12 @@
         },
         "new": {
             "title": "New country"
-        }
+        },
+        "list": {
+            "title": "Countries"
+        },
+        "plural_name": "Countries",
+        "singular_name": "Country"
     },
     "stores": {
         "edit": {
@@ -37,9 +57,31 @@
         },
         "new": {
             "title": "New store"
-        }
+        },
+        "list": {
+            "title": "Stores"
+        },
+        "plural_name": "Stores",
+        "singular_name": "Store"
+    },
+    "states": {
+        "edit": {
+            "title": "Edit state"
+        },
+        "new": {
+            "title": "New state"
+        },
+        "list": {
+            "title": "States"
+        },
+        "plural_name": "States",
+        "singular_name": "State"
     },
     "save":"Save",
     "edit":"Edit",
-    "cancle":"Cancel"
+    "cancle":"Cancel",
+    "examples":"Examples",
+    "admin_system": {
+        "plural_name": "Admin system"
+    }
 }

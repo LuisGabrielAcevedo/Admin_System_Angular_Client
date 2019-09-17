@@ -1,21 +1,19 @@
 <div>
-  <h4 class="main-title primary">{{title | translate}}</h4>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="main-header">
+    <h4 class="main-title primary">{{title | translate}}</h4>
+    <div fxLayout="row" fxLayoutAlign="centr center">
+        <button mat-mini-fab color="primary" (click)="$event.preventDefault();save()">
+            <mat-icon>check</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" (click)="$event.preventDefault();cancel()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+  </div>
   <div *ngIf="loading;" fxLayout="row" fxLayoutAlign="center center">
     <mat-spinner diameter="40"></mat-spinner>
   </div>
-  <app-dynamic-form #dynamicForm 
-    [fieldsConfig]="fieldsConfig" 
-    [model]="model" 
-    [materialData]="materialData"
-    [formType]="'tabs'"
-  >
+  <app-dynamic-form #dynamicForm [fieldsConfig]="fieldsConfig" [model]="model" [materialData]="materialData"
+    [formType]="'tabs'">
   </app-dynamic-form>
-  <div fxLayout="row" fxLayoutAlign="center center" style="margin-bottom: 40px;">
-    <button mat-raised-button color="primary" (click)="$event.preventDefault();save()">
-      <span>{{buttonLabel | translate}}</span>
-    </button>
-    <button mat-raised-button color="warn" (click)="$event.preventDefault();cancel()">
-      <span>{{'cancel' | translate}}</span>
-    </button>
-  </div>
 </div>

@@ -68,7 +68,8 @@ export class FormComponent implements OnInit {
       users: 'company,application,userConfigurations.currentStore,userInformation,role',
       companies: 'application,country,admin',
       applications: '',
-      stores: 'country,application,company,storeConfigurations'
+      stores: 'country,application,company,storeConfigurations',
+      states: 'country'
     }
     return populateData[this.resource];
   }
@@ -86,5 +87,6 @@ export class FormComponent implements OnInit {
   }
 
   cancel() {
+    this.router.navigate([`/admin-system/${this.resource}`]);
   }
 }

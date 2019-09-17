@@ -7,8 +7,14 @@ import { Directive, Input } from '@angular/core';
 export class DisableControlDirective {
 
     @Input() set disableControl(condition: boolean) {
-        const action = condition ? 'disable' : 'enable';
-        setTimeout(() => this.ngControl.control[action](), 100);
+        setTimeout(()=> {
+            condition
+            ? this.ngControl.control.disable({
+                onlySelf: true,
+                emitEvent: false
+            }) 
+            : this.ngControl.control.enable();
+        }, 100)
     }
 
     constructor(private ngControl: NgControl) {

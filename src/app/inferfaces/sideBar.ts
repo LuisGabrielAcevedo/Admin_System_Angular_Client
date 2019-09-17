@@ -1,9 +1,6 @@
 export interface ISidebarItem {
     name: string;
-    subItems?: ISidebarSubItem[];
-}
-
-export interface ISidebarSubItem {
-    name: string;
+    icon?: string;
     route?: string;
+    subItems?: ISidebarItem[];
 }
