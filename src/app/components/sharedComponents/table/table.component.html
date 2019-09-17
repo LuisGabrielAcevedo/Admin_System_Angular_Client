@@ -1,18 +1,6 @@
 <div class="table_content">
   <div class="table_scroll">
     <div class="table">
-      <!-- search -->
-      <div fxLayout="row" fxLayoutAlign="space-between center">
-        <div style="width: 300px;">
-          <mat-form-field class="example-form-field" appearance="outline">
-            <mat-label>Buscar</mat-label>
-            <input matInput placeholder="Buscar" [formControl]="searchValue" (keydown.enter)="$event.preventDefault(); $event.stopPropagation()">
-          </mat-form-field>
-        </div>
-        <button mat-mini-fab color="primary" [routerLink]="[addRedirect]">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
       <!-- headers -->
       <div class="table_header" fxLayout="row" fxLayoutAlign="space-between center">
         <span *ngIf="multiSelect" fxFlex="5">

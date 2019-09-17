@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivationEnd } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { TableHeader } from '../table/table.interfaces';
 declare const require: any;
 
 @Component({
@@ -16,6 +17,7 @@ export class ListComponent implements OnInit, OnDestroy {
   public resource: string;
   public modelClass: any;
   public title: string;
+  public headers: TableHeader[] = [];
   constructor(
     public router: Router
   ) {
@@ -32,6 +34,7 @@ export class ListComponent implements OnInit, OnDestroy {
         this.resource = resource;
         this.title = `${this.resource}.list.title`;
         this.modelClass = require(`src/app/models/adminSystem/${this.resource}`).default;
+        this.headers = require(`src/app/data/adminSystem/table/${this.resource}`).default;
         this.loadData();
       })
     );

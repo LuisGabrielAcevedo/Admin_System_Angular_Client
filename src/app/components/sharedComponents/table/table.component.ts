@@ -1,6 +1,5 @@
 import {
   Component,
-  Inject,
   AfterViewInit,
   QueryList,
   Input,
@@ -28,14 +27,8 @@ import {
   TableActiveComponent,
   TableDialog
 } from './table.interfaces';
-// // @ts-ignore
-// import templateDesktop from './table.component.html';
-// // @ts-ignore
-// import templateMobile from './table.mobile.component.html';
 import { TableService } from './table.service';
 import { MatDialog } from '@angular/material';
-
-// const template = window.screen.width < 600 ? templateMobile : templateDesktop;
 
 @Component({
   selector: 'app-table',
@@ -43,16 +36,15 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
-  searchValue = new FormControl();
-  private subscriptions: Subscription[] = [];
-  openRows: number[] = [];
-  itemsSelected: object[] = [];
-  checkedAll: boolean = null;
-  modalSelected: TableModal = {
+  protected subscriptions: Subscription[] = [];
+  protected openRows: number[] = [];
+  protected itemsSelected: object[] = [];
+  protected checkedAll: boolean = null;
+  protected modalSelected: TableModal = {
     row: 0,
     number: 1
   };
-  rowSubItemSelected: TableActiveComponent = {
+  protected rowSubItemSelected: TableActiveComponent = {
     row: 0,
     type: ''
   };
@@ -84,11 +76,6 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   ngAfterViewInit() {
     this.subscriptions.push(
-      this.searchValue.valueChanges
-        .pipe(debounceTime(200))
-        .subscribe(newValue => {
-          this.search.emit(newValue);
-        }),
       this.tableService.openModal.subscribe(data => {
         this.assignModal(data);
       }),

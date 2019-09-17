@@ -59,6 +59,7 @@ const companyAspects: FormField[] = [
         component: FormFieldTypes.autocomplete,
         options: {
             fieldOptions: (arg) => User.where('company', arg).findRx().pipe(map(resp => resp.data)),
+            visibleCondition: (arg) => arg._id,
             associationValue: '_id',
             associationText: 'firstName',
             depend: '_id'
