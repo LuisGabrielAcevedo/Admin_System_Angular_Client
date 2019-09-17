@@ -18,7 +18,7 @@ export class FormComponent {
     protected activeGroup: number = 0;
     @Input() protected fieldsConfig!: FormField[];
     @Input() protected model: FormModel;
-    @Input() protected formType = 'tabs';
+    @Input() protected formType: string = 'tabs';
     @Input() protected columns: number;
     @Input() protected materialData: MaterialFormData;
     @Input() protected formatId: string = '_id';

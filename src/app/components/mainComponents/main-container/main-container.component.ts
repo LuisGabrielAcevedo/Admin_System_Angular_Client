@@ -62,6 +62,10 @@ export class MainContainerComponent implements OnInit {
             name: 'Paises',
             route: '/admin-system/countries'
           },
+          {
+            name: 'Estados',
+            route: '/admin-system/states'
+          },
           // {
           //   name: 'Categoria de productos',
           //   route: '/admin-system/product-categories'
