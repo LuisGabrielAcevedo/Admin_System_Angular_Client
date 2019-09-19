@@ -1,14 +1,9 @@
 import { PermissionSandbox } from '../sandbox/permission.sandbox';
 import { RoleSandbox } from '../sandbox/role.sandbox';
 import { CustomerSandbox } from '../sandbox/customer.sandbox';
-import { LocalSandbox } from '../sandbox/local.sandbox';
 import { CustomerEffects } from './customer/customer.effects';
 import { LicenseSandbox } from '../sandbox/license.sandbox';
 import { LicenseEffects } from './license/license.effects';
-import { CountrySandbox } from '../sandbox/country.sandbox';
-import { ApplicationSandbox } from '../sandbox/application.sandbox';
-import { ApplicationEffects } from './application/application.effects';
-import { CountryEffects } from './country/country.effects';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -19,7 +14,6 @@ import { UserEffects } from './user/user.effetcs';
 import { AdminEffects } from './admin/admin.effects';
 import { AdminSandbox } from '../sandbox/admin.sandbox';
 import { RouterEffects } from './router/router.effects';
-import { LocalEffects } from './local/local.effects';
 import { PermissionEffects } from './permission/permission.effects';
 import { RoleEffects } from './role/role.effects';
 import { SnackbarSandbox } from '../sandbox/snackbar.sandbox';
@@ -46,10 +40,7 @@ import { AuthSandbox } from 'src/app/sandbox/authSanbox';
             UserEffects,
             AdminEffects,
             RouterEffects,
-            CountryEffects,
-            ApplicationEffects,
             LicenseEffects,
-            LocalEffects,
             CustomerEffects,
             PermissionEffects,
             RoleEffects,
@@ -67,10 +58,7 @@ import { AuthSandbox } from 'src/app/sandbox/authSanbox';
     providers: [
         UserSandbox,
         AdminSandbox,
-        ApplicationSandbox,
-        CountrySandbox,
         LicenseSandbox,
-        LocalSandbox,
         CustomerSandbox,
         RoleSandbox,
         PermissionSandbox,

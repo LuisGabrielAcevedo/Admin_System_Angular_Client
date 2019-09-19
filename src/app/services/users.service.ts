@@ -206,7 +206,7 @@ export default class UserService {
                             }
                         },
                         {
-                            icon: 'close',
+                            icon: 'delete',
                             label: 'Eliminar',
                             type: 'TableButtonComponent',
                             modal: {

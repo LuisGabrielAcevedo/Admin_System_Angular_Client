@@ -1,35 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { ILoadRequest, loadRequestDataDefault } from 'src/app/inferfaces/loadRequest';
-import { ICompany } from 'src/app/inferfaces/company';
 import { TableButtonAction } from 'src/app/components/sharedComponents/table/table.interfaces';
-import { Global } from 'src/app/services/http/url';
-import UserService  from './users.service';
-import { StoreService } from './http/local.service';
-import { CustomerService } from './http/customer.service';
-import { ProductService } from './http/product.service';
-import { OrderService } from './http/order.service';
 import { ProfileCardComponent } from 'src/app/components/dialogComponents/profile-card/profile-card.component';
 import { Router } from '@angular/router';
+import Store from 'src/app/models/adminSystem/stores';
+import Products from 'src/app/models/adminSystem/products';
+import Orders from 'src/app/models/adminSystem/orders';
+import User from 'src/app/models/adminSystem/users';
+import Customer from 'src/app/models/adminSystem/customers';
 
 @Injectable({
     providedIn: 'root',
 })
 export default class CompanyService {
-    public url;
-    public loadRequestData: ILoadRequest = JSON.parse(JSON.stringify(loadRequestDataDefault));
     constructor(
-        private http: HttpClient,
-        private userService: UserService,
-        private storeService: StoreService,
-        private customerService: CustomerService,
-        private productService: ProductService,
-        private orderService: OrderService,
         private router: Router
-    ) {
-        this.url = Global.url_api;
-    }
+    ) {}
 
     getRowActions() {
         const actions: TableButtonAction[] = [
@@ -45,7 +31,7 @@ export default class CompanyService {
                             label: 'Editar',
                             type: 'TableButtonComponent',
                             event: (arg) => {
-                                this.router.navigate(['/administration/companies/form', arg._id]);
+                                this.router.navigate(['/admin-system/companies/edit', arg._id]);
                             }
                         },
                         {
@@ -97,7 +83,7 @@ export default class CompanyService {
                                 row: 0,
                                 data: {
                                     observable: (arg) => {
-                                        return this.getStores(arg);
+                                        return Store.where('company', arg._id).findRx();
                                     },
                                     galleryConfig: {
                                         galleryType: 'GALLERY_IMAGE',
@@ -122,7 +108,7 @@ export default class CompanyService {
                                 row: 0,
                                 data: {
                                     observable: (arg) => {
-                                        return this.getProducts(arg);
+                                        return Products.where('company', arg._id).findRx();
                                     },
                                     galleryConfig: {
                                         galleryType: 'GALLERY_IMAGE_CARD',
@@ -132,7 +118,10 @@ export default class CompanyService {
                                         gallerySubTitle: 'totalAvailable/b/Disponible:',
                                         galleryDescription: '',
                                         button: {
-                                            icon: 'subdirectory_arrow_right'
+                                            icon: 'subdirectory_arrow_right',
+                                            event: (arg) => {
+                                                this.router.navigate(['/admin-system/stores/edit', arg._id]);
+                                            }
                                         }
                                     }
                                 }
@@ -147,7 +136,7 @@ export default class CompanyService {
                                 row: 0,
                                 data: {
                                     observable: (arg) => {
-                                        return this.getOrders(arg);
+                                        return Orders.where('company', arg._id).findRx();
                                     },
                                     secondTableConfig: {
                                         secondTableListData: 'data',
@@ -192,7 +181,7 @@ export default class CompanyService {
                                 row: 0,
                                 data: {
                                     observable: (arg) => {
-                                        return this.getUsers(arg);
+                                        return User.where('company', arg._id).findRx();
                                     },
                                     galleryConfig: {
                                         galleryType: 'GALLERY_USER',
@@ -204,7 +193,7 @@ export default class CompanyService {
                                         button: {
                                             icon: 'subdirectory_arrow_right',
                                             event: (arg) => {
-                                                this.router.navigate(['/administration/users/form', arg._id]);
+                                                this.router.navigate(['/admin-system/users/edit', arg._id]);
                                             }
                                         }
                                     }
@@ -220,7 +209,7 @@ export default class CompanyService {
                                 row: 0,
                                 data: {
                                     observable: (arg) => {
-                                        return this.getCustomers(arg);
+                                        return Customer.where('company', arg._id).findRx();
                                     },
                                     galleryConfig: {
                                         galleryType: 'GALLERY_USER',
@@ -237,7 +226,7 @@ export default class CompanyService {
                             }
                         },
                         {
-                            icon: 'close',
+                            icon: 'delete',
                             label: 'Eliminar',
                             type: 'TableButtonComponent',
                             modal: {
@@ -255,35 +244,5 @@ export default class CompanyService {
             }
         ];
         return actions;
-    }
-
-    getUsers(company: ICompany): Observable<any> {
-        return this.userService.getUsersList({
-            filters: { company: company._id }
-        });
-    }
-
-    getStores(company: ICompany): Observable<any> {
-        return this.storeService.getLocalsList({
-            filters: { company: company._id }
-        });
-    }
-
-    getCustomers(company: ICompany): Observable<any> {
-        return this.customerService.getCustomersList({
-            filters: { company: company._id }
-        });
-    }
-
-    getProducts(company: ICompany): Observable<any> {
-        return this.productService.getProductsList({
-            filters: { company: company._id }
-        });
-    }
-
-    getOrders(company: ICompany): Observable<any> {
-        return this.orderService.getOrdersList({
-            filters: { company: company._id }
-        });
     }
 }

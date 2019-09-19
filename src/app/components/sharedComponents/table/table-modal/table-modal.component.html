@@ -1,6 +1,6 @@
 <div class="modalFondo">
   <div class="modalContainer">
-    <div *ngIf="modalData.number === 1" fxLayout="row" fxLayoutAlign="space-between center" style="margin-top: 10px;">
+    <div *ngIf="modalData.number === 1" fxLayout="row" fxLayoutAlign="space-between center" style="height: 48px;">
       <button mat-icon-button color="primary" (click)="tableService.closeModal.emit()">
         <mat-icon>chevron_right</mat-icon>
       </button>
@@ -10,16 +10,15 @@
       <button mat-flat-button color="primary" (click)="tableService.closeModal.emit()">No</button>
     </div>
     <div *ngIf="modalData.number === 2">
-      <div fxLayout="row" fxLayoutAlign="start center">
+      <div fxLayout="row" fxLayoutAlign="center center" style="height: 48px;">
         <button mat-icon-button color="primary" (click)="tableService.closeModal.emit()">
           <mat-icon>chevron_right</mat-icon>
         </button>
         <div *ngFor="let button of modalData.buttons" (click)="buttonActions(button)">
           <div fxLayout="column" *ngIf="visibleButton(button)" fxLayoutAlign="space-between center" class="buttons" [ngClass]="{'selectButton': buttonSelected === button.label}">
-            <button mat-icon-button>
+            <button mat-icon-button matTooltip="{{button.label}}">
               <mat-icon [ngStyle]="color(button)">{{button.icon}}</mat-icon>
             </button>
-            <!-- <span>{{button.label}}</span> -->
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { ApplicationService } from '../../../services/http/application.service';
 import { IApplication } from '../../../inferfaces/application';
 import { FormControl } from '@angular/forms';
 import { SnackbarSandbox } from '../../../sandbox/snackbar.sandbox';
+import ApplicationService from 'src/app/services/applications.service';
 
 @Component({
     selector: 'app-select-applications',
@@ -31,9 +31,9 @@ export class SelectApplicationsComponent implements OnInit {
     }
 
     loadApplications() {
-        this.applicationService.getApplicationsList({}).subscribe(resp => {
-            this.applicationsList = resp.data;
-        });
+        // this.applicationService.getApplicationsList({}).subscribe(resp => {
+        //     this.applicationsList = resp.data;
+        // });
     }
 
     compareByValue(f1: any, f2: any) {

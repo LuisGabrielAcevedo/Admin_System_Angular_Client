@@ -3,11 +3,8 @@ import { ActionReducerMap } from '@ngrx/store';
 
 import * as fromAdmin from './admin/admin.reducers';
 import * as fromAdminSystem from './adminSystem/adminSystem.reducers';
-import * as fromApplication from './application/application.reducers';
-import * as fromCountry from './country/country.reducers';
 import * as fromCustomer from './customer/customer.reducers';
 import * as fromLicense from './license/license.reducers';
-import * as fromLocal from './local/local.reducers';
 import * as fromUser from './user/user.reducers';
 import * as fromRole from './role/role.reducers';
 import * as fromPermission from './permission/permission.reducers';
@@ -23,11 +20,8 @@ import * as fromAuthUser from './auth/auth.reducers';
 export interface State {
     admin: fromAdmin.AdminState;
     adminSystem: fromAdminSystem.AdminSystemState;
-    application: fromApplication.ApplicationState;
-    country: fromCountry.CountryState;
     customer: fromCustomer.CustomerState;
     license: fromLicense.LicenseState;
-    local: fromLocal.LocalState;
     user: fromUser.UserState;
     role: fromRole.RoleState;
     permission: fromPermission.PermissionState;
@@ -44,11 +38,8 @@ export interface State {
 export const reducers: ActionReducerMap<State> = {
     admin: fromAdmin.AdminReducer,
     adminSystem: fromAdminSystem.AdminSystemReducer,
-    application: fromApplication.ApplicationReducer,
-    country: fromCountry.CountryReducer,
     customer: fromCustomer.CustomerReducer,
     license: fromLicense.LicenseReducer,
-    local: fromLocal.LocalReducer,
     user: fromUser.UserReducer,
     role: fromRole.RoleReducer,
     permission: fromPermission.PermissionReducer,
@@ -64,10 +55,7 @@ export const reducers: ActionReducerMap<State> = {
 export const getUserState = (state: State) => state.user;
 export const getAdminState = (state: State) => state.admin;
 export const getAdminSystemState = (state: State) => state.adminSystem;
-export const getApplicationState = (state: State) => state.application;
-export const getCountryState = (state: State) => state.country;
 export const getLicenseState = (state: State) => state.license;
-export const getLocalState = (state: State) => state.local;
 export const getCustomerState = (state: State) => state.customer;
 export const getRoleState = (state: State) => state.role;
 export const getPermissionState = (state: State) => state.permission;
@@ -105,20 +93,6 @@ export const getUnits = createSelector(getAdminSystemState, fromAdminSystem.getU
 export const getCoins = createSelector(getAdminSystemState, fromAdminSystem.getCoins);
 export const getIsLoadingAdminSystem = createSelector(getAdminSystemState, fromAdminSystem.getLoadingAdminSystem);
 
-// Application selectors
-export const getApplications = createSelector(getApplicationState, fromApplication.getApplications);
-export const getApplicationsList = createSelector(getApplicationState, fromApplication.getApplicationsList);
-export const getIsLoadingApplications = createSelector(getApplicationState, fromApplication.getIsLoadingApplications);
-export const getIsLoadingApplication = createSelector(getApplicationState, fromApplication.getIsLoadingApplication);
-export const getPaginationApplication = createSelector(getApplicationState, fromApplication.getPagination);
-
-// Country selectors
-export const getCountries = createSelector(getCountryState, fromCountry.getCountries);
-export const getCountriesList = createSelector(getCountryState, fromCountry.getCountriesList);
-export const getIsLoadingCountries = createSelector(getCountryState, fromCountry.getIsLoadingCountries);
-export const getIsLoadingCountry = createSelector(getCountryState, fromCountry.getIsLoadingCountry);
-export const getPaginationCountry = createSelector(getCountryState, fromCountry.getPagination);
-
 // License selectors
 export const getLicenses = createSelector(getLicenseState, fromLicense.getLicenses);
 export const getIsLoadingLicenses = createSelector(getLicenseState, fromLicense.getIsLoadingLicenses);
@@ -130,14 +104,6 @@ export const getCustomers = createSelector(getCustomerState, fromCustomer.getCus
 export const getIsLoadingCustomers = createSelector(getCustomerState, fromCustomer.getIsLoadingCustomers);
 export const getIsLoadingCustomer = createSelector(getCustomerState, fromCustomer.getIsLoadingCustomer);
 export const getPaginationCustomer = createSelector(getCustomerState, fromCustomer.getPagination);
-
-// Local selectors
-export const getLocals = createSelector(getLocalState, fromLocal.getLocals);
-export const getIsLoadingLocals = createSelector(getLocalState, fromLocal.getIsLoadingLocals);
-export const getIsLoadingLocal = createSelector(getLocalState, fromLocal.getIsLoadingLocal);
-export const getPaginationLocal = createSelector(getLocalState, fromLocal.getPagination);
-export const getLocalsList = createSelector(getLocalState, fromLocal.getLocalsList);
-
 
 // Role selectors
 export const getRoles = createSelector(getRoleState, fromRole.getRoles);
