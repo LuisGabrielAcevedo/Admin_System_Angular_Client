@@ -1,11 +1,6 @@
 import { TableHeader } from 'src/app/components/sharedComponents/table/table.interfaces';
 export const companiesHeaders: TableHeader[] = [
     {
-        label: 'Aplicacion',
-        value: 'application.name',
-        type: 'TableApplicationTypeComponent'
-    },
-    {
         label: '',
         value: 'profileImage.url',
         type: 'TableImageComponent'

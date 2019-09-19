@@ -1,10 +1,10 @@
-.imagenContainer{
-    height: 60px;
-    width: 60px;
-    margin: 0 auto;
+.image-container {
+    height: 46px;
+    width: 46px;
+    margin: 2px auto;
 }
 
-.imagenContainer img{
-    height: 60px;
-    width: 60px;
+.image-container img {
+    height: 46px;
+    width: 46px;
 }

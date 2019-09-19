@@ -77,16 +77,16 @@ export class FormComponent implements OnInit {
   public saveAction(model: FormModel): void {
     const modelClass = new this.modelClass();
     modelClass.create(model);
-    modelClass.saveRx().subscribe(resp => console.log(resp));
+    modelClass.saveRx().subscribe(resp => this.goToTable());
   }
 
   public updateAction(model: FormModel): void {
     const modelClass = new this.modelClass();
     modelClass.create(model);
-    modelClass.updateRx().subscribe(resp => console.log(resp));
+    modelClass.updateRx().subscribe(resp => this.goToTable());
   }
 
-  cancel() {
+  goToTable() {
     this.router.navigate([`/admin-system/${this.resource}`]);
   }
 }

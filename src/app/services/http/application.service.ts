@@ -7,7 +7,9 @@ import { IApplication } from '../../inferfaces/application';
 import { TablePagination } from 'src/app/components/sharedComponents/table/table.interfaces';
 
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class ApplicationService {
     public url;
     public loadRequestData: ILoadRequest = {...loadRequestDataDefault};

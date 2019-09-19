@@ -2,11 +2,6 @@ import { TableHeader } from 'src/app/components/sharedComponents/table/table.int
 
 const storeHeaders: TableHeader[] = [
     {
-        label: 'Aplicacion',
-        value: 'application.name',
-        type: 'TableApplicationTypeComponent'
-    },
-    {
         label: 'Nombre',
         value: 'name',
         type: 'TableTextComponent'

@@ -40,7 +40,7 @@ export class TableApplicationTypeComponent implements OnInit {
     } else if (this.field === 'applicationRole') {
       color = this.item[this.field] === 'USER' ? 'none' : 'white';
       fontWeight = this.item[this.field] === 'USER' ? 'none' : '600';
-      background = this.item[this.field] === 'USER' ? 'none' : '#1976D2';
+      background = this.item[this.field] === 'USER' ? 'none' : '#304ffe';
     } else if (this.field === '_id') {
       color = 'white';
       fontWeight = '600';

@@ -2,9 +2,9 @@ import { TableHeader } from 'src/app/components/sharedComponents/table/table.int
 
 const userHeaders: TableHeader[] = [
     {
-        label: 'Aplicacion',
-        value: 'application.name',
-        type: 'TableApplicationTypeComponent'
+        label: '',
+        value: 'profileImage.url',
+        type: 'TableImageComponent'
     },
     {
         label: 'Empresa',
@@ -12,19 +12,9 @@ const userHeaders: TableHeader[] = [
         type: 'TableTextComponent'
     },
     {
-        label: '',
-        value: 'profileImage.url',
-        type: 'TableImageComponent'
-    },
-    {
         label: 'Nombre',
         value: 'firstName,lastName',
         type: 'TableTextComponent'
-    },
-    {
-        label: 'Api rol',
-        value: 'applicationRole',
-        type: 'TableApplicationTypeComponent'
     }
 ];
 

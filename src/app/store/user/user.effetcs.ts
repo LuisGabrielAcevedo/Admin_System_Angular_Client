@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import * as fromRoot from '../index.store';
 import * as UserActions from './user.actions';
-import { UserService } from '../../services/http/user.service';
+import UserService from '../../services/users.service';
 import { TablePagination } from 'src/app/components/sharedComponents/table/table.interfaces';
 import * as RouterActions from '../router/router.actions';
 import * as SnackbarActions from '../snackbar/snackbar.actions';

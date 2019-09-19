@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
 import { Router, ActivationEnd } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-import { TableHeader } from '../table/table.interfaces';
+import { TableHeader, TableButtonAction } from '../table/table.interfaces';
 declare const require: any;
 
 @Component({
@@ -17,14 +17,17 @@ export class ListComponent implements OnInit, OnDestroy {
   public resource: string;
   public modelClass: any;
   public title: string;
+  public service: any;
   public headers: TableHeader[] = [];
+  public rowActions: TableButtonAction[] = [];
   constructor(
-    public router: Router
+    private router: Router,
+    private injector: Injector
   ) {
     this.subscriptions.push(this.router.events
       .pipe(
-        filter((event: ActivationEnd) => 
-          event instanceof ActivationEnd 
+        filter((event: ActivationEnd) =>
+          event instanceof ActivationEnd
           && event.snapshot.params['resource']
           && event.snapshot.params['resource'] !== this.resource
         ),
@@ -35,18 +38,38 @@ export class ListComponent implements OnInit, OnDestroy {
         this.title = `${this.resource}.list.title`;
         this.modelClass = require(`src/app/models/adminSystem/${this.resource}`).default;
         this.headers = require(`src/app/data/adminSystem/table/${this.resource}`).default;
+        const service = require(`src/app/services/${this.resource}.service`).default;
+        this.service = this.injector.get(service);
+        this.rowActions = this.service.getRowActions();
         this.loadData();
       })
     );
   }
 
-  ngOnInit(){
+  ngOnInit() {
   }
 
   public loadData(): void {
-    this.modelClass.findRx(1, 10).subscribe(resp => {
+    let modelClass = this.modelClass;
+    if (this.with()) {
+      modelClass = modelClass.option('populate', this.with());
+    }
+    this.loading = true;
+    modelClass.findRx(1, 10).subscribe(resp => {
       this.data = resp.data;
+      this.loading = false
     });
+  }
+
+  public with(): string {
+    const populateData = {
+      users: 'company,application,userConfigurations.currentStore,userInformation,role',
+      companies: 'application,country,admin',
+      applications: '',
+      stores: 'country,application,company,storeConfigurations',
+      states: 'country'
+    }
+    return populateData[this.resource];
   }
 
   public goToForm(): void {

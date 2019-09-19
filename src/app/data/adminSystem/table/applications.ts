@@ -2,11 +2,6 @@ import { TableHeader } from 'src/app/components/sharedComponents/table/table.int
 
 export const applicationsHeaders: TableHeader[] = [
     {
-        label: 'Id',
-        value: '_id',
-        type: 'TableApplicationTypeComponent'
-    },
-    {
         label: 'Code',
         value: 'code',
         type: 'TableTextComponent'
@@ -17,7 +12,7 @@ export const applicationsHeaders: TableHeader[] = [
         type: 'TableTextComponent'
     },
     {
-        label: 'descripcion',
+        label: 'Descripcion',
         value: 'description',
         type: 'TableTextComponent'
     }

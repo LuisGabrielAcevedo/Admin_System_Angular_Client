@@ -6,7 +6,6 @@ import * as fromAdminSystem from './adminSystem/adminSystem.reducers';
 import * as fromApplication from './application/application.reducers';
 import * as fromCountry from './country/country.reducers';
 import * as fromCustomer from './customer/customer.reducers';
-import * as fromCompany from './company/company.reducers';
 import * as fromLicense from './license/license.reducers';
 import * as fromLocal from './local/local.reducers';
 import * as fromUser from './user/user.reducers';
@@ -27,7 +26,6 @@ export interface State {
     application: fromApplication.ApplicationState;
     country: fromCountry.CountryState;
     customer: fromCustomer.CustomerState;
-    company: fromCompany.CompanyState;
     license: fromLicense.LicenseState;
     local: fromLocal.LocalState;
     user: fromUser.UserState;
@@ -48,7 +46,6 @@ export const reducers: ActionReducerMap<State> = {
     adminSystem: fromAdminSystem.AdminSystemReducer,
     application: fromApplication.ApplicationReducer,
     country: fromCountry.CountryReducer,
-    company: fromCompany.CompanyReducer,
     customer: fromCustomer.CustomerReducer,
     license: fromLicense.LicenseReducer,
     local: fromLocal.LocalReducer,
@@ -69,7 +66,6 @@ export const getAdminState = (state: State) => state.admin;
 export const getAdminSystemState = (state: State) => state.adminSystem;
 export const getApplicationState = (state: State) => state.application;
 export const getCountryState = (state: State) => state.country;
-export const getCompanyState = (state: State) => state.company;
 export const getLicenseState = (state: State) => state.license;
 export const getLocalState = (state: State) => state.local;
 export const getCustomerState = (state: State) => state.customer;
@@ -122,13 +118,6 @@ export const getCountriesList = createSelector(getCountryState, fromCountry.getC
 export const getIsLoadingCountries = createSelector(getCountryState, fromCountry.getIsLoadingCountries);
 export const getIsLoadingCountry = createSelector(getCountryState, fromCountry.getIsLoadingCountry);
 export const getPaginationCountry = createSelector(getCountryState, fromCountry.getPagination);
-
-// Company selectors
-export const getCompanies = createSelector(getCompanyState, fromCompany.getCompanies);
-export const getCompaniesList = createSelector(getCompanyState, fromCompany.getCompaniesList);
-export const getIsLoadingCompanies = createSelector(getCompanyState, fromCompany.getIsLoadingCompanies);
-export const getIsLoadingCompany = createSelector(getCompanyState, fromCompany.getIsLoadingCompany);
-export const getPaginationCompany = createSelector(getCompanyState, fromCompany.getPagination);
 
 // License selectors
 export const getLicenses = createSelector(getLicenseState, fromLicense.getLicenses);

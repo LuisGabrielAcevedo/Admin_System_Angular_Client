@@ -7,7 +7,9 @@ import { Global } from 'src/app/services/http/url';
 import { TablePagination } from '../../components/sharedComponents/table/table.interfaces';
 
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class CountryService {
     public url;
     public loadRequestData: ILoadRequest = JSON.parse(JSON.stringify(loadRequestDataDefault));

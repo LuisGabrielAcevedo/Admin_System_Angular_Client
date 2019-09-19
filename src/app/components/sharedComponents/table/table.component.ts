@@ -36,6 +36,7 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
+  protected boxes: number[] = [1,2,3,4,5,6,7,8,9,10];
   protected subscriptions: Subscription[] = [];
   protected openRows: number[] = [];
   protected itemsSelected: object[] = [];
@@ -50,7 +51,8 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
   };
   @Input() headers: TableHeader[];
   @Input() data: object[];
-  @Input() colors: string[] = ['#E3F2FD', '#64B5F6', '#1976D2'];
+  @Input() colors: string[] = ['#E3F2FD', '#64B5F6', '#304ffe'];
+  @Input() loadingType: string = 'BOX';
   @Input() expand: boolean | null = null;
   @Input() index: boolean | null = null;
   @Input() multiSelect: boolean | null = null;

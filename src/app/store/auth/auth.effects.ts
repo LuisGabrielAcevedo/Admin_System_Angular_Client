@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import * as RouterActions from '../router/router.actions';
 import * as AuthActions from './auth.actions';
-import { UserService } from '../../services/http/user.service';
+import UserService from '../../services/users.service';
 import * as SnackbarActions from '../snackbar/snackbar.actions';
 import { TokenService } from 'src/app/services/http/token.service';
 

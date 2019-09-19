@@ -7,7 +7,9 @@ import { ILocal } from 'src/app/inferfaces/local';
 import { TablePagination } from '../../components/sharedComponents/table/table.interfaces';
 
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class StoreService {
     public url;
     public loadRequestData: ILoadRequest = JSON.parse(JSON.stringify(loadRequestDataDefault));

@@ -3,14 +3,16 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { TablePagination, TableButtonAction } from 'src/app/components/sharedComponents/table/table.interfaces';
 import { ILoadRequest, loadRequestDataDefault } from 'src/app/inferfaces/loadRequest';
-import { Global } from './url';
-import { IUser } from '../../inferfaces/user';
-import { FollowService } from './follow.service';
+import { Global } from './http/url';
+import { IUser } from '../inferfaces/user';
+import { FollowService } from './http/follow.service';
 import { Router } from '@angular/router';
 import { ProfileCardComponent } from 'src/app/components/dialogComponents/profile-card/profile-card.component';
 
-@Injectable()
-export class UserService {
+@Injectable({
+    providedIn: 'root',
+})
+export default class UserService {
     public url;
     public loadRequestData: ILoadRequest = JSON.parse(JSON.stringify(loadRequestDataDefault));
     constructor(

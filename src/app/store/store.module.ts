@@ -5,7 +5,6 @@ import { LocalSandbox } from '../sandbox/local.sandbox';
 import { CustomerEffects } from './customer/customer.effects';
 import { LicenseSandbox } from '../sandbox/license.sandbox';
 import { LicenseEffects } from './license/license.effects';
-import { CompanyEffects } from './company/company.effects';
 import { CountrySandbox } from '../sandbox/country.sandbox';
 import { ApplicationSandbox } from '../sandbox/application.sandbox';
 import { ApplicationEffects } from './application/application.effects';
@@ -20,7 +19,6 @@ import { UserEffects } from './user/user.effetcs';
 import { AdminEffects } from './admin/admin.effects';
 import { AdminSandbox } from '../sandbox/admin.sandbox';
 import { RouterEffects } from './router/router.effects';
-import { CompanySandbox } from '../sandbox/company.sandbox';
 import { LocalEffects } from './local/local.effects';
 import { PermissionEffects } from './permission/permission.effects';
 import { RoleEffects } from './role/role.effects';
@@ -50,7 +48,6 @@ import { AuthSandbox } from 'src/app/sandbox/authSanbox';
             RouterEffects,
             CountryEffects,
             ApplicationEffects,
-            CompanyEffects,
             LicenseEffects,
             LocalEffects,
             CustomerEffects,
@@ -72,7 +69,6 @@ import { AuthSandbox } from 'src/app/sandbox/authSanbox';
         AdminSandbox,
         ApplicationSandbox,
         CountrySandbox,
-        CompanySandbox,
         LicenseSandbox,
         LocalSandbox,
         CustomerSandbox,

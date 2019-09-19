@@ -1,61 +1,66 @@
+.table-content {
+    padding-bottom: 20px;
+    width: 100%;
+}
+
 .table {
     margin: 10px;
+    font-size: 14px;
 }
 
-@media screen and (max-width: 1100px) {
-    .table_content {
-        min-width: 900px;
-        padding-bottom: 50px;
+/* @media screen and (max-width: 1100px) {
+    .table-content-scroll {
+        width: 1100px;
     }
-    .table_scroll {
+    .table-scroll {
         overflow-x: scroll;
     }
+} */
+
+@keyframes gradient {
+    0%{
+        background-position: -400px 0
+    }
+    100%{
+        background-position: 1000px 0
+    }
 }
 
-.table_header{
+.box-loading {
+    animation: gradient 2s infinite linear;
+    background: linear-gradient(to right, #ecebec 8%, #f9f9f9 18%, #ecebec 33%);
+    background-size: 800px 100px;
+    height: 46px;
+    margin: 2px 0px;
+}
+
+.table-header {
     height: 60px;
-    background: #1976D2;
-    color: white;
-    font-weight: 600;
+    font-weight: 500;
     padding: 10px;
-    -webkit-box-shadow: 0 10px 6px -6px #777;
-    -moz-box-shadow: 0 10px 6px -6px #777;
-    box-shadow: 0 10px 6px -6px #777;
 }
 
-.table_data{
-    margin: 10px 0px;
-}
-
-.table_data_row{
-    min-height: 60px;
-    background: #E3F2FD;
-    transition-property: all;
-    transition-duration: 0.2s;
-    margin: 10px 0px;
-    position: relative;
-    -webkit-box-shadow: 0 10px 6px -6px #777;
-    -moz-box-shadow: 0 10px 6px -6px #777;
-    box-shadow: 0 10px 6px -6px #777;
-}
-
-.table_data_header {
-    height: 60px;
-    background: #E3F2FD;
+.table-data-header {
+    height: 50px;
     padding: 10px;
     cursor: pointer;
 }
 
-.table_long{
-    text-align: center;
-    width: 320px;
+.table-data-row {
+    min-height: 50px;
+    transition-property: all;
+    transition-duration: 0.2s;
+    position: relative;
 }
 
-.table_short{
-    text-align: center;
-    width: 80px;
+/* Material theme */
+.material .table {
+    background: #fff;
+    box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
 }
-
-.table_data_header span, table_header span{
-    margin-right: 6px;
+.material .table-header {
+    border-bottom: 1px solid #dee2e6;
+}
+.material .table-data-header {
+    border-bottom: 1px solid #dee2e6;
 }

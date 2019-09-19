@@ -2,7 +2,7 @@
     position: absolute;
     top: 0px;
     right: 0px;
-    height: 60px; 
+    height: 50px; 
     background: #BBDEFB;
     padding: 0 10px;
 }
@@ -10,7 +10,7 @@
 .modalFondo {
     position: absolute;
     top: 0px;
-    height: 60px; 
+    height: 50px; 
     width: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 10;

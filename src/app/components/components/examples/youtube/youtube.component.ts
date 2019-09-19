@@ -11,7 +11,7 @@ import { YoutubeService } from '../../../../services/exampleEndPoints/http.youtu
 export class YoutubeComponent implements OnInit {
   data: object[];
   headers: TableHeader[] = YoutubeHeader;
-  colors = ['#E3F2FD', '#64B5F6', '#1976D2'];
+  colors = ['#E3F2FD', '#64B5F6', '#304ffe'];
   loading = false;
   rowActions: TableButtonAction[];
   videoSelected: string = null;

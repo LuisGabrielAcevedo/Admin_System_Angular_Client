@@ -1,8 +1,8 @@
-<div class="table_content">
-  <div class="table_scroll">
-    <div class="table">
+<div class="table-content material">
+  <div class="table table-content-scroll">
+    <div class="table-scroll">
       <!-- headers -->
-      <div class="table_header" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="table-header" fxLayout="row" fxLayoutAlign="space-between center">
         <span *ngIf="multiSelect" fxFlex="5">
           <mat-checkbox color="primary" #mainCheckbox (click)="checkedAllAction()"></mat-checkbox>
         </span>
@@ -10,12 +10,19 @@
         <span *ngFor="let header of headers" fxFlex>{{header.label}}</span>
         <span *ngFor="let button of rowActions" fxFlex="5"></span>
       </div>
-      <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+      <!-- loading -->
+      <div *ngIf="loading && loadingType === 'SPINNER'" fxLayout="row" fxLayoutAlign="center center">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+      <mat-progress-bar *ngIf="loading && loadingType === 'PROGRESS_BAR'" mode="indeterminate"></mat-progress-bar>
+      <div *ngIf="loading && loadingType === 'BOX'">
+        <div class="box-loading" *ngFor="let box of boxes"></div>
+      </div>
       <!-- data -->
-      <div #tableData class="table_data">
-        <div class="table_data_row" *ngFor="let item of data; index as i">
+      <div #tableData class="table-data">
+        <div class="table-data-row" *ngFor="let item of data; index as i">
           <app-table-modal [modalData]="modalSelected" [position]="i" [item]="item" *ngIf="modalSelected.row === i+1"></app-table-modal>
-          <div class="table_data_header" fxLayouttable="row" fxLayoutAlign="space-between center">
+          <div class="table-data-header" fxLayouttable="row" fxLayoutAlign="space-between center">
             <span *ngIf="multiSelect" fxFlex="5">
               <mat-checkbox #checkbox color="primary" (click)="$event.stopPropagation(); selectItem(i)"></mat-checkbox>
             </span>
