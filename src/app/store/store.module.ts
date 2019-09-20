@@ -17,18 +17,6 @@ import { RouterEffects } from './router/router.effects';
 import { PermissionEffects } from './permission/permission.effects';
 import { RoleEffects } from './role/role.effects';
 import { SnackbarSandbox } from '../sandbox/snackbar.sandbox';
-import { BrandSandbox } from '../sandbox/brand.sandBox';
-import { BrandEffects } from './brand/brand.effects';
-import { ProductCategoryEffects } from './productCategory/productCategory.effects';
-import { ProductCategorySandbox } from '../sandbox/productCategory.sandBox';
-import { ProductEffects } from './product/product.effects';
-import { ProductSandbox } from 'src/app/sandbox/product.sanbox';
-import { ProductTypeEffects } from 'src/app/store/productType/productType.effects';
-import { ProductTypeSandbox } from 'src/app/sandbox/productType.sandbox';
-import { AdminSystemEffects } from './adminSystem/adminSystem.effects';
-import { AdminSystemSandbox } from 'src/app/sandbox/adminSystem.sandbox';
-import { VendorSandbox } from 'src/app/sandbox/vendor.sandbox';
-import { VendorEffects } from 'src/app/store/vendor/vendor.effects';
 import { AuthEffects } from './auth/auth.effects';
 import { AuthSandbox } from 'src/app/sandbox/authSanbox';
 
@@ -44,12 +32,6 @@ import { AuthSandbox } from 'src/app/sandbox/authSanbox';
             CustomerEffects,
             PermissionEffects,
             RoleEffects,
-            BrandEffects,
-            ProductCategoryEffects,
-            ProductEffects,
-            ProductTypeEffects,
-            AdminSystemEffects,
-            VendorEffects,
             AuthEffects
         ])
     ],
@@ -63,12 +45,6 @@ import { AuthSandbox } from 'src/app/sandbox/authSanbox';
         RoleSandbox,
         PermissionSandbox,
         SnackbarSandbox,
-        BrandSandbox,
-        ProductCategorySandbox,
-        ProductSandbox,
-        AdminSystemSandbox,
-        ProductTypeSandbox,
-        VendorSandbox,
         AuthSandbox
     ]
 })

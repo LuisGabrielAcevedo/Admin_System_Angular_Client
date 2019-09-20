@@ -29,6 +29,10 @@ export class MainContainerComponent implements OnInit {
             route: '/admin-system/stores'
           },
           {
+            name: this.translateService.instant('products.plural_name'),
+            route: '/admin-system/products'
+          },
+          {
             name: this.translateService.instant('users.plural_name'),
             route: '/admin-system/users'
           },

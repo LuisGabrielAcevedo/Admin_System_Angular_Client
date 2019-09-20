@@ -8,12 +8,6 @@ import { TableService } from '../components/sharedComponents/table/table.service
 import { YoutubeService } from './exampleEndPoints/http.youtube';
 import { AdminService } from './http/admin.service';
 import { RoleService } from './http/role.service';
-import { BrandService } from './http/brand.service';
-import { ProductCategoryService } from './http/productCategory.service';
-import { ProductService } from './http/product.service';
-import { ProductTypeService } from 'src/app/services/http/productType.service';
-import { AdminSystemService } from 'src/app/services/http/adminSystem.service';
-import { VendorService } from 'src/app/services/http/vendor.service';
 import { OrderService } from 'src/app/services/http/order.service';
 // import { SocketService } from './http/socket.service';
 import { MessageService } from './http/message.service';
@@ -35,12 +29,6 @@ import { CookieService } from 'ngx-cookie-service';
     CustomerService,
     RoleService,
     PermissionService,
-    BrandService,
-    ProductCategoryService,
-    ProductService,
-    ProductTypeService,
-    AdminSystemService,
-    VendorService,
     OrderService,
     MessageService,
     FollowService,
