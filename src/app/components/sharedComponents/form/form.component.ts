@@ -75,15 +75,11 @@ export class FormComponent implements OnInit {
   }
 
   public saveAction(model: FormModel): void {
-    const modelClass = new this.modelClass();
-    modelClass.create(model);
-    modelClass.saveRx().subscribe(resp => this.goToTable());
+    this.modelClass.saveRx(model).subscribe(resp => this.goToTable());
   }
 
   public updateAction(model: FormModel): void {
-    const modelClass = new this.modelClass();
-    modelClass.create(model);
-    modelClass.updateRx().subscribe(resp => this.goToTable());
+    this.modelClass.updateRx(model._id, model).subscribe(resp => this.goToTable());
   }
 
   goToTable() {

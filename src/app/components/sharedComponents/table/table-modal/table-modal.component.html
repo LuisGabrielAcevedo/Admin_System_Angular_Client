@@ -4,10 +4,10 @@
       <button mat-icon-button color="primary" (click)="tableService.closeModal.emit()">
         <mat-icon>chevron_right</mat-icon>
       </button>
-      <span>{{modalData.question}}</span>
-      <mat-divider></mat-divider>
-      <button mat-flat-button color="primary" (click)="modalSuccesActions()">Yes</button>
-      <button mat-flat-button color="primary" (click)="tableService.closeModal.emit()">No</button>
+      <span style="margin-right: 10px;">{{modalData.question}}</span>
+      <button mat-flat-button color="primary" (click)="modalSuccesActions()">{{modalData.successButtonText}}</button>
+      <button mat-flat-button color="primary" (click)="tableService.closeModal.emit()">{{modalData.cancelButtonText}}</button>
+      <mat-spinner *ngIf="loading" diameter="30"></mat-spinner>
     </div>
     <div *ngIf="modalData.number === 2">
       <div fxLayout="row" fxLayoutAlign="center center" style="height: 48px;">

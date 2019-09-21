@@ -8,6 +8,8 @@ import { IUser } from '../inferfaces/user';
 import { FollowService } from './http/follow.service';
 import { Router } from '@angular/router';
 import { ProfileCardComponent } from 'src/app/components/dialogComponents/profile-card/profile-card.component';
+import User from '../models/adminSystem/users';
+import { finalize } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',
@@ -215,7 +217,9 @@ export default class UserService {
                                 question: 'Esta seguro que desea borrar el Usuario?',
                                 successButtonText: 'Si',
                                 successButtonDisabled: (arg) => true,
-                                successButtonEvent: 'delete',
+                                successButtonEvent: (arg) => User.destroyRx(arg._id).pipe(
+                                    finalize(() => this.router.navigate(['/administration/users/form', arg._id]))
+                                ),
                                 cancelButtonText: 'No'
                             }
                         }

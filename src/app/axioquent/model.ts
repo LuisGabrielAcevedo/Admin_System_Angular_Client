@@ -93,58 +93,28 @@ export abstract class Model {
         Model.httpClient.setBaseUrl(this.baseUrl());
         Model.httpClient.setHeaders(this.headers());
     }
-    
-    public create(AxiosquentModel: AxiosquentModel): void {
-        this.id = AxiosquentModel.id || AxiosquentModel._id || undefined;
-        for (const key in AxiosquentModel) {
-            this.setAttribute(key, AxiosquentModel[key]);
-        }
+
+    public static async save(model: AxiosquentModel): Promise<any> {
+        return new Builder(this).save(model);
     }
 
-    public async save(): Promise<any> {
-        try {
-            const payload: any = this.attributes.toArray();
-            const resp: HttpClientResponse = await Model.httpClient.post(this.getResource(), payload);;
-            return resp.getData();
-        } catch (e) {
-            return Promise.reject(e.response.data);
-        }
+    public static saveRx(model: AxiosquentModel): Observable<any> {
+        return new Builder(this).saveRx(model);
     }
 
-    public saveRx(): Observable<any> {
-        return from(this.save());
+    public static async update(id: string| number, model: AxiosquentModel): Promise<any> {
+        return new Builder(this).update(id, model);
     }
 
-    public async update(): Promise<any> {
-        try {
-            const payload: any = this.attributes.toArray();
-            const resp: HttpClientResponse = await Model.httpClient.put(this.getResource() + `/${this.id}`, payload);
-            return resp.getData();
-        }
-        catch (e) {
-            return Promise.reject(e.response.data);
-        }
+    public static updateRx(id: string| number, model: AxiosquentModel): Observable<any> {
+        return new Builder(this).updateRx(id, model);
     }
 
-    public updateRx(): Observable<any> {
-        return from(this.update());
+    public static async destroy(id: number | string): Promise<any> {
+        return new Builder(this).destroy(id);
     }
 
-    public async destroy(id: number | string): Promise<any> {
-        try {
-            if (!id) { throw new Error('Cannot delete a model with no ID.'); }
-            const resp: HttpClientResponse = await Model.httpClient.delete(this.getResource() + `/${this.id}`);
-            return resp.getData();
-        } catch (e) {
-            return Promise.reject(e.response.data);
-        }
-    }
-
-    public destroyRx(id: number | string): Observable<any> {
-        return from(this.destroy(id));
-    }
-
-    protected setAttribute(attributeName: string, value: any): void {
-        this.attributes.set(attributeName, value);
+    public static destroyRx(id: number | string): Observable<any> {
+        return new Builder(this).destroyRx(id);
     }
 }

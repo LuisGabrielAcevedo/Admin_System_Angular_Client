@@ -8,7 +8,8 @@ import { TableService } from 'src/app/components/sharedComponents/table/table.se
   styleUrls: ['./table-modal.component.css']
 })
 export class TableModalComponent implements OnInit {
-  buttonSelected: string;
+  public buttonSelected: string;
+  public loading: boolean;
   @Input() modalData: TableModal;
   @Input() item: object;
   @Input() position: number;
@@ -26,7 +27,12 @@ export class TableModalComponent implements OnInit {
 
   modalSuccesActions() {
     if (this.modalData.successButtonEvent) {
-      this.tableService.outputItem(this.modalData.successButtonEvent, this.item);
+      this.loading = true;
+      this.modalData.successButtonEvent(this.item).subscribe(() => {
+        this.loading = false;
+        this.tableService.closeModal.emit();
+        this.tableService.reload.emit();
+      });
     }
   }
 
@@ -39,6 +45,6 @@ export class TableModalComponent implements OnInit {
   }
 
   color(button: TableButtonAction) {
-    return this.buttonSelected === button.label ? {'color': '#3f51b5'} : {'color' : 'rgba(127,127,127,0.5)'};
+    return this.buttonSelected === button.label ? { 'color': '#3f51b5' } : { 'color': 'rgba(127,127,127,0.5)' };
   }
 }

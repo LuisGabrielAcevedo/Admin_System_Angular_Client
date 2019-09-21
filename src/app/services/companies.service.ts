@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ILoadRequest, loadRequestDataDefault } from 'src/app/inferfaces/loadRequest';
 import { TableButtonAction } from 'src/app/components/sharedComponents/table/table.interfaces';
 import { ProfileCardComponent } from 'src/app/components/dialogComponents/profile-card/profile-card.component';
 import { Router } from '@angular/router';
@@ -235,7 +234,6 @@ export default class CompanyService {
                                 question: 'Esta seguro que desea borrar la empresa?',
                                 successButtonText: 'Si',
                                 successButtonDisabled: (arg) => true,
-                                successButtonEvent: 'delete',
                                 cancelButtonText: 'No'
                             }
                         }

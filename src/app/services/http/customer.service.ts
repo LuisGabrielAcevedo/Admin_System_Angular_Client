@@ -157,7 +157,6 @@ export class CustomerService {
                                 question: 'Esta seguro que desea borrar el Cliente?',
                                 successButtonText: 'Si',
                                 successButtonDisabled: (arg) => true,
-                                successButtonEvent: 'delete',
                                 cancelButtonText: 'No'
                             }
                         }

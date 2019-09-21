@@ -1,19 +1,21 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { TableButtonAction, TableButtonOuputAction, TableOutputItemData, ActiveComponentOutputAction, TableDialog } from './table.interfaces';
 import { Router, NavigationExtras } from '@angular/router';
 
 @Injectable()
 export class TableService {
-    openModal: EventEmitter<TableButtonOuputAction> = new EventEmitter();
-    itemToOutput: EventEmitter<TableOutputItemData> = new EventEmitter();
-    openDialog: EventEmitter<TableDialog> = new EventEmitter();
-    closeModal: EventEmitter<any> = new EventEmitter();
-    activeComponent: EventEmitter<ActiveComponentOutputAction> = new EventEmitter();
-    con = 0;
+    public reload: EventEmitter<any> = new EventEmitter();
+    public closeModal: EventEmitter<any> = new EventEmitter();
+
+
+    public openModal: EventEmitter<TableButtonOuputAction> = new EventEmitter();
+    public itemToOutput: EventEmitter<TableOutputItemData> = new EventEmitter();
+    public openDialog: EventEmitter<TableDialog> = new EventEmitter();
+    public activeComponent: EventEmitter<ActiveComponentOutputAction> = new EventEmitter();
+    
+
     constructor(
-        private router: Router,
-        private http: HttpClient
+        private router: Router
     ) {
     }
 

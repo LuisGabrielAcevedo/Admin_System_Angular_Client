@@ -145,7 +145,7 @@ export class Query {
         return url;
     }
 
-    public toString(id?: number): string {
+    public toString(id?: string | number): string {
         let url: string = this.resetUrl(this.resource);
 
         if (id) { url += `/${id}`; }

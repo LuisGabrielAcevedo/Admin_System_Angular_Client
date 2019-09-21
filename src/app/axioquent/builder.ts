@@ -11,6 +11,7 @@ import { UrlSpec } from './url/url-spec';
 import { HeaderSpec } from './header/header-spec';
 import { HttpClientResponse } from './axios/interfaces/http-client-response';
 import { Observable, from } from 'rxjs';
+import { AxiosquentModel } from './interfaces/axiosquent-model';
 
 export class Builder implements QueryMethods {
     protected modelType: typeof Model;
@@ -42,7 +43,7 @@ export class Builder implements QueryMethods {
             };
             if (resp.getPagination()) { data.pagination = resp.getPagination(); }
             return data;
-        } 
+        }
         catch (e) {
             return Promise.reject(e.response.data);
         }
@@ -57,13 +58,55 @@ export class Builder implements QueryMethods {
             this.setHeaders();
             const resp: HttpClientResponse = await this.getHttpClient().get(this.query.toString(id));
             return resp.getData();
-        } catch(e) {
+        } catch (e) {
             return Promise.reject(e.response.data);
         }
     }
 
     public findByIdRx(id: number): Observable<any> {
         return from(this.findById(id));
+    }
+
+    public async save(model: AxiosquentModel): Promise<any> {
+        try {
+            this.setHeaders();
+            const resp: HttpClientResponse = await this.getHttpClient().post(this.query.toString(), model);
+            return resp.getData();
+        } catch (e) {
+            return Promise.reject(e.response.data);
+        }
+    }
+
+    public saveRx(model: AxiosquentModel): Observable<any> {
+        return from(this.save(model));
+    }
+
+    public async update(id: string | number, model: AxiosquentModel): Promise<any> {
+        try {
+            this.setHeaders();
+            const resp: HttpClientResponse = await this.getHttpClient().put(this.query.toString(id), model);
+            return resp.getData();
+        } catch (e) {
+            return Promise.reject(e.response.data);
+        }
+    }
+
+    public updateRx(id: string | number, model: AxiosquentModel): Observable<any> {
+        return from(this.update(id, model));
+    }
+
+    public async destroy(id: string | number): Promise<any> {
+        try {
+            this.setHeaders();
+            const resp: HttpClientResponse = await this.getHttpClient().delete(this.query.toString(id));
+            return resp.getData();
+        } catch (e) {
+            return Promise.reject(e.response.data);
+        }
+    }
+
+    public destroyRx(id: string | number): Observable<any> {
+        return from(this.destroy(id));
     }
 
     public where(attribute: string, value: string): Builder {

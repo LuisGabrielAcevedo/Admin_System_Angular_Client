@@ -123,7 +123,6 @@ export class PermissionService {
                                 question: 'Esta seguro que desea borrar el Permiso?',
                                 successButtonText: 'Si',
                                 successButtonDisabled: (arg) => true,
-                                successButtonEvent: 'delete',
                                 cancelButtonText: 'No'
                             }
                         }

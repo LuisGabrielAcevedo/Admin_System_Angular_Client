@@ -12,8 +12,6 @@ import {
   ViewChild,
   OnDestroy
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { MatCheckbox } from '@angular/material/checkbox';
 import {
@@ -64,7 +62,7 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Output() search: EventEmitter<string> = new EventEmitter();
   @Output() changePage: EventEmitter<TablePagination> = new EventEmitter();
   @Output() itemSelected: EventEmitter<TableOutputItemData> = new EventEmitter();
-  @Output() reloadData: EventEmitter<TableOutputItemData> = new EventEmitter();
+  @Output() reloadData: EventEmitter<any> = new EventEmitter();
   @ViewChild('tableData') rows: ElementRef;
   @ViewChildren('checkbox') checkboxes: QueryList<MatCheckbox>;
   @ViewChild('mainCheckbox') mainCheckbox: MatCheckbox;
@@ -96,11 +94,20 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
 
       this.tableService.openDialog.subscribe(data => {
         this.openDialog(data);
+      }),
+
+      this.tableService.reload.subscribe(() => {
+        this.reloadData.emit();
       })
     );
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    const data: object[] = changes.data ? changes.data.currentValue : undefined;
+    if (data && data.length) {
+      this.resetModal();
+      this.resetSubItems();
+    }
   }
 
   openRow(i: number) {
@@ -118,14 +125,14 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
       this.rows.nativeElement.children[row].style.border = '';
     });
     this.openRows = [];
-    this.resetSubItem();
+    this.resetSubItems();
   }
 
   checkedAllAction() {
     this.closeAllRows();
     this.itemsSelected = [];
     this.resetModal();
-    this.resetSubItem();
+    this.resetSubItems();
     if (this.checkedAll) {
       this.checkboxes.forEach((checkbox) => {
         checkbox.checked = false;
@@ -145,7 +152,7 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
   selectItem(i: number) {
     this.closeAllRows();
     this.resetModal();
-    this.resetSubItem();
+    this.resetSubItems();
     const item: object = this.data[i];
     this.itemsSelected.includes(item)
       ? this.itemsSelected.splice(this.itemsSelected.indexOf(item), 1)
@@ -181,7 +188,7 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
     this.closeAllRows();
   }
 
-  resetSubItem() {
+  resetSubItems() {
     this.rowSubItemSelected = {
       row: 0,
       type: ''
@@ -190,7 +197,7 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   assignModal(data: TableButtonOuputAction) {
     this.closeAllRows();
-    this.resetSubItem();
+    this.resetSubItems();
     this.modalSelected = data.modal;
     this.modalSelected.row = data.position + 1;
   }
@@ -218,7 +225,7 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
         this.unSelectItems();
       }
       this.resetModal();
-      this.resetSubItem();
+      this.resetSubItems();
     });
   }
 

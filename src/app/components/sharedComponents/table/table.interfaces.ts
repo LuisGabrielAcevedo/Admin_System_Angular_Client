@@ -84,7 +84,7 @@ export interface TableModal {
     successButtonText?: string;
     successButtonDisabled?: (...arg: any[]) => boolean;
     successButtonClass?: string;
-    successButtonEvent?: string;
+    successButtonEvent?: (...arg: any[]) => Observable<any>;
     cancelButtonText?: string;
     cancelButtonEvent?: string;
     cancelButtonClass?: string;
