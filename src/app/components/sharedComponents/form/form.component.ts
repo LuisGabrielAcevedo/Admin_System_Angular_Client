@@ -1,17 +1,18 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AxiosquentModel } from 'src/app/axioquent';
 import { FormField, FormModel, MaterialFormData } from '../dynamic-form/dynamic-form.interfaces';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
-declare const require: any;
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnDestroy {
   @ViewChild('dynamicForm') public form: DynamicFormComponent;
+  public subscriptions: Subscription[] = [];
   public materialData: MaterialFormData = {
     appearance: 'fill',
     floatLabel: 'always'
@@ -28,18 +29,23 @@ export class FormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
   ) {
-    this.route.paramMap.subscribe(params => {
-      this.resource = params.get('resource');
-      this.id = params.get('id');
-      this.title = this.id ? `${this.resource}.edit.title`:`${this.resource}.new.title`;
-      this.buttonLabel = this.id ? 'edit' : 'save';
-      this.fieldsConfig = require(`src/app/data/adminSystem/form/${this.resource}`).default;
-      this.modelClass = require(`src/app/models/adminSystem/${this.resource}`).default;
-      if (this.id) this.loadData();
-    });
+    this.subscriptions.push(
+      this.route.paramMap.subscribe(params => {
+        this.resource = params.get('resource');
+        this.id = params.get('id');
+        this.title = this.id ? `${this.resource}.edit.title`:`${this.resource}.new.title`;
+        this.buttonLabel = this.id ? 'edit' : 'save';
+        this.initComponent();
+      })
+    );
   }
 
-  ngOnInit() {
+  public async initComponent() {
+    const modelClassModule = await import(`src/app/models/admin-system/${this.resource}`);
+    this.modelClass = modelClassModule.default;
+    const fieldsConfigModule = await import(`src/app/data/admin-system/form/${this.resource}`);
+    this.fieldsConfig = fieldsConfigModule.default;
+    if (this.id) this.loadData();
   }
 
   public loadData(): void {
@@ -64,14 +70,23 @@ export class FormComponent implements OnInit {
   }
 
   public with(): string {
+    let resource: string = this.resource;
+    if (resource.includes('-')) {
+      resource = resource.split('-').join('');
+    }
     const populateData = {
       users: 'company,application,userConfigurations.currentStore,userInformation,role',
       companies: 'application,country,admin',
       applications: '',
       stores: 'country,application,company,storeConfigurations',
-      states: 'country'
+      states: 'country',
+      vendors: 'company,country,state',
+      brands: 'company,vendors',
+      productcategories: 'company',
+      producttypes: 'company',
+      products: 'company,category,type,brand,vendor'
     }
-    return populateData[this.resource];
+    return populateData[resource];
   }
 
   public saveAction(model: FormModel): void {
@@ -84,5 +99,9 @@ export class FormComponent implements OnInit {
 
   goToTable() {
     this.router.navigate([`/admin-system/${this.resource}`]);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }

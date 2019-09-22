@@ -1,16 +1,15 @@
-import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
+import { Component, OnDestroy, Injector } from '@angular/core';
 import { Router, ActivationEnd } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { TableHeader, TableButtonAction } from '../table/table.interfaces';
-declare const require: any;
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements OnInit, OnDestroy {
+export class ListComponent implements OnDestroy {
   public subscriptions: Subscription[] = [];
   public data: any[] = [];
   public loading: boolean;
@@ -36,17 +35,20 @@ export class ListComponent implements OnInit, OnDestroy {
       .subscribe(resource => {
         this.resource = resource;
         this.title = `${this.resource}.list.title`;
-        this.modelClass = require(`src/app/models/adminSystem/${this.resource}`).default;
-        this.headers = require(`src/app/data/adminSystem/table/${this.resource}`).default;
-        const service = require(`src/app/services/${this.resource}.service`).default;
-        this.service = this.injector.get(service);
-        this.rowActions = this.service.getRowActions();
-        this.loadData();
+        this.initList();
       })
     );
   }
 
-  ngOnInit() {
+  public async initList() {
+    const modelClassModule = await import(`src/app/models/admin-system/${this.resource}`);
+    this.modelClass = modelClassModule.default;
+    const headersModule = await import(`src/app/data/admin-system/table/${this.resource}`);
+    this.headers = headersModule.default;
+    const serviceModule = await import(`src/app/services/admin-system/${this.resource}.service`);
+    this.service = this.injector.get(serviceModule.default);
+    this.rowActions = this.service.getRowActions();
+    this.loadData();
   }
 
   public loadData(): void {
@@ -62,14 +64,23 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   public with(): string {
+    let resource: string = this.resource;
+    if (resource.includes('-')) {
+      resource = resource.split('-').join('');
+    }
     const populateData = {
       users: 'company,application,userConfigurations.currentStore,userInformation,role',
       companies: 'application,country,admin',
       applications: '',
       stores: 'country,application,company,storeConfigurations',
-      states: 'country'
+      states: 'country',
+      products: 'company',
+      vendors: 'company',
+      brands: 'company',
+      productcategories: 'company',
+      producttypes: 'company'
     }
-    return populateData[this.resource];
+    return populateData[resource];
   }
 
   public goToForm(): void {

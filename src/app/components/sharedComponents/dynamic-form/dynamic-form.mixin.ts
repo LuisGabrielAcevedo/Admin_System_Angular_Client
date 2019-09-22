@@ -23,7 +23,9 @@ export class FormComponent {
     @Input() protected materialData: MaterialFormData;
     @Input() protected formatId: string = '_id';
 
-    constructor(public fb: FormBuilder, public dynamicFormService: DynamicFormService) { }
+    constructor(public fb: FormBuilder, public dynamicFormService: DynamicFormService) {
+        this.form = this.fb.group({});
+    }
 
     protected formatFields(): FormMainGroup[] {
         let mainGroupsFormatted: FormMainGroup[] = [];

@@ -4,25 +4,27 @@
 }
 .sidenav {
 	width: 240px;
-	padding: 20px 0;
+	padding: 10px 0;
 }
 .sidenav-item {
 	cursor: pointer;
-	margin-left: 20px; 
+	margin-left: 10px; 
 }
-.sidenav-subitem {
-	cursor: pointer;
-	margin-left: 20px; 
+.active-route {
+    color: #304ffe;
+    font-weight: 500;
 }
 mat-toolbar {
 	padding-left: 0px;
 }
-
 mat-expansion-panel {
 	box-shadow: none !important;
 	border-radius: none !important;
 }
-
 mat-expansion-panel-header {
 	padding-left: 0px !important;
+	height: 48px !important;
+}
+mat-panel-title {
+	height: 48px !important;
 }

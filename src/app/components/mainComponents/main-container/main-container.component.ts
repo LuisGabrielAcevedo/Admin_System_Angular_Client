@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { ISidebarItem } from '../../../inferfaces/sideBar';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -14,11 +14,13 @@ export class MainContainerComponent implements OnInit {
   sidebarItems: ISidebarItem[];
   constructor(
     private router: Router,
-    public translateService: TranslateService
+    private route: ActivatedRoute,
+    private translateService: TranslateService
   ) {
     this.sidebarItems = [
       {
         name: this.translateService.instant('admin_system.plural_name'),
+        route: '/admin-system',
         subItems: [
           {
             name: this.translateService.instant('companies.plural_name'),
@@ -27,10 +29,6 @@ export class MainContainerComponent implements OnInit {
           {
             name: this.translateService.instant('stores.plural_name'),
             route: '/admin-system/stores'
-          },
-          {
-            name: this.translateService.instant('products.plural_name'),
-            route: '/admin-system/products'
           },
           {
             name: this.translateService.instant('users.plural_name'),
@@ -47,6 +45,32 @@ export class MainContainerComponent implements OnInit {
           {
             name: this.translateService.instant('states.plural_name'),
             route: '/admin-system/states'
+          },
+          {
+            name: this.translateService.instant('inventory'),
+            route: '/admin-system/inventory',
+            subItems: [
+              {
+                name: this.translateService.instant('products.plural_name'),
+                route: '/admin-system/inventory/products'
+              },
+              {
+                name: this.translateService.instant('product_types.plural_name'),
+                route: '/admin-system/inventory/product-types'
+              },
+              {
+                name: this.translateService.instant('product_categories.plural_name'),
+                route: '/admin-system/inventory/product-categories'
+              },
+              {
+                name: this.translateService.instant('brands.plural_name'),
+                route: '/admin-system/inventory/brands'
+              },
+              {
+                name: this.translateService.instant('vendors.plural_name'),
+                route: '/admin-system/inventory/vendors'
+              }
+            ]
           }
         ]
       },
@@ -77,7 +101,7 @@ export class MainContainerComponent implements OnInit {
   ngOnInit() {
   }
 
-  goTo(route: string) {
+  public goTo(route: string): void {
     this.router.navigate([route]);
     this.sidebar.toggle();
   }

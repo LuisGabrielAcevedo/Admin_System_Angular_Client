@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { IApplication } from '../../../inferfaces/application';
 import { FormControl } from '@angular/forms';
 import { SnackbarSandbox } from '../../../sandbox/snackbar.sandbox';
-import ApplicationService from 'src/app/services/applications.service';
+import ApplicationService from 'src/app/services/admin-system/applications.service';
 
 @Component({
     selector: 'app-select-applications',

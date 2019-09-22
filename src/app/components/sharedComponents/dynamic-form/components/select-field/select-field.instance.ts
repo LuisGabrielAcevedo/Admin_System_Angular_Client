@@ -48,13 +48,25 @@ export class SelectFieldComponent implements OnInit, OnChanges {
     }
 
     loadComponent() {
-        const component: any = this.components()[this.field.component];
-        const formField = new FormFieldComponent(
-            component, 
-            this.field, 
-            this.materialData, 
-            this.form
-        );
+        let formField;
+        if (this.field.component) {
+            const component: any = this.components()[this.field.component];
+            formField = new FormFieldComponent(
+                component, 
+                this.field, 
+                this.materialData, 
+                this.form
+            );
+        }
+
+        if (this.field.dynamicComponent) {
+            formField = new FormFieldComponent(
+                this.field.dynamicComponent, 
+                this.field, 
+                this.materialData, 
+                this.form
+            );
+        }
         const componentInstance = this.generateInstance<any>(formField);
         if (formField.field) componentInstance.field = formField.field;
         if (formField.form) componentInstance.form = formField.form;

@@ -13,6 +13,10 @@ export const routes: Routes = [
     component: ListComponent
   },
   {
+    path: 'inventory/:resource',
+    component: ListComponent
+  },
+  {
     path: ':resource/new',
     component: FormComponent
   },

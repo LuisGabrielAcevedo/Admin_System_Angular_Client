@@ -77,11 +77,77 @@
         "plural_name": "States",
         "singular_name": "State"
     },
+    "products": {
+        "edit": {
+            "title": "Edit product"
+        },
+        "new": {
+            "title": "New product"
+        },
+        "list": {
+            "title": "Products"
+        },
+        "plural_name": "Products",
+        "singular_name": "Product"
+    },
+    "product_types": {
+        "edit": {
+            "title": "Edit product type"
+        },
+        "new": {
+            "title": "New product type"
+        },
+        "list": {
+            "title": "Product types"
+        },
+        "plural_name": "Products types",
+        "singular_name": "Product type"
+    },
+    "product_categories": {
+        "edit": {
+            "title": "Edit product category"
+        },
+        "new": {
+            "title": "New product category"
+        },
+        "list": {
+            "title": "Product categories"
+        },
+        "plural_name": "Products categories",
+        "singular_name": "Product category"
+    },
+    "brands": {
+        "edit": {
+            "title": "Edit brand"
+        },
+        "new": {
+            "title": "New brand"
+        },
+        "list": {
+            "title": "Brands"
+        },
+        "plural_name": "Brands",
+        "singular_name": "Brand"
+    },
+    "vendors": {
+        "edit": {
+            "title": "Edit vendor"
+        },
+        "new": {
+            "title": "New vendor"
+        },
+        "list": {
+            "title": "Vendors"
+        },
+        "plural_name": "Vendors",
+        "singular_name": "Vendor"
+    },
     "save":"Save",
     "edit":"Edit",
     "cancle":"Cancel",
     "examples":"Examples",
     "admin_system": {
         "plural_name": "Admin system"
-    }
+    },
+    "inventoy": "Inventory"
 }

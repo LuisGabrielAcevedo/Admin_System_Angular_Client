@@ -8,7 +8,7 @@
   <mat-drawer-container class="sidenav-container" autosize>
     <mat-drawer #drawer class="sidenav" mode="over">
       <div *ngFor="let item of sidebarItems">
-        <div *ngIf="item.subItems; else accordion">
+        <div *ngIf="item.subItems; else text1">
           <mat-accordion>
             <mat-expansion-panel>
               <mat-expansion-panel-header>
@@ -16,14 +16,30 @@
                   <p class="sidenav-item">{{item.name}}</p>
                 </mat-panel-title>
               </mat-expansion-panel-header>
-              <div>
-                <p class="sidenav-subitem" (click)="goTo(subItem.route)" *ngFor="let subItem of item.subItems">
-                  {{subItem.name}}</p>
+              <div *ngFor="let subItem of item.subItems">
+                <div *ngIf="subItem.subItems; else text2">
+                  <mat-accordion>
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          <p class="sidenav-item">{{subItem.name}}</p>
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <p class="sidenav-item" *ngFor="let subsubItem of subItem.subItems" (click)="goTo(subsubItem.route)">
+                        {{subsubItem.name}}
+                      </p>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+                <ng-template #text2>
+                  <p class="sidenav-item" (click)="goTo(subItem.route)">
+                    {{subItem.name}}</p>
+                </ng-template>
               </div>
             </mat-expansion-panel>
           </mat-accordion>
         </div>
-        <ng-template #accordion>
+        <ng-template #text1>
           <p class="sidenav-item">{{item.name}}</p>
         </ng-template>
       </div>
