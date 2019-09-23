@@ -1,3 +1,13 @@
-<p>
-  product-characteristics works!
-</p>
+<div fxLayout="row" fxLayout.lt-sm="column" *ngIf="rowsFormatted.length">
+  <div fxFlex="20" *ngIf="rowsFormatted[0].leftFieldGroup.length"></div>
+  <div fxFlex>
+    <div *ngFor="let fields of rowsFormatted[0].fields">
+      <app-row
+        [fields]="fields"
+        [form]="form"
+        [materialData]="materialData"
+      ></app-row>
+    </div>
+  </div>
+  <div fxFlex="20" *ngIf="rowsFormatted[0].rightFieldGroup.length"></div>
+</div>

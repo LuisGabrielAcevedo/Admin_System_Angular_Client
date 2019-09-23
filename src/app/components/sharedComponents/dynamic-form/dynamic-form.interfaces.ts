@@ -1,26 +1,33 @@
-import { ValidatorFn, FormGroup, ValidationErrors, AbstractControl } from '@angular/forms';
-import { DynamicFormValidator } from './validate/dynamin-form-validator';
-import { Observable } from 'rxjs';
+import {
+  ValidatorFn,
+  FormGroup,
+  ValidationErrors,
+  AbstractControl
+} from "@angular/forms";
+import { DynamicFormValidator } from "./validate/dynamin-form-validator";
+import { Observable } from "rxjs";
 
 export type VisibleCallback = (arg: FormModel) => boolean;
 export type DisableCallback = (arg: FormModel) => boolean;
 export type ValidatorCallback = (form: FormGroup) => ValidatorFn;
-export type AsyncValidatorCallback = (control: AbstractControl) => Observable<ValidationErrors>;
+export type AsyncValidatorCallback = (
+  control: AbstractControl
+) => Observable<ValidationErrors>;
 
 export enum FormFieldTypes {
-  autocomplete = 'AutocompleteComponent',
-  asyncAutocomplete = 'AsyncAutocompleteComponent',
-  checkbox = 'CheckboxComponent',
-  enum = 'EnumSelectComponent',
-  radioGroup = 'RadioGroupComponent',
-  select = 'SelectComponent',
-  switch = 'SwitchComponent',
-  textarea = 'TextareaComponent',
-  textField = 'TextFieldComponent',
-  image = 'ImageComponent',
-  datepicker = 'DatepickerComponent',
-  numericField = 'NumericFieldComponent',
-  passwordField = 'PasswordFieldComponent',
+  autocomplete = "AutocompleteComponent",
+  asyncAutocomplete = "AsyncAutocompleteComponent",
+  checkbox = "CheckboxComponent",
+  enum = "EnumSelectComponent",
+  radioGroup = "RadioGroupComponent",
+  select = "SelectComponent",
+  switch = "SwitchComponent",
+  textarea = "TextareaComponent",
+  textField = "TextFieldComponent",
+  image = "ImageComponent",
+  datepicker = "DatepickerComponent",
+  numericField = "NumericFieldComponent",
+  passwordField = "PasswordFieldComponent"
 }
 
 export interface MaterialFormData {
@@ -47,7 +54,7 @@ export interface FormField {
     selectOptions?: (...arg: any[]) => Promise<any> | any;
     placeholder?: string;
     label?: string;
-    fieldOptions?: (...arg: any[]) => Observable<any>;  
+    fieldOptions?: (...arg: any[]) => Observable<any>;
     visibleCondition?: VisibleCallback;
     disableCondition?: DisableCallback;
     associationValue?: string;
@@ -75,13 +82,13 @@ export interface Option {
 }
 
 export enum ImageMode {
-  select = 'SELECT_PHOTO',
-  camera = 'CAMERA',
+  select = "SELECT_PHOTO",
+  camera = "CAMERA"
 }
 
 export enum FormLateralGroup {
-  left = 'left',
-  right = 'right',
+  left = "left",
+  right = "right"
 }
 
 export interface FormattedValidations {
@@ -96,3 +103,12 @@ export interface FormResponse {
   editedFields?: FormModel;
 }
 
+export interface FormatFieldsResponse {
+  form: FormGroup;
+  mainGroupsFormatted: FormMainGroup[];
+  groupIndexes: object;
+}
+
+export interface FormatFieldsOptions {
+  changeForm: boolean;
+}

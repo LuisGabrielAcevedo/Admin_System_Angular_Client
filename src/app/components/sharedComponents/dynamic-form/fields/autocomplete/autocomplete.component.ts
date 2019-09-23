@@ -1,17 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BaseFieldComponent } from '../base-field.mixin';
-import { DynamicFormService } from '../../dynamic-form.service';
-import { Observable } from 'rxjs';
-import { MatAutocompleteSelectedEvent } from '@angular/material';
-import { filter, tap, map } from 'rxjs/operators';
-import ObjectID from 'bson-objectid';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { BaseFieldComponent } from "../base-field.mixin";
+import { DynamicFormService } from "../../dynamic-form.service";
+import { Observable } from "rxjs";
+import { MatAutocompleteSelectedEvent } from "@angular/material";
+import { filter, tap, map } from "rxjs/operators";
+import ObjectID from "bson-objectid";
 
 @Component({
-  selector: 'app-autocomplete',
-  templateUrl: './autocomplete.component.html',
-  styleUrls: ['../../dynamic-form.component.css']
+  selector: "app-autocomplete",
+  templateUrl: "./autocomplete.component.html",
+  styleUrls: ["../../dynamic-form.component.css"]
 })
-export class AutocompleteComponent extends BaseFieldComponent implements OnInit, OnDestroy {
+export class AutocompleteComponent extends BaseFieldComponent
+  implements OnInit, OnDestroy {
   constructor(public dynamicFormService: DynamicFormService) {
     super();
   }
@@ -20,19 +21,24 @@ export class AutocompleteComponent extends BaseFieldComponent implements OnInit,
     this.addSubscriptions();
     if (this.dependValue()) {
       this.subscriptions.push(
-        this.form.controls[this.field.options.depend].valueChanges.pipe(
-          filter(value => value),
-          map(value => typeof value === 'object' ? value['_id'] : value),
-          filter(value => ObjectID.isValid(value))
-        ).subscribe(valueId => {
-          this.loadData(valueId).subscribe(options => this.options = options);
-        }),
+        this.form.controls[this.field.options.depend].valueChanges
+          .pipe(
+            filter(value => value),
+            map(value => (typeof value === "object" ? value["_id"] : value)),
+            filter(value => ObjectID.isValid(value))
+          )
+          .subscribe(valueId => {
+            this.loadData(valueId).subscribe(
+              options => (this.options = options)
+            );
+          }),
         this.dynamicFormService.resetControl.subscribe(value => {
-          if (value.key === this.field.options.depend) this.form.controls[this.field.key].patchValue(null);
+          if (value.key === this.field.options.depend)
+            this.form.controls[this.field.key].patchValue(null);
         })
-      )
+      );
     } else {
-      this.loadData().subscribe(options => this.options = options);
+      this.loadData().subscribe(options => (this.options = options));
     }
   }
 
@@ -41,7 +47,7 @@ export class AutocompleteComponent extends BaseFieldComponent implements OnInit,
   }
 
   public displayFn(option: object): string {
-    return !option ? '' : option[this.field.options.associationText];
+    return !option ? "" : option[this.field.options.associationText];
   }
 
   public autocompleteOptionSelected(option: MatAutocompleteSelectedEvent) {

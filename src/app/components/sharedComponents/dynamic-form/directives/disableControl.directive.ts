@@ -1,22 +1,20 @@
-import { NgControl } from '@angular/forms';
-import { Directive, Input } from '@angular/core';
+import { NgControl } from "@angular/forms";
+import { Directive, Input } from "@angular/core";
 
 @Directive({
-    selector: '[disableControl]'
+  selector: "[disableControl]"
 })
 export class DisableControlDirective {
+  @Input() set disableControl(condition: boolean) {
+    setTimeout(() => {
+      //   condition
+      //     ? this.ngControl.control.disable({
+      //         onlySelf: true,
+      //         emitEvent: false
+      //       })
+      //     : this.ngControl.control.enable();
+    }, 100);
+  }
 
-    @Input() set disableControl(condition: boolean) {
-        setTimeout(()=> {
-            condition
-            ? this.ngControl.control.disable({
-                onlySelf: true,
-                emitEvent: false
-            }) 
-            : this.ngControl.control.enable();
-        }, 100)
-    }
-
-    constructor(private ngControl: NgControl) {
-    }
+  constructor(private ngControl: NgControl) {}
 }

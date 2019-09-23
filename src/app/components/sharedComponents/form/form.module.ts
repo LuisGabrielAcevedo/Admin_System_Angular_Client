@@ -16,4 +16,5 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule
   ]
 })
-export class FormModule { }
+export class FormModule {
+}
