@@ -9,7 +9,6 @@ import { FollowService } from '../http/follow.service';
 import { Router } from '@angular/router';
 import { ProfileCardComponent } from 'src/app/components/dialogComponents/profile-card/profile-card.component';
 import User from '../../models/admin-system/users';
-import { finalize } from 'rxjs/operators';
 import Follow from 'src/app/models/admin-system/follows';
 
 @Injectable({
@@ -115,7 +114,7 @@ export default class UserService {
                             label: 'Editar',
                             type: 'TableButtonComponent',
                             event: (arg) => {
-                                this.router.navigate(['/administration/users/form', arg._id]);
+                                this.router.navigate(['/admin-system/users/edit', arg._id]);
                             }
                         },
                         {

@@ -6,7 +6,7 @@ import {
 const musicalInstrumentsFields: FormField[] = [
   {
     name: "Color",
-    key: "color",
+    key: "characteristics.color",
     component: FormFieldTypes.textField
   }
 ];

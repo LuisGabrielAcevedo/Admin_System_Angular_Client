@@ -6,13 +6,21 @@ import {
 const carSaleFields: FormField[] = [
   {
     name: "Engine",
-    key: "engine",
-    component: FormFieldTypes.textField
+    key: "characteristics.engine",
+    component: FormFieldTypes.textField,
+    flexConfig: {
+      row: 1,
+      flex: 50
+    }
   },
   {
     name: "Chassis",
-    key: "chassis",
-    component: FormFieldTypes.textField
+    key: "characteristics.chassis",
+    component: FormFieldTypes.textField,
+    flexConfig: {
+      row: 1,
+      flex: 50
+    }
   }
 ];
 

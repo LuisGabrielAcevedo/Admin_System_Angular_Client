@@ -5,6 +5,7 @@
         [mainGroups]="mainGroupsFormatted" 
         [form]="form"
         [materialData]="materialData"
+        [model]="currentModel"
       ></app-simple-form>
     </div>
     <div *ngIf="mainGroupsFormatted.length > 1">
@@ -13,6 +14,7 @@
         [mainGroups]="mainGroupsFormatted" 
         [form]="form"
         [materialData]="materialData"
+        [model]="currentModel"
         ></app-tabs-form>
       </div>
       <div *ngIf="formType === 'steps'">
@@ -20,6 +22,7 @@
         [mainGroups]="mainGroupsFormatted" 
         [form]="form"
         [materialData]="materialData"
+        [model]="currentModel"
         ></app-steps-form>
       </div>
       <div *ngIf="formType === 'panels'">
@@ -27,6 +30,7 @@
         [mainGroups]="mainGroupsFormatted" 
         [form]="form"
         [materialData]="materialData"
+        [model]="currentModel"
         ></app-panels-form>
       </div>
     </div>

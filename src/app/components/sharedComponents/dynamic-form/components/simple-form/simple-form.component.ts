@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormMainGroup, MaterialFormData } from '../../dynamic-form.interfaces';
+import { FormMainGroup, MaterialFormData, FormModel } from '../../dynamic-form.interfaces';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -11,6 +11,7 @@ export class SimpleFormComponent implements OnInit {
   @Input() public mainGroups: FormMainGroup[];
   @Input() public form: FormGroup;
   @Input() public materialData: MaterialFormData;
+  @Input() public model: FormModel;
   constructor() { }
 
   ngOnInit() {

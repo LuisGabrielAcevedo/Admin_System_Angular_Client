@@ -8,7 +8,7 @@ import {
     SimpleChanges
 } from '@angular/core';
 import { FormFieldDirective } from './select-field.directive';
-import { FormFieldTypes, MaterialFormData, FormField } from '../../dynamic-form.interfaces';
+import { FormFieldTypes, MaterialFormData, FormField, FormModel } from '../../dynamic-form.interfaces';
 import { FormFieldComponent } from './select-field.component';
 import { AsyncAutocompleteComponent } from '../../fields/async-autocomplete/async-autocomplete.component';
 import { TextFieldComponent } from '../../fields/text-field/text-field.component';
@@ -34,6 +34,9 @@ export class SelectFieldComponent implements OnInit, OnChanges {
     @Input() field: FormField;
     @Input() materialData: MaterialFormData;
     @Input() form: FormGroup;
+    @Input() model: FormModel;
+    public componentInstance: any;
+    public formField: FormFieldComponent
     constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
     ngOnInit() {
@@ -41,36 +44,47 @@ export class SelectFieldComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         const field: FormField = changes.field ? changes.field.currentValue : undefined;
+        const model: FormField = changes.model ? changes.model.currentValue : undefined;
         if (field) {
             this.field = field;
             this.loadComponent();
         }
+
+        if (model) {
+            this.model = model;
+            this.updateModel();
+        }
     }
 
     loadComponent() {
-        let formField;
         if (this.field.component) {
-            const component: any = this.components()[this.field.component];
-            formField = new FormFieldComponent(
-                component, 
+            this.formField = new FormFieldComponent(
+                this.components()[this.field.component], 
                 this.field, 
                 this.materialData, 
-                this.form
+                this.form,
+                this.model
             );
         }
 
         if (this.field.dynamicComponent) {
-            formField = new FormFieldComponent(
+            this.formField = new FormFieldComponent(
                 this.field.dynamicComponent, 
                 this.field, 
                 this.materialData, 
-                this.form
+                this.form,
+                this.model
             );
         }
-        const componentInstance = this.generateInstance<any>(formField);
-        if (formField.field) componentInstance.field = formField.field;
-        if (formField.form) componentInstance.form = formField.form;
-        componentInstance.materialData = formField.materialData;
+        this.componentInstance = this.generateInstance<any>(this.formField);
+        if (this.formField.field) this.componentInstance.field = this.formField.field;
+        if (this.formField.form) this.componentInstance.form = this.formField.form;
+        this.componentInstance.model = this.formField.model;
+        this.componentInstance.materialData = this.formField.materialData;
+    }
+
+    updateModel() {
+        this.componentInstance.model = this.model;
     }
 
     components() {

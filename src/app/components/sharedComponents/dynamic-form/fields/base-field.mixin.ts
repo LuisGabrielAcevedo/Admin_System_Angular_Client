@@ -14,6 +14,7 @@ export class BaseFieldComponent {
   @Input() public field: FormField;
   @Input() public form: FormGroup;
   @Input() public materialData: MaterialFormData;
+  @Input() public model: FormModel;
   protected subscriptions: Subscription[] = [];
   public options: Option[] = [];
   public loading = false;
@@ -78,22 +79,19 @@ export class BaseFieldComponent {
   }
 
   public validateControl(): boolean {
-    // const control: AbstractControl = this.form.controls[this.field.key];
-    // return !control.valid && control.touched;
-    return true;
+    const control: AbstractControl = this.form.controls[this.field.key];
+    return !control.valid && control.touched;
   }
 
   public errorMessage(): string {
-    // const control: AbstractControl = this.form.controls[this.field.key];
-    // if (!control.errors) return "";
-    // const rule: string = Object.keys(control.errors)[0];
-    // return control["errorMessages"][rule];
-    return "";
+    const control: AbstractControl = this.form.controls[this.field.key];
+    if (!control.errors) return "";
+    const rule: string = Object.keys(control.errors)[0];
+    return control["errorMessages"][rule];
   }
 
   public required() {
-    // const control: AbstractControl = this.form.controls[this.field.key];
-    // return control['errorMessages'] && control['errorMessages']['required'];
-    return true;
+    const control: AbstractControl = this.form.controls[this.field.key];
+    return control['errorMessages'] && control['errorMessages']['required'];
   }
 }

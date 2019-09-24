@@ -11,6 +11,7 @@ import Brand from "src/app/models/admin-system/brands";
 import Vendor from "src/app/models/admin-system/vendors";
 import AdminSystem from "src/app/models/admin-system/admin-system";
 import { ProductCharacteristicsComponent } from "src/app/components/components/admin-system/product-characteristics/product-characteristics.component";
+import Application from 'src/app/models/admin-system/applications';
 
 const productFields: FormField[] = [
   {
@@ -28,6 +29,26 @@ const productFields: FormField[] = [
       fieldOptions: arg =>
         Company.option("search", arg)
           .option("populate", "application")
+          .findRx()
+          .pipe(map(resp => resp.data)),
+      associationText: "name",
+      associationValue: "_id"
+    }
+  },
+  {
+    name: "Application",
+    key: "application",
+    component: FormFieldTypes.asyncAutocomplete,
+    mainGroup: "App info",
+    flexConfig: {
+      row: 2,
+      flex: 100
+    },
+    validators: [DynamicFormValidators.required()],
+    options: {
+      placeholder: "Select an application",
+      fieldOptions: arg =>
+        Application.option("search", arg)
           .findRx()
           .pipe(map(resp => resp.data)),
       associationText: "name",

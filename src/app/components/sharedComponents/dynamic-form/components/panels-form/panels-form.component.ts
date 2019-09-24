@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormMainGroup, MaterialFormData } from '../../dynamic-form.interfaces';
+import { FormMainGroup, MaterialFormData, FormModel } from '../../dynamic-form.interfaces';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DynamicFormService } from '../../dynamic-form.service';
@@ -15,6 +15,7 @@ export class PanelsFormComponent implements OnInit {
   @Input() public mainGroups: FormMainGroup[];
   @Input() public form: FormGroup;
   @Input() public materialData: MaterialFormData;
+  @Input() public model: FormModel;
   constructor(public dynamicFormService: DynamicFormService) { }
 
   ngOnInit() {

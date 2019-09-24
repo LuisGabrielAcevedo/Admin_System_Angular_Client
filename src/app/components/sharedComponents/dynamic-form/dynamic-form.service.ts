@@ -6,12 +6,13 @@ import {
   FormMainGroup,
   FormLateralGroup,
   FormatFieldsResponse,
-  FormatFieldsOptions
+  FormModel
 } from "./dynamic-form.interfaces";
 import { DynamicFormValidator } from "./validate/dynamin-form-validator";
 import chunk from "lodash/chunk";
 import groupBy from "lodash/groupBy";
-// import cloneDeep from "lodash/cloneDeep";
+import cloneDeep from "lodash/cloneDeep";
+import get from "lodash/get";
 
 @Injectable()
 export class DynamicFormService {
@@ -38,15 +39,14 @@ export class DynamicFormService {
 
   public formatFields(
     fieldsConfig: FormField[],
+    form: FormGroup,
     columns?: number,
-    form?: FormGroup,
-    options?: FormatFieldsOptions
   ): FormatFieldsResponse {
     let mainGroupsFormatted: FormMainGroup[] = [];
     let order: number = 0;
     let groupIndexes: object = {};
     fieldsConfig.forEach(field => {
-      if (form && options && options.changeForm) {
+      if (form && field.key) {
         if (field.validators) {
           const formattedValidations: FormattedValidations = this.formatValidations(
             field.validators,
@@ -105,7 +105,6 @@ export class DynamicFormService {
     mainGroupsFormatted = this.buildColumns(mainGroupsFormatted, columns);
     return {
       mainGroupsFormatted,
-      form,
       groupIndexes
     };
   }
@@ -170,5 +169,19 @@ export class DynamicFormService {
       return fieldItem;
     });
     return chunk(fields, columns!);
+  }
+
+  public updateForm(fieldsConfig:FormField[], model: FormModel, form: FormGroup) {
+    const currentModel: FormModel = cloneDeep(model);
+    fieldsConfig.forEach(field => {
+      if (field.key) {
+        const value: any = get(
+          currentModel,
+          field.key,
+          field.defaultValue || null
+        );
+        form.controls[field.key].patchValue(value);
+      }
+    });
   }
 }

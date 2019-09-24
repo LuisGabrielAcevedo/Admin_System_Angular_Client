@@ -104,7 +104,6 @@ export interface FormResponse {
 }
 
 export interface FormatFieldsResponse {
-  form: FormGroup;
   mainGroupsFormatted: FormMainGroup[];
   groupIndexes: object;
 }

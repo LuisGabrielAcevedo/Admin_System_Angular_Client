@@ -9,4 +9,4 @@ import { CommonModule } from "@angular/common";
   imports: [CommonModule, FlexLayoutModule, DynamicFormSelectFieldModule],
   exports: [RowComponent]
 })
-export class DynamicFormRowModule {}
+export class DynamicFormRowModule { }

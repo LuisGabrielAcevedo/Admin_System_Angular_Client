@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormField, MaterialFormData } from '../../dynamic-form.interfaces';
+import { FormField, MaterialFormData, FormModel } from '../../dynamic-form.interfaces';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -11,6 +11,7 @@ export class RowComponent implements OnInit {
   @Input() public fields: FormField[];
   @Input() public form: FormGroup;
   @Input() public materialData: MaterialFormData;
+  @Input() public model: FormModel;
   public rowTitle: string = null;
   constructor() {
   }

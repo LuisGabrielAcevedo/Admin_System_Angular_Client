@@ -4,7 +4,6 @@ import {
   FormField,
   FormMainGroup,
   MaterialFormData,
-  FormFieldTypes,
   FormatFieldsResponse
 } from "./dynamic-form.interfaces";
 import get from "lodash/get";
@@ -48,15 +47,11 @@ export class FormComponent {
 
     const formatFieldsResponse: FormatFieldsResponse = this.dynamicFormService.formatFields(
       this.fieldsConfig,
-      this.columns,
       this.form,
-      {
-        changeForm: true
-      }
+      this.columns
     );
 
     mainGroupsFormatted = formatFieldsResponse.mainGroupsFormatted;
-    this.form = formatFieldsResponse.form;
     this.groupIndexes = formatFieldsResponse.groupIndexes;
 
     return mainGroupsFormatted;
@@ -67,12 +62,14 @@ export class FormComponent {
     if (currentModel[this.formatId])
       this.form.controls[this.formatId].patchValue(currentModel[this.formatId]);
     this.fieldsConfig.forEach(field => {
-      const value: any = get(
-        currentModel,
-        field.key,
-        field.defaultValue || null
-      );
-      this.form.controls[field.key].patchValue(value);
+      if (field.key) {
+        const value: any = get(
+          currentModel,
+          field.key,
+          field.defaultValue || null
+        );
+        this.form.controls[field.key].patchValue(value);
+      }
     });
   }
 
@@ -89,21 +86,13 @@ export class FormComponent {
   }
 
   protected updateModel(): void {
-    const fields: FormFieldTypes[] = [
-      FormFieldTypes.asyncAutocomplete,
-      FormFieldTypes.autocomplete
-    ];
-    this.fieldsConfig.forEach(field => {
-      if (field.component) {
-        const value =
-          fields.includes(field.component) &&
-          field.options &&
-          field.options.associationValue &&
-          this.form.value[field.key]
-            ? this.form.value[field.key][field.options.associationValue]
-            : this.form.value[field.key];
-        set(this.currentModel, field.key, value);
-      }
+    Object.keys(this.form.value).forEach(field => {
+      set(this.currentModel, field, this.form.value[field]
+        ? typeof this.form.value[field] === 'object'
+          ? this.form.value[field][this.formatId]
+          : this.form.value[field]
+        : null
+      );
     });
   }
   protected searchInvalidMainGroup() {
