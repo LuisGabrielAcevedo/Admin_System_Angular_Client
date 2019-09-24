@@ -14,8 +14,11 @@ export class BaseFieldComponent {
   @Input() public field: FormField;
   @Input() public form: FormGroup;
   @Input() public materialData: MaterialFormData;
-  @Input() public model: FormModel;
+  @Input() set model(model: FormModel) {
+    this.modelComponent = model;
+  }
   protected subscriptions: Subscription[] = [];
+  public modelComponent: FormModel;
   public options: Option[] = [];
   public loading = false;
   public compareFn: ((f1: any, f2: any) => boolean) | null = this
@@ -92,6 +95,6 @@ export class BaseFieldComponent {
 
   public required() {
     const control: AbstractControl = this.form.controls[this.field.key];
-    return control['errorMessages'] && control['errorMessages']['required'];
+    return control["errorMessages"] && control["errorMessages"]["required"];
   }
 }

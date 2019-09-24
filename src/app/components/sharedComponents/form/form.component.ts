@@ -18,8 +18,8 @@ export class FormComponent implements OnDestroy {
   @ViewChild("dynamicForm") public form: DynamicFormComponent;
   public subscriptions: Subscription[] = [];
   public materialData: MaterialFormData = {
-    appearance: "fill",
-    floatLabel: "always"
+    // appearance: "fill",
+    // floatLabel: "always"
   };
   public loading: boolean;
   public model: AxiosquentModel;
@@ -107,11 +107,11 @@ export class FormComponent implements OnDestroy {
       .subscribe(resp => this.goToTable());
   }
 
-  goToTable() {
+  public goToTable() {
     this.router.navigate([`/admin-system/${this.resource}`]);
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }

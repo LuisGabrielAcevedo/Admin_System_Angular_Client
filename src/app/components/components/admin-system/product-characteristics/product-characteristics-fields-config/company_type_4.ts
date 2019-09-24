@@ -21,6 +21,15 @@ const carSaleFields: FormField[] = [
       row: 1,
       flex: 50
     }
+  },
+  {
+    name: "Power",
+    key: "characteristics.power",
+    component: FormFieldTypes.textField,
+    flexConfig: {
+      row: 2,
+      flex: 50
+    }
   }
 ];
 

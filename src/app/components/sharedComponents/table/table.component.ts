@@ -11,9 +11,9 @@ import {
   ViewChildren,
   ViewChild,
   OnDestroy
-} from '@angular/core';
-import { Subscription } from 'rxjs';
-import { MatCheckbox } from '@angular/material/checkbox';
+} from "@angular/core";
+import { Subscription } from "rxjs";
+import { MatCheckbox } from "@angular/material/checkbox";
 import {
   TableHeader,
   TableButtonAction,
@@ -24,17 +24,17 @@ import {
   TableOutputItemData,
   TableActiveComponent,
   TableDialog
-} from './table.interfaces';
-import { TableService } from './table.service';
-import { MatDialog } from '@angular/material';
+} from "./table.interfaces";
+import { TableService } from "./table.service";
+import { MatDialog } from "@angular/material";
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  selector: "app-table",
+  templateUrl: "./table.component.html",
+  styleUrls: ["./table.component.css"]
 })
 export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
-  protected boxes: number[] = [1,2,3,4,5,6,7,8,9,10];
+  protected boxes: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   protected subscriptions: Subscription[] = [];
   protected openRows: number[] = [];
   protected itemsSelected: object[] = [];
@@ -45,12 +45,12 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
   };
   protected rowSubItemSelected: TableActiveComponent = {
     row: 0,
-    type: ''
+    type: ""
   };
   @Input() headers: TableHeader[];
   @Input() data: object[];
-  @Input() colors: string[] = ['#E3F2FD', '#64B5F6', '#304ffe'];
-  @Input() loadingType: string = 'BOX';
+  @Input() colors: string[] = ["#E3F2FD", "#64B5F6", "#304ffe"];
+  @Input() loadingType: string = "BOX";
   @Input() expand: boolean | null = null;
   @Input() index: boolean | null = null;
   @Input() multiSelect: boolean | null = null;
@@ -58,20 +58,19 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() rowActions: TableButtonAction[] = [];
   @Input() multiActions: TableButtonAction[] = [];
   @Input() addRedirect: string;
-  @Input() tablePagination: TablePagination;
+  @Input() pagination: TablePagination;
   @Output() search: EventEmitter<string> = new EventEmitter();
   @Output() changePage: EventEmitter<TablePagination> = new EventEmitter();
-  @Output() itemSelected: EventEmitter<TableOutputItemData> = new EventEmitter();
+  @Output() itemSelected: EventEmitter<
+    TableOutputItemData
+  > = new EventEmitter();
   @Output() reloadData: EventEmitter<any> = new EventEmitter();
-  @ViewChild('tableData') rows: ElementRef;
-  @ViewChildren('checkbox') checkboxes: QueryList<MatCheckbox>;
-  @ViewChild('mainCheckbox') mainCheckbox: MatCheckbox;
+  @ViewChild("tableData") rows: ElementRef;
+  @ViewChildren("checkbox") checkboxes: QueryList<MatCheckbox>;
+  @ViewChild("mainCheckbox") mainCheckbox: MatCheckbox;
 
-  constructor(
-    public tableService: TableService,
-    public dialog: MatDialog
-  ) {
-    this.addRedirect = '';
+  constructor(public tableService: TableService, public dialog: MatDialog) {
+    this.addRedirect = "";
   }
 
   ngAfterViewInit() {
@@ -111,18 +110,20 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   openRow(i: number) {
-    this.rows.nativeElement.children[i].style.border = `2px solid ${this.colors[2]}`;
+    this.rows.nativeElement.children[
+      i
+    ].style.border = `2px solid ${this.colors[2]}`;
     this.openRows.push(i);
   }
 
   closeRow(i: number) {
-    this.rows.nativeElement.children[i].style.border = '';
+    this.rows.nativeElement.children[i].style.border = "";
     this.openRows.splice(this.openRows.indexOf(i), 1);
   }
 
   closeAllRows() {
-    this.openRows.forEach((row) => {
-      this.rows.nativeElement.children[row].style.border = '';
+    this.openRows.forEach(row => {
+      this.rows.nativeElement.children[row].style.border = "";
     });
     this.openRows = [];
     this.resetSubItems();
@@ -134,16 +135,16 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
     this.resetModal();
     this.resetSubItems();
     if (this.checkedAll) {
-      this.checkboxes.forEach((checkbox) => {
+      this.checkboxes.forEach(checkbox => {
         checkbox.checked = false;
       });
       this.checkedAll = false;
     } else {
-      this.checkboxes.forEach((checkbox) => {
+      this.checkboxes.forEach(checkbox => {
         checkbox.checked = true;
       });
       this.checkedAll = true;
-      this.data.forEach((item) => {
+      this.data.forEach(item => {
         this.itemsSelected.push(item);
       });
     }
@@ -161,7 +162,10 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
       this.checkedAll = true;
       this.mainCheckbox.indeterminate = false;
       this.mainCheckbox.checked = true;
-    } else if (this.itemsSelected.length > 0 && this.itemsSelected.length < this.data.length) {
+    } else if (
+      this.itemsSelected.length > 0 &&
+      this.itemsSelected.length < this.data.length
+    ) {
       this.mainCheckbox.indeterminate = true;
     } else {
       this.checkedAll = false;
@@ -175,7 +179,7 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
     this.itemsSelected = [];
     this.mainCheckbox.indeterminate = false;
     this.mainCheckbox.checked = false;
-    this.checkboxes.forEach((checkbox) => {
+    this.checkboxes.forEach(checkbox => {
       checkbox.checked = false;
     });
   }
@@ -191,7 +195,7 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
   resetSubItems() {
     this.rowSubItemSelected = {
       row: 0,
-      type: ''
+      type: ""
     };
   }
 
@@ -212,14 +216,14 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   openDialog(data: TableDialog) {
     const dialogRef = this.dialog.open(data.component, {
-      width: data.width ? data.width : '300px',
-      height: data.height ? data.height : '300px',
+      width: data.width ? data.width : "300px",
+      height: data.height ? data.height : "300px",
       data: data,
       autoFocus: false,
-      panelClass: 'custom-dialog-container'
+      panelClass: "custom-dialog-container"
     });
 
-    dialogRef.afterClosed().subscribe((resp) => {
+    dialogRef.afterClosed().subscribe(resp => {
       if (resp) {
         this.reloadData.emit();
         this.unSelectItems();

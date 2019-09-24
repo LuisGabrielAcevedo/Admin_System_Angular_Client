@@ -1,20 +1,27 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { TablePagination } from '../table.interfaces';
-import {PageEvent} from '@angular/material';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges
+} from "@angular/core";
+import { TablePagination } from "../table.interfaces";
+import { PageEvent } from "@angular/material";
 
 @Component({
-  selector: 'app-table-paginator',
-  templateUrl: './table-paginator.component.html',
-  styleUrls: ['./table-paginator.component.css']
+  selector: "app-table-paginator",
+  templateUrl: "./table-paginator.component.html",
+  styleUrls: ["./table-paginator.component.css"]
 })
 export class TablePaginatorComponent implements OnInit, OnChanges {
   @Input() tablePagination: TablePagination;
   @Output() changePage: EventEmitter<TablePagination> = new EventEmitter();
   pagination: TablePagination;
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.pagination = this.tablePagination;
@@ -29,5 +36,4 @@ export class TablePaginatorComponent implements OnInit, OnChanges {
     };
     this.changePage.emit(paginationToChange);
   }
-
 }

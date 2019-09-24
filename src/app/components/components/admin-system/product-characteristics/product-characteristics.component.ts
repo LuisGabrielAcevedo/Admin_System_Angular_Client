@@ -21,8 +21,10 @@ export class ProductCharacteristicsComponent implements OnInit, OnDestroy {
   @Input() public field: FormField;
   @Input() public form: FormGroup;
   @Input() public materialData: MaterialFormData;
-  @Input() model: FormModel;
-  public characteristicsForm: FormGroup;
+  @Input() set model(model: FormModel) {
+    this.currentModel = model;
+  }
+  public currentModel: FormModel;
   public rowsFormatted: FormMainGroup[] = [];
   public fieldsConfig: FormField[] = [];
   constructor(
@@ -55,16 +57,23 @@ export class ProductCharacteristicsComponent implements OnInit, OnDestroy {
       `./product-characteristics-fields-config/${value}`
     );
     this.fieldsConfig = fieldsConfigModule.default;
-
     const formatFieldsResponse: FormatFieldsResponse = this.dynamicFormService.formatFields(
       this.fieldsConfig,
       this.form
     );
+    if (this.currentModel) this.updateForm();
     this.rowsFormatted = formatFieldsResponse.mainGroupsFormatted;
-    this.dynamicFormService.updateForm(this.fieldsConfig, this.model, this.form);
   }
 
-  ngOnDestroy() {
+  public updateForm() {
+    this.dynamicFormService.updateForm(
+      this.fieldsConfig,
+      this.currentModel,
+      this.form
+    );
+  }
+
+  public ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 }

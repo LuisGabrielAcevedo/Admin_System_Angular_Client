@@ -61,16 +61,11 @@ export class FormComponent {
     const currentModel: FormModel = cloneDeep(model);
     if (currentModel[this.formatId])
       this.form.controls[this.formatId].patchValue(currentModel[this.formatId]);
-    this.fieldsConfig.forEach(field => {
-      if (field.key) {
-        const value: any = get(
-          currentModel,
-          field.key,
-          field.defaultValue || null
-        );
-        this.form.controls[field.key].patchValue(value);
-      }
-    });
+    this.dynamicFormService.updateForm(
+      this.fieldsConfig,
+      currentModel,
+      this.form
+    );
   }
 
   protected validateForm(formGroup: FormGroup) {
@@ -87,11 +82,14 @@ export class FormComponent {
 
   protected updateModel(): void {
     Object.keys(this.form.value).forEach(field => {
-      set(this.currentModel, field, this.form.value[field]
-        ? typeof this.form.value[field] === 'object'
-          ? this.form.value[field][this.formatId]
-          : this.form.value[field]
-        : null
+      set(
+        this.currentModel,
+        field,
+        this.form.value[field]
+          ? typeof this.form.value[field] === "object"
+            ? this.form.value[field][this.formatId]
+            : this.form.value[field]
+          : null
       );
     });
   }

@@ -1,17 +1,18 @@
 <div fxLayout="row" fxLayoutAlign="space-between center" class="main-header">
-    <h4 class="main-title primary">{{title | translate}}</h4>
-    <div fxLayout="row" fxLayoutAlign="centr center">
-        <button mat-mini-fab color="primary" (click)="goToForm()">
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
+  <h4 class="main-title primary">{{ title | translate }}</h4>
+  <div fxLayout="row" fxLayoutAlign="centr center">
+    <button mat-mini-fab color="primary" (click)="goToForm()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 </div>
 <div>
-    <app-table
+  <app-table
     [headers]="headers"
     [data]="data"
     [loading]="loading"
     [rowActions]="rowActions"
     (reloadData)="loadData()"
-    ></app-table>
+    [pagination]="pagination"
+  ></app-table>
 </div>
