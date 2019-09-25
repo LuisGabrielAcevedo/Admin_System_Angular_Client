@@ -1,5 +1,5 @@
-import { Base } from './base-model/base';
+import { AdminSystemBaseModel } from "./base-model/base";
 
-export default class ProductType extends Base {
-    public resource = 'product-types';
+export default class ProductType extends AdminSystemBaseModel {
+  public resource = "product-types";
 }

@@ -1,5 +1,5 @@
-import { Base } from './base-model/base';
+import { AdminSystemBaseModel } from "./base-model/base";
 
-export default class Country extends Base {
-    public resource = 'countries';
+export default class Country extends AdminSystemBaseModel {
+  public resource = "countries";
 }

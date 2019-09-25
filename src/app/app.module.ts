@@ -1,25 +1,23 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material/material.module';
-import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { ServiceModule } from './services/http.service.module';
-import { AppRoutingModule } from './app.routing.module';
-import { AppStoreModule } from './store/store.module';
-import { AdminSystemInterceptor } from './configurations/http.interceptor';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { AppComponent } from "./app.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MaterialModule } from "./material/material.module";
+import { HttpClientModule, HttpClient } from "@angular/common/http";
+import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { ServiceModule } from "./services/http.service.module";
+import { AppRoutingModule } from "./app.routing.module";
+import { AppStoreModule } from "./store/store.module";
+import { LoadingModule } from "./components/sharedComponents/loading/loading.module";
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     FlexLayoutModule,
@@ -29,6 +27,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ServiceModule,
     AppRoutingModule,
     AppStoreModule,
+    LoadingModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -37,11 +36,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AdminSystemInterceptor,
-    multi: true
-  }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

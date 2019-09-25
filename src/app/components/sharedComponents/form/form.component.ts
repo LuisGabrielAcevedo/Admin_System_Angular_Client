@@ -35,8 +35,8 @@ export class FormComponent implements OnDestroy {
         this.resource = params.get("resource");
         this.id = params.get("id");
         this.title = this.id
-          ? `${this.resource}.edit.title`
-          : `${this.resource}.new.title`;
+          ? `${this.resource.replace("-", "_")}.edit.title`
+          : `${this.resource.replace("-", "_")}.new.title`;
         this.buttonLabel = this.id ? "edit" : "save";
         this.initComponent();
       })
@@ -92,7 +92,8 @@ export class FormComponent implements OnDestroy {
       brands: "company,vendors",
       productcategories: "company",
       producttypes: "company",
-      products: "company.application,category,type,brand,vendor"
+      products: "company.application,category,type,brand,vendor",
+      rooms: "company"
     };
     return populateData[resource];
   }

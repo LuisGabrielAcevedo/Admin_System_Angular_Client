@@ -39,7 +39,7 @@ export class ListComponent implements OnDestroy {
         )
         .subscribe(resource => {
           this.resource = resource;
-          this.title = `${this.resource}.list.title`;
+          this.title = `${this.resource.replace("-", "_")}.list.title`;
           this.initList();
         })
     );
@@ -95,7 +95,8 @@ export class ListComponent implements OnDestroy {
       vendors: "company",
       brands: "company",
       productcategories: "company",
-      producttypes: "company"
+      producttypes: "company",
+      rooms: "company"
     };
     return populateData[resource];
   }

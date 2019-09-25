@@ -244,7 +244,7 @@ export class Builder implements QueryMethods {
     this.query.setPaginationSpec(new PaginationSpec());
   }
 
-  private getHttpClient(): HttpClient {
+  public getHttpClient(): HttpClient {
     return this.httpClient;
   }
 }

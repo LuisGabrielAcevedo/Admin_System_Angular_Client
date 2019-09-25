@@ -1,153 +1,166 @@
 {
-    "applications": {
-        "edit": {
-            "title": "Edit application"
-        },
-        "new": {
-            "title": "New application"
-        },
-        "list": {
-            "title": "Applications"
-        },
-        "plural_name": "Applications",
-        "singular_name": "Applications"
+  "applications": {
+    "edit": {
+      "title": "Edit application"
     },
-    "users": {
-        "edit": {
-            "title": "Edit user"
-        },
-        "new": {
-            "title": "New user"
-        },
-        "list": {
-            "title": "Users"
-        },
-        "plural_name": "Users",
-        "singular_name": "User"
+    "new": {
+      "title": "New application"
     },
-    "companies": {
-        "edit": {
-            "title": "Edit company"
-        },
-        "new": {
-            "title": "New company"
-        },
-        "list": {
-            "title": "Companies"
-        },
-        "plural_name": "Companies",
-        "singular_name": "Company"
+    "list": {
+      "title": "Applications"
     },
-    "countries": {
-        "edit": {
-            "title": "Edit country"
-        },
-        "new": {
-            "title": "New country"
-        },
-        "list": {
-            "title": "Countries"
-        },
-        "plural_name": "Countries",
-        "singular_name": "Country"
+    "plural_name": "Applications",
+    "singular_name": "Applications"
+  },
+  "users": {
+    "edit": {
+      "title": "Edit user"
     },
-    "stores": {
-        "edit": {
-            "title": "Edit store"
-        },
-        "new": {
-            "title": "New store"
-        },
-        "list": {
-            "title": "Stores"
-        },
-        "plural_name": "Stores",
-        "singular_name": "Store"
+    "new": {
+      "title": "New user"
     },
-    "states": {
-        "edit": {
-            "title": "Edit state"
-        },
-        "new": {
-            "title": "New state"
-        },
-        "list": {
-            "title": "States"
-        },
-        "plural_name": "States",
-        "singular_name": "State"
+    "list": {
+      "title": "Users"
     },
-    "products": {
-        "edit": {
-            "title": "Edit product"
-        },
-        "new": {
-            "title": "New product"
-        },
-        "list": {
-            "title": "Products"
-        },
-        "plural_name": "Products",
-        "singular_name": "Product"
+    "plural_name": "Users",
+    "singular_name": "User"
+  },
+  "companies": {
+    "edit": {
+      "title": "Edit company"
     },
-    "product_types": {
-        "edit": {
-            "title": "Edit product type"
-        },
-        "new": {
-            "title": "New product type"
-        },
-        "list": {
-            "title": "Product types"
-        },
-        "plural_name": "Products types",
-        "singular_name": "Product type"
+    "new": {
+      "title": "New company"
     },
-    "product_categories": {
-        "edit": {
-            "title": "Edit product category"
-        },
-        "new": {
-            "title": "New product category"
-        },
-        "list": {
-            "title": "Product categories"
-        },
-        "plural_name": "Products categories",
-        "singular_name": "Product category"
+    "list": {
+      "title": "Companies"
     },
-    "brands": {
-        "edit": {
-            "title": "Edit brand"
-        },
-        "new": {
-            "title": "New brand"
-        },
-        "list": {
-            "title": "Brands"
-        },
-        "plural_name": "Brands",
-        "singular_name": "Brand"
+    "plural_name": "Companies",
+    "singular_name": "Company"
+  },
+  "countries": {
+    "edit": {
+      "title": "Edit country"
     },
-    "vendors": {
-        "edit": {
-            "title": "Edit vendor"
-        },
-        "new": {
-            "title": "New vendor"
-        },
-        "list": {
-            "title": "Vendors"
-        },
-        "plural_name": "Vendors",
-        "singular_name": "Vendor"
+    "new": {
+      "title": "New country"
     },
-    "save":"Save",
-    "edit":"Edit",
-    "cancle":"Cancel",
-    "examples":"Examples",
-    "admin_system": {
-        "plural_name": "Admin system"
+    "list": {
+      "title": "Countries"
     },
-    "inventoy": "Inventory"
+    "plural_name": "Countries",
+    "singular_name": "Country"
+  },
+  "stores": {
+    "edit": {
+      "title": "Edit store"
+    },
+    "new": {
+      "title": "New store"
+    },
+    "list": {
+      "title": "Stores"
+    },
+    "plural_name": "Stores",
+    "singular_name": "Store"
+  },
+  "states": {
+    "edit": {
+      "title": "Edit state"
+    },
+    "new": {
+      "title": "New state"
+    },
+    "list": {
+      "title": "States"
+    },
+    "plural_name": "States",
+    "singular_name": "State"
+  },
+  "products": {
+    "edit": {
+      "title": "Edit product"
+    },
+    "new": {
+      "title": "New product"
+    },
+    "list": {
+      "title": "Products"
+    },
+    "plural_name": "Products",
+    "singular_name": "Product"
+  },
+  "product_types": {
+    "edit": {
+      "title": "Edit product type"
+    },
+    "new": {
+      "title": "New product type"
+    },
+    "list": {
+      "title": "Product types"
+    },
+    "plural_name": "Products types",
+    "singular_name": "Product type"
+  },
+  "product_categories": {
+    "edit": {
+      "title": "Edit product category"
+    },
+    "new": {
+      "title": "New product category"
+    },
+    "list": {
+      "title": "Product categories"
+    },
+    "plural_name": "Products categories",
+    "singular_name": "Product category"
+  },
+  "brands": {
+    "edit": {
+      "title": "Edit brand"
+    },
+    "new": {
+      "title": "New brand"
+    },
+    "list": {
+      "title": "Brands"
+    },
+    "plural_name": "Brands",
+    "singular_name": "Brand"
+  },
+  "vendors": {
+    "edit": {
+      "title": "Edit vendor"
+    },
+    "new": {
+      "title": "New vendor"
+    },
+    "list": {
+      "title": "Vendors"
+    },
+    "plural_name": "Vendors",
+    "singular_name": "Vendor"
+  },
+  "rooms": {
+    "edit": {
+      "title": "Edit room"
+    },
+    "new": {
+      "title": "New room"
+    },
+    "list": {
+      "title": "Rooms"
+    },
+    "plural_name": "Rooms",
+    "singular_name": "Room"
+  },
+  "save": "Save",
+  "edit": "Edit",
+  "cancle": "Cancel",
+  "examples": "Examples",
+  "admin_system": {
+    "plural_name": "Admin system"
+  },
+  "inventoy": "Inventory"
 }

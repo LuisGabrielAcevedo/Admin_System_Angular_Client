@@ -1,5 +1,5 @@
-import { Base } from './base-model/base';
+import { AdminSystemBaseModel } from "./base-model/base";
 
-export default class User extends Base {
-    public resource = 'users';
+export default class User extends AdminSystemBaseModel {
+  public resource = "users";
 }
