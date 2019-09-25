@@ -11,7 +11,6 @@ import Brand from "src/app/models/admin-system/brands";
 import Vendor from "src/app/models/admin-system/vendors";
 import AdminSystem from "src/app/models/admin-system/admin-system";
 import { ProductCharacteristicsComponent } from "src/app/components/components/admin-system/product-characteristics/product-characteristics.component";
-import Application from 'src/app/models/admin-system/applications';
 
 const productFields: FormField[] = [
   {
