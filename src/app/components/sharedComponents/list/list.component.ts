@@ -70,11 +70,11 @@ export class ListComponent implements OnDestroy {
     this.loading = true;
     modelClass.findRx(1, 10).subscribe(resp => {
       this.pagination = {
-        currentPage: resp.data.currentPage,
-        itemsPerPage: resp.data.itemsPerPage,
+        currentPage: resp.currentPage,
+        itemsPerPage: resp.itemsPerPage,
         totalItems: resp.data.totalItems
       };
-      this.data = resp.data.data;
+      this.data = resp.data;
       this.loading = false;
     });
   }

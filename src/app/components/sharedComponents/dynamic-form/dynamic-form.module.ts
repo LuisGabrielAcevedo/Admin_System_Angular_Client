@@ -38,6 +38,8 @@ import { PanelsFormComponent } from "./components/panels-form/panels-form.compon
 import { MatExpansionModule } from "@angular/material/expansion";
 import { DynamicFormSelectFieldModule } from "./components/select-field/select-field.module";
 import { DynamicFormRowModule } from "./components/row/row.module";
+import { StringListComponent } from './fields/string-list/string-list.component';
+import { StringListModule } from './fields/string-list/string-list.module';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,8 @@ import { DynamicFormRowModule } from "./components/row/row.module";
     MatTabsModule,
     MatExpansionModule,
     DynamicFormSelectFieldModule,
-    DynamicFormRowModule
+    DynamicFormRowModule,
+    StringListModule
   ],
   entryComponents: [
     AsyncAutocompleteComponent,
@@ -83,7 +86,8 @@ import { DynamicFormRowModule } from "./components/row/row.module";
     SelectComponent,
     SwitchComponent,
     TextFieldComponent,
-    TextareaComponent
+    TextareaComponent,
+    StringListComponent
   ],
   exports: [DynamicFormComponent],
   providers: [DynamicFormService]

@@ -10,7 +10,7 @@ import { FormModel } from "../../dynamic-form.interfaces";
 export class TextFieldComponent extends BaseFieldComponent
   implements OnInit, OnDestroy {
   ngOnInit() {
-    this.addSubscriptions();
+    this.initComponent();
   }
   ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());

@@ -27,7 +27,8 @@ export enum FormFieldTypes {
   image = "ImageComponent",
   datepicker = "DatepickerComponent",
   numericField = "NumericFieldComponent",
-  passwordField = "PasswordFieldComponent"
+  passwordField = "PasswordFieldComponent",
+  stringList = 'StringListComponent'
 }
 
 export interface MaterialFormData {

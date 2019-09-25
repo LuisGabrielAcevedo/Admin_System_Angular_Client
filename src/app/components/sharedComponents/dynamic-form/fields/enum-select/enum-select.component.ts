@@ -8,7 +8,7 @@ import { BaseFieldComponent } from '../base-field.mixin';
 })
 export class EnumSelectComponent extends BaseFieldComponent implements OnInit {
   ngOnInit() {
-    this.addSubscriptions();
+    this.initComponent();
     this.loadFieldOptions().subscribe(data => this.options = data);
   }
   ngOnDestroy() {

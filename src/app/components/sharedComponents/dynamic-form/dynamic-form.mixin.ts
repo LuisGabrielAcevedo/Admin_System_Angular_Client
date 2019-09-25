@@ -86,7 +86,7 @@ export class FormComponent {
         this.currentModel,
         field,
         this.form.value[field]
-          ? typeof this.form.value[field] === "object"
+          ? !Array.isArray(this.form.value[field]) && typeof this.form.value[field] === "object"
             ? this.form.value[field][this.formatId]
             : this.form.value[field]
           : null

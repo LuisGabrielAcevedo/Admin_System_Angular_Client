@@ -9,7 +9,7 @@ import { BaseFieldComponent } from '../base-field.mixin';
 export class PasswordFieldComponent extends BaseFieldComponent implements OnInit, OnDestroy {
   public hide: boolean = true;
   ngOnInit() {
-    this.addSubscriptions();
+    this.initComponent();
   }
   ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());

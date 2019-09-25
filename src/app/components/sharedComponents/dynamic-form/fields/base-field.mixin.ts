@@ -38,28 +38,30 @@ export class BaseFieldComponent {
       : "";
   public multiple = () => this.field.options && this.field.options.multiple;
   public dependValue = () => this.field.options && this.field.options.depend;
+  public hasDisableCondition = () => this.field.options && this.field.options.disableCondition;
+  public hasVisibleCondition = () => this.field.options && this.field.options.visibleCondition;
 
   public compareByValue(f1: any, f2: any) {
     return f1 && f2 && f1 === f2;
   }
 
-  public addSubscriptions() {
-    if (
-      this.field.options &&
-      (this.field.options.visibleCondition ||
-        this.field.options.disableCondition)
-    ) {
+  public initComponent() {
+    if (this.field.options && this.field.options.disableCondition) {
       this.subscriptions.push(
-        this.form.valueChanges.pipe(debounceTime(200)).subscribe(formValue => {
-          const value = cloneDeep(formValue);
-          if (this.field.options.disableCondition) {
-            this.disable(value);
-          }
-          if (this.field.options.visibleCondition) {
-            this.visible(value);
-          }
-        })
+        this.form.valueChanges
+        .pipe(debounceTime(200))
+        .subscribe(value => this.disable(value))
       );
+      this.disable(this.form.value);
+    }
+
+    if (this.field.options && this.field.options.visibleCondition) {
+      this.subscriptions.push(
+        this.form.valueChanges
+        .pipe(debounceTime(200))
+        .subscribe(value => this.visible(value))
+      );
+      this.visible(this.form.value);
     }
   }
 
@@ -67,10 +69,6 @@ export class BaseFieldComponent {
     return this.field.options && this.field.options.fieldOptions
       ? this.field.options.fieldOptions(value)
       : of([]);
-  }
-
-  public loadFieldOptionsPromise(value?: any): Promise<any> {
-    return this.loadFieldOptions(value).toPromise();
   }
 
   public visible(currentModel: FormModel): void {

@@ -17,7 +17,7 @@ export class AsyncAutocompleteComponent extends BaseFieldComponent implements On
   }
 
   ngOnInit() {
-    this.addSubscriptions();
+    this.initComponent();
     this.filteredOptions = this.form.controls[this.field.key].valueChanges.pipe(
       debounceTime(500),
       filter(value => typeof value === 'string'),

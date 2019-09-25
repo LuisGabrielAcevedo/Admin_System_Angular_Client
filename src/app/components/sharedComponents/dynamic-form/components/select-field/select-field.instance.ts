@@ -29,6 +29,7 @@ import { SelectComponent } from "../../fields/select/select.component";
 import { SwitchComponent } from "../../fields/switch/switch.component";
 import { TextareaComponent } from "../../fields/textarea/textarea.component";
 import { FormGroup } from "@angular/forms";
+import { StringListComponent } from '../../fields/string-list/string-list.component';
 
 @Component({
   selector: "app-select-field",
@@ -110,7 +111,8 @@ export class SelectFieldComponent implements OnInit, OnChanges {
       [FormFieldTypes.select]: SelectComponent,
       [FormFieldTypes.switch]: SwitchComponent,
       [FormFieldTypes.textField]: TextFieldComponent,
-      [FormFieldTypes.textarea]: TextareaComponent
+      [FormFieldTypes.textarea]: TextareaComponent,
+      [FormFieldTypes.stringList]: StringListComponent
     };
   }
 

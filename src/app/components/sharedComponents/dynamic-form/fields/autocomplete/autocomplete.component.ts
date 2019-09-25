@@ -18,7 +18,7 @@ export class AutocompleteComponent extends BaseFieldComponent
   }
 
   ngOnInit() {
-    this.addSubscriptions();
+    this.initComponent();
     if (this.dependValue()) {
       this.subscriptions.push(
         this.form.controls[this.field.options.depend].valueChanges

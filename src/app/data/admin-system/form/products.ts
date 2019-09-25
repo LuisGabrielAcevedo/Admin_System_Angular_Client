@@ -26,29 +26,10 @@ const productFields: FormField[] = [
     validators: [DynamicFormValidators.required()],
     options: {
       placeholder: "Select a company",
+      disableCondition: (arg) => arg._id,
       fieldOptions: arg =>
         Company.option("search", arg)
           .option("populate", "application")
-          .findRx()
-          .pipe(map(resp => resp.data)),
-      associationText: "name",
-      associationValue: "_id"
-    }
-  },
-  {
-    name: "Application",
-    key: "application",
-    component: FormFieldTypes.asyncAutocomplete,
-    mainGroup: "App info",
-    flexConfig: {
-      row: 2,
-      flex: 100
-    },
-    validators: [DynamicFormValidators.required()],
-    options: {
-      placeholder: "Select an application",
-      fieldOptions: arg =>
-        Application.option("search", arg)
           .findRx()
           .pipe(map(resp => resp.data)),
       associationText: "name",
@@ -93,8 +74,8 @@ const productFields: FormField[] = [
     }
   },
   {
-    name: "Active Product",
-    key: "active",
+    name: "Require inventory",
+    key: "requireInventory",
     component: FormFieldTypes.switch,
     mainGroup: "Info",
     flexConfig: {
@@ -103,12 +84,36 @@ const productFields: FormField[] = [
     }
   },
   {
-    name: "Online sale",
-    key: "onlineSale",
+    name: "Require inventory by boxes",
+    key: "requireInventoryByBoxes",
     component: FormFieldTypes.switch,
     mainGroup: "Info",
     flexConfig: {
       row: 2,
+      flex: 25
+    },
+    options: {
+      visibleCondition: (arg) => arg.requireInventory
+    }
+  },
+  {
+    name: "Active product",
+    key: "isActive",
+    component: FormFieldTypes.switch,
+    defaultValue: true,
+    mainGroup: "Info",
+    flexConfig: {
+      row: 3,
+      flex: 25
+    }
+  },
+  {
+    name: "Online sale",
+    key: "isOnlineSale",
+    component: FormFieldTypes.switch,
+    mainGroup: "Info",
+    flexConfig: {
+      row: 3,
       flex: 25
     }
   },
@@ -118,7 +123,7 @@ const productFields: FormField[] = [
     component: FormFieldTypes.textarea,
     mainGroup: "Info",
     flexConfig: {
-      row: 3,
+      row: 4,
       flex: 100
     }
   },
@@ -128,7 +133,7 @@ const productFields: FormField[] = [
     component: FormFieldTypes.textarea,
     mainGroup: "Info",
     flexConfig: {
-      row: 4,
+      row: 5,
       flex: 100
     }
   },
@@ -147,7 +152,7 @@ const productFields: FormField[] = [
       depend: "company"
     },
     flexConfig: {
-      row: 5,
+      row: 6,
       flex: 50
     }
   },
@@ -166,7 +171,7 @@ const productFields: FormField[] = [
       depend: "company"
     },
     flexConfig: {
-      row: 5,
+      row: 6,
       flex: 50
     }
   },
@@ -185,7 +190,7 @@ const productFields: FormField[] = [
       depend: "company"
     },
     flexConfig: {
-      row: 6,
+      row: 7,
       flex: 50
     }
   },
@@ -204,7 +209,7 @@ const productFields: FormField[] = [
       depend: "company"
     },
     flexConfig: {
-      row: 6,
+      row: 7,
       flex: 50
     }
   },

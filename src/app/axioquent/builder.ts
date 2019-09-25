@@ -41,9 +41,7 @@ export class Builder implements QueryMethods {
       const resp: HttpClientResponse = await this.getHttpClient().get(
         this.query.toString()
       );
-      const data: any = {
-        data: resp.getData()
-      };
+      let data = resp.getData();
       if (resp.getPagination()) {
         data.pagination = resp.getPagination();
       }

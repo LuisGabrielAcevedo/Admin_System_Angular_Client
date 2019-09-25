@@ -8,7 +8,7 @@ import { BaseFieldComponent } from '../base-field.mixin';
 })
 export class DatepickerComponent extends BaseFieldComponent implements OnInit {
   ngOnInit() {
-    this.addSubscriptions();
+    this.initComponent();
   }
   ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());

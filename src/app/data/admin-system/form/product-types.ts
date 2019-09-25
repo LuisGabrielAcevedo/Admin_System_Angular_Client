@@ -34,24 +34,7 @@ const productTypeFields: FormField[] = [
         validators: [
             DynamicFormValidators.required()
         ]
-    },
-    {
-        name: 'Api product type',
-        key: 'apiProductType',
-        component: FormFieldTypes.select,
-        validators: [
-            DynamicFormValidators.required()
-        ],
-        options: {
-            fieldOptions: () => AdminSystem.setUrl('api-product-types').findRx().pipe(map(resp => resp.data)),
-            associationValue: '_id',
-            associationText: 'name'
-        },
-        flexConfig: {
-            row: 2,
-            flex: 50
-        }
-    },
+    }
 ];
 
 export default productTypeFields;

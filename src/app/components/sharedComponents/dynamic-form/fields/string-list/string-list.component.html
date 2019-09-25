@@ -1,0 +1,27 @@
+<div fxLayout="row" fxLayout.lt-sm="column">
+  <div fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50">
+    <div fxLayout="row" style="margin-right: 10px;">
+      <mat-form-field appearance="{{appearance()}}" [floatLabel]="floatLabel()">
+        <mat-label>{{label()}}<span class="form-required" *ngIf="required()">*</span></mat-label>
+        <input type="text" matInput placeholder="{{placeholder()}}" [disableControl]="disableValue" [formControl]="item">
+        <mat-error *ngIf="validateControl()">{{errorMessage()}}</mat-error>
+      </mat-form-field>
+      <button mat-icon-button color="primary" [disabled]="!item.value || disableValue" (click)="addItem()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div fxFlex>
+    <mat-card>
+      <!-- <div fxLayout="row" fxLayoutAlign="center center" style="height: 50px">
+        <h4>{{field.name}}</h4>
+      </div> -->
+      <div fxLayout="row" fxLayoutAlign="space-between center" style="height: 40px;" *ngFor="let name of form.controls[this.key()].value; index as i">
+        <p>{{name}}</p>
+        <button mat-icon-button color="warn" [disabled]="disableValue" (click)="removeItem(name)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</div>

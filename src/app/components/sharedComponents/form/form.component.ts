@@ -19,7 +19,7 @@ export class FormComponent implements OnDestroy {
   public subscriptions: Subscription[] = [];
   public materialData: MaterialFormData = {
     // appearance: "fill",
-    // floatLabel: "always"
+    floatLabel: "always"
   };
   public loading: boolean;
   public model: AxiosquentModel;
@@ -61,7 +61,7 @@ export class FormComponent implements OnDestroy {
       .option("populate", this.with())
       .findByIdRx(this.id)
       .subscribe(resp => {
-        this.model = resp;
+        this.model = resp.data;
         this.loading = false;
       });
   }
