@@ -1,0 +1,21 @@
+<div class="cart-settings-sidebar">
+  <div fxLayout="column" fxLayoutAlign="start center" style="height: 100%">
+    <div
+      class="cart-settings-sidebar-item"
+      *ngFor="let item of items; index as i"
+      (click)="changeValue(i)"
+      [ngStyle]="style(i)"
+    >
+      <mat-icon class="cart-settins-sidebar-icon">{{ item.icon }}</mat-icon>
+    </div>
+  </div>
+</div>
+
+<div class="cart-settings-container">
+  <app-cart-checkout *ngIf="value === 3"></app-cart-checkout>
+  <app-cart-customers-list *ngIf="value === 2"></app-cart-customers-list>
+  <app-cart-favorite-products-list
+    *ngIf="value === 1"
+  ></app-cart-favorite-products-list>
+  <app-cart-products-list *ngIf="value === 0"></app-cart-products-list>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TableGalleryConfig } from '../table.interfaces';
+import { DynamicTableGalleryConfig } from '../table.interfaces';
 import { TableService } from '../table.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class TableGalleryComponent implements OnInit {
   @Input() field: string | string[];
   @Input() item: object;
   @Input() observable: (...arg: any[]) => Observable<any>;
-  @Input() galleryConfig: TableGalleryConfig;
+  @Input() galleryConfig: DynamicTableGalleryConfig;
   public galleryLoading: boolean = null;
   public galleryList: object[] = null;
   constructor(

@@ -1,15 +1,15 @@
-import { TableHeader } from 'src/app/components/sharedComponents/table/table.interfaces';
+import { DynamicTableHeader, DynamicTableComponentType } from 'src/app/components/sharedComponents/table/table.interfaces';
 
-export const productCategoryHeaders: TableHeader[] = [
+export const productCategoryHeaders: DynamicTableHeader[] = [
     {
         label: 'Empresa',
-        value: 'company.name',
-        type: 'TableTextComponent'
+        key: 'company.name',
+        component: DynamicTableComponentType.text
     },
     {
         label: 'Nombre',
-        value: 'name',
-        type: 'TableTextComponent'
+        key: 'name',
+        component: DynamicTableComponentType.text
     }
 ];
 

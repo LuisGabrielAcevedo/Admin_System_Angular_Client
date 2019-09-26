@@ -1,6 +1,6 @@
 import { Type } from '@angular/core';
-import { TableContainerComponentData } from '../table.interfaces';
+import { DynamicTableContainerComponentData } from '../table.interfaces';
 
 export class ComponentItem {
-    constructor(public component: Type<any>, public data: TableContainerComponentData) { }
+    constructor(public component: Type<any>, public data: DynamicTableContainerComponentData) { }
 }

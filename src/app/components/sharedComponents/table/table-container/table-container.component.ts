@@ -2,7 +2,7 @@ import {
   Component,
   OnInit, Input, ViewChild, ComponentFactoryResolver, OnChanges, SimpleChanges, SimpleChange, Output, EventEmitter
 } from '@angular/core';
-import { TableContainerComponentData, TableContainerComponentType, TableOutputItemData } from '../table.interfaces';
+import { DynamicTableContainerComponentData, DynamicTableComponentType } from '../table.interfaces';
 import { TableDirective } from './table-container.directive';
 import { ComponentItem } from './table-container.component.item';
 import { TableTextComponent } from '../table-text/table-text.component';
@@ -19,8 +19,8 @@ import { TableSecondTableComponent } from '../table-second-table/table-second-ta
 })
 export class TableContainerComponent implements OnInit, OnChanges {
   @ViewChild(TableDirective) adHost: TableDirective;
-  @Input() componentType: TableContainerComponentType;
-  @Input() componentData: TableContainerComponentData;
+  @Input() componentType: DynamicTableComponentType;
+  @Input() componentData: DynamicTableContainerComponentData;
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
@@ -37,10 +37,10 @@ export class TableContainerComponent implements OnInit, OnChanges {
 
   loadComponent() {
     switch (this.componentType) {
-      case TableContainerComponentType.Search: {
+      case DynamicTableComponentType.search: {
         break;
       }
-      case TableContainerComponentType.Button: {
+      case DynamicTableComponentType.button: {
         const tableRowItem = new ComponentItem(TableButtonComponent, this.componentData);
         const componentInstance = this.generateInstance<TableButtonComponent>(tableRowItem);
         if (tableRowItem.data) {
@@ -51,7 +51,7 @@ export class TableContainerComponent implements OnInit, OnChanges {
         }
         break;
       }
-      case TableContainerComponentType.Text: {
+      case DynamicTableComponentType.text: {
         const tableRowItem = new ComponentItem(TableTextComponent, this.componentData);
         const componentInstance = this.generateInstance<TableTextComponent>(tableRowItem);
         if (tableRowItem.data) {
@@ -60,7 +60,7 @@ export class TableContainerComponent implements OnInit, OnChanges {
         }
         break;
       }
-      case TableContainerComponentType.ApplicationType: {
+      case DynamicTableComponentType.applicationType: {
         const tableRowItem = new ComponentItem(TableApplicationTypeComponent, this.componentData);
         const componentInstance = this.generateInstance<TableApplicationTypeComponent>(tableRowItem);
         if (tableRowItem.data) {
@@ -69,7 +69,7 @@ export class TableContainerComponent implements OnInit, OnChanges {
         }
         break;
       }
-      case TableContainerComponentType.Image: {
+      case DynamicTableComponentType.image: {
         const tableRowItem = new ComponentItem(TableImageComponent, this.componentData);
         const componentInstance = this.generateInstance<TableImageComponent>(tableRowItem);
         if (tableRowItem.data) {
@@ -78,7 +78,7 @@ export class TableContainerComponent implements OnInit, OnChanges {
         }
         break;
       }
-      case TableContainerComponentType.Gallery: {
+      case DynamicTableComponentType.gallery: {
         const tableRowItem = new ComponentItem(TableGalleryComponent, this.componentData);
         const componentInstance = this.generateInstance<TableGalleryComponent>(tableRowItem);
         if (tableRowItem.data) {
@@ -89,7 +89,7 @@ export class TableContainerComponent implements OnInit, OnChanges {
         }
         break;
       }
-      case TableContainerComponentType.Information: {
+      case DynamicTableComponentType.information: {
         const tableRowItem = new ComponentItem(TableItemInformationComponent, this.componentData);
         const componentInstance = this.generateInstance<TableItemInformationComponent>(tableRowItem);
         if (tableRowItem.data) {
@@ -98,7 +98,7 @@ export class TableContainerComponent implements OnInit, OnChanges {
         }
         break;
       }
-      case TableContainerComponentType.secondTable: {
+      case DynamicTableComponentType.secondTable: {
         const tableRowItem = new ComponentItem(TableSecondTableComponent, this.componentData);
         const componentInstance = this.generateInstance<TableSecondTableComponent>(tableRowItem);
         if (tableRowItem.data) {

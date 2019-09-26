@@ -162,5 +162,7 @@
   "admin_system": {
     "plural_name": "Admin system"
   },
-  "inventoy": "Inventory"
+  "inventoy": "Inventory",
+  "sale": "Sale",
+  "cart": "Cart"
 }

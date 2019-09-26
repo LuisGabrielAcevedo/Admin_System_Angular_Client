@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { IUser } from '../../inferfaces/user';
 import { ILoadRequest } from '../../inferfaces/loadRequest';
-import { TablePagination } from 'src/app/components/sharedComponents/table/table.interfaces';
+import { DynamicTablePagination } from 'src/app/components/sharedComponents/table/table.interfaces';
 
 export const LOAD_USERS = '[User] Load Users';
 export const LOAD_USERS_SUCCESS = '[User] Load Users Succces';
@@ -82,12 +82,12 @@ export class UpdateUserSuccessAction implements Action {
 
 export class SetPaginationAction implements Action {
     readonly type = SET_PAGINATION;
-    constructor(public payload: TablePagination) { }
+    constructor(public payload: DynamicTablePagination) { }
 }
 
 export class ChangePaginationAction implements Action {
     readonly type = CHANGE_PAGINATION;
-    constructor(public payload: TablePagination) { }
+    constructor(public payload: DynamicTablePagination) { }
 }
 
 export class DeleteUserAction implements Action {

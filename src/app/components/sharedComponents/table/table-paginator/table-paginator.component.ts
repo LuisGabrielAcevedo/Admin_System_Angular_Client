@@ -7,7 +7,7 @@ import {
   OnChanges,
   SimpleChanges
 } from "@angular/core";
-import { TablePagination } from "../table.interfaces";
+import { DynamicTablePagination } from "../table.interfaces";
 import { PageEvent } from "@angular/material";
 
 @Component({
@@ -16,20 +16,20 @@ import { PageEvent } from "@angular/material";
   styleUrls: ["./table-paginator.component.css"]
 })
 export class TablePaginatorComponent implements OnInit, OnChanges {
-  @Input() tablePagination: TablePagination;
-  @Output() changePage: EventEmitter<TablePagination> = new EventEmitter();
-  pagination: TablePagination;
+  @Input() DynamicTablePagination: DynamicTablePagination;
+  @Output() changePage: EventEmitter<DynamicTablePagination> = new EventEmitter();
+  pagination: DynamicTablePagination;
   constructor() {}
 
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.pagination = this.tablePagination;
+    this.pagination = this.DynamicTablePagination;
   }
 
   pageParams(page: PageEvent) {
     const currentPage = page.pageIndex + 1;
-    const paginationToChange: TablePagination = {
+    const paginationToChange: DynamicTablePagination = {
       currentPage: currentPage,
       totalItems: page.length,
       itemsPerPage: page.pageSize

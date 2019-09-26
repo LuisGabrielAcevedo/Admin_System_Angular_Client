@@ -11,13 +11,15 @@ import Brand from "src/app/models/admin-system/brands";
 import Vendor from "src/app/models/admin-system/vendors";
 import AdminSystem from "src/app/models/admin-system/admin-system";
 import { ProductCharacteristicsComponent } from "src/app/components/components/admin-system/product-characteristics/product-characteristics.component";
+import Store from 'src/app/models/admin-system/stores';
+import { ProductPricesComponent } from 'src/app/components/components/admin-system/product-prices/product-prices.component';
 
 const productFields: FormField[] = [
   {
     name: "Company",
     key: "company",
     component: FormFieldTypes.asyncAutocomplete,
-    mainGroup: "App info",
+    mainGroup: "Company",
     flexConfig: {
       row: 1,
       flex: 100
@@ -36,10 +38,32 @@ const productFields: FormField[] = [
     }
   },
   {
+    name: 'Store',
+    key: 'stores',
+    component: FormFieldTypes.select,
+    mainGroup: "Company",
+    flexConfig: {
+      row: 2,
+      flex: 100
+    },
+    options: {
+      placeholder: 'Select the stores',
+      fieldOptions: (arg) => {
+        return arg
+          ? Store.where('company', arg).findRx().pipe(map(resp => resp.data))
+          : Store.findRx().pipe(map(resp => resp.data))
+      },
+      associationText: 'name',
+      associationValue: '_id',
+      depend: 'company',
+      multiple: true
+    }
+  },
+  {
     name: "Name",
     key: "name",
     component: FormFieldTypes.textField,
-    mainGroup: "Info",
+    mainGroup: "Product info",
     flexConfig: {
       row: 1,
       flex: 100
@@ -50,10 +74,10 @@ const productFields: FormField[] = [
     name: "Unit",
     key: "unit",
     component: FormFieldTypes.enum,
-    mainGroup: "Info",
+    mainGroup: "Product info",
     flexConfig: {
       row: 2,
-      flex: 50
+      flex: 25
     },
     validators: [DynamicFormValidators.required()],
     options: {
@@ -73,10 +97,20 @@ const productFields: FormField[] = [
     }
   },
   {
+    name: "Price",
+    key: "basePrice",
+    component: FormFieldTypes.numericField,
+    mainGroup: "Product info",
+    flexConfig: {
+      row: 2,
+      flex: 25
+    }
+  },
+  {
     name: "Require inventory",
     key: "requireInventory",
     component: FormFieldTypes.switch,
-    mainGroup: "Info",
+    mainGroup: "Product info",
     flexConfig: {
       row: 2,
       flex: 25
@@ -86,7 +120,7 @@ const productFields: FormField[] = [
     name: "Require inventory by boxes",
     key: "requireInventoryByBoxes",
     component: FormFieldTypes.switch,
-    mainGroup: "Info",
+    mainGroup: "Product info",
     flexConfig: {
       row: 2,
       flex: 25
@@ -100,7 +134,7 @@ const productFields: FormField[] = [
     key: "isActive",
     component: FormFieldTypes.switch,
     defaultValue: true,
-    mainGroup: "Info",
+    mainGroup: "Product info",
     flexConfig: {
       row: 3,
       flex: 25
@@ -110,7 +144,7 @@ const productFields: FormField[] = [
     name: "Online sale",
     key: "isOnlineSale",
     component: FormFieldTypes.switch,
-    mainGroup: "Info",
+    mainGroup: "Product info",
     flexConfig: {
       row: 3,
       flex: 25
@@ -120,7 +154,7 @@ const productFields: FormField[] = [
     name: "Description",
     key: "description",
     component: FormFieldTypes.textarea,
-    mainGroup: "Info",
+    mainGroup: "Product info",
     flexConfig: {
       row: 4,
       flex: 100
@@ -130,7 +164,7 @@ const productFields: FormField[] = [
     name: "Details",
     key: "details",
     component: FormFieldTypes.textarea,
-    mainGroup: "Info",
+    mainGroup: "Product info",
     flexConfig: {
       row: 5,
       flex: 100
@@ -140,7 +174,7 @@ const productFields: FormField[] = [
     name: "Category",
     key: "category",
     component: FormFieldTypes.autocomplete,
-    mainGroup: "Info",
+    mainGroup: "Product info",
     options: {
       fieldOptions: arg =>
         ProductCategory.where("company", arg)
@@ -159,7 +193,7 @@ const productFields: FormField[] = [
     name: "Type",
     key: "type",
     component: FormFieldTypes.autocomplete,
-    mainGroup: "Info",
+    mainGroup: "Product info",
     options: {
       fieldOptions: arg =>
         ProductType.where("company", arg)
@@ -178,7 +212,7 @@ const productFields: FormField[] = [
     name: "Brand",
     key: "brand",
     component: FormFieldTypes.autocomplete,
-    mainGroup: "Info",
+    mainGroup: "Product info",
     options: {
       fieldOptions: arg =>
         Brand.where("company", arg)
@@ -197,7 +231,7 @@ const productFields: FormField[] = [
     name: "Vendor",
     key: "vendor",
     component: FormFieldTypes.autocomplete,
-    mainGroup: "Info",
+    mainGroup: "Product info",
     options: {
       fieldOptions: arg =>
         Vendor.where("company", arg)
@@ -217,6 +251,12 @@ const productFields: FormField[] = [
     key: null,
     dynamicComponent: ProductCharacteristicsComponent,
     mainGroup: "Characteristics"
+  },
+  {
+    name: null,
+    key: null,
+    dynamicComponent: ProductPricesComponent,
+    mainGroup: "Prices"
   }
 ];
 

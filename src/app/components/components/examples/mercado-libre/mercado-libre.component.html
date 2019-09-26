@@ -1,11 +1,9 @@
 <div fxLayout="row" fxLayoutAlign="center center">
-    <h2 class="mainTitle">Mercado Libre Api</h2>
+  <h2 class="mainTitle">Mercado Libre Api</h2>
 </div>
 <app-table
-[colors]="colors"
-[headers]="headers"
-[data]="data"
-[loading]="loading"
-(search)="loadProducts($event)"
-[rowActions]="rowActions"
+  [headers]="headers"
+  [data]="data"
+  [loading]="loading"
+  [rowActions]="rowActions"
 ></app-table>

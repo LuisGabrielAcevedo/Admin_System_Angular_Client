@@ -18,13 +18,14 @@ import { DynamicFormService } from "src/app/components/sharedComponents/dynamic-
 })
 export class ProductCharacteristicsComponent implements OnInit, OnDestroy {
   public subscriptions: Subscription[] = [];
+  public currentModel: FormModel;
   @Input() public field: FormField;
   @Input() public form: FormGroup;
   @Input() public materialData: MaterialFormData;
   @Input() set model(model: FormModel) {
     this.currentModel = model;
   }
-  public currentModel: FormModel;
+ 
   public rowsFormatted: FormMainGroup[] = [];
   public fieldsConfig: FormField[] = [];
   constructor(

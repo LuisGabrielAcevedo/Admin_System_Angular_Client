@@ -1,0 +1,38 @@
+.cart-list-container {
+  height: 100%;
+}
+
+.cart-list-main {
+  height: 40px;
+  background: white;
+}
+
+.cartL-list-settings {
+  position: relative;
+  width: 102%;
+  left: -1%;
+  height: 50px;
+  border-radius: 5px;
+  background: rgb(232, 232, 232);
+}
+
+.cart-list-items {
+  background: white;
+}
+
+.cart-list-button {
+  width: 100%;
+  height: 40px;
+  margin: 5px;
+}
+
+.cart-list-divider {
+  height: 30px;
+  background: rgb(232, 232, 232);
+}
+
+.cart-list-total {
+  height: 100px;
+  margin-bottom: 10px;
+  background: white;
+}

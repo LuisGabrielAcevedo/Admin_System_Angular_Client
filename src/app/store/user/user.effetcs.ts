@@ -6,7 +6,7 @@ import { switchMap, map, catchError } from "rxjs/operators";
 import * as fromRoot from "../index.store";
 import * as UserActions from "./user.actions";
 import UserService from "../../services/admin-system/users.service";
-import { TablePagination } from "src/app/components/sharedComponents/table/table.interfaces";
+import { DynamicTablePagination } from "src/app/components/sharedComponents/table/table.interfaces";
 import * as RouterActions from "../router/router.actions";
 import * as SnackbarActions from "../snackbar/snackbar.actions";
 
@@ -24,7 +24,7 @@ export class UserEffects {
     switchMap(action =>
       this.httpUserService.getUsers().pipe(
         switchMap(response => {
-          const pagination: TablePagination = {
+          const pagination: DynamicTablePagination = {
             currentPage: response.currentPage,
             totalItems: response.totalItems,
             itemsPerPage: response.itemsPerPage

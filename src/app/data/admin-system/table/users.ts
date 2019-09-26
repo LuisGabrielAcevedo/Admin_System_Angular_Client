@@ -1,20 +1,22 @@
-import { TableHeader } from 'src/app/components/sharedComponents/table/table.interfaces';
+import { DynamicTableHeader, DynamicTableComponentType } from 'src/app/components/sharedComponents/table/table.interfaces';
 
-const userHeaders: TableHeader[] = [
+const userHeaders: DynamicTableHeader[] = [
     {
         label: '',
-        value: 'profileImage.url',
-        type: 'TableImageComponent'
+        key: 'profileImage.url',
+        component: DynamicTableComponentType.image,
     },
     {
         label: 'Empresa',
-        value: 'company.name',
-        type: 'TableTextComponent'
+        key: 'company.name',
+        component: DynamicTableComponentType.text,
+        sortable: 'company'
     },
     {
         label: 'Nombre',
-        value: 'firstName,lastName',
-        type: 'TableTextComponent'
+        key: 'firstName,lastName',
+        component: DynamicTableComponentType.text,
+        sortable: 'firstName'
     }
 ];
 

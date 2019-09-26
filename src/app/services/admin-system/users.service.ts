@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import {
-  TablePagination,
-  TableButtonAction
+  DynamicTablePagination,
+  DynamicTableButtonAction
 } from "src/app/components/sharedComponents/table/table.interfaces";
 import {
   ILoadRequest,
@@ -92,7 +92,7 @@ export default class UserService {
     return this.http.delete<any>(`${this.url}/users/${user._id}`);
   }
 
-  changePagination(pagination: TablePagination): Observable<any> {
+  changePagination(pagination: DynamicTablePagination): Observable<any> {
     this.loadRequestData.page = pagination.currentPage;
     this.loadRequestData.itemsPerPage = pagination.itemsPerPage;
     return of("change pagination");
@@ -110,7 +110,7 @@ export default class UserService {
   }
 
   getRowActions() {
-    const actions: TableButtonAction[] = [
+    const actions: DynamicTableButtonAction[] = [
       {
         icon: "chevron_left",
         type: "TableButtonComponent",

@@ -5,7 +5,7 @@ import * as UserActions from '../store/user/user.actions';
 import * as fromRoot from '../store/index.store';
 import { IUser } from '../inferfaces/user';
 import { ILoadRequest } from '../inferfaces/loadRequest';
-import { TablePagination } from 'src/app/components/sharedComponents/table/table.interfaces';
+import { DynamicTablePagination } from 'src/app/components/sharedComponents/table/table.interfaces';
 
 @Injectable()
 export class UserSandbox {
@@ -23,7 +23,7 @@ export class UserSandbox {
     fetchIsLoadingUser(): Observable<boolean> {
         return this.store.select(fromRoot.getIsLoadingUser);
     }
-    fetchPagination(): Observable<TablePagination> {
+    fetchPagination(): Observable<DynamicTablePagination> {
         return this.store.select(fromRoot.getPaginationUser);
     }
     loadUsers(): void {
@@ -41,7 +41,7 @@ export class UserSandbox {
     deleteUser(user: IUser): void {
         this.store.dispatch(new UserActions.DeleteUserAction(user));
     }
-    changePagination(pagination: TablePagination): void {
+    changePagination(pagination: DynamicTablePagination): void {
         this.store.dispatch(new UserActions.ChangePaginationAction(pagination));
     }
     changeSearchValue(value: string): void {

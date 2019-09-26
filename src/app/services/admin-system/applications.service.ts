@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { TableButtonAction } from 'src/app/components/sharedComponents/table/table.interfaces';
+import { DynamicTableButtonAction } from 'src/app/components/sharedComponents/table/table.interfaces';
 
 @Injectable({
     providedIn: 'root',
@@ -10,7 +10,7 @@ export default class ApplicationService {
         private router: Router
     ) {}
 
-    getRowActions(): TableButtonAction[] {
+    getRowActions(): DynamicTableButtonAction[] {
         return [];
     }
 }

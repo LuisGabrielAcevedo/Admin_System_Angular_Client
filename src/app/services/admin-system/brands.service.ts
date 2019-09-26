@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { TableButtonAction } from 'src/app/components/sharedComponents/table/table.interfaces';
+import { DynamicTableButtonAction } from 'src/app/components/sharedComponents/table/table.interfaces';
 import Brand from 'src/app/models/admin-system/brands';
 
 @Injectable({
@@ -11,7 +11,7 @@ export default class BrandService {
         private router: Router
     ) {}
 
-    getRowActions(): TableButtonAction[] {
+    getRowActions(): DynamicTableButtonAction[] {
         return [
             {
                 icon: 'edit',

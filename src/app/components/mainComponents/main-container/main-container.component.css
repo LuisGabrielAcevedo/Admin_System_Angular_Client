@@ -1,30 +1,29 @@
 .sidenav-container {
-	height: 100%;
-	background: white;
+  background: white;
 }
 .sidenav {
-	width: 240px;
-	padding: 10px 0;
+  width: 240px;
+  padding: 10px 0;
 }
 .sidenav-item {
-	cursor: pointer;
-	margin-left: 10px; 
+  cursor: pointer;
+  margin-left: 10px;
 }
 .active-route {
-    color: #304ffe;
-    font-weight: 500;
+  color: #304ffe;
+  font-weight: 500;
 }
 mat-toolbar {
-	padding-left: 0px;
+  padding-left: 0px;
 }
 mat-expansion-panel {
-	box-shadow: none !important;
-	border-radius: none !important;
+  box-shadow: none !important;
+  border-radius: none !important;
 }
 mat-expansion-panel-header {
-	padding-left: 0px !important;
-	height: 48px !important;
+  padding-left: 0px !important;
+  height: 48px !important;
 }
 mat-panel-title {
-	height: 48px !important;
+  height: 48px !important;
 }

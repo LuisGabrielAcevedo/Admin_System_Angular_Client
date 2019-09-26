@@ -1,50 +1,60 @@
-<div style="height: 100%;">
+<div fxLayout="column" style="height: 100%;">
   <mat-toolbar fxLayout="row" fxLayoutAlign="start center" color="primary">
     <button type="button" mat-button (click)="sidebar.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
     <span>Admin System Angular</span>
   </mat-toolbar>
-  <mat-drawer-container class="sidenav-container" autosize>
-    <mat-drawer #drawer class="sidenav" mode="over">
-      <div *ngFor="let item of sidebarItems">
-        <div *ngIf="item.subItems; else text1">
-          <mat-accordion>
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  <p class="sidenav-item">{{item.name}}</p>
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <div *ngFor="let subItem of item.subItems">
-                <div *ngIf="subItem.subItems; else text2">
-                  <mat-accordion>
-                    <mat-expansion-panel>
-                      <mat-expansion-panel-header>
-                        <mat-panel-title>
-                          <p class="sidenav-item">{{subItem.name}}</p>
-                        </mat-panel-title>
-                      </mat-expansion-panel-header>
-                      <p class="sidenav-item" *ngFor="let subsubItem of subItem.subItems" (click)="goTo(subsubItem.route)">
-                        {{subsubItem.name}}
-                      </p>
-                    </mat-expansion-panel>
-                  </mat-accordion>
+  <mat-drawer-container fxFlex class="sidenav-container" autosize>
+    <div fxLayout="column" style="height: 100%;">
+      <mat-drawer #drawer class="sidenav" mode="over">
+        <div *ngFor="let item of sidebarItems">
+          <div *ngIf="item.subItems; else text1">
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <p class="sidenav-item">{{ item.name }}</p>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div *ngFor="let subItem of item.subItems">
+                  <div *ngIf="subItem.subItems; else text2">
+                    <mat-accordion>
+                      <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            <p class="sidenav-item">{{ subItem.name }}</p>
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p
+                          class="sidenav-item"
+                          *ngFor="let subsubItem of subItem.subItems"
+                          (click)="goTo(subsubItem.route)"
+                        >
+                          {{ subsubItem.name }}
+                        </p>
+                      </mat-expansion-panel>
+                    </mat-accordion>
+                  </div>
+                  <ng-template #text2>
+                    <p class="sidenav-item" (click)="goTo(subItem.route)">
+                      {{ subItem.name }}
+                    </p>
+                  </ng-template>
                 </div>
-                <ng-template #text2>
-                  <p class="sidenav-item" (click)="goTo(subItem.route)">
-                    {{subItem.name}}</p>
-                </ng-template>
-              </div>
-            </mat-expansion-panel>
-          </mat-accordion>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+          <ng-template #text1>
+            <p class="sidenav-item">{{ item.name }}</p>
+          </ng-template>
         </div>
-        <ng-template #text1>
-          <p class="sidenav-item">{{item.name}}</p>
-        </ng-template>
+      </mat-drawer>
+      <div fxFlex>
+        <router-outlet></router-outlet>
       </div>
-    </mat-drawer>
-    <router-outlet></router-outlet>
+    </div>
   </mat-drawer-container>
 </div>
-<app-snackbar></app-snackbar>
+
+<!-- <app-snackbar></app-snackbar> -->

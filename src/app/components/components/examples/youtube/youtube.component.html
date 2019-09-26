@@ -3,16 +3,12 @@
     <h2 class="mainTitle">Youtube Api</h2>
   </div>
   <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
-    <iframe #iframe src="https://www.youtube.com/embed/RB-RcX5DS5A">
-    </iframe>
+    <iframe #iframe src="https://www.youtube.com/embed/RB-RcX5DS5A"> </iframe>
   </div>
-  <app-table 
-  [colors]="colors" 
-  [headers]="headers" 
-  [data]="data" 
-  [loading]="loading" 
-  (search)="loadVideos($event)"
-  [rowActions]="rowActions"
-  (itemSelected)="itemSelectedAction($event)"
+  <app-table
+    [headers]="headers"
+    [data]="data"
+    [loading]="loading"
+    [rowActions]="rowActions"
   ></app-table>
 </div>

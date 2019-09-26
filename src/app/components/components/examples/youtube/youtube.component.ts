@@ -1,41 +1,46 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { TableHeader, TableButtonAction } from '../../../sharedComponents/table/table.interfaces';
-import { YoutubeHeader } from '../../../../data/youtube';
-import { YoutubeService } from '../../../../services/exampleEndPoints/http.youtube';
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import {
+  DynamicTableHeader,
+  DynamicTableButtonAction,
+  DynamicTableItem
+} from "src/app/components/sharedComponents/table/table.interfaces";
+import { youtubeHeaders } from "src/app/data/examples/youtube";
+import { YoutubeBaseModel } from "src/app/models/examples/youtube/base-model";
+import { map } from "rxjs/operators";
 
 @Component({
-  selector: 'app-youtube',
-  templateUrl: './youtube.component.html',
-  styleUrls: ['./youtube.component.css']
+  selector: "app-youtube",
+  templateUrl: "./youtube.component.html",
+  styleUrls: ["./youtube.component.css"]
 })
 export class YoutubeComponent implements OnInit {
-  data: object[];
-  headers: TableHeader[] = YoutubeHeader;
-  colors = ['#E3F2FD', '#64B5F6', '#304ffe'];
-  loading = false;
-  rowActions: TableButtonAction[];
+  data: DynamicTableItem[] = [];
+  headers: DynamicTableHeader[] = youtubeHeaders;
+  loading: boolean = false;
+  rowActions: DynamicTableButtonAction[] = [];
   videoSelected: string = null;
-  @ViewChild('iframe') iframe: ElementRef;
-  constructor( private httpYoutubeService: YoutubeService) {}
+  @ViewChild("iframe") iframe: ElementRef;
+  constructor() {}
 
   ngOnInit() {
-    this.loadVideos('coldplay');
+    this.loadVideos("coldplay");
   }
 
-  loadVideos(value?: string) {
-    this.rowActions = this.httpYoutubeService.getRowActions();
+  public loadVideos(value?: string) {
     this.loading = true;
-    this.httpYoutubeService.getVideos(value).subscribe(
-      resp => {
+    YoutubeBaseModel.option("part", "snippet")
+      .option("maxResults", "50")
+      .option("q", value)
+      .findRx()
+      .pipe(map(resp => resp.items))
+      .subscribe(resp => {
+        this.data = resp.filter(video => video.id.kind === "youtube#video");
         this.loading = false;
-        this.data = resp.items.filter( video => video.id.kind === 'youtube#video');
-      }
-    );
+      });
   }
 
-  itemSelectedAction(data: any) {
+  public videoSelectedAction(data: any) {
     const url = `https://www.youtube.com/embed/${data.item.id.videoId}`;
     this.iframe.nativeElement.src = url;
   }
-
 }

@@ -7,7 +7,7 @@ import { TableButtonComponent } from './table-button/table-button.component';
 import { TableSearchComponent } from './table-search/table-search.component';
 import { TablePaginatorComponent } from './table-paginator/table-paginator.component';
 import { TableImageComponent } from './table-image/table-image.component';
-import { TableModalComponent } from './table-modal/table-modal.component';
+import { DynamicTableModalComponent } from './table-modal/table-modal.component';
 import { TableTextComponent } from './table-text/table-text.component';
 import { TableContainerComponent } from './table-container/table-container.component';
 import { TableTextModule } from './table-text/table-text.module';
@@ -46,7 +46,7 @@ import { ProfileCardComponent } from 'src/app/components/dialogComponents/profil
   ],
   declarations: [
     TableComponent,
-    TableModalComponent,
+    DynamicTableModalComponent,
     TablePaginatorComponent,
     TableSearchComponent,
     TableContainerComponent,

@@ -1,27 +1,31 @@
-import { Routes, RouterModule } from '@angular/router';
-import { ListComponent } from 'src/app/components/sharedComponents/list/list.component';
-import { FormComponent } from 'src/app/components/sharedComponents/form/form.component';
+import { Routes, RouterModule } from "@angular/router";
+import { ListComponent } from "src/app/components/sharedComponents/list/list.component";
+import { FormComponent } from "src/app/components/sharedComponents/form/form.component";
 
 export const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'users',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "users",
+    pathMatch: "full"
   },
   {
-    path: ':resource',
+    path: ":resource",
     component: ListComponent
   },
   {
-    path: 'inventory/:resource',
+    path: "inventory/:resource",
     component: ListComponent
   },
   {
-    path: ':resource/new',
+    path: "sale/cart",
+    loadChildren: "./sale/cart/cart.module#CartModule"
+  },
+  {
+    path: ":resource/new",
     component: FormComponent
   },
   {
-    path: ':resource/edit/:id',
+    path: ":resource/edit/:id",
     component: FormComponent
   }
 ];

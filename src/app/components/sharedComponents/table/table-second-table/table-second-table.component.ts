@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TableSecondTableConfig } from '../table.interfaces';
+import { DynamicTableSecondTableConfig } from '../table.interfaces';
 import { Observable } from 'rxjs';
 import { TableService } from '../table.service';
 
@@ -12,7 +12,7 @@ export class TableSecondTableComponent implements OnInit {
   @Input() field: string | string[];
   @Input() item: object;
   @Input() observable: (...arg: any[]) => Observable<any>;
-  @Input() secondTableConfig: TableSecondTableConfig;
+  @Input() secondTableConfig: DynamicTableSecondTableConfig;
   public secondTableLoading: boolean = null;
   public secondTableList: object[] = null;
   constructor(

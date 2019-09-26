@@ -1,37 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { MercadoLibreService } from '../../../../services/exampleEndPoints/http.mercadolibre';
-import { TableHeader, TableButtonAction } from '../../../sharedComponents/table/table.interfaces';
-import { MercadoLibreHeader } from '../../../../data/mercadoLibre';
+import { Component, OnInit } from "@angular/core";
+import {
+  DynamicTableHeader,
+  DynamicTableButtonAction,
+  DynamicTableItem
+} from "src/app/components/sharedComponents/table/table.interfaces";
+import { mercadoLibreHeaders } from "src/app/data/examples/mercado-libre";
+import { MercadoLibreBaseModel } from "src/app/models/examples/mercado-libre/base-model";
 
 @Component({
-  selector: 'app-mercado-libre',
-  templateUrl: './mercado-libre.component.html',
-  styleUrls: ['./mercado-libre.component.css']
+  selector: "app-mercado-libre",
+  templateUrl: "./mercado-libre.component.html",
+  styleUrls: ["./mercado-libre.component.css"]
 })
 export class MercadoLibreComponent implements OnInit {
-  data: object[];
-  headers: TableHeader[] = MercadoLibreHeader;
-  colors = ['#E3F2FD', '#64B5F6', '#fff159'];
-  loading = false;
-  rowActions: TableButtonAction[];
-  constructor(private httpMercadoLibreService: MercadoLibreService) { }
+  data: DynamicTableItem[] = [];
+  headers: DynamicTableHeader[] = mercadoLibreHeaders;
+  loading: boolean = false;
+  rowActions: DynamicTableButtonAction[] = [];
+  constructor() {}
 
   ngOnInit() {
-    this.loadProducts('coldplay');
+    this.loadProducts("coldplay");
   }
 
   loadProducts(value?: string) {
     this.loading = true;
-    this.httpMercadoLibreService.getProducts(value).subscribe(
-      resp => {
-        this.loading = false;
+    MercadoLibreBaseModel.option("q", value)
+      .findRx()
+      .subscribe(resp => {
         this.data = resp.results;
-        this.getRowActions();
-      }
-    );
-  }
-
-  getRowActions() {
-    this.rowActions = this.httpMercadoLibreService.getRowActions();
+        this.loading = false;
+      });
   }
 }

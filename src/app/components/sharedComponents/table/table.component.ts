@@ -15,15 +15,16 @@ import {
 import { Subscription } from "rxjs";
 import { MatCheckbox } from "@angular/material/checkbox";
 import {
-  TableHeader,
-  TableButtonAction,
-  TableModal,
-  TableButtonOuputAction,
-  ActiveComponentOutputAction,
-  TablePagination,
-  TableOutputItemData,
+  DynamicTableHeader,
+  DynamicTableButtonAction,
+  DynamicTableModal,
+  DynamicTableActiveModalAction,
+  DynamicTableActiveComponentAction,
+  DynamicTablePagination,
   TableActiveComponent,
-  TableDialog
+  TableDialog,
+  DynamicTableItem,
+  DynamicTableChanges
 } from "./table.interfaces";
 import { TableService } from "./table.service";
 import { MatDialog } from "@angular/material";
@@ -37,9 +38,11 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
   protected boxes: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   protected subscriptions: Subscription[] = [];
   protected openRows: number[] = [];
-  protected itemsSelected: object[] = [];
+  protected itemsSelected: DynamicTableItem[] = [];
   protected checkedAll: boolean = null;
-  protected modalSelected: TableModal = {
+  protected activeSort: string = "";
+  protected asc: boolean = false;
+  protected modalSelected: DynamicTableModal = {
     row: 0,
     number: 1
   };
@@ -47,31 +50,27 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
     row: 0,
     type: ""
   };
-  @Input() headers: TableHeader[];
-  @Input() data: object[];
+  protected tableChanges: DynamicTableChanges = {};
+  @Input() headers: DynamicTableHeader[];
+  @Input() data: DynamicTableItem[];
   @Input() colors: string[] = ["#E3F2FD", "#64B5F6", "#304ffe"];
   @Input() loadingType: string = "BOX";
   @Input() expand: boolean | null = null;
   @Input() index: boolean | null = null;
   @Input() multiSelect: boolean | null = null;
   @Input() loading: boolean | null = null;
-  @Input() rowActions: TableButtonAction[] = [];
-  @Input() multiActions: TableButtonAction[] = [];
-  @Input() addRedirect: string;
-  @Input() pagination: TablePagination;
-  @Output() search: EventEmitter<string> = new EventEmitter();
-  @Output() changePage: EventEmitter<TablePagination> = new EventEmitter();
-  @Output() itemSelected: EventEmitter<
-    TableOutputItemData
+  @Input() rowActions: DynamicTableButtonAction[] = [];
+  @Input() multiActions: DynamicTableButtonAction[] = [];
+  @Input() pagination: DynamicTablePagination;
+  @Output() DynamicTableChanges: EventEmitter<
+    DynamicTableChanges
   > = new EventEmitter();
   @Output() reloadData: EventEmitter<any> = new EventEmitter();
   @ViewChild("tableData") rows: ElementRef;
   @ViewChildren("checkbox") checkboxes: QueryList<MatCheckbox>;
   @ViewChild("mainCheckbox") mainCheckbox: MatCheckbox;
 
-  constructor(public tableService: TableService, public dialog: MatDialog) {
-    this.addRedirect = "";
-  }
+  constructor(public tableService: TableService, public dialog: MatDialog) {}
 
   ngAfterViewInit() {
     this.subscriptions.push(
@@ -81,10 +80,6 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
 
       this.tableService.closeModal.subscribe(() => {
         this.resetModal();
-      }),
-
-      this.tableService.itemToOutput.subscribe(data => {
-        this.itemSelected.emit(data);
       }),
 
       this.tableService.activeComponent.subscribe(data => {
@@ -102,7 +97,9 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const data: object[] = changes.data ? changes.data.currentValue : undefined;
+    const data: DynamicTableItem[] = changes.data
+      ? changes.data.currentValue
+      : undefined;
     if (data && data.length) {
       this.resetModal();
       this.resetSubItems();
@@ -154,7 +151,7 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
     this.closeAllRows();
     this.resetModal();
     this.resetSubItems();
-    const item: object = this.data[i];
+    const item: DynamicTableItem = this.data[i];
     this.itemsSelected.includes(item)
       ? this.itemsSelected.splice(this.itemsSelected.indexOf(item), 1)
       : this.itemsSelected.push(item);
@@ -199,14 +196,14 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
     };
   }
 
-  assignModal(data: TableButtonOuputAction) {
+  assignModal(data: DynamicTableActiveModalAction) {
     this.closeAllRows();
     this.resetSubItems();
     this.modalSelected = data.modal;
     this.modalSelected.row = data.position + 1;
   }
 
-  assignActiveComponent(data: ActiveComponentOutputAction) {
+  assignActiveComponent(data: DynamicTableActiveComponentAction) {
     if (!this.openRows.includes(data.position)) {
       this.openRow(data.position);
     }
@@ -233,12 +230,25 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
     });
   }
 
-  changePageAction(newPagination: TablePagination) {
-    this.changePage.emit(newPagination);
+  changePageAction(newPagination: DynamicTablePagination) {
+    this.tableChanges = {
+      ...this.tableChanges,
+      pagination: newPagination
+    };
+    this.DynamicTableChanges.emit(this.tableChanges);
   }
 
-  formatText(item: object, field: string) {
-    return this.tableService.formatText(item, field);
+  changeSortAction(header: DynamicTableHeader) {
+    if (header.sortable) {
+      this.activeSort = header.key;
+      this.tableChanges = {
+        ...this.tableChanges,
+        sort: header.sortable,
+        sortDirection: this.asc ? "asc" : "desc"
+      };
+      this.asc = !this.asc;
+      this.DynamicTableChanges.emit(this.tableChanges);
+    }
   }
 
   ngOnDestroy() {

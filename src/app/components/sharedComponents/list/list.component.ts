@@ -3,10 +3,11 @@ import { Router, ActivationEnd } from "@angular/router";
 import { filter, map } from "rxjs/operators";
 import { Subscription } from "rxjs";
 import {
-  TableHeader,
-  TableButtonAction,
-  TablePagination,
-  TablePaginationDefault
+  DynamicTableHeader,
+  DynamicTableButtonAction,
+  DynamicTablePagination,
+  DynamicTablePaginationDefault,
+  DynamicTableChanges
 } from "../table/table.interfaces";
 
 @Component({
@@ -22,9 +23,11 @@ export class ListComponent implements OnDestroy {
   public modelClass: any;
   public title: string;
   public service: any;
-  public headers: TableHeader[] = [];
-  public rowActions: TableButtonAction[] = [];
-  public pagination: TablePagination = TablePaginationDefault;
+  public headers: DynamicTableHeader[] = [];
+  public rowActions: DynamicTableButtonAction[] = [];
+  public pagination: DynamicTablePagination = DynamicTablePaginationDefault;
+  public sort: string;
+  public sortDirection: string = "asc";
   constructor(private router: Router, private injector: Injector) {
     this.subscriptions.push(
       this.router.events
@@ -39,6 +42,8 @@ export class ListComponent implements OnDestroy {
         )
         .subscribe(resource => {
           this.resource = resource;
+          this.sort = null;
+          this.pagination = DynamicTablePaginationDefault;
           this.title = `${this.resource.replace("-", "_")}.list.title`;
           this.initList();
         })
@@ -64,19 +69,21 @@ export class ListComponent implements OnDestroy {
 
   public loadData(): void {
     let modelClass = this.modelClass;
-    if (this.with()) {
-      modelClass = modelClass.option("populate", this.with());
-    }
+    if (this.with()) modelClass = modelClass.option("populate", this.with());
+    if (this.sort)
+      modelClass = modelClass.orderBy(this.sort, this.sortDirection);
     this.loading = true;
-    modelClass.findRx(1, 10).subscribe(resp => {
-      this.pagination = {
-        currentPage: resp.currentPage,
-        itemsPerPage: resp.itemsPerPage,
-        totalItems: resp.data.totalItems
-      };
-      this.data = resp.data;
-      this.loading = false;
-    });
+    modelClass
+      .findRx(this.pagination.currentPage, this.pagination.itemsPerPage)
+      .subscribe(resp => {
+        this.pagination = {
+          currentPage: resp.currentPage,
+          itemsPerPage: resp.itemsPerPage,
+          totalItems: resp.totalItems
+        };
+        this.data = resp.data;
+        this.loading = false;
+      });
   }
 
   public with(): string {
@@ -103,6 +110,13 @@ export class ListComponent implements OnDestroy {
 
   public goToForm(): void {
     this.router.navigate([`/admin-system/${this.resource}/new`]);
+  }
+
+  public DynamicTableChanges(changes: DynamicTableChanges) {
+    if (changes.pagination) this.pagination = changes.pagination;
+    if (changes.sort) this.sort = changes.sort;
+    if (changes.sortDirection) this.sortDirection = changes.sortDirection;
+    this.loadData();
   }
 
   ngOnDestroy() {

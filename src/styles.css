@@ -1,29 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { 
-    height: 100%;
-    width: 100%;
- }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .main-title {
-    font-size: 24px;
-    font-weight: 400;
-    font-family: 'Helvetica Neue', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  font-family: "Helvetica Neue", sans-serif;
 }
 
 .main-header h4 {
-    margin: 0px;
+  margin: 0px;
 }
 
 .main-header {
-    border-bottom: 1px solid #dee2e6;
-    height: 65px;
-    padding: 12px 20px;
-    margin-bottom: 20px;
+  border-bottom: 1px solid #dee2e6;
+  height: 65px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
 }
 
 .custom-dialog-container .mat-dialog-container {
-    padding: 5px !important;
-    overflow: hidden !important;
+  padding: 5px !important;
+  overflow: hidden !important;
 }

@@ -78,6 +78,16 @@ export class MainContainerComponent implements OnInit {
                 route: "/admin-system/inventory/rooms"
               }
             ]
+          },
+          {
+            name: this.translateService.instant("sale"),
+            route: "/admin-system/sale",
+            subItems: [
+              {
+                name: this.translateService.instant("cart"),
+                route: "/admin-system/sale/cart"
+              }
+            ]
           }
         ]
       },
@@ -91,10 +101,6 @@ export class MainContainerComponent implements OnInit {
           {
             name: "Youtube (data-table)",
             route: "/examples/youtube"
-          },
-          {
-            name: "Cart",
-            route: "/examples/cart"
           },
           {
             name: "Netflix",

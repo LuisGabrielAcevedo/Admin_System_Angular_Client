@@ -1,13 +1,13 @@
 import * as UserActions from "./user.actions";
 import { IUser } from "../../inferfaces/user";
-import { TablePagination } from "src/app/components/sharedComponents/table/table.interfaces";
+import { DynamicTablePagination } from "src/app/components/sharedComponents/table/table.interfaces";
 
 export interface UserState {
   users: IUser[];
   usersList: IUser[];
   isLoadingUsers: boolean;
   isLoadingUser: boolean;
-  pagination: TablePagination;
+  pagination: DynamicTablePagination;
   rolList: any[];
   companyList: any[];
   applicationList: any[];

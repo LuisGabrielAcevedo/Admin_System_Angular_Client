@@ -1,20 +1,20 @@
-import { TableHeader } from 'src/app/components/sharedComponents/table/table.interfaces';
+import { DynamicTableHeader, DynamicTableComponentType } from 'src/app/components/sharedComponents/table/table.interfaces';
 
-export const applicationHeaders: TableHeader[] = [
+export const applicationHeaders: DynamicTableHeader[] = [
     {
         label: 'Code',
-        value: 'code',
-        type: 'TableTextComponent'
+        key: 'code',
+        component: DynamicTableComponentType.text
     },
     {
         label: 'Name',
-        value: 'name',
-        type: 'TableTextComponent'
+        key: 'name',
+        component: DynamicTableComponentType.text
     },
     {
         label: 'Descripcion',
-        value: 'description',
-        type: 'TableTextComponent'
+        key: 'description',
+        component: DynamicTableComponentType.text
     }
 ];
 

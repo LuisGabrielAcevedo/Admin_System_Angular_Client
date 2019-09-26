@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TableModal, TableButtonAction } from '../table.interfaces';
+import { DynamicTableModal, DynamicTableButtonAction } from '../table.interfaces';
 import { TableService } from 'src/app/components/sharedComponents/table/table.service';
 
 @Component({
@@ -7,10 +7,10 @@ import { TableService } from 'src/app/components/sharedComponents/table/table.se
   templateUrl: './table-modal.component.html',
   styleUrls: ['./table-modal.component.css']
 })
-export class TableModalComponent implements OnInit {
+export class DynamicTableModalComponent implements OnInit {
   public buttonSelected: string;
   public loading: boolean;
-  @Input() modalData: TableModal;
+  @Input() modalData: DynamicTableModal;
   @Input() item: object;
   @Input() position: number;
   constructor(
@@ -20,7 +20,7 @@ export class TableModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  buttonActions(button: TableButtonAction) {
+  buttonActions(button: DynamicTableButtonAction) {
     this.buttonSelected = button.label;
     this.tableService.buttonActions(button, this.position, this.item);
   }
@@ -36,15 +36,15 @@ export class TableModalComponent implements OnInit {
     }
   }
 
-  visibleButton(button: TableButtonAction) {
+  visibleButton(button: DynamicTableButtonAction) {
     return button.visible ? button.visible(this.item) : true;
   }
 
-  disabledButton(button: TableButtonAction) {
+  disabledButton(button: DynamicTableButtonAction) {
     return button.disabled ? button.disabled(this.item) : false;
   }
 
-  color(button: TableButtonAction) {
+  color(button: DynamicTableButtonAction) {
     return this.buttonSelected === button.label ? { 'color': '#3f51b5' } : { 'color': 'rgba(127,127,127,0.5)' };
   }
 }

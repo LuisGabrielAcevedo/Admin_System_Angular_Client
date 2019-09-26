@@ -1,15 +1,15 @@
-import { TableHeader } from 'src/app/components/sharedComponents/table/table.interfaces';
+import { DynamicTableHeader, DynamicTableComponentType } from 'src/app/components/sharedComponents/table/table.interfaces';
 
-const stateHeaders: TableHeader[] = [
+const stateHeaders: DynamicTableHeader[] = [
     {
         label: 'Name',
-        value: 'name',
-        type: 'TableTextComponent'
+        key: 'name',
+        component: DynamicTableComponentType.text
     },
     {
         label: 'Country',
-        value: 'country.name',
-        type: 'TableTextComponent'
+        key: 'country.name',
+        component: DynamicTableComponentType.text
     }
 ];
 
