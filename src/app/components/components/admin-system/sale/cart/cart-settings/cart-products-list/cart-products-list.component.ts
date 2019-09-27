@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import Customer from "src/app/models/admin-system/customers";
+import Product from "src/app/models/admin-system/products";
 
 @Component({
   selector: "app-cart-products-list",
@@ -11,7 +11,7 @@ export class CartProductsListComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    Customer.findRx().subscribe(resp => {
+    Product.findRx().subscribe(resp => {
       this.products = resp.data;
     });
   }

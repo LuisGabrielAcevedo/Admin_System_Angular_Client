@@ -20,12 +20,6 @@
   background: white;
 }
 
-.cart-list-button {
-  width: 100%;
-  height: 40px;
-  margin: 5px;
-}
-
 .cart-list-divider {
   height: 30px;
   background: rgb(232, 232, 232);
@@ -33,6 +27,16 @@
 
 .cart-list-total {
   height: 100px;
-  margin-bottom: 10px;
   background: white;
+  margin-bottom: 10px;
+}
+
+.cart-list-buttons-container {
+  height: 40px;
+}
+
+.cart-list-button {
+  width: 100%;
+  height: 40px;
+  margin: 0 5px;
 }

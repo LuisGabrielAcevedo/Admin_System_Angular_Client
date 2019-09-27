@@ -1,34 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
+import { ECartTabActive } from "src/app/inferfaces/admin-system/order";
+import { CartSandbox } from "src/app/store/cart/cart.sandbox";
 
 @Component({
-  selector: 'app-cart-settings',
-  templateUrl: './cart-settings.component.html',
-  styleUrls: ['./cart-settings.component.css']
+  selector: "app-cart-settings",
+  templateUrl: "./cart-settings.component.html",
+  styleUrls: ["./cart-settings.component.css"]
 })
 export class CartSettingsComponent implements OnInit {
-  public items: object[] = [
-    { icon: 'view_module' },
-    { icon: 'favorite' },
-    // { icon: 'loyalty' },
-    { icon: 'people' },
-    { icon: 'local_atm' }
+  public items: CartTabsInterface[] = [
+    { icon: "view_module", value: ECartTabActive.productList },
+    { icon: "favorite", value: ECartTabActive.favoriteProductList },
+    { icon: "people", value: ECartTabActive.customersList },
+    { icon: "local_atm", value: ECartTabActive.checkout }
   ];
-  public value = 0;
-  constructor() { }
+  @Input() public tabActive: ECartTabActive;
+  constructor(private cartSandBox: CartSandbox) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  changeValue(tab: ECartTabActive) {
+    this.cartSandBox.setTabActive(tab);
   }
 
-  changeValue(value: number) {
-    this.value = value;
-  }
-
-  style(i: number) {
+  style(tab: ECartTabActive) {
     return {
-      'background': `${this.value === i ? '#3f51b5' : ''}`,
-      'color': `${this.value !== i ? '#3f51b5 !important' : 'white !important'}`,
-      'cursor': 'pointer'
+      background: `${this.tabActive === tab ? "#3f51b5" : ""}`,
+      color: `${
+        this.tabActive !== tab ? "#3f51b5 !important" : "white !important"
+      }`,
+      cursor: "pointer"
     };
   }
+}
 
+export interface CartTabsInterface {
+  icon: string;
+  value: ECartTabActive;
 }

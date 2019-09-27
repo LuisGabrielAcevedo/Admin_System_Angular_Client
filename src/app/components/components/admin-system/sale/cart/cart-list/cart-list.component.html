@@ -22,7 +22,12 @@
     <button mat-flat-button color="primary" class="cart-list-button">
       send
     </button>
-    <button mat-flat-button color="primary" class="cart-list-button">
+    <button
+      mat-flat-button
+      color="primary"
+      class="cart-list-button"
+      (click)="payOrder()"
+    >
       pay
     </button>
   </div>
