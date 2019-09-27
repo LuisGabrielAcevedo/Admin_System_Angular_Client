@@ -13,29 +13,29 @@ export class AdminSystemInterceptor {
   }
 
   private initInterceptor() {
-    AdminSystemBaseModel.getAxiosInstance().interceptors.request.use(
-      request => {
-        if (["put", "post"].includes(request.method)) {
-          this.appSettingsSandbox.addLoandig({
-            id: `admin-system-${this.request}`,
-            request
-          });
-          this.request++;
-        }
-        return request;
-      }
-    );
-
-    AdminSystemBaseModel.getAxiosInstance().interceptors.response.use(
-      response => {
-        if (["put", "post"].includes(response.config.method)) {
-          this.appSettingsSandbox.removeLoandig(
-            `admin-system-${this.response}`
-          );
-          this.response++;
-        }
-        return response;
-      }
-    );
+    // AdminSystemBaseModel.getAxiosInstance().interceptors.request.use(
+    //   request => {
+    //     console.log("admin");
+    //     if (["put", "post"].includes(request.method)) {
+    //       this.appSettingsSandbox.addLoandig({
+    //         id: `admin-system-${this.request}`,
+    //         request
+    //       });
+    //       this.request++;
+    //     }
+    //     return request;
+    //   }
+    // );
+    // AdminSystemBaseModel.getAxiosInstance().interceptors.response.use(
+    //   response => {
+    //     if (["put", "post"].includes(response.config.method)) {
+    //       this.appSettingsSandbox.removeLoandig(
+    //         `admin-system-${this.response}`
+    //       );
+    //       this.response++;
+    //     }
+    //     return response;
+    //   }
+    // );
   }
 }

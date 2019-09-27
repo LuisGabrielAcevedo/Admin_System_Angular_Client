@@ -1,6 +1,6 @@
 import * as UserActions from "./user.actions";
 import { IUser } from "../../inferfaces/user";
-import { DynamicTablePagination } from "src/app/components/sharedComponents/table/table.interfaces";
+import { DynamicTablePagination } from "src/app/modules/shared-modules/table/table.interfaces";
 
 export interface UserState {
   users: IUser[];

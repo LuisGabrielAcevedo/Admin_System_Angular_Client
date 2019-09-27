@@ -27,6 +27,7 @@ export class Builder implements QueryMethods {
     this.query = new Query(baseModelType);
     this.httpClient = modelType.getHttpClient();
     this.initPaginationSpec();
+    console.log("build");
   }
 
   public async find(page?: number, perPage?: number): Promise<any> {

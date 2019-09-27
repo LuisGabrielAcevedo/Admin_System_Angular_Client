@@ -7,7 +7,8 @@ export class YoutubeBaseModel extends Model {
   }
 }
 
-YoutubeBaseModel.getAxiosInstance().interceptors.request.use(request => {
-  request.url += "&id=7lCDEYXw3mM&key=AIzaSyBQDrfTg_vB26R4IwvCEuB1AwTWoW9scrE";
-  return request;
-});
+// YoutubeBaseModel.getAxiosInstance().interceptors.request.use(request => {
+//   console.log("youtube");
+//   request.url += "&id=7lCDEYXw3mM&key=AIzaSyBQDrfTg_vB26R4IwvCEuB1AwTWoW9scrE";
+//   return request;
+// });

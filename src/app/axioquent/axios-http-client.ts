@@ -12,6 +12,7 @@ export class AxiosHttpClient implements HttpClient {
     if (axiosInstance === null || axiosInstance === undefined) {
       axiosInstance = axios.create();
     }
+    console.log(axiosInstance);
     this.axiosInstance = axiosInstance;
   }
 

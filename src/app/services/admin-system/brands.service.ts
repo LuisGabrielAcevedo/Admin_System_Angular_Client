@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { DynamicTableButtonAction } from 'src/app/components/sharedComponents/table/table.interfaces';
+import { DynamicTableButtonAction } from 'src/app/modules/shared-modules/table/table.interfaces';
 import Brand from 'src/app/models/admin-system/brands';
 
 @Injectable({

@@ -9,9 +9,7 @@ import { AxiosInstance } from "axios";
 export abstract class Model {
   constructor() {
     this.base_url = this.baseUrl();
-    if (!Model.httpClient) {
-      Model.httpClient = new AxiosHttpClient();
-    }
+    if (!Model.httpClient) Model.httpClient = new AxiosHttpClient();
     this.initHttpClient();
   }
   private static httpClient: HttpClient;
@@ -93,6 +91,7 @@ export abstract class Model {
   };
 
   private initHttpClient(): void {
+    console.log("init");
     Model.httpClient.setBaseUrl(this.baseUrl());
   }
 

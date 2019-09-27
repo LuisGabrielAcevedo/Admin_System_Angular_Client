@@ -4,7 +4,7 @@ import { Observable, of } from "rxjs";
 import {
   DynamicTablePagination,
   DynamicTableButtonAction
-} from "src/app/components/sharedComponents/table/table.interfaces";
+} from "src/app/modules/shared-modules/table/table.interfaces";
 import {
   ILoadRequest,
   loadRequestDataDefault
@@ -12,7 +12,7 @@ import {
 import { Global } from "../http/url";
 import { IUser } from "../../inferfaces/user";
 import { Router } from "@angular/router";
-import { ProfileCardComponent } from "src/app/components/dialogComponents/profile-card/profile-card.component";
+import { ProfileCardComponent } from "src/app/modules/admin-system/system/profile-card/profile-card.component";
 import User from "../../models/admin-system/users";
 import Follow from "src/app/models/admin-system/follows";
 

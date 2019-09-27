@@ -1,4 +1,4 @@
-import { DynamicTableButtonAction } from 'src/app/components/sharedComponents/table/table.interfaces';
+import { DynamicTableButtonAction } from 'src/app/modules/shared-modules/table/table.interfaces';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import State from 'src/app/models/admin-system/states';

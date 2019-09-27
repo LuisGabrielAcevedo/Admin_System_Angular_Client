@@ -10,7 +10,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { ServiceModule } from "./services/http.service.module";
 import { AppRoutingModule } from "./app.routing.module";
 import { AppStoreModule } from "./store/store.module";
-import { LoadingModule } from "./components/sharedComponents/loading/loading.module";
+import { LoadingModule } from "./modules/shared-modules/loading/loading.module";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");

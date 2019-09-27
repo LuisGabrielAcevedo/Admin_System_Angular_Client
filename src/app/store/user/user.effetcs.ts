@@ -6,7 +6,7 @@ import { switchMap, map, catchError } from "rxjs/operators";
 import * as fromRoot from "../index.store";
 import * as UserActions from "./user.actions";
 import UserService from "../../services/admin-system/users.service";
-import { DynamicTablePagination } from "src/app/components/sharedComponents/table/table.interfaces";
+import { DynamicTablePagination } from "src/app/modules/shared-modules/table/table.interfaces";
 import * as RouterActions from "../router/router.actions";
 import * as SnackbarActions from "../snackbar/snackbar.actions";
 

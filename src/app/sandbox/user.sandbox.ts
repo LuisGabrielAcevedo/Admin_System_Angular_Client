@@ -5,7 +5,7 @@ import * as UserActions from '../store/user/user.actions';
 import * as fromRoot from '../store/index.store';
 import { IUser } from '../inferfaces/user';
 import { ILoadRequest } from '../inferfaces/loadRequest';
-import { DynamicTablePagination } from 'src/app/components/sharedComponents/table/table.interfaces';
+import { DynamicTablePagination } from 'src/app/modules/shared-modules/table/table.interfaces';
 
 @Injectable()
 export class UserSandbox {
