@@ -6,6 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./cart-favorite-products-list.component.css"]
 })
 export class CartFavoriteProductsListComponent implements OnInit {
+  public title: string = "Favorite products"
   constructor() {}
 
   ngOnInit() {}

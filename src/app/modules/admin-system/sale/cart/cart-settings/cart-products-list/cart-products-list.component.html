@@ -1,3 +1,8 @@
-<p>
-  cart-products-list works!
-</p>
+<div fxLayout="column" style="height: 100%">
+    <app-title-bar [title]="title"></app-title-bar>
+    <cdk-virtual-scroll-viewport fxFlex itemSize="50">
+        <div *cdkVirtualFor="let product of products" class="cart-products-cart">
+            h
+        </div>
+    </cdk-virtual-scroll-viewport>
+</div>

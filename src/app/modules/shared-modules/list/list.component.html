@@ -1,19 +1,9 @@
-<div fxLayout="row" fxLayoutAlign="space-between center" class="main-header">
-  <h4 class="main-title primary">{{ title | translate }}</h4>
-  <div fxLayout="row" fxLayoutAlign="centr center">
-    <button mat-mini-fab color="primary" (click)="goToForm()">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
-</div>
+<app-title-bar [title]="title">
+  <button mat-mini-fab color="primary" (click)="goToForm()">
+    <mat-icon>add</mat-icon>
+  </button>
+</app-title-bar>
 <div>
-  <app-table
-    [headers]="headers"
-    [data]="data"
-    [loading]="loading"
-    [rowActions]="rowActions"
-    (reloadData)="loadData()"
-    (DynamicTableChanges)="DynamicTableChanges($event)"
-    [pagination]="pagination"
-  ></app-table>
+  <app-table [headers]="headers" [data]="data" [loading]="loading" [rowActions]="rowActions" (reloadData)="loadData()"
+    (DynamicTableChanges)="DynamicTableChanges($event)" [pagination]="pagination"></app-table>
 </div>

@@ -13,7 +13,7 @@ export class AdminSystemInterceptor {
   }
 
   private initInterceptor() {
-    // AdminSystemBaseModel.getAxiosInstance().interceptors.request.use(
+    // AdminSystemBaseModel.getInstance().interceptors.request.use(
     //   request => {
     //     console.log("admin");
     //     if (["put", "post"].includes(request.method)) {
@@ -26,7 +26,7 @@ export class AdminSystemInterceptor {
     //     return request;
     //   }
     // );
-    // AdminSystemBaseModel.getAxiosInstance().interceptors.response.use(
+    // AdminSystemBaseModel.getInstance().interceptors.response.use(
     //   response => {
     //     if (["put", "post"].includes(response.config.method)) {
     //       this.appSettingsSandbox.removeLoandig(

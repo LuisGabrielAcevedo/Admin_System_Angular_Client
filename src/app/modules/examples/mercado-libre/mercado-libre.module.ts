@@ -1,9 +1,10 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MercadoLibreComponent } from "./mercado-libre.component";
-import { TableModule } from "../../shared-modules/table/table.module";
+import { DynamicTableModule } from "src/app/modules/shared-modules/table/table.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { RouterModule } from "@angular/router";
+import { TitleBarModule } from 'src/app/modules/shared-modules/title-bar/title-bar.module';
 
 @NgModule({
   imports: [
@@ -14,8 +15,9 @@ import { RouterModule } from "@angular/router";
         component: MercadoLibreComponent
       }
     ]),
-    TableModule,
-    FlexLayoutModule
+    DynamicTableModule,
+    FlexLayoutModule,
+    TitleBarModule
   ],
   declarations: [MercadoLibreComponent]
 })

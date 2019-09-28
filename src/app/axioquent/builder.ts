@@ -14,38 +14,29 @@ import { Observable, from } from "rxjs";
 import { AxiosquentModel } from "./interfaces/axiosquent-model";
 
 export class Builder implements QueryMethods {
-  protected modelType: typeof Model;
   protected headers: HeaderSpec[];
+  protected formDataActive: boolean = false;
   private httpClient: HttpClient;
   private query: Query;
 
-  constructor(modelType: typeof Model, baseModelType?: string) {
-    this.modelType = modelType;
+  constructor(model: typeof Model) {
     this.headers = [];
-    const modelInstance: Model = new (<any>modelType)();
-    baseModelType = baseModelType ? baseModelType : modelInstance.getResource();
-    this.query = new Query(baseModelType);
-    this.httpClient = modelType.getHttpClient();
+    const modelInstance: Model = new (<any>model)();
+    this.query = new Query(modelInstance.getResource(), modelInstance.getQueryConfig());
+    this.httpClient = model.getHttpClient();
     this.initPaginationSpec();
-    console.log("build");
   }
 
   public async find(page?: number, perPage?: number): Promise<any> {
     try {
       this.setHeaders();
-      if (page) {
-        this.query.getPaginationSpec().setPage(page);
-      }
-      if (perPage) {
-        this.query.getPaginationSpec().setPerPage(perPage);
-      }
+      if (page) this.query.getPaginationSpec().setPage(page);
+      if (perPage) this.query.getPaginationSpec().setPerPage(perPage);
       const resp: HttpClientResponse = await this.getHttpClient().get(
         this.query.toString()
       );
       let data = resp.getData();
-      if (resp.getPagination()) {
-        data.pagination = resp.getPagination();
-      }
+      if (resp.getPagination()) data.pagination = resp.getPagination();
       return data;
     } catch (e) {
       return Promise.reject(e.response.data);
@@ -128,12 +119,22 @@ export class Builder implements QueryMethods {
     return from(this.destroy(id));
   }
 
-  public where(attribute: string, value: string): Builder {
+  public page(page: number): Builder {
+    this.query.getPaginationSpec().setPage(page);
+    return this;
+  }
+
+  public perPage(perPage: number): Builder {
+    this.query.getPaginationSpec().setPerPage(perPage);
+    return this;
+  }
+
+  public filter(attribute: string, value: string): Builder {
     this.query.addFilter(new FilterSpec(attribute, value));
     return this;
   }
 
-  public andWhere(attribute: string, value: string): Builder {
+  public where(attribute: string, value: string): Builder {
     this.query.addAndFilter(new FilterSpec(attribute, value));
     return this;
   }
@@ -146,17 +147,13 @@ export class Builder implements QueryMethods {
     let ats = "";
     if (typeof attribute === "string") {
       ats = attribute as string;
-      if (type) {
-        ats += `_${type}`;
-      }
+      if (type) ats += `_${type}`;
       this.query.addOrFilter(new FilterSpec(ats, value));
     } else if (Array.isArray(attribute)) {
       for (const a of attribute) {
         ats += !ats ? a : `_or_${a}`;
       }
-      if (type) {
-        ats += `_${type}`;
-      }
+      if (type) ats += `_${type}`;
       this.query.addOrFilter(new FilterSpec(ats, value));
     } else {
       throw new Error(
@@ -180,9 +177,9 @@ export class Builder implements QueryMethods {
       } else {
         throw new Error(
           "The 'direction' parameter must be string of value 'asc' or 'desc', " +
-            "value '" +
-            direction +
-            "' invalid."
+          "value '" +
+          direction +
+          "' invalid."
         );
       }
     }
@@ -239,6 +236,11 @@ export class Builder implements QueryMethods {
     this.headers.forEach(header => {
       this.getHttpClient().setHeader(header.getName(), header.getValue());
     });
+  }
+
+  public formData(): Builder {
+    this.formDataActive = true;
+    return this;
   }
 
   private initPaginationSpec(): void {

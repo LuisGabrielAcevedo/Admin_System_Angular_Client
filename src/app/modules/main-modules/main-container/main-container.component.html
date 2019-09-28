@@ -3,10 +3,9 @@
     <button type="button" mat-button (click)="sidebar.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>Admin System Angular</span>
+    <span>Angular feactures</span>
   </mat-toolbar>
-  <mat-drawer-container fxFlex class="sidenav-container" autosize>
-    <div fxLayout="column" style="height: 100%;">
+  <mat-drawer-container style="height: 100%;" class="sidenav-container" autosize>
       <mat-drawer #drawer class="sidenav" mode="over">
         <div *ngFor="let item of sidebarItems">
           <div *ngIf="item.subItems; else text1">
@@ -50,11 +49,8 @@
           </ng-template>
         </div>
       </mat-drawer>
-      <div fxFlex>
+      <div style="height: 100%;">
         <router-outlet></router-outlet>
       </div>
-    </div>
   </mat-drawer-container>
 </div>
-
-<!-- <app-snackbar></app-snackbar> -->

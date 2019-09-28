@@ -14,12 +14,15 @@ export interface QueryMethods {
     saveRx(model: AxiosquentModel): Observable<any>;
     updateRx(id: string | number, model: AxiosquentModel): Observable<any>;
     destroyRx(id: string | number): Observable<any>;
+    filter(attribute: string, value: string): Builder;
     where(attribute: string, value: string): Builder;
-    andWhere(attribute: string, value: string): Builder;
-    orWhere(attribute: string | string [], value: string, type?: string): Builder;
+    orWhere(attribute: string | string[], value: string, type?: string): Builder;
     orderBy(attribute: string, direction?: SortDirection | string): Builder;
     with(value: string | string[]): Builder;
     option(queryParameter: string, value: string): Builder;
     setUrl(url: string | string[], action?: string): Builder;
     header(name: string, value: string): Builder;
+    page(page: number): Builder;
+    perPage(perPage: number): Builder;
+    formData(): Builder;
 }

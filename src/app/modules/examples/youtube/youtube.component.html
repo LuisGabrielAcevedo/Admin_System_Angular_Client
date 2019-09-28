@@ -1,7 +1,5 @@
 <div class="example-boundary">
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <h2 class="mainTitle">Youtube Api</h2>
-  </div>
+  <app-title-bar [title]="title"></app-title-bar>
   <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
     <iframe #iframe src="https://www.youtube.com/embed/RB-RcX5DS5A"> </iframe>
   </div>

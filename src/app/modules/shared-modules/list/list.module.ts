@@ -4,7 +4,8 @@ import { ListComponent } from "./list.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { TranslateModule } from "@ngx-translate/core";
 import { MaterialModule } from "src/app/material/material.module";
-import { TableModule } from "../table/table.module";
+import { DynamicTableModule } from "src/app/modules/shared-modules/table/table.module";
+import { TitleBarModule } from 'src/app/modules/shared-modules/title-bar/title-bar.module';
 
 @NgModule({
   declarations: [ListComponent],
@@ -13,7 +14,8 @@ import { TableModule } from "../table/table.module";
     FlexLayoutModule,
     TranslateModule,
     MaterialModule,
-    TableModule
+    DynamicTableModule,
+    TitleBarModule
   ]
 })
 export class ListModule {}

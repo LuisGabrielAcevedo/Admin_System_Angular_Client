@@ -12,16 +12,9 @@
 </div>
 
 <div class="cart-settings-container">
-  <app-cart-checkout
-    *ngIf="tabActive === 'CartCheckoutComponent'"
-  ></app-cart-checkout>
-  <app-cart-customers-list
-    *ngIf="tabActive === 'CartCustomersListComponent'"
-  ></app-cart-customers-list>
-  <app-cart-favorite-products-list
-    *ngIf="tabActive === 'CartFavoriteProductsListComponent'"
-  ></app-cart-favorite-products-list>
-  <app-cart-products-list
-    *ngIf="tabActive === 'CartProductsListComponent'"
-  ></app-cart-products-list>
+  <app-cart-checkout *ngIf="tabActive === 'CartCheckoutComponent'"></app-cart-checkout>
+  <app-cart-customers-list *ngIf="tabActive === 'CartCustomersListComponent'"></app-cart-customers-list>
+  <app-cart-favorite-products-list *ngIf="tabActive === 'CartFavoriteProductsListComponent'">
+  </app-cart-favorite-products-list>
+  <app-cart-products-list *ngIf="tabActive === 'CartProductsListComponent'"></app-cart-products-list>
 </div>

@@ -50,7 +50,7 @@ const productFields: FormField[] = [
       placeholder: "Select the stores",
       fieldOptions: arg => {
         return arg
-          ? Store.where("company", arg)
+          ? Store.filter("company", arg)
               .findRx()
               .pipe(map(resp => resp.data))
           : Store.findRx().pipe(map(resp => resp.data));
@@ -179,7 +179,7 @@ const productFields: FormField[] = [
     mainGroup: "Product info",
     options: {
       fieldOptions: arg =>
-        ProductCategory.where("company", arg)
+        ProductCategory.filter("company", arg)
           .findRx()
           .pipe(map(resp => resp.data)),
       associationValue: "_id",
@@ -198,7 +198,7 @@ const productFields: FormField[] = [
     mainGroup: "Product info",
     options: {
       fieldOptions: arg =>
-        ProductType.where("company", arg)
+        ProductType.filter("company", arg)
           .findRx()
           .pipe(map(resp => resp.data)),
       associationValue: "_id",
@@ -217,7 +217,7 @@ const productFields: FormField[] = [
     mainGroup: "Product info",
     options: {
       fieldOptions: arg =>
-        Brand.where("company", arg)
+        Brand.filter("company", arg)
           .findRx()
           .pipe(map(resp => resp.data)),
       associationValue: "_id",
@@ -236,7 +236,7 @@ const productFields: FormField[] = [
     mainGroup: "Product info",
     options: {
       fieldOptions: arg =>
-        Vendor.where("company", arg)
+        Vendor.filter("company", arg)
           .findRx()
           .pipe(map(resp => resp.data)),
       associationValue: "_id",

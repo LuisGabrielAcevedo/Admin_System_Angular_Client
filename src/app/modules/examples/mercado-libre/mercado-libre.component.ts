@@ -13,10 +13,11 @@ import { MercadoLibreBaseModel } from "src/app/models/examples/mercado-libre/bas
   styleUrls: ["./mercado-libre.component.css"]
 })
 export class MercadoLibreComponent implements OnInit {
-  data: DynamicTableItem[] = [];
-  headers: DynamicTableHeader[] = mercadoLibreHeaders;
-  loading: boolean = false;
-  rowActions: DynamicTableButtonAction[] = [];
+  public title: string = 'Mercado libre';
+  public data: DynamicTableItem[] = [];
+  public headers: DynamicTableHeader[] = mercadoLibreHeaders;
+  public loading: boolean = false;
+  public rowActions: DynamicTableButtonAction[] = [];
   constructor() {}
 
   ngOnInit() {

@@ -16,4 +16,4 @@ import { TableButtonModule } from '../table-button/table-button.module';
     TableButtonModule
   ]
 })
-export class TableSecondTableModule { }
+export class TableSecondDynamicTableModule { }

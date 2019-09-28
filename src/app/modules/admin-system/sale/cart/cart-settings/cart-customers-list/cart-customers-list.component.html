@@ -1,3 +1,7 @@
-<p>
-  cart-customers-list works!
-</p>
+<div fxLayout="column" style="height: 100%">
+    <app-title-bar [title]="title"></app-title-bar>
+    <cdk-virtual-scroll-viewport fxFlex itemSize="50">
+        <app-table [headers]="headers" [data]="data" [loading]="loading" [rowActions]="[]" (reloadData)="loadData()"
+            (DynamicTableChanges)="DynamicTableChanges($event)" [pagination]="pagination"></app-table>
+    </cdk-virtual-scroll-viewport>
+</div>

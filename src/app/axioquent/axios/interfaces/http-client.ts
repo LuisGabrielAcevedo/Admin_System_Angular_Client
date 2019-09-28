@@ -18,5 +18,7 @@ export interface HttpClient {
 
   patch(url: string, data?: any): HttpClientPromise;
 
-  getAxiosInstance(): AxiosInstance;
+  getInstance(): AxiosInstance;
 }
+
+

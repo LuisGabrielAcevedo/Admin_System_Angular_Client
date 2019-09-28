@@ -1,4 +1,5 @@
 import { QueryParam } from '../query/query-params';
+import { AxiosquentQueryConfig } from '../interfaces/axiosquent-query-config';
 
 export class PaginationSpec {
     public page: number | null;
@@ -7,13 +8,13 @@ export class PaginationSpec {
 
     constructor() {
         this.page = null;
-        this.perPage = 50;
+        this.perPage = 10;
         this.queryParams = [];
     }
 
-    public getPaginationParameters(): QueryParam[] {
-        this.queryParams.push(new QueryParam('page', this.page));
-        this.queryParams.push(new QueryParam('per_page', this.perPage));
+    public getPaginationParameters(queryConfig: AxiosquentQueryConfig): QueryParam[] {
+        this.queryParams.push(new QueryParam(queryConfig["page"] || "page", this.page));
+        this.queryParams.push(new QueryParam(queryConfig["per_page"] || "per_page", this.perPage));
         return this.queryParams;
     }
 

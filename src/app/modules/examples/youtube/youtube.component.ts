@@ -14,11 +14,12 @@ import { map } from "rxjs/operators";
   styleUrls: ["./youtube.component.css"]
 })
 export class YoutubeComponent implements OnInit {
-  data: DynamicTableItem[] = [];
-  headers: DynamicTableHeader[] = youtubeHeaders;
-  loading: boolean = false;
-  rowActions: DynamicTableButtonAction[] = [];
-  videoSelected: string = null;
+  public title: string = 'Youtube';
+  public data: DynamicTableItem[] = [];
+  public headers: DynamicTableHeader[] = youtubeHeaders;
+  public loading: boolean = false;
+  public rowActions: DynamicTableButtonAction[] = [];
+  public videoSelected: string = null;
   @ViewChild("iframe") iframe: ElementRef;
   constructor() {}
 

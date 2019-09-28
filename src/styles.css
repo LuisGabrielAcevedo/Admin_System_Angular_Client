@@ -6,24 +6,23 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: system-ui !important;
 }
 
-.main-title {
-  font-size: 24px;
-  font-weight: 400;
-  font-family: "Helvetica Neue", sans-serif;
+.main-header {
+  border-bottom: 1px solid #dee2e6;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  height: 60px;
 }
 
 .main-header h4 {
   margin: 0px;
 }
 
-.main-header {
-  border-bottom: 1px solid #dee2e6;
-  height: 65px;
-  padding: 12px 20px;
-  margin-bottom: 20px;
+.main-title {
+  font-size: 20px;
+  font-weight: 400;
 }
 
 .custom-dialog-container .mat-dialog-container {

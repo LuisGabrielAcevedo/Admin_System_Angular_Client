@@ -23,7 +23,7 @@ import { TableItemInformationModule } from './table-item-information/table-item-
 import { RouterModule } from '@angular/router';
 import { TableApplicationTypeComponent } from './table-application-type/table-application-type.component';
 import { TableApplicationTypeModule } from './table-application-type/table-application-type.module';
-import { TableSecondTableModule } from './table-second-table/table-second-table.module';
+import { TableSecondDynamicTableModule } from './table-second-table/table-second-table.module';
 import { TableSecondTableComponent } from './table-second-table/table-second-table.component';
 import { SelectApplicationsComponent } from '../../admin-system/system/select-applications/select-applications.component';
 import { ProfileCardComponent } from 'src/app/modules/admin-system/system/profile-card/profile-card.component';
@@ -36,7 +36,7 @@ import { ProfileCardComponent } from 'src/app/modules/admin-system/system/profil
     TableTextModule,
     TableApplicationTypeModule,
     TableButtonModule,
-    TableSecondTableModule,
+    TableSecondDynamicTableModule,
     TableImageModule,
     TableGalleryModule,
     TableItemInformationModule,
@@ -68,4 +68,4 @@ import { ProfileCardComponent } from 'src/app/modules/admin-system/system/profil
   ],
   exports: [TableComponent]
 })
-export class TableModule { }
+export class DynamicTableModule { }

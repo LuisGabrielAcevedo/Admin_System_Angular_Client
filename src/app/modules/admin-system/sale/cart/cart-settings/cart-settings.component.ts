@@ -25,9 +25,9 @@ export class CartSettingsComponent implements OnInit {
 
   style(tab: ECartTabActive) {
     return {
-      background: `${this.tabActive === tab ? "#3f51b5" : ""}`,
+      background: `${this.tabActive === tab ? "#304ffe" : ""}`,
       color: `${
-        this.tabActive !== tab ? "#3f51b5 !important" : "white !important"
+        this.tabActive !== tab ? "#304ffe !important" : "white !important"
       }`,
       cursor: "pointer"
     };

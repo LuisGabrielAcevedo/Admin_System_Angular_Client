@@ -7,8 +7,11 @@ import {
   DynamicTableButtonAction,
   DynamicTablePagination,
   DynamicTablePaginationDefault,
-  DynamicTableChanges
+  DynamicTableChanges,
+  DynamicTableItem
 } from "../table/table.interfaces";
+import { SortDirection } from 'src/app/axioquent';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: "app-list",
@@ -17,7 +20,7 @@ import {
 })
 export class ListComponent implements OnDestroy {
   public subscriptions: Subscription[] = [];
-  public data: any[] = [];
+  public data: DynamicTableItem[] = [];
   public loading: boolean;
   public resource: string;
   public modelClass: any;
@@ -27,8 +30,12 @@ export class ListComponent implements OnDestroy {
   public rowActions: DynamicTableButtonAction[] = [];
   public pagination: DynamicTablePagination = DynamicTablePaginationDefault;
   public sort: string;
-  public sortDirection: string = "asc";
-  constructor(private router: Router, private injector: Injector) {
+  public sortDirection: SortDirection = SortDirection.ASC;
+  constructor(
+    private router: Router, 
+    private injector: Injector,
+    private translateService: TranslateService,
+    ) {
     this.subscriptions.push(
       this.router.events
         .pipe(
@@ -45,6 +52,7 @@ export class ListComponent implements OnDestroy {
           this.sort = null;
           this.pagination = DynamicTablePaginationDefault;
           this.title = `${this.resource.replace("-", "_")}.list.title`;
+          this.title = this.translateService.instant(this.title);
           this.initList();
         })
     );
@@ -69,12 +77,14 @@ export class ListComponent implements OnDestroy {
 
   public loadData(): void {
     let modelClass = this.modelClass;
-    if (this.with()) modelClass = modelClass.option("populate", this.with());
+    if (this.with()) modelClass = modelClass.with(this.with());
     if (this.sort)
       modelClass = modelClass.orderBy(this.sort, this.sortDirection);
     this.loading = true;
     modelClass
-      .findRx(this.pagination.currentPage, this.pagination.itemsPerPage)
+      .page(this.pagination.currentPage)
+      .perPage(this.pagination.itemsPerPage)
+      .findRx()
       .subscribe(resp => {
         this.pagination = {
           currentPage: resp.currentPage,
@@ -88,9 +98,7 @@ export class ListComponent implements OnDestroy {
 
   public with(): string {
     let resource: string = this.resource;
-    if (resource.includes("-")) {
-      resource = resource.split("-").join("");
-    }
+    if (resource.includes("-")) resource = resource.split("-").join("");
     const populateData = {
       users:
         "company,application,userConfigurations.currentStore,userInformation,role",
@@ -115,7 +123,8 @@ export class ListComponent implements OnDestroy {
   public DynamicTableChanges(changes: DynamicTableChanges) {
     if (changes.pagination) this.pagination = changes.pagination;
     if (changes.sort) this.sort = changes.sort;
-    if (changes.sortDirection) this.sortDirection = changes.sortDirection;
+    if (changes.sortDirection) this.sortDirection = changes.sortDirection === 'asc' 
+      ? SortDirection.ASC: SortDirection.DESC;
     this.loadData();
   }
 

@@ -6,13 +6,8 @@ import { AxiosHttpClientPromise } from "./axios/classes/axios-http-client-promis
 
 export class AxiosHttpClient implements HttpClient {
   private axiosInstance: AxiosInstance;
-
-  constructor();
   constructor(axiosInstance?: AxiosInstance) {
-    if (axiosInstance === null || axiosInstance === undefined) {
-      axiosInstance = axios.create();
-    }
-    console.log(axiosInstance);
+    if (!axiosInstance) axiosInstance = axios.create();
     this.axiosInstance = axiosInstance;
   }
 
@@ -48,7 +43,7 @@ export class AxiosHttpClient implements HttpClient {
     return new AxiosHttpClientPromise(this.axiosInstance.patch(url, data));
   }
 
-  public getAxiosInstance(): AxiosInstance {
+  public getInstance(): AxiosInstance {
     return this.axiosInstance;
   }
 }

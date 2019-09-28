@@ -3,8 +3,8 @@ import { FilterSpec } from "../filter/filter-spec";
 import { Option } from "../option/option";
 import { SortSpec } from "../sort/sort-spec";
 import { QueryParam } from "./query-params";
-import { ClassFilterSpec } from "../filter/class-filter-spec";
 import { UrlSpec } from "../url/url-spec";
+import { AxiosquentQueryConfig } from '../interfaces/axiosquent-query-config';
 
 export class Query {
   protected resource: string;
@@ -17,8 +17,10 @@ export class Query {
   protected sort: SortSpec[];
   protected url: UrlSpec | null;
   protected noPagination: boolean;
+  protected queryConfig: AxiosquentQueryConfig;
 
-  constructor(resource: string) {
+  constructor(resource: string, queryConfig: AxiosquentQueryConfig) {
+    this.queryConfig = queryConfig || {};
     this.resource = resource;
     this.include = [];
     this.filters = [];
@@ -66,39 +68,28 @@ export class Query {
     this.pagination = paginationSpec;
   }
 
+  public getPaginationSpec(): PaginationSpec {
+    return this.pagination;
+  }
+
   protected addFilterParameters(searchParams: QueryParam[]): void {
     for (const f of this.filters) {
-      if (f instanceof ClassFilterSpec) {
-        const ff = <ClassFilterSpec>f;
-        searchParams.push(
-          new QueryParam(
-            `filter[${ff.getClass()}][${ff.getAttribute()}]`,
-            ff.getValue()
-          )
-        );
-      } else {
-        searchParams.push(
-          new QueryParam(`filter[${f.getAttribute()}]`, f.getValue())
-        );
-      }
+      searchParams.push(
+        new QueryParam(`filter[${f.getAttribute()}]`, f.getValue()));
+    }
+  }
+
+  protected addAndFilterParameters(searchParams: QueryParam[]): void {
+    for (const f of this.andFilters) {
+      searchParams.push(
+        new QueryParam(f.getAttribute(), f.getValue()));
     }
   }
 
   protected addOrFilterParameters(searchParams: QueryParam[]): void {
     for (const f of this.orFilters) {
-      if (f instanceof ClassFilterSpec) {
-        const ff = <ClassFilterSpec>f;
-        searchParams.push(
-          new QueryParam(
-            `q[${ff.getClass()}][${ff.getAttribute()}]`,
-            ff.getValue()
-          )
-        );
-      } else {
-        searchParams.push(
-          new QueryParam(`q[${f.getAttribute()}]`, f.getValue())
-        );
-      }
+      searchParams.push(
+        new QueryParam(`q[${f.getAttribute()}]`, f.getValue()));
     }
   }
 
@@ -114,7 +105,7 @@ export class Query {
         }
         p += sortSpec.getAttribute();
       }
-      searchParams.push(new QueryParam("sort", p));
+      searchParams.push(new QueryParam(this.queryConfig["orderBy"] || "orderBy", p));
     }
   }
 
@@ -127,12 +118,8 @@ export class Query {
         }
         p += incl;
       }
-      searchParams.push(new QueryParam("embed", p));
+      searchParams.push(new QueryParam(this.queryConfig["with"] || "with", p));
     }
-  }
-
-  public getPaginationSpec(): PaginationSpec {
-    return this.pagination;
   }
 
   protected addOptionsParameters(searchParams: QueryParam[]): void {
@@ -148,8 +135,8 @@ export class Query {
       searchParams.push(new QueryParam("no_pagination", true));
     } else {
       if (this.pagination.page) {
-        for (const param of this.pagination.getPaginationParameters()) {
-          searchParams.push(new QueryParam(param.name, param.value));
+        for (const param of this.pagination.getPaginationParameters(this.queryConfig)) {
+          searchParams.push(param);
         }
       }
     }
@@ -177,10 +164,11 @@ export class Query {
 
     const searchParams: QueryParam[] = [];
     this.addFilterParameters(searchParams);
+    this.addOrFilterParameters(searchParams);
+    this.addAndFilterParameters(searchParams);
     this.addSortParameters(searchParams);
     this.addIncludeParameters(searchParams);
     this.addOptionsParameters(searchParams);
-    this.addOrFilterParameters(searchParams);
     this.addPaginationParameters(searchParams);
 
     let paramString = "";

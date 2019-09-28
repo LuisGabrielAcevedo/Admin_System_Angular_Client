@@ -252,7 +252,7 @@ const userFields: FormField[] = [
             placeholder: 'Select a role',
             fieldOptions: (arg) => {
                 return arg 
-                ? Role.where('company', arg).findRx().pipe(map(resp => resp.data))
+                ? Role.filter('company', arg).findRx().pipe(map(resp => resp.data))
                 : Role.findRx().pipe(map(resp => resp.data))
             },
             associationText: 'name',
@@ -269,7 +269,7 @@ const userFields: FormField[] = [
             placeholder: 'Select a store',
             fieldOptions: (arg) => {
                 return arg 
-                ? Store.where('company', arg).findRx().pipe(map(resp => resp.data))
+                ? Store.filter('company', arg).findRx().pipe(map(resp => resp.data))
                 : Store.findRx().pipe(map(resp => resp.data))
             },
             associationText: 'name',

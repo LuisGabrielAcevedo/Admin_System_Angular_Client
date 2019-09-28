@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart-checkout.component.css']
 })
 export class CartCheckoutComponent implements OnInit {
-
+  public title: string = "Checkout"
   constructor() { }
 
   ngOnInit() {

@@ -19,6 +19,6 @@ import { CartCustomersListModule } from './cart-customers-list/cart-customers-li
     CartCheckoutModule,
     CartCustomersListModule
   ],
-   exports: [CartSettingsComponent]
+  exports: [CartSettingsComponent]
 })
 export class CartSettingsModule { }

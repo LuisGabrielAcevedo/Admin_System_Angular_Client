@@ -45,6 +45,6 @@ export class DynamicTableModalComponent implements OnInit {
   }
 
   color(button: DynamicTableButtonAction) {
-    return this.buttonSelected === button.label ? { 'color': '#3f51b5' } : { 'color': 'rgba(127,127,127,0.5)' };
+    return this.buttonSelected === button.label ? { 'color': '#304ffe' } : { 'color': 'rgba(127,127,127,0.5)' };
   }
 }

@@ -81,7 +81,7 @@ export default class CompanyService {
                                 type: 'TableGalleryComponent',
                                 row: 0,
                                 data: {
-                                    observable: (arg) => Store.where('company', arg._id).findRx(),
+                                    observable: (arg) => Store.filter('company', arg._id).findRx(),
                                     galleryConfig: {
                                         galleryType: 'GALLERY_IMAGE',
                                         galleryListData: 'data',
@@ -104,7 +104,7 @@ export default class CompanyService {
                                 type: 'TableGalleryComponent',
                                 row: 0,
                                 data: {
-                                    observable: (arg) => Products.where('company', arg._id).findRx(),
+                                    observable: (arg) => Products.filter('company', arg._id).findRx(),
                                     galleryConfig: {
                                         galleryType: 'GALLERY_IMAGE_CARD',
                                         galleryListData: 'data',
@@ -130,7 +130,7 @@ export default class CompanyService {
                                 type: 'TableSecondTableComponent',
                                 row: 0,
                                 data: {
-                                    observable: (arg) => Orders.where('company', arg._id).findRx(),
+                                    observable: (arg) => Orders.filter('company', arg._id).findRx(),
                                     secondTableConfig: {
                                         secondTableListData: 'data',
                                         multiSelect: true,
@@ -173,7 +173,7 @@ export default class CompanyService {
                                 type: 'TableGalleryComponent',
                                 row: 0,
                                 data: {
-                                    observable: (arg) => User.where('company', arg._id).findRx(),
+                                    observable: (arg) => User.filter('company', arg._id).findRx(),
                                     galleryConfig: {
                                         galleryType: 'GALLERY_USER',
                                         galleryListData: 'data',
@@ -199,7 +199,7 @@ export default class CompanyService {
                                 type: 'TableGalleryComponent',
                                 row: 0,
                                 data: {
-                                    observable: (arg) =>Customer.where('company', arg._id).findRx(),
+                                    observable: (arg) =>Customer.filter('company', arg._id).findRx(),
                                     galleryConfig: {
                                         galleryType: 'GALLERY_USER',
                                         galleryListData: 'data',

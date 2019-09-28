@@ -8,6 +8,7 @@ import {
 } from "../dynamic-form/dynamic-form.interfaces";
 import { DynamicFormComponent } from "../dynamic-form/dynamic-form.component";
 import { Subscription } from "rxjs";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: "app-form",
@@ -29,7 +30,11 @@ export class FormComponent implements OnDestroy {
   public fieldsConfig: FormField[];
   public title: string;
   public buttonLabel: string;
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private translateService: TranslateService,
+  ) {
     this.subscriptions.push(
       this.route.paramMap.subscribe(params => {
         this.resource = params.get("resource");
@@ -37,6 +42,7 @@ export class FormComponent implements OnDestroy {
         this.title = this.id
           ? `${this.resource.replace("-", "_")}.edit.title`
           : `${this.resource.replace("-", "_")}.new.title`;
+        this.title = this.translateService.instant(this.title);
         this.buttonLabel = this.id ? "edit" : "save";
         this.initComponent();
       })
@@ -58,7 +64,7 @@ export class FormComponent implements OnDestroy {
   public loadData(): void {
     this.loading = true;
     this.modelClass
-      .option("populate", this.with())
+      .with(this.with())
       .findByIdRx(this.id)
       .subscribe(resp => {
         this.model = resp.data;
@@ -78,9 +84,7 @@ export class FormComponent implements OnDestroy {
 
   public with(): string {
     let resource: string = this.resource;
-    if (resource.includes("-")) {
-      resource = resource.split("-").join("");
-    }
+    if (resource.includes("-")) resource = resource.split("-").join("");
     const populateData = {
       users:
         "company,application,userConfigurations.currentStore,userInformation,role",
@@ -105,7 +109,7 @@ export class FormComponent implements OnDestroy {
   public updateAction(model: FormModel): void {
     this.modelClass
       .updateRx(model._id, model)
-      .subscribe(resp => this.goToTable());
+      .subscribe(() => this.goToTable());
   }
 
   public goToTable() {
