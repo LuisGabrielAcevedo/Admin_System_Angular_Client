@@ -1,3 +1,10 @@
-<p>
-  snake works!
-</p>
+<div fxLayout="column" class="full-height">
+  <app-title-bar [title]="title"></app-title-bar>
+  <app-dynamic-form #snakeDynamicForm [fieldsConfig]="fieldsConfig"></app-dynamic-form>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <button mat-raised-button color="primary" (click)="isPlaying ? stop() : start()">{{isPlaying ? 'Stop' : 'Play'}}</button>
+  </div>
+  <div fxFlex class="snake-container">
+    <app-snake-canvas [snakeGameConfig]="snakeGameConfig" [isPlaying]="isPlaying" (stop)="stop()"></app-snake-canvas>
+  </div>
+</div>

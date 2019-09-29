@@ -4,11 +4,13 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: system-ui !important;
 }
 
+/* Title bar component */
 .main-header {
   border-bottom: 1px solid #dee2e6;
   padding: 12px 14px;
@@ -24,8 +26,16 @@ body {
   font-size: 20px;
   font-weight: 400;
 }
+/*  */
+
 
 .custom-dialog-container .mat-dialog-container {
   padding: 5px !important;
   overflow: hidden !important;
+}
+
+
+/* Custom classes */
+.full-height {
+  height: 100%;
 }

@@ -1,0 +1,11 @@
+.snake-canvas-container {
+    background: white;
+    border: 2px solid #dee2e6;
+    margin: 10px;
+}
+
+.snake-canvas-info {
+    height: 30px;
+    color: white;
+    padding: 12px; 
+}

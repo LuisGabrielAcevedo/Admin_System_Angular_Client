@@ -29,7 +29,7 @@ export class FormComponent {
   @Input() protected model: FormModel;
   @Input() protected formType: string = "tabs";
   @Input() protected columns: number;
-  @Input() protected materialData: MaterialFormData;
+  @Input() protected materialData: MaterialFormData = {};
   @Input() protected formatId: string = "_id";
 
   constructor(

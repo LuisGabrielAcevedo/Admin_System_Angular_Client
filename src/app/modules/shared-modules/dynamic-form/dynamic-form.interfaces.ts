@@ -99,7 +99,7 @@ export interface FormattedValidations {
 
 export interface FormResponse {
   valid: boolean;
-  currentModel?: FormModel;
+  currentModel?: any;
   errors?: ValidationErrors;
   editedFields?: FormModel;
 }
