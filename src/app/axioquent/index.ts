@@ -1,4 +1,4 @@
 export * from "./model";
-export * from "./interfaces/axiosquent-model";
-export * from "./interfaces/axiosquent-query-config";
+export * from "./interfaces/lgx-model";
+export * from "./interfaces/lgx-query-config";
 export * from "./sort/sort-directions";

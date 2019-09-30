@@ -1,10 +1,10 @@
 import { AxiosInstance } from "axios";
 import axios from "axios";
-import { HttpClient } from "./axios/interfaces/http-client";
-import { HttpClientPromise } from "./axios/interfaces/http-client-promise";
-import { AxiosHttpClientPromise } from "./axios/classes/axios-http-client-promise";
+import { LgxHttpClient } from "./interfaces/lgx-http-client";
+import { LgxHttpClientPromise } from "./interfaces/lgx-http-client-promise";
+import { LgxAxiosHttpClientPromise } from "./axios/lgx-axios-http-client-promise";
 
-export class AxiosHttpClient implements HttpClient {
+export class AxiosHttpClient implements LgxHttpClient {
   private axiosInstance: AxiosInstance;
   constructor(axiosInstance?: AxiosInstance) {
     if (!axiosInstance) axiosInstance = axios.create();
@@ -19,28 +19,28 @@ export class AxiosHttpClient implements HttpClient {
     this.axiosInstance.defaults.headers[name] = value;
   }
 
-  public get(url: string): HttpClientPromise {
-    return new AxiosHttpClientPromise(this.axiosInstance.get(url));
+  public get(url: string): LgxHttpClientPromise {
+    return new LgxAxiosHttpClientPromise(this.axiosInstance.get(url));
   }
 
-  public delete(url: string): HttpClientPromise {
-    return new AxiosHttpClientPromise(this.axiosInstance.delete(url));
+  public delete(url: string): LgxHttpClientPromise {
+    return new LgxAxiosHttpClientPromise(this.axiosInstance.delete(url));
   }
 
-  public head(url: string): HttpClientPromise {
-    return new AxiosHttpClientPromise(this.axiosInstance.head(url));
+  public head(url: string): LgxHttpClientPromise {
+    return new LgxAxiosHttpClientPromise(this.axiosInstance.head(url));
   }
 
-  public post(url: string, data?: any): HttpClientPromise {
-    return new AxiosHttpClientPromise(this.axiosInstance.post(url, data));
+  public post(url: string, data?: any): LgxHttpClientPromise {
+    return new LgxAxiosHttpClientPromise(this.axiosInstance.post(url, data));
   }
 
-  public put(url: string, data?: any): HttpClientPromise {
-    return new AxiosHttpClientPromise(this.axiosInstance.put(url, data));
+  public put(url: string, data?: any): LgxHttpClientPromise {
+    return new LgxAxiosHttpClientPromise(this.axiosInstance.put(url, data));
   }
 
-  public patch(url: string, data?: any): HttpClientPromise {
-    return new AxiosHttpClientPromise(this.axiosInstance.patch(url, data));
+  public patch(url: string, data?: any): LgxHttpClientPromise {
+    return new LgxAxiosHttpClientPromise(this.axiosInstance.patch(url, data));
   }
 
   public getInstance(): AxiosInstance {

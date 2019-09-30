@@ -1,28 +1,31 @@
-import { QueryMethods } from "./query/query-methods";
+import { LgxQueryMethods } from "./interfaces/lgx-query-methods";
 import { Model } from "./model";
 import { Query } from "./query/query";
-import { FilterSpec } from "./filter/filter-spec";
+import { LgxFilter } from "./filter/lgx-filter";
 import { SortDirection } from "./sort/sort-directions";
 import { SortSpec } from "./sort/sort-spec";
 import { Option } from "./option/option";
 import { PaginationSpec } from "./pagination/pagination-spec";
-import { HttpClient } from "./axios/interfaces/http-client";
+import { LgxHttpClient } from "./interfaces/lgx-http-client";
 import { UrlSpec } from "./url/url-spec";
 import { HeaderSpec } from "./header/header-spec";
-import { HttpClientResponse } from "./axios/interfaces/http-client-response";
+import { LgxHttpClientResponse } from "./interfaces/lgx-http-client-response";
 import { Observable, from } from "rxjs";
-import { AxiosquentModel } from "./interfaces/axiosquent-model";
+import { ILgxModel } from "./interfaces/lgx-model";
 
-export class Builder implements QueryMethods {
+export class Builder implements LgxQueryMethods {
   protected headers: HeaderSpec[];
   protected formDataActive: boolean = false;
-  private httpClient: HttpClient;
+  private httpClient: LgxHttpClient;
   private query: Query;
 
   constructor(model: typeof Model) {
     this.headers = [];
     const modelInstance: Model = new (<any>model)();
-    this.query = new Query(modelInstance.getResource(), modelInstance.getQueryConfig());
+    this.query = new Query(
+      modelInstance.getResource(),
+      modelInstance.getQueryConfig()
+    );
     this.httpClient = model.getHttpClient();
     this.initPaginationSpec();
   }
@@ -32,12 +35,10 @@ export class Builder implements QueryMethods {
       this.setHeaders();
       if (page) this.query.getPaginationSpec().setPage(page);
       if (perPage) this.query.getPaginationSpec().setPerPage(perPage);
-      const resp: HttpClientResponse = await this.getHttpClient().get(
+      const resp: LgxHttpClientResponse = await this.getHttpClient().get(
         this.query.toString()
       );
-      let data = resp.getData();
-      if (resp.getPagination()) data.pagination = resp.getPagination();
-      return data;
+      return resp.getData();
     } catch (e) {
       return Promise.reject(e.response.data);
     }
@@ -50,7 +51,7 @@ export class Builder implements QueryMethods {
   public async findById(id: number): Promise<any> {
     try {
       this.setHeaders();
-      const resp: HttpClientResponse = await this.getHttpClient().get(
+      const resp: LgxHttpClientResponse = await this.getHttpClient().get(
         this.query.toString(id)
       );
       return resp.getData();
@@ -63,10 +64,10 @@ export class Builder implements QueryMethods {
     return from(this.findById(id));
   }
 
-  public async save(model: AxiosquentModel): Promise<any> {
+  public async save(model: ILgxModel): Promise<any> {
     try {
       this.setHeaders();
-      const resp: HttpClientResponse = await this.getHttpClient().post(
+      const resp: LgxHttpClientResponse = await this.getHttpClient().post(
         this.query.toString(),
         model
       );
@@ -76,17 +77,14 @@ export class Builder implements QueryMethods {
     }
   }
 
-  public saveRx(model: AxiosquentModel): Observable<any> {
+  public saveRx(model: ILgxModel): Observable<any> {
     return from(this.save(model));
   }
 
-  public async update(
-    id: string | number,
-    model: AxiosquentModel
-  ): Promise<any> {
+  public async update(id: string | number, model: ILgxModel): Promise<any> {
     try {
       this.setHeaders();
-      const resp: HttpClientResponse = await this.getHttpClient().put(
+      const resp: LgxHttpClientResponse = await this.getHttpClient().put(
         this.query.toString(id),
         model
       );
@@ -96,17 +94,14 @@ export class Builder implements QueryMethods {
     }
   }
 
-  public updateRx(
-    id: string | number,
-    model: AxiosquentModel
-  ): Observable<any> {
+  public updateRx(id: string | number, model: ILgxModel): Observable<any> {
     return from(this.update(id, model));
   }
 
   public async destroy(id: string | number): Promise<any> {
     try {
       this.setHeaders();
-      const resp: HttpClientResponse = await this.getHttpClient().delete(
+      const resp: LgxHttpClientResponse = await this.getHttpClient().delete(
         this.query.toString(id)
       );
       return resp.getData();
@@ -130,12 +125,12 @@ export class Builder implements QueryMethods {
   }
 
   public filter(attribute: string, value: string): Builder {
-    this.query.addFilter(new FilterSpec(attribute, value));
+    this.query.addFilter(new LgxFilter(attribute, value));
     return this;
   }
 
   public where(attribute: string, value: string): Builder {
-    this.query.addAndFilter(new FilterSpec(attribute, value));
+    this.query.addAndFilter(new LgxFilter(attribute, value));
     return this;
   }
 
@@ -148,13 +143,13 @@ export class Builder implements QueryMethods {
     if (typeof attribute === "string") {
       ats = attribute as string;
       if (type) ats += `_${type}`;
-      this.query.addOrFilter(new FilterSpec(ats, value));
+      this.query.addOrFilter(new LgxFilter(ats, value));
     } else if (Array.isArray(attribute)) {
       for (const a of attribute) {
         ats += !ats ? a : `_or_${a}`;
       }
       if (type) ats += `_${type}`;
-      this.query.addOrFilter(new FilterSpec(ats, value));
+      this.query.addOrFilter(new LgxFilter(ats, value));
     } else {
       throw new Error(
         "The argument for 'with' must be a string or an array of strings."
@@ -177,9 +172,9 @@ export class Builder implements QueryMethods {
       } else {
         throw new Error(
           "The 'direction' parameter must be string of value 'asc' or 'desc', " +
-          "value '" +
-          direction +
-          "' invalid."
+            "value '" +
+            direction +
+            "' invalid."
         );
       }
     }
@@ -247,7 +242,7 @@ export class Builder implements QueryMethods {
     this.query.setPaginationSpec(new PaginationSpec());
   }
 
-  public getHttpClient(): HttpClient {
+  public getHttpClient(): LgxHttpClient {
     return this.httpClient;
   }
 }

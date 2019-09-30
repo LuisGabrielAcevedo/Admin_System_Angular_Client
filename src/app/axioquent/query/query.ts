@@ -1,25 +1,25 @@
 import { PaginationSpec } from "../pagination/pagination-spec";
-import { FilterSpec } from "../filter/filter-spec";
+import { LgxFilter } from "../filter/lgx-filter";
 import { Option } from "../option/option";
 import { SortSpec } from "../sort/sort-spec";
 import { QueryParam } from "./query-params";
 import { UrlSpec } from "../url/url-spec";
-import { AxiosquentQueryConfig } from '../interfaces/axiosquent-query-config';
+import { ILgxQueryConfig } from "../interfaces/lgx-query-config";
 
 export class Query {
   protected resource: string;
   protected pagination!: PaginationSpec;
   protected include: string[];
-  protected filters: FilterSpec[];
-  protected andFilters: FilterSpec[];
-  protected orFilters: FilterSpec[];
+  protected filters: LgxFilter[];
+  protected andFilters: LgxFilter[];
+  protected orFilters: LgxFilter[];
   protected options: Option[];
   protected sort: SortSpec[];
   protected url: UrlSpec | null;
   protected noPagination: boolean;
-  protected queryConfig: AxiosquentQueryConfig;
+  protected queryConfig: ILgxQueryConfig;
 
-  constructor(resource: string, queryConfig: AxiosquentQueryConfig) {
+  constructor(resource: string, queryConfig: ILgxQueryConfig) {
     this.queryConfig = queryConfig || {};
     this.resource = resource;
     this.include = [];
@@ -32,15 +32,15 @@ export class Query {
     this.noPagination = false;
   }
 
-  public addFilter = (filter: FilterSpec): void => {
+  public addFilter = (filter: LgxFilter): void => {
     this.filters.push(filter);
   };
 
-  public addAndFilter = (filter: FilterSpec): void => {
+  public addAndFilter = (filter: LgxFilter): void => {
     this.andFilters.push(filter);
   };
 
-  public addOrFilter = (filter: FilterSpec): void => {
+  public addOrFilter = (filter: LgxFilter): void => {
     this.orFilters.push(filter);
   };
 
@@ -75,21 +75,20 @@ export class Query {
   protected addFilterParameters(searchParams: QueryParam[]): void {
     for (const f of this.filters) {
       searchParams.push(
-        new QueryParam(`filter[${f.getAttribute()}]`, f.getValue()));
+        new QueryParam(`filter[${f.getAttribute()}]`, f.getValue())
+      );
     }
   }
 
   protected addAndFilterParameters(searchParams: QueryParam[]): void {
     for (const f of this.andFilters) {
-      searchParams.push(
-        new QueryParam(f.getAttribute(), f.getValue()));
+      searchParams.push(new QueryParam(f.getAttribute(), f.getValue()));
     }
   }
 
   protected addOrFilterParameters(searchParams: QueryParam[]): void {
     for (const f of this.orFilters) {
-      searchParams.push(
-        new QueryParam(`q[${f.getAttribute()}]`, f.getValue()));
+      searchParams.push(new QueryParam(`q[${f.getAttribute()}]`, f.getValue()));
     }
   }
 
@@ -105,7 +104,9 @@ export class Query {
         }
         p += sortSpec.getAttribute();
       }
-      searchParams.push(new QueryParam(this.queryConfig["orderBy"] || "orderBy", p));
+      searchParams.push(
+        new QueryParam(this.queryConfig["orderBy"] || "orderBy", p)
+      );
     }
   }
 
@@ -135,7 +136,9 @@ export class Query {
       searchParams.push(new QueryParam("no_pagination", true));
     } else {
       if (this.pagination.page) {
-        for (const param of this.pagination.getPaginationParameters(this.queryConfig)) {
+        for (const param of this.pagination.getPaginationParameters(
+          this.queryConfig
+        )) {
           searchParams.push(param);
         }
       }

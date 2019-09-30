@@ -164,5 +164,7 @@
   },
   "inventoy": "Inventory",
   "sale": "Sale",
-  "cart": "Cart"
+  "cart": "Cart",
+  "games": "Games",
+  "snake": "Snake"
 }

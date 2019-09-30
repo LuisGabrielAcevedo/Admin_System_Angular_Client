@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { AxiosquentModel } from "src/app/axioquent";
+import { ILgxModel } from "src/app/axioquent";
 import {
   FormField,
   FormModel,
@@ -23,7 +23,7 @@ export class FormComponent implements OnDestroy {
     floatLabel: "always"
   };
   public loading: boolean;
-  public model: AxiosquentModel;
+  public model: ILgxModel;
   public resource: string;
   public id: string;
   public modelClass: any;

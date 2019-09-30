@@ -1,29 +1,31 @@
 import { AxiosHttpClient } from "./axios-http-client";
 import { Builder } from "./builder";
-import { AxiosquentModel } from "./interfaces/axiosquent-model";
+import { ILgxModel } from "./interfaces/lgx-model";
 import { Observable } from "rxjs";
 import { AxiosInstance } from "axios";
-import { HttpClientModel } from './axios/interfaces/http-client-model';
-import { AxiosquentQueryConfig } from './interfaces/axiosquent-query-config';
+import { LgxHttpClientModel } from "./interfaces/lgx-http-client-model";
+import { ILgxQueryConfig } from "./interfaces/lgx-query-config";
 
 export abstract class Model {
   public abstract baseUrl(): string;
   public getResource = (): string => this.resource;
   public resource: string;
   public baseUrlClass: string;
-  private static instances: HttpClientModel[] = [];
+  private static instances: LgxHttpClientModel[] = [];
   private static httpClient: AxiosHttpClient;
-  public queryConfig: AxiosquentQueryConfig;
+  public queryConfig: ILgxQueryConfig;
 
   constructor() {
     this.baseUrlClass = this.baseUrl();
-    const instance: HttpClientModel = Model.instances.find(item => item.url === this.baseUrlClass);
+    const instance: LgxHttpClientModel = Model.instances.find(
+      item => item.url === this.baseUrlClass
+    );
     if (!instance) {
       const newInstance: AxiosHttpClient = new AxiosHttpClient();
       Model.instances.push({
         url: this.baseUrlClass,
         instance: newInstance
-      })
+      });
       Model.httpClient = newInstance;
     } else {
       Model.httpClient = instance.instance;
@@ -39,7 +41,7 @@ export abstract class Model {
     return this.httpClient;
   }
 
-  public getQueryConfig(): AxiosquentQueryConfig {
+  public getQueryConfig(): ILgxQueryConfig {
     return this.queryConfig;
   }
 
@@ -59,24 +61,24 @@ export abstract class Model {
     return new Builder(this).findByIdRx(id);
   }
 
-  public static async save(model: AxiosquentModel): Promise<any> {
+  public static async save(model: ILgxModel): Promise<any> {
     return new Builder(this).save(model);
   }
 
-  public static saveRx(model: AxiosquentModel): Observable<any> {
+  public static saveRx(model: ILgxModel): Observable<any> {
     return new Builder(this).saveRx(model);
   }
 
   public static async update(
     id: string | number,
-    model: AxiosquentModel
+    model: ILgxModel
   ): Promise<any> {
     return new Builder(this).update(id, model);
   }
 
   public static updateRx(
     id: string | number,
-    model: AxiosquentModel
+    model: ILgxModel
   ): Observable<any> {
     return new Builder(this).updateRx(id, model);
   }
@@ -126,7 +128,7 @@ export abstract class Model {
   }
 
   public static formData(): Builder {
-    return new Builder(this).formData()
+    return new Builder(this).formData();
   }
 
   public static setUrl(url: string, action?: string): Builder {
@@ -145,11 +147,3 @@ export abstract class Model {
     return new Builder(this).getHttpClient().getInstance();
   }
 }
-
-
-// public aspects = async (): Promise<any> => {
-//   const resp: HttpClientResponse = await Model.httpClient.get(
-//     `${this.getResource()}/aspects`
-//   );
-//   return resp.getData();
-// };

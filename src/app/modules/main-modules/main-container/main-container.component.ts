@@ -95,16 +95,25 @@ export class MainContainerComponent implements OnInit {
         name: this.translateService.instant("examples"),
         subItems: [
           {
-            name: "Mercado libre (data-table)",
+            name: "Mercado libre",
             route: "/examples/mercado-libre"
           },
           {
-            name: "Youtube (data-table)",
+            name: "Youtube",
             route: "/examples/youtube"
           },
           {
             name: "Netflix",
             route: "/examples/netflix"
+          }
+        ]
+      },
+      {
+        name: this.translateService.instant("games"),
+        subItems: [
+          {
+            name: this.translateService.instant("snake"),
+            route: "/games/snake"
           }
         ]
       }

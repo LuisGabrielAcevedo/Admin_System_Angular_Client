@@ -16,4 +16,7 @@ export class CartSandbox {
   setTabActive(tab: ECartTabActive): void {
     this.store.dispatch(new CartActions.SetTabActiveAction(tab));
   }
+  setItem(): void {
+    this.store.dispatch(new CartActions.SetAddItemAction(true));
+  }
 }
