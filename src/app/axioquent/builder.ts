@@ -8,13 +8,13 @@ import { Option } from "./option/option";
 import { PaginationSpec } from "./pagination/pagination-spec";
 import { LgxHttpClient } from "./interfaces/lgx-http-client";
 import { UrlSpec } from "./url/url-spec";
-import { HeaderSpec } from "./header/header-spec";
+import { LgxHeader } from "./header/lgx-header";
 import { LgxHttpClientResponse } from "./interfaces/lgx-http-client-response";
 import { Observable, from } from "rxjs";
 import { ILgxModel } from "./interfaces/lgx-model";
 
 export class Builder implements LgxQueryMethods {
-  protected headers: HeaderSpec[];
+  protected headers: LgxHeader[];
   protected formDataActive: boolean = false;
   private httpClient: LgxHttpClient;
   private query: Query;
@@ -218,7 +218,7 @@ export class Builder implements LgxQueryMethods {
   }
 
   public header(name: string, value: string): Builder {
-    this.headers.push(new HeaderSpec(name, value));
+    this.headers.push(new LgxHeader(name, value));
     return this;
   }
 
