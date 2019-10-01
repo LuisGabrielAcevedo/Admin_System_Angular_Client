@@ -1,13 +1,12 @@
 <div fxLayout="column" style="height: 100%">
   <app-title-bar [title]="title"></app-title-bar>
-  <cdk-virtual-scroll-viewport fxFlex itemSize="50">
+  <cdk-virtual-scroll-viewport fxFlex itemSize="1">
     <app-table
       [headers]="headers"
       [data]="data"
       [loading]="loading"
-      (reloadData)="loadData()"
-      (DynamicTableChanges)="dynamicTableChanges($event)"
       [pagination]="pagination"
+      (DynamicTableChanges)="dynamicTableChanges($event)"
     ></app-table>
   </cdk-virtual-scroll-viewport>
 </div>

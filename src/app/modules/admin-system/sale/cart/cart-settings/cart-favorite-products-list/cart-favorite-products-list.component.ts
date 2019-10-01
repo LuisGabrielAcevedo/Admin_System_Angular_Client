@@ -8,6 +8,9 @@ import { CartSandbox } from "src/app/store/cart/cart.sandbox";
 })
 export class CartFavoriteProductsListComponent implements OnInit {
   public title: string = "Favorite products";
+  public categories: any[] = [];
+  public types: any[] = [];
+  public brands: any[] = [];
   constructor(private cartSandbox: CartSandbox) {}
 
   ngOnInit() {}
