@@ -1,17 +1,47 @@
 <div>
-  <mat-tab-group [selectedIndex]="selectedTab.value" (selectedIndexChange)="selectedTab.setValue($event)">
-    <mat-tab *ngFor="let group of mainGroups" label="{{group.name}}">
+  <mat-tab-group
+    [selectedIndex]="selectedTab.value"
+    (selectedIndexChange)="selectedTab.setValue($event)"
+  >
+    <mat-tab *ngFor="let group of mainGroups" label="{{ group.name }}">
       <div fxLayout="row" fxLayout.lt-sm="column" class="tabs-content">
         <div fxFlex="20" *ngIf="group.leftFieldGroup.length">
-
+          <div
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            *ngFor="let field of group.leftFieldGroup"
+          >
+            <app-select-field
+              [field]="field"
+              [materialData]="materialData"
+              [form]="form"
+              [model]="model"
+            ></app-select-field>
+          </div>
         </div>
         <div fxFlex>
           <div *ngFor="let fields of group.fields">
-            <app-row [fields]="fields" [model]="model" [form]="form" [materialData]="materialData"></app-row>
+            <app-row
+              [fields]="fields"
+              [model]="model"
+              [form]="form"
+              [materialData]="materialData"
+            ></app-row>
           </div>
         </div>
         <div fxFlex="20" *ngIf="group.rightFieldGroup.length">
-
+          <div
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            *ngFor="let field of group.rightFieldGroup"
+          >
+            <app-select-field
+              [field]="field"
+              [materialData]="materialData"
+              [form]="form"
+              [model]="model"
+            ></app-select-field>
+          </div>
         </div>
       </div>
     </mat-tab>

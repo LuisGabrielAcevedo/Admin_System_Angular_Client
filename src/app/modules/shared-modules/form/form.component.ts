@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { ILgxModel, ILgx } from "src/app/axioquent/index";
+import { ILgxModel, ILgx } from "src/app/lgx-axios-dev-tools/index";
 import {
   FormField,
   FormModel,
@@ -62,14 +62,13 @@ export class FormComponent implements OnDestroy {
   }
 
   public loadData(): void {
+    let modelClass = this.modelClass;
+    if (this.with()) modelClass = modelClass.with(this.with());
     this.loading = true;
-    this.modelClass
-      .with(this.with())
-      .findByIdRx(this.id)
-      .subscribe(resp => {
-        this.model = resp.data;
-        this.loading = false;
-      });
+    modelClass.findByIdRx(this.id).subscribe(resp => {
+      this.model = resp.data;
+      this.loading = false;
+    });
   }
 
   public save(): void {
@@ -108,6 +107,7 @@ export class FormComponent implements OnDestroy {
 
   public updateAction(model: FormModel): void {
     this.modelClass
+      .formData()
       .updateRx(model._id, model)
       .subscribe(() => this.goToTable());
   }

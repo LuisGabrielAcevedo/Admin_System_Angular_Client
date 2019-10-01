@@ -2,6 +2,7 @@ import { Builder } from "../lgx-builder";
 import { ELgxSortDirection } from "../enums/lgx-sort-directions";
 import { Observable } from "rxjs";
 import { ILgxModel } from "./lgx-model";
+import { ELgxUrlAction } from "../enums/lgx-url-actions";
 
 export interface ILgx {
   find(page: number, perPage: number): Promise<any>;
@@ -20,7 +21,7 @@ export interface ILgx {
   orderBy(attribute: string, direction?: ELgxSortDirection | string): Builder;
   with(value: string | string[]): Builder;
   option(queryParameter: string, value: string): Builder;
-  setUrl(url: string | string[], action?: string): Builder;
+  setUrl(url: string | string[], action?: ELgxUrlAction): Builder;
   header(name: string, value: string): Builder;
   page(page: number): Builder;
   perPage(perPage: number): Builder;

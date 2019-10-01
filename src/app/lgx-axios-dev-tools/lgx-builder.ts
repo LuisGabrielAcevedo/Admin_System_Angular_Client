@@ -12,6 +12,8 @@ import { LgxHeader } from "./header/lgx-header";
 import { ILgxHttpClientResponse } from "./interfaces/lgx-http-client-response";
 import { Observable, from } from "rxjs";
 import { ILgxModel } from "./interfaces/lgx-model";
+import lgxObjectToFormData from "./form-data/lgx-form-data";
+import { ELgxUrlAction } from "./enums/lgx-url-actions";
 
 export class Builder implements ILgx {
   protected headers: LgxHeader[];
@@ -66,6 +68,8 @@ export class Builder implements ILgx {
 
   public async save(model: ILgxModel): Promise<any> {
     try {
+      if (this.formDataActive)
+        model = lgxObjectToFormData(model, { indices: true });
       this.setHeaders();
       const resp: ILgxHttpClientResponse = await this.getHttpClient().post(
         this.query.toString(),
@@ -83,6 +87,8 @@ export class Builder implements ILgx {
 
   public async update(id: string | number, model: ILgxModel): Promise<any> {
     try {
+      if (this.formDataActive)
+        model = lgxObjectToFormData(model, { indices: true });
       this.setHeaders();
       const resp: ILgxHttpClientResponse = await this.getHttpClient().put(
         this.query.toString(id),
@@ -158,10 +164,7 @@ export class Builder implements ILgx {
     return this;
   }
 
-  public orderBy(
-    attribute: string,
-    direction?: ELgxSortDirection | string
-  ): Builder {
+  public orderBy(attribute: string, direction?: ELgxSortDirection): Builder {
     if (typeof direction === "undefined" || !direction) {
       direction = ELgxSortDirection.ASC;
     } else if (typeof direction === "string") {
@@ -204,7 +207,7 @@ export class Builder implements ILgx {
     return this;
   }
 
-  public setUrl(url: string | string[], action?: string): Builder {
+  public setUrl(url: string | string[], action?: ELgxUrlAction): Builder {
     if (typeof url === "string") {
       this.query.setUrl(new LgxUrl(url, action));
     } else if (Array.isArray(url)) {

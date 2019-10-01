@@ -5,6 +5,8 @@ import { Observable } from "rxjs";
 import { AxiosInstance } from "axios";
 import { ILgxHttpClientModel } from "./interfaces/lgx-http-client-model";
 import { ILgxQueryConfig } from "./interfaces/lgx-query-config";
+import { ELgxUrlAction } from "./enums/lgx-url-actions";
+import { ELgxSortDirection } from "./enums/lgx-sort-directions";
 
 export abstract class Model {
   public abstract baseUrl(): string;
@@ -115,7 +117,10 @@ export abstract class Model {
     return new Builder(this).orWhere(attribute, value, type);
   }
 
-  public static orderBy(attribute: string, direction?: string): Builder {
+  public static orderBy(
+    attribute: string,
+    direction?: ELgxSortDirection
+  ): Builder {
     return new Builder(this).orderBy(attribute, direction);
   }
 
@@ -131,7 +136,7 @@ export abstract class Model {
     return new Builder(this).formData();
   }
 
-  public static setUrl(url: string, action?: string): Builder {
+  public static setUrl(url: string, action?: ELgxUrlAction): Builder {
     return new Builder(this).setUrl(url, action);
   }
 

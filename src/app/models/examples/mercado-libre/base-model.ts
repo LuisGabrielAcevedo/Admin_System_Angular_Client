@@ -1,4 +1,4 @@
-import { Model } from "src/app/axioquent/index";
+import { Model } from "src/app/lgx-axios-dev-tools/index";
 
 export class MercadoLibreBaseModel extends Model {
   public baseUrl(): string {

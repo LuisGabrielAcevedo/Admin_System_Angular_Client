@@ -6,7 +6,6 @@ import {
   MaterialFormData,
   FormatFieldsResponse
 } from "./dynamic-form.interfaces";
-import get from "lodash/get";
 import cloneDeep from "lodash/cloneDeep";
 import set from "lodash/set";
 import {
@@ -86,7 +85,8 @@ export class FormComponent {
         this.currentModel,
         field,
         this.form.value[field]
-          ? !Array.isArray(this.form.value[field]) && typeof this.form.value[field] === "object"
+          ? !Array.isArray(this.form.value[field]) &&
+            typeof this.form.value[field] === "object"
             ? this.form.value[field][this.formatId]
             : this.form.value[field]
           : null

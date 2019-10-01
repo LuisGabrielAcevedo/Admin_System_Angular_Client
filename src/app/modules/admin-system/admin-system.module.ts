@@ -4,8 +4,8 @@ import { AdminSystemComponent } from "./admin-system.component";
 import { AdminSystemRouting } from "./admin-system.routing.module";
 import { ListModule } from "src/app/modules/shared-modules/list/list.module";
 import { FormModule } from "src/app/modules/shared-modules/form/form.module";
-import { ProductCharacteristicsModule } from "./product-characteristics/product-characteristics.module";
-import { ProductPricesModule } from "./product-prices/product-prices.module";
+import { ProductCharacteristicsModule } from "./inventory/product-characteristics/product-characteristics.module";
+import { ProductPricesModule } from "./inventory/product-prices/product-prices.module";
 
 @NgModule({
   declarations: [AdminSystemComponent],

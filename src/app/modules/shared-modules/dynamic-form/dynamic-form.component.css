@@ -1,57 +1,94 @@
 .form-container {
-    margin: 10px;
+  margin: 10px;
 }
 
 mat-form-field {
-    width: 100%;
+  width: 100%;
 }
 
 mat-icon {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .error-message {
-    font-size: 75%;
-    color: #f44336;
-    margin-top: .66667em;
-    padding: 0 1em;
+  font-size: 75%;
+  color: #f44336;
+  margin-top: 0.66667em;
+  padding: 0 1em;
 }
 
 .form-error {
-    color: #f44336;
+  color: #f44336;
 }
 
 .form-required {
-    color: #f44336;
-    font-size: 18px;
-    margin-left: 5px;
+  color: #f44336;
+  font-size: 18px;
+  margin-left: 5px;
 }
 
 .form-normal-label {
-    color: rgba(0,0,0,.54);
+  color: rgba(0, 0, 0, 0.54);
 }
 
 .form-label {
-    font-size: 12px;
+  font-size: 12px;
 }
 
-/* Autocomplete classes */
-.autocomplete-content {
-    position: absolute;
-    box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
-    z-index: 1000;
-    width: 100%;
-    top: 48px;
-    max-height: 150px;
-    overflow-y: scroll;
-    background: white;
+/* Image classes */
+.form-image-container {
+  position: relative;
+  width: 200px;
+  height: 190px;
 }
 
-.autocomplete-item {
-    padding: 12px;
-    cursor: pointer;
+.form-image-border {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 46.4px;
+  height: 46.4px;
+  border-color: #d8d8d8 !important;
 }
 
-.autocomplete-default-message {
-    padding: 12px;
+.form-image-border-left-top {
+  top: -11px;
+  left: -15px;
+  border-top: solid 3px;
+  border-left: solid 3px;
+}
+
+.form-image-border-right-top {
+  top: -11px;
+  left: -15px;
+  border-top: solid 3px;
+  border-right: solid 3px;
+}
+
+.form-image-border-right-bottom {
+  top: -11px;
+  left: -15px;
+  border-right: solid 3px;
+  border-bottom: solid 3px;
+}
+
+.form-image-border-left-bottom {
+  top: -11px;
+  left: -15px;
+  border-bottom: solid 3px;
+  border-left: solid 3px;
+}
+
+.form-image-content {
+  margin-bottom: 10px;
+  text-align: center;
+  border: 2px solid #d8d8d8;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  flex-grow: 0;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
 }

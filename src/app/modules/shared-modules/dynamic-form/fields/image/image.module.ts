@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ImageComponent } from './image.component';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ImageComponent } from "./image.component";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [ImageComponent],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule, FlexLayoutModule]
 })
-export class ImageModule { }
+export class ImageModule {}

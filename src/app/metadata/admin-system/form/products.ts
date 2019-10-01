@@ -10,9 +10,9 @@ import ProductType from "src/app/models/admin-system/product-types";
 import Brand from "src/app/models/admin-system/brands";
 import Vendor from "src/app/models/admin-system/vendors";
 import AdminSystem from "src/app/models/admin-system/admin-system";
-import { ProductCharacteristicsComponent } from "src/app/modules/admin-system/product-characteristics/product-characteristics.component";
+import { ProductCharacteristicsComponent } from "src/app/modules/admin-system/inventory/product-characteristics/product-characteristics.component";
 import Store from "src/app/models/admin-system/stores";
-import { ProductPricesComponent } from "src/app/modules/admin-system/product-prices/product-prices.component";
+import { ProductPricesComponent } from "src/app/modules/admin-system/inventory/product-prices/product-prices.component";
 
 const productFields: FormField[] = [
   {

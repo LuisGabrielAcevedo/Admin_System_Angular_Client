@@ -1,4 +1,4 @@
 export enum ELgxSortDirection {
-  ASC,
-  DESC
+  ASC = "asc",
+  DESC = "desc"
 }

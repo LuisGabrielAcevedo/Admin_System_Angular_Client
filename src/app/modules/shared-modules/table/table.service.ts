@@ -7,7 +7,9 @@ import {
 } from "./table.interfaces";
 import { Router, NavigationExtras } from "@angular/router";
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class TableService {
   public reload: EventEmitter<any> = new EventEmitter();
   public closeModal: EventEmitter<any> = new EventEmitter();

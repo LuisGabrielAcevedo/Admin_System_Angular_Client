@@ -12,7 +12,7 @@ import {
 } from "../table/table.interfaces";
 
 import { TranslateService } from "@ngx-translate/core";
-import { ELgxSortDirection, ILgx } from "src/app/axioquent/index";
+import { ELgxSortDirection, ILgx } from "src/app/lgx-axios-dev-tools/index";
 
 @Component({
   selector: "app-list",
@@ -121,7 +121,7 @@ export class ListComponent implements OnDestroy {
     this.router.navigate([`/admin-system/${this.resource}/new`]);
   }
 
-  public DynamicTableChanges(changes: DynamicTableChanges) {
+  public dynamicTableChanges(changes: DynamicTableChanges) {
     if (changes.pagination) this.pagination = changes.pagination;
     if (changes.sort) this.sort = changes.sort;
     if (changes.sortDirection)

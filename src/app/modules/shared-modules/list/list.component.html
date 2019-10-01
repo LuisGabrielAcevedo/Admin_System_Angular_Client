@@ -4,6 +4,13 @@
   </button>
 </app-title-bar>
 <div>
-  <app-table [headers]="headers" [data]="data" [loading]="loading" [rowActions]="rowActions" (reloadData)="loadData()"
-    (DynamicTableChanges)="DynamicTableChanges($event)" [pagination]="pagination"></app-table>
+  <app-table
+    [headers]="headers"
+    [data]="data"
+    [loading]="loading"
+    [rowActions]="rowActions"
+    (reloadData)="loadData()"
+    (DynamicTableChanges)="dynamicTableChanges($event)"
+    [pagination]="pagination"
+  ></app-table>
 </div>

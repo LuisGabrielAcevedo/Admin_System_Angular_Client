@@ -1,4 +1,4 @@
-import { Model, ILgxQueryConfig } from "src/app/axioquent/index";
+import { Model, ILgxQueryConfig } from "src/app/lgx-axios-dev-tools/index";
 
 export class AdminSystemBaseModel extends Model {
   public queryConfig: ILgxQueryConfig = {
