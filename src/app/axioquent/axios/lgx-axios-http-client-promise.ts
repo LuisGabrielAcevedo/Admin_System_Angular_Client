@@ -1,10 +1,10 @@
-import { LgxHttpClientResponse } from "../interfaces/lgx-http-client-response";
+import { ILgxHttpClientResponse } from "../interfaces/lgx-http-client-response";
 import { AxiosPromise } from "axios";
-import { LgxHttpClientPromise } from "../interfaces/lgx-http-client-promise";
+import { ILgxHttpClientPromise } from "../interfaces/lgx-http-client-promise";
 import { LgxAxiosHttpClientResponse } from "./lgx-axios-http-client-response";
-import { LgxThenable } from "../interfaces/lgx-thenable";
+import { ILgxThenable } from "../interfaces/lgx-thenable";
 
-export class LgxAxiosHttpClientPromise implements LgxHttpClientPromise {
+export class LgxAxiosHttpClientPromise implements ILgxHttpClientPromise {
   private axiosPromise: AxiosPromise;
 
   constructor(axiosPromise: AxiosPromise) {
@@ -12,11 +12,11 @@ export class LgxAxiosHttpClientPromise implements LgxHttpClientPromise {
   }
 
   then<U>(
-    onFulfilled?: (value: LgxHttpClientResponse) => LgxThenable<U> | U,
-    onRejected?: (error: any) => LgxThenable<U> | U
+    onFulfilled?: (value: ILgxHttpClientResponse) => ILgxThenable<U> | U,
+    onRejected?: (error: any) => ILgxThenable<U> | U
   ): Promise<U>;
   then<U>(
-    onFulfilled?: (value: LgxHttpClientResponse) => LgxThenable<U> | U,
+    onFulfilled?: (value: ILgxHttpClientResponse) => ILgxThenable<U> | U,
     onRejected?: (error: any) => void
   ): Promise<U> {
     const wrappedOnFulfilled =
@@ -27,7 +27,7 @@ export class LgxAxiosHttpClientPromise implements LgxHttpClientPromise {
     return <Promise<U>>this.axiosPromise.then(wrappedOnFulfilled, onRejected);
   }
 
-  catch<U>(onRejected?: (error: any) => LgxThenable<U> | U): Promise<U> {
+  catch<U>(onRejected?: (error: any) => ILgxThenable<U> | U): Promise<U> {
     return <Promise<U>>this.axiosPromise.catch(onRejected);
   }
 }

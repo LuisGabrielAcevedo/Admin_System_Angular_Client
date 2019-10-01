@@ -1,10 +1,10 @@
-import { QueryParam } from "../query/query-params";
+import { LgxQueryParam } from "../query/lgx-query-param";
 import { ILgxQueryConfig } from "../interfaces/lgx-query-config";
 
-export class PaginationSpec {
+export class LgxPagination {
   public page: number | null;
   protected perPage: number;
-  protected queryParams: QueryParam[];
+  protected queryParams: LgxQueryParam[];
 
   constructor() {
     this.page = null;
@@ -12,12 +12,14 @@ export class PaginationSpec {
     this.queryParams = [];
   }
 
-  public getPaginationParameters(queryConfig: ILgxQueryConfig): QueryParam[] {
+  public getPaginationParameters(
+    queryConfig: ILgxQueryConfig
+  ): LgxQueryParam[] {
     this.queryParams.push(
-      new QueryParam(queryConfig["page"] || "page", this.page)
+      new LgxQueryParam(queryConfig["page"] || "page", this.page)
     );
     this.queryParams.push(
-      new QueryParam(queryConfig["per_page"] || "per_page", this.perPage)
+      new LgxQueryParam(queryConfig["per_page"] || "per_page", this.perPage)
     );
     return this.queryParams;
   }

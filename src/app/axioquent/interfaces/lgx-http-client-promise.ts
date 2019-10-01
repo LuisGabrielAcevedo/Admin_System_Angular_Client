@@ -1,14 +1,14 @@
-import { LgxHttpClientResponse } from "./lgx-http-client-response";
-import { LgxThenable } from "./lgx-thenable";
+import { ILgxHttpClientResponse } from "./lgx-http-client-response";
+import { ILgxThenable } from "./lgx-thenable";
 
-export interface LgxHttpClientPromise {
+export interface ILgxHttpClientPromise {
   then<U>(
-    onFulfilled?: (value: LgxHttpClientResponse) => U | LgxThenable<U>,
-    onRejected?: (error: any) => U | LgxThenable<U>
+    onFulfilled?: (value: ILgxHttpClientResponse) => U | ILgxThenable<U>,
+    onRejected?: (error: any) => U | ILgxThenable<U>
   ): Promise<U>;
   then<U>(
-    onFulfilled?: (value: LgxHttpClientResponse) => U | LgxThenable<U>,
+    onFulfilled?: (value: ILgxHttpClientResponse) => U | ILgxThenable<U>,
     onRejected?: (error: any) => void
   ): Promise<U>;
-  catch<U>(onRejected?: (error: any) => U | LgxThenable<U>): Promise<U>;
+  catch<U>(onRejected?: (error: any) => U | ILgxThenable<U>): Promise<U>;
 }

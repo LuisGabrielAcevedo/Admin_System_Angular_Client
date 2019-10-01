@@ -1,10 +1,10 @@
-export interface LgxThenable<T> {
+export interface ILgxThenable<T> {
   then<U>(
-    onFulfilled?: (value: T) => U | LgxThenable<U>,
-    onRejected?: (error: any) => U | LgxThenable<U>
-  ): LgxThenable<U>;
+    onFulfilled?: (value: T) => U | ILgxThenable<U>,
+    onRejected?: (error: any) => U | ILgxThenable<U>
+  ): ILgxThenable<U>;
   then<U>(
-    onFulfilled?: (value: T) => U | LgxThenable<U>,
+    onFulfilled?: (value: T) => U | ILgxThenable<U>,
     onRejected?: (error: any) => void
-  ): LgxThenable<U>;
+  ): ILgxThenable<U>;
 }

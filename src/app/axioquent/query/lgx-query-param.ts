@@ -1,4 +1,4 @@
-export class QueryParam {
+export class LgxQueryParam {
   private _name: string;
   private _value: any;
 

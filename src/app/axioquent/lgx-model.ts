@@ -1,9 +1,9 @@
-import { AxiosHttpClient } from "./axios-http-client";
-import { Builder } from "./builder";
+import { AxiosHttpClient } from "./lgx-axios-http-client";
+import { Builder } from "./lgx-builder";
 import { ILgxModel } from "./interfaces/lgx-model";
 import { Observable } from "rxjs";
 import { AxiosInstance } from "axios";
-import { LgxHttpClientModel } from "./interfaces/lgx-http-client-model";
+import { ILgxHttpClientModel } from "./interfaces/lgx-http-client-model";
 import { ILgxQueryConfig } from "./interfaces/lgx-query-config";
 
 export abstract class Model {
@@ -11,13 +11,13 @@ export abstract class Model {
   public getResource = (): string => this.resource;
   public resource: string;
   public baseUrlClass: string;
-  private static instances: LgxHttpClientModel[] = [];
+  private static instances: ILgxHttpClientModel[] = [];
   private static httpClient: AxiosHttpClient;
   public queryConfig: ILgxQueryConfig;
 
   constructor() {
     this.baseUrlClass = this.baseUrl();
-    const instance: LgxHttpClientModel = Model.instances.find(
+    const instance: ILgxHttpClientModel = Model.instances.find(
       item => item.url === this.baseUrlClass
     );
     if (!instance) {

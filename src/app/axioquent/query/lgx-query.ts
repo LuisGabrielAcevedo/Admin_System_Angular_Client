@@ -1,21 +1,21 @@
-import { PaginationSpec } from "../pagination/pagination-spec";
+import { LgxPagination } from "../pagination/lgx-pagination";
 import { LgxFilter } from "../filter/lgx-filter";
-import { Option } from "../option/option";
-import { SortSpec } from "../sort/sort-spec";
-import { QueryParam } from "./query-params";
-import { UrlSpec } from "../url/url-spec";
+import { LgxOption } from "../option/lgx-option";
+import { LgxSort } from "../sort/lgx-sort";
+import { LgxQueryParam } from "./lgx-query-param";
+import { LgxUrl } from "../url/lgx-url";
 import { ILgxQueryConfig } from "../interfaces/lgx-query-config";
 
-export class Query {
+export class LgxQuery {
   protected resource: string;
-  protected pagination!: PaginationSpec;
+  protected pagination!: LgxPagination;
   protected include: string[];
   protected filters: LgxFilter[];
   protected andFilters: LgxFilter[];
   protected orFilters: LgxFilter[];
-  protected options: Option[];
-  protected sort: SortSpec[];
-  protected url: UrlSpec | null;
+  protected options: LgxOption[];
+  protected sort: LgxSort[];
+  protected url: LgxUrl | null;
   protected noPagination: boolean;
   protected queryConfig: ILgxQueryConfig;
 
@@ -44,7 +44,7 @@ export class Query {
     this.orFilters.push(filter);
   };
 
-  public addSort(sort: SortSpec): void {
+  public addSort(sort: LgxSort): void {
     this.sort.push(sort);
   }
 
@@ -52,11 +52,11 @@ export class Query {
     this.include.push(includeSpec);
   }
 
-  public addOption(option: Option): void {
+  public addOption(option: LgxOption): void {
     this.options.push(option);
   }
 
-  public setUrl(url: UrlSpec): void {
+  public setUrl(url: LgxUrl): void {
     this.url = url;
   }
 
@@ -64,53 +64,55 @@ export class Query {
     this.noPagination = value;
   }
 
-  public setPaginationSpec(paginationSpec: PaginationSpec): void {
-    this.pagination = paginationSpec;
+  public setLgxPagination(LgxPagination: LgxPagination): void {
+    this.pagination = LgxPagination;
   }
 
-  public getPaginationSpec(): PaginationSpec {
+  public getLgxPagination(): LgxPagination {
     return this.pagination;
   }
 
-  protected addFilterParameters(searchParams: QueryParam[]): void {
+  protected addFilterParameters(searchParams: LgxQueryParam[]): void {
     for (const f of this.filters) {
       searchParams.push(
-        new QueryParam(`filter[${f.getAttribute()}]`, f.getValue())
+        new LgxQueryParam(`filter[${f.getAttribute()}]`, f.getValue())
       );
     }
   }
 
-  protected addAndFilterParameters(searchParams: QueryParam[]): void {
+  protected addAndFilterParameters(searchParams: LgxQueryParam[]): void {
     for (const f of this.andFilters) {
-      searchParams.push(new QueryParam(f.getAttribute(), f.getValue()));
+      searchParams.push(new LgxQueryParam(f.getAttribute(), f.getValue()));
     }
   }
 
-  protected addOrFilterParameters(searchParams: QueryParam[]): void {
+  protected addOrFilterParameters(searchParams: LgxQueryParam[]): void {
     for (const f of this.orFilters) {
-      searchParams.push(new QueryParam(`q[${f.getAttribute()}]`, f.getValue()));
+      searchParams.push(
+        new LgxQueryParam(`q[${f.getAttribute()}]`, f.getValue())
+      );
     }
   }
 
-  protected addSortParameters(searchParams: QueryParam[]): void {
+  protected addSortParameters(searchParams: LgxQueryParam[]): void {
     if (this.sort.length > 0) {
       let p = "";
-      for (const sortSpec of this.sort) {
+      for (const LgxSort of this.sort) {
         if (p) {
           p += ",";
         }
-        if (!sortSpec.getPositiveDirection()) {
+        if (!LgxSort.getPositiveDirection()) {
           p += "-";
         }
-        p += sortSpec.getAttribute();
+        p += LgxSort.getAttribute();
       }
       searchParams.push(
-        new QueryParam(this.queryConfig["orderBy"] || "orderBy", p)
+        new LgxQueryParam(this.queryConfig["orderBy"] || "orderBy", p)
       );
     }
   }
 
-  protected addIncludeParameters(searchParams: QueryParam[]): void {
+  protected addIncludeParameters(searchParams: LgxQueryParam[]): void {
     if (this.include.length > 0) {
       let p = "";
       for (const incl of this.include) {
@@ -119,21 +121,23 @@ export class Query {
         }
         p += incl;
       }
-      searchParams.push(new QueryParam(this.queryConfig["with"] || "with", p));
-    }
-  }
-
-  protected addOptionsParameters(searchParams: QueryParam[]): void {
-    for (const option of this.options) {
       searchParams.push(
-        new QueryParam(option.getParameter(), option.getValue())
+        new LgxQueryParam(this.queryConfig["with"] || "with", p)
       );
     }
   }
 
-  protected addPaginationParameters(searchParams: QueryParam[]): void {
+  protected addOptionsParameters(searchParams: LgxQueryParam[]): void {
+    for (const option of this.options) {
+      searchParams.push(
+        new LgxQueryParam(option.getParameter(), option.getValue())
+      );
+    }
+  }
+
+  protected addPaginationParameters(searchParams: LgxQueryParam[]): void {
     if (this.noPagination) {
-      searchParams.push(new QueryParam("no_pagination", true));
+      searchParams.push(new LgxQueryParam("no_pagination", true));
     } else {
       if (this.pagination.page) {
         for (const param of this.pagination.getPaginationParameters(
@@ -165,7 +169,7 @@ export class Query {
       url += `/${id}`;
     }
 
-    const searchParams: QueryParam[] = [];
+    const searchParams: LgxQueryParam[] = [];
     this.addFilterParameters(searchParams);
     this.addOrFilterParameters(searchParams);
     this.addAndFilterParameters(searchParams);

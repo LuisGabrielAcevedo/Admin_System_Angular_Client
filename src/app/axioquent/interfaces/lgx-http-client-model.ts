@@ -1,6 +1,6 @@
-import { AxiosHttpClient } from "../axios-http-client";
+import { AxiosHttpClient } from "../lgx-axios-http-client";
 
-export interface LgxHttpClientModel {
+export interface ILgxHttpClientModel {
   url: string;
   instance: AxiosHttpClient;
 }

@@ -1,3 +1,3 @@
-export interface LgxHttpClientResponse {
+export interface ILgxHttpClientResponse {
   getData(): any;
 }

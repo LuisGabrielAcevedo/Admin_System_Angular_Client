@@ -1,4 +1,4 @@
-export class Option {
+export class LgxOption {
   protected parameter: string;
   protected value: string;
 

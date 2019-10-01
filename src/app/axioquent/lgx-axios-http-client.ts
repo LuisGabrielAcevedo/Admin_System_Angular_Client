@@ -1,7 +1,7 @@
 import { AxiosInstance } from "axios";
 import axios from "axios";
 import { LgxHttpClient } from "./interfaces/lgx-http-client";
-import { LgxHttpClientPromise } from "./interfaces/lgx-http-client-promise";
+import { ILgxHttpClientPromise } from "./interfaces/lgx-http-client-promise";
 import { LgxAxiosHttpClientPromise } from "./axios/lgx-axios-http-client-promise";
 
 export class AxiosHttpClient implements LgxHttpClient {
@@ -19,27 +19,27 @@ export class AxiosHttpClient implements LgxHttpClient {
     this.axiosInstance.defaults.headers[name] = value;
   }
 
-  public get(url: string): LgxHttpClientPromise {
+  public get(url: string): ILgxHttpClientPromise {
     return new LgxAxiosHttpClientPromise(this.axiosInstance.get(url));
   }
 
-  public delete(url: string): LgxHttpClientPromise {
+  public delete(url: string): ILgxHttpClientPromise {
     return new LgxAxiosHttpClientPromise(this.axiosInstance.delete(url));
   }
 
-  public head(url: string): LgxHttpClientPromise {
+  public head(url: string): ILgxHttpClientPromise {
     return new LgxAxiosHttpClientPromise(this.axiosInstance.head(url));
   }
 
-  public post(url: string, data?: any): LgxHttpClientPromise {
+  public post(url: string, data?: any): ILgxHttpClientPromise {
     return new LgxAxiosHttpClientPromise(this.axiosInstance.post(url, data));
   }
 
-  public put(url: string, data?: any): LgxHttpClientPromise {
+  public put(url: string, data?: any): ILgxHttpClientPromise {
     return new LgxAxiosHttpClientPromise(this.axiosInstance.put(url, data));
   }
 
-  public patch(url: string, data?: any): LgxHttpClientPromise {
+  public patch(url: string, data?: any): ILgxHttpClientPromise {
     return new LgxAxiosHttpClientPromise(this.axiosInstance.patch(url, data));
   }
 

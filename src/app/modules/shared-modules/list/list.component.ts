@@ -10,8 +10,9 @@ import {
   DynamicTableChanges,
   DynamicTableItem
 } from "../table/table.interfaces";
-import { SortDirection } from 'src/app/axioquent';
-import { TranslateService } from '@ngx-translate/core';
+
+import { TranslateService } from "@ngx-translate/core";
+import { ELgxSortDirection, ILgx } from "src/app/axioquent/index";
 
 @Component({
   selector: "app-list",
@@ -23,19 +24,19 @@ export class ListComponent implements OnDestroy {
   public data: DynamicTableItem[] = [];
   public loading: boolean;
   public resource: string;
-  public modelClass: any;
+  public modelClass: ILgx;
   public title: string;
   public service: any;
   public headers: DynamicTableHeader[] = [];
   public rowActions: DynamicTableButtonAction[] = [];
   public pagination: DynamicTablePagination = DynamicTablePaginationDefault;
   public sort: string;
-  public sortDirection: SortDirection = SortDirection.ASC;
+  public sortDirection: ELgxSortDirection = ELgxSortDirection.ASC;
   constructor(
-    private router: Router, 
+    private router: Router,
     private injector: Injector,
-    private translateService: TranslateService,
-    ) {
+    private translateService: TranslateService
+  ) {
     this.subscriptions.push(
       this.router.events
         .pipe(
@@ -123,8 +124,11 @@ export class ListComponent implements OnDestroy {
   public DynamicTableChanges(changes: DynamicTableChanges) {
     if (changes.pagination) this.pagination = changes.pagination;
     if (changes.sort) this.sort = changes.sort;
-    if (changes.sortDirection) this.sortDirection = changes.sortDirection === 'asc' 
-      ? SortDirection.ASC: SortDirection.DESC;
+    if (changes.sortDirection)
+      this.sortDirection =
+        changes.sortDirection === "asc"
+          ? ELgxSortDirection.ASC
+          : ELgxSortDirection.DESC;
     this.loadData();
   }
 

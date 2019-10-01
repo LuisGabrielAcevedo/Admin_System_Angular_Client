@@ -1,41 +1,41 @@
-import { LgxQueryMethods } from "./interfaces/lgx-query-methods";
-import { Model } from "./model";
-import { Query } from "./query/query";
+import { ILgx } from "./interfaces/lgx";
+import { Model } from "./lgx-model";
+import { LgxQuery } from "./query/lgx-query";
 import { LgxFilter } from "./filter/lgx-filter";
-import { SortDirection } from "./sort/sort-directions";
-import { SortSpec } from "./sort/sort-spec";
-import { Option } from "./option/option";
-import { PaginationSpec } from "./pagination/pagination-spec";
+import { ELgxSortDirection } from "./enums/lgx-sort-directions";
+import { LgxSort } from "./sort/lgx-sort";
+import { LgxOption } from "./option/lgx-option";
+import { LgxPagination } from "./pagination/lgx-pagination";
 import { LgxHttpClient } from "./interfaces/lgx-http-client";
-import { UrlSpec } from "./url/url-spec";
+import { LgxUrl } from "./url/lgx-url";
 import { LgxHeader } from "./header/lgx-header";
-import { LgxHttpClientResponse } from "./interfaces/lgx-http-client-response";
+import { ILgxHttpClientResponse } from "./interfaces/lgx-http-client-response";
 import { Observable, from } from "rxjs";
 import { ILgxModel } from "./interfaces/lgx-model";
 
-export class Builder implements LgxQueryMethods {
+export class Builder implements ILgx {
   protected headers: LgxHeader[];
   protected formDataActive: boolean = false;
   private httpClient: LgxHttpClient;
-  private query: Query;
+  private query: LgxQuery;
 
   constructor(model: typeof Model) {
     this.headers = [];
     const modelInstance: Model = new (<any>model)();
-    this.query = new Query(
+    this.query = new LgxQuery(
       modelInstance.getResource(),
       modelInstance.getQueryConfig()
     );
     this.httpClient = model.getHttpClient();
-    this.initPaginationSpec();
+    this.initLgxPagination();
   }
 
   public async find(page?: number, perPage?: number): Promise<any> {
     try {
       this.setHeaders();
-      if (page) this.query.getPaginationSpec().setPage(page);
-      if (perPage) this.query.getPaginationSpec().setPerPage(perPage);
-      const resp: LgxHttpClientResponse = await this.getHttpClient().get(
+      if (page) this.query.getLgxPagination().setPage(page);
+      if (perPage) this.query.getLgxPagination().setPerPage(perPage);
+      const resp: ILgxHttpClientResponse = await this.getHttpClient().get(
         this.query.toString()
       );
       return resp.getData();
@@ -48,10 +48,10 @@ export class Builder implements LgxQueryMethods {
     return from(this.find(page, perPage));
   }
 
-  public async findById(id: number): Promise<any> {
+  public async findById(id: string | number): Promise<any> {
     try {
       this.setHeaders();
-      const resp: LgxHttpClientResponse = await this.getHttpClient().get(
+      const resp: ILgxHttpClientResponse = await this.getHttpClient().get(
         this.query.toString(id)
       );
       return resp.getData();
@@ -60,14 +60,14 @@ export class Builder implements LgxQueryMethods {
     }
   }
 
-  public findByIdRx(id: number): Observable<any> {
+  public findByIdRx(id: string | number): Observable<any> {
     return from(this.findById(id));
   }
 
   public async save(model: ILgxModel): Promise<any> {
     try {
       this.setHeaders();
-      const resp: LgxHttpClientResponse = await this.getHttpClient().post(
+      const resp: ILgxHttpClientResponse = await this.getHttpClient().post(
         this.query.toString(),
         model
       );
@@ -84,7 +84,7 @@ export class Builder implements LgxQueryMethods {
   public async update(id: string | number, model: ILgxModel): Promise<any> {
     try {
       this.setHeaders();
-      const resp: LgxHttpClientResponse = await this.getHttpClient().put(
+      const resp: ILgxHttpClientResponse = await this.getHttpClient().put(
         this.query.toString(id),
         model
       );
@@ -101,7 +101,7 @@ export class Builder implements LgxQueryMethods {
   public async destroy(id: string | number): Promise<any> {
     try {
       this.setHeaders();
-      const resp: LgxHttpClientResponse = await this.getHttpClient().delete(
+      const resp: ILgxHttpClientResponse = await this.getHttpClient().delete(
         this.query.toString(id)
       );
       return resp.getData();
@@ -115,12 +115,12 @@ export class Builder implements LgxQueryMethods {
   }
 
   public page(page: number): Builder {
-    this.query.getPaginationSpec().setPage(page);
+    this.query.getLgxPagination().setPage(page);
     return this;
   }
 
   public perPage(perPage: number): Builder {
-    this.query.getPaginationSpec().setPerPage(perPage);
+    this.query.getLgxPagination().setPerPage(perPage);
     return this;
   }
 
@@ -160,15 +160,15 @@ export class Builder implements LgxQueryMethods {
 
   public orderBy(
     attribute: string,
-    direction?: SortDirection | string
+    direction?: ELgxSortDirection | string
   ): Builder {
     if (typeof direction === "undefined" || !direction) {
-      direction = SortDirection.ASC;
+      direction = ELgxSortDirection.ASC;
     } else if (typeof direction === "string") {
       if (direction === "asc") {
-        direction = SortDirection.ASC;
+        direction = ELgxSortDirection.ASC;
       } else if (direction === "desc") {
-        direction = SortDirection.DESC;
+        direction = ELgxSortDirection.DESC;
       } else {
         throw new Error(
           "The 'direction' parameter must be string of value 'asc' or 'desc', " +
@@ -179,7 +179,7 @@ export class Builder implements LgxQueryMethods {
       }
     }
     this.query.addSort(
-      new SortSpec(attribute, direction === SortDirection.ASC)
+      new LgxSort(attribute, direction === ELgxSortDirection.ASC)
     );
     return this;
   }
@@ -200,19 +200,19 @@ export class Builder implements LgxQueryMethods {
   }
 
   public option(queryParameter: string, value: string): Builder {
-    this.query.addOption(new Option(queryParameter, value));
+    this.query.addOption(new LgxOption(queryParameter, value));
     return this;
   }
 
   public setUrl(url: string | string[], action?: string): Builder {
     if (typeof url === "string") {
-      this.query.setUrl(new UrlSpec(url, action));
+      this.query.setUrl(new LgxUrl(url, action));
     } else if (Array.isArray(url)) {
       let urlFormatted = "";
       for (const u of url) {
         urlFormatted += !urlFormatted ? u : `/${u}`;
       }
-      this.query.setUrl(new UrlSpec(urlFormatted, action));
+      this.query.setUrl(new LgxUrl(urlFormatted, action));
     }
     return this;
   }
@@ -238,8 +238,8 @@ export class Builder implements LgxQueryMethods {
     return this;
   }
 
-  private initPaginationSpec(): void {
-    this.query.setPaginationSpec(new PaginationSpec());
+  private initLgxPagination(): void {
+    this.query.setLgxPagination(new LgxPagination());
   }
 
   public getHttpClient(): LgxHttpClient {

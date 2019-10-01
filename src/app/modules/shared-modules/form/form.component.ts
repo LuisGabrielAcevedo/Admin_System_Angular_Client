@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
+import { Component, ViewChild, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { ILgxModel } from "src/app/axioquent";
+import { ILgxModel, ILgx } from "src/app/axioquent/index";
 import {
   FormField,
   FormModel,
@@ -8,7 +8,7 @@ import {
 } from "../dynamic-form/dynamic-form.interfaces";
 import { DynamicFormComponent } from "../dynamic-form/dynamic-form.component";
 import { Subscription } from "rxjs";
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-form",
@@ -26,14 +26,14 @@ export class FormComponent implements OnDestroy {
   public model: ILgxModel;
   public resource: string;
   public id: string;
-  public modelClass: any;
+  public modelClass: ILgx;
   public fieldsConfig: FormField[];
   public title: string;
   public buttonLabel: string;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private translateService: TranslateService,
+    private translateService: TranslateService
   ) {
     this.subscriptions.push(
       this.route.paramMap.subscribe(params => {
