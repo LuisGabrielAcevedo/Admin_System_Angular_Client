@@ -1,6 +1,16 @@
-<div fxLayout="row" class="snake-canvas-info" fxLayoutAlign="end center" *ngIf="snakeGameConfig">
-    <p>Scores: {{scores}}</p>
+<div
+  fxLayout="row"
+  class="snake-canvas-info"
+  fxLayoutAlign="end center"
+  *ngIf="snakeGameConfig"
+>
+  <p>Scores: {{ scores }}</p>
 </div>
 <div fxLayout="row" fxLayoutAlign="center center">
-    <canvas #snakeCanvas class="snake-canvas-container" width="{{boardSizePx()}}" height="{{boardSizePx()}}"></canvas>
+  <canvas
+    #snakeCanvas
+    class="snake-canvas-container"
+    width="{{ boardSizePx() }}"
+    height="{{ boardSizePx() }}"
+  ></canvas>
 </div>

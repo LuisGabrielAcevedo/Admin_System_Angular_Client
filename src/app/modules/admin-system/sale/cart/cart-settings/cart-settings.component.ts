@@ -19,7 +19,7 @@ export class CartSettingsComponent implements OnInit {
   constructor(private cartSandBox: CartSandbox) {}
 
   ngOnInit() {
-    console.log(this.tabActive)
+    console.log(this.tabActive);
   }
 
   changeValue(tab: ECartTabActive) {
@@ -29,9 +29,6 @@ export class CartSettingsComponent implements OnInit {
   style(tab: ECartTabActive) {
     return {
       background: `${this.tabActive === tab ? "#304ffe" : ""}`,
-      color: `${
-        this.tabActive !== tab ? "#304ffe !important" : "white !important"
-      }`,
       cursor: "pointer"
     };
   }

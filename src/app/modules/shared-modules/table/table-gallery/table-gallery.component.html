@@ -6,11 +6,11 @@
         <div class="galleryContainer" *ngIf="galleryList.length">
             <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="50" class="cdkItem">
                 <div class="itemContainer" *cdkVirtualFor="let item of galleryList">
-                    <!-- <img class="itemImage" src="../../../../assets/images/default.jpg"> -->
+                    <!-- <img class="itemImage" src="../../../../assets/images/default-image.jpg"> -->
                     <!-- <img class="itemImage" src="{{formatImage(item,galleryConfig.galleryImage)}}"> -->
                     <!-- user gallery -->
                     <div class="userCardContainer" fxLayout="column" fxLayoutAlign="center center">
-                        <img *ngIf="!formatImage(item,galleryConfig.galleryImage)" class="userCardImage" src="../../../../assets/images/default.jpg">
+                        <img *ngIf="!formatImage(item,galleryConfig.galleryImage)" class="userCardImage" src="../../../../assets/images/default-image.jpg">
                         <img *ngIf="formatImage(item,galleryConfig.galleryImage)" class="userCardImage" src="{{formatImage(item,galleryConfig.galleryImage)}}">
                         <span class="userCardTitle">{{formatText(item,galleryConfig.galleryTitle)}}</span>
                         <span>{{formatText(item,galleryConfig.gallerySubTitle)}}</span>

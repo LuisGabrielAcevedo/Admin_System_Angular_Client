@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import Product from "src/app/models/admin-system/products";
-import { IOrder } from 'src/app/inferfaces/admin-system/order';
+import { IOrder } from "src/app/inferfaces/admin-system/order";
 
 @Component({
   selector: "app-cart-products-list",

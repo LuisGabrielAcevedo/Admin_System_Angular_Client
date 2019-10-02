@@ -107,7 +107,6 @@ export class FormComponent implements OnDestroy {
 
   public updateAction(model: FormModel): void {
     this.modelClass
-      .formData()
       .updateRx(model._id, model)
       .subscribe(() => this.goToTable());
   }

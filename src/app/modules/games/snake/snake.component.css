@@ -1,7 +1,15 @@
-.snake-container{
-    background: #304ffe;
+.snake-container {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 button {
-    margin: 10px;
+  margin: 10px;
+}
+
+.snake-form-content {
+  margin-top: 10px;
+}
+
+::ng-deep .main-header {
+  margin: 0;
 }
