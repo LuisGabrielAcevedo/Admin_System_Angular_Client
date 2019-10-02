@@ -36,10 +36,21 @@ export const getRequests = createSelector(
 );
 
 // Cart selector
-
 export const getTabActive = createSelector(
   getCartState,
   fromCart.getTabActive
+);
+export const getLoading = createSelector(
+  getCartState,
+  fromCart.getLoading
+);
+export const getCompany = createSelector(
+  getCartState,
+  fromCart.getCompany
+);
+export const getOrder = createSelector(
+  getCartState,
+  fromCart.getOrder
 );
 
 // Auth selectors

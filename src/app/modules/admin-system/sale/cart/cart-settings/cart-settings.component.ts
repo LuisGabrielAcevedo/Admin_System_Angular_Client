@@ -15,9 +15,12 @@ export class CartSettingsComponent implements OnInit {
     { icon: "local_atm", value: ECartTabActive.checkout }
   ];
   @Input() public tabActive: ECartTabActive;
+  @Input() public company: any;
   constructor(private cartSandBox: CartSandbox) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.tabActive)
+  }
 
   changeValue(tab: ECartTabActive) {
     this.cartSandBox.setTabActive(tab);

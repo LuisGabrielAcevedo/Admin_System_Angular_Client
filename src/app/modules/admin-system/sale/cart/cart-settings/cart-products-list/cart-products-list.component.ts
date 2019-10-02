@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import Product from "src/app/models/admin-system/products";
+import { IOrder } from 'src/app/inferfaces/admin-system/order';
 
 @Component({
   selector: "app-cart-products-list",
@@ -7,7 +8,9 @@ import Product from "src/app/models/admin-system/products";
   styleUrls: ["./cart-products-list.component.css"]
 })
 export class CartProductsListComponent implements OnInit {
-  public title: string = "Products"
+  public title: string = "Products";
+  @Input() public loading: boolean;
+  @Input() public order: IOrder;
   products: any[] = [];
   constructor() {}
 

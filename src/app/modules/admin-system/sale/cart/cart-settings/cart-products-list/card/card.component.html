@@ -1,0 +1,33 @@
+<ngx-flip [flip]="flipDiv" class="card">
+  <div front class="card-front">
+    <div fxLayout="column" class="full-height">
+      <div class="cart-front-image">
+        <img src="../../../../../../../../assets/images/default-image.jpg">
+        <div class="cart-front-image-content">
+          <h4>
+            {{product.name}}
+          </h4>
+        </div>
+      </div>
+      <div fxFlex class="cart-front-info">
+        <p class="cart-front-info-text">
+          Available: 456
+        </p>
+      </div>
+      <div class="cart-front-footer" fxLayout="row" fxLayoutAlign="space-between center">
+        <p>${{product.basePrice}}</p>
+        <div fxLayout="row">
+          <button color="primary" mat-icon-button>
+            <mat-icon (click)="setFlipStatus()">info</mat-icon>
+          </button>
+          <button color="primary" mat-icon-button>
+            <mat-icon>add_shopping_cart</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div back class="card-back">
+    <button (click)="setFlipStatus()">Front</button>
+  </div>
+</ngx-flip>

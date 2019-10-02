@@ -2,9 +2,7 @@
     <app-title-bar [title]="title"></app-title-bar>
     <cdk-virtual-scroll-viewport fxFlex itemSize="1">
         <div class="cart-products-container">
-            <div *ngFor="let product of products" class="cart-products-card">
-                h
-            </div>
+            <app-card *ngFor="let product of products" [product]="product"></app-card>
         </div>
     </cdk-virtual-scroll-viewport>
 </div>
