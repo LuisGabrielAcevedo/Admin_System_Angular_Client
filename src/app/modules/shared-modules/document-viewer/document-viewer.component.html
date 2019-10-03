@@ -1,0 +1,18 @@
+<div class="document-viewer-container" *ngIf="opened">
+  <div fxLayout="column" class="document-viewer-content">
+    <app-document-viewer-header [title]="title"></app-document-viewer-header>
+    <div fxFlex>
+      <div fxLayout="row" style="height: 100%;">
+        <app-document-viewer-pages
+          [thumbnailList]="thumbnailList"
+          [currentPage]="currentPage"
+          (setCurrentPage)="setCurrentPage($event)"
+        ></app-document-viewer-pages>
+        <div fxFlex>
+          <app-document-viewer-canvas></app-document-viewer-canvas>
+          <app-document-viewer-canvas-buttons></app-document-viewer-canvas-buttons>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

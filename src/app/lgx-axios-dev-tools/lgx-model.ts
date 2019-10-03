@@ -55,11 +55,11 @@ export abstract class Model {
     return new Builder(this).findRx(page, perPage);
   }
 
-  public static findById(id: number): Promise<any> {
+  public static findById(id: number | string): Promise<any> {
     return new Builder(this).findById(id);
   }
 
-  public static findByIdRx(id: number): Observable<any> {
+  public static findByIdRx(id: number | string): Observable<any> {
     return new Builder(this).findByIdRx(id);
   }
 

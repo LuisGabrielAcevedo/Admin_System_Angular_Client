@@ -1,0 +1,7 @@
+mat-toolbar {
+  height: 60px;
+}
+
+.document-viewer-header-spacer {
+  flex: 1 1 auto;
+}

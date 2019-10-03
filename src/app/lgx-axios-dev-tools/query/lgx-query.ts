@@ -155,7 +155,7 @@ export class LgxQuery {
       url =
         this.url.getAction() === "force"
           ? this.url.getUrl()
-          : `${resource}/${this.url.getUrl()}`;
+          : `${resource || url}/${this.url.getUrl()}`;
     } else {
       url = resource || url;
     }

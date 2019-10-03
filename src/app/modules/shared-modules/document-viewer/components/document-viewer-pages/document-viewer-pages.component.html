@@ -1,0 +1,14 @@
+<div fxLayout="column" class="document-viewer-pages-content">
+  <cdk-virtual-scroll-viewport fxFlex itemSize="1">
+    <div
+      (click)="selectNewPage(i + 1)"
+      *ngFor="let file of thumbnailList; index as i"
+      class="document-viewer-pages-file"
+      [ngClass]="{
+        'document-viewer-pages-current-page': currentPage === i + 1
+      }"
+    >
+      <img src="{{ file.url }}" />
+    </div>
+  </cdk-virtual-scroll-viewport>
+</div>

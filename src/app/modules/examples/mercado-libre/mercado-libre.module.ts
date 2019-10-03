@@ -4,7 +4,8 @@ import { MercadoLibreComponent } from "./mercado-libre.component";
 import { DynamicTableModule } from "src/app/modules/shared-modules/table/table.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { RouterModule } from "@angular/router";
-import { TitleBarModule } from 'src/app/modules/shared-modules/title-bar/title-bar.module';
+import { TitleBarModule } from "src/app/modules/shared-modules/title-bar/title-bar.module";
+import { DocumentViewerModule } from "src/app/modules/shared-modules/document-viewer/document-viewer.module";
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { TitleBarModule } from 'src/app/modules/shared-modules/title-bar/title-b
     ]),
     DynamicTableModule,
     FlexLayoutModule,
-    TitleBarModule
+    TitleBarModule,
+    DocumentViewerModule
   ],
   declarations: [MercadoLibreComponent]
 })
