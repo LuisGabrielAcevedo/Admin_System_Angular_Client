@@ -15,15 +15,15 @@ import {
 import { Subscription } from "rxjs";
 import { MatCheckbox } from "@angular/material/checkbox";
 import {
-  DynamicTableHeader,
-  DynamicTableButtonAction,
-  DynamicTableModal,
-  DynamicTableActiveModalAction,
-  DynamicTableActiveComponentAction,
+  IDynamicTableHeader,
+  IDynamicTableButton,
+  IDynamicTableModal,
+  IDynamicTableActiveModalAction,
+  DynamicITableActiveComponentAction,
   DynamicTablePagination,
-  TableActiveComponent,
-  TableDialog,
-  DynamicTableItem,
+  ITableActiveComponent,
+  ITableDialog,
+  IDynamicTableItem,
   DynamicTableChanges
 } from "./table.interfaces";
 import { TableService } from "./table.service";
@@ -38,29 +38,29 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
   protected boxes: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   protected subscriptions: Subscription[] = [];
   protected openRows: number[] = [];
-  protected itemsSelected: DynamicTableItem[] = [];
+  protected itemsSelected: IDynamicTableItem[] = [];
   protected checkedAll: boolean = null;
   protected activeSort: string = "";
   protected asc: boolean = false;
-  protected modalSelected: DynamicTableModal = {
+  protected modalSelected: IDynamicTableModal = {
     row: 0,
     number: 1
   };
-  protected rowSubItemSelected: TableActiveComponent = {
+  protected rowSubItemSelected: ITableActiveComponent = {
     row: 0,
     type: ""
   };
   protected tableChanges: DynamicTableChanges = {};
-  @Input() headers: DynamicTableHeader[];
-  @Input() data: DynamicTableItem[];
+  @Input() headers: IDynamicTableHeader[];
+  @Input() data: IDynamicTableItem[];
   @Input() colors: string[] = ["#E3F2FD", "#64B5F6", "#304ffe"];
   @Input() loadingType: string = "BOX";
   @Input() expand: boolean | null = null;
   @Input() index: boolean | null = null;
   @Input() multiSelect: boolean | null = null;
   @Input() loading: boolean | null = null;
-  @Input() rowActions: DynamicTableButtonAction[] = [];
-  @Input() multiActions: DynamicTableButtonAction[] = [];
+  @Input() rowActions: IDynamicTableButton[] = [];
+  @Input() multiActions: IDynamicTableButton[] = [];
   @Input() pagination: DynamicTablePagination;
   @Output() DynamicTableChanges: EventEmitter<
     DynamicTableChanges
@@ -97,7 +97,7 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const data: DynamicTableItem[] = changes.data
+    const data: IDynamicTableItem[] = changes.data
       ? changes.data.currentValue
       : undefined;
     if (data && data.length) {
@@ -151,7 +151,7 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
     this.closeAllRows();
     this.resetModal();
     this.resetSubItems();
-    const item: DynamicTableItem = this.data[i];
+    const item: IDynamicTableItem = this.data[i];
     this.itemsSelected.includes(item)
       ? this.itemsSelected.splice(this.itemsSelected.indexOf(item), 1)
       : this.itemsSelected.push(item);
@@ -196,14 +196,14 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
     };
   }
 
-  assignModal(data: DynamicTableActiveModalAction) {
+  assignModal(data: IDynamicTableActiveModalAction) {
     this.closeAllRows();
     this.resetSubItems();
     this.modalSelected = data.modal;
     this.modalSelected.row = data.position + 1;
   }
 
-  assignActiveComponent(data: DynamicTableActiveComponentAction) {
+  assignActiveComponent(data: DynamicITableActiveComponentAction) {
     if (!this.openRows.includes(data.position)) {
       this.openRow(data.position);
     }
@@ -211,7 +211,7 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
     this.rowSubItemSelected.row = data.position + 1;
   }
 
-  openDialog(data: TableDialog) {
+  openDialog(data: ITableDialog) {
     const dialogRef = this.dialog.open(data.component, {
       width: data.width ? data.width : "300px",
       height: data.height ? data.height : "300px",
@@ -238,7 +238,7 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
     this.DynamicTableChanges.emit(this.tableChanges);
   }
 
-  changeSortAction(header: DynamicTableHeader) {
+  changeSortAction(header: IDynamicTableHeader) {
     if (header.sortable) {
       this.activeSort = header.key;
       this.tableChanges = {

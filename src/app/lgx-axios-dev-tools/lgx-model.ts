@@ -5,21 +5,20 @@ import { Observable } from "rxjs";
 import { AxiosInstance } from "axios";
 import { ILgxHttpClientModel } from "./interfaces/lgx-http-client-model";
 import { ILgxQueryConfig } from "./interfaces/lgx-query-config";
-import { ELgxUrlAction } from "./enums/lgx-url-actions";
 import { ELgxSortDirection } from "./enums/lgx-sort-directions";
 
 export abstract class Model {
-  public abstract baseUrl(): string;
-  public getResource = (): string => this.resource;
-  public resource: string;
-  public baseUrlClass: string;
   private static instances: ILgxHttpClientModel[] = [];
   private static httpClient: AxiosHttpClient;
-  public queryConfig: ILgxQueryConfig;
+  public abstract baseUrl(): string;
+  public getResource = (): string => this.resource;
+  public resource!: string;
+  public baseUrlClass: string;
+  public queryConfig!: ILgxQueryConfig;
 
   constructor() {
     this.baseUrlClass = this.baseUrl();
-    const instance: ILgxHttpClientModel = Model.instances.find(
+    const instance: ILgxHttpClientModel | undefined = Model.instances.find(
       item => item.url === this.baseUrlClass
     );
     if (!instance) {
@@ -55,11 +54,11 @@ export abstract class Model {
     return new Builder(this).findRx(page, perPage);
   }
 
-  public static findById(id: number | string): Promise<any> {
+  public static findById(id: number): Promise<any> {
     return new Builder(this).findById(id);
   }
 
-  public static findByIdRx(id: number | string): Observable<any> {
+  public static findByIdRx(id: string | number): Observable<any> {
     return new Builder(this).findByIdRx(id);
   }
 
@@ -136,8 +135,12 @@ export abstract class Model {
     return new Builder(this).formData();
   }
 
-  public static setUrl(url: string, action?: ELgxUrlAction): Builder {
-    return new Builder(this).setUrl(url, action);
+  public static url(url: string): Builder {
+    return new Builder(this).url(url);
+  }
+
+  public static urlParam(url: string): Builder {
+    return new Builder(this).urlParam(url);
   }
 
   public static header(name: string, value: string): Builder {

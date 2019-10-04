@@ -1,13 +1,17 @@
-import { Type } from '@angular/core';
-import { FormField, MaterialFormData, FormModel } from '../../dynamic-form.interfaces';
-import { FormGroup } from '@angular/forms';
+import { Type } from "@angular/core";
+import {
+  IDynamicFormField,
+  IDynamicFormMaterialData,
+  IDynamicFormModel
+} from "../../dynamic-form.interfaces";
+import { FormGroup } from "@angular/forms";
 
-export class FormFieldComponent {
-    constructor(
-        public component: Type<any>,
-        public field: FormField,
-        public materialData: MaterialFormData,
-        public form: FormGroup,
-        public model: FormModel
-    ) { }
+export class IDynamicFormFieldComponent {
+  constructor(
+    public component: Type<any>,
+    public field: IDynamicFormField,
+    public materialData: IDynamicFormMaterialData,
+    public form: FormGroup,
+    public model: IDynamicFormModel
+  ) {}
 }

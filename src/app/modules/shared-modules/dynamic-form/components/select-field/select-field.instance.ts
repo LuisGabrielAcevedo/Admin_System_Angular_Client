@@ -7,14 +7,14 @@ import {
   OnChanges,
   SimpleChanges
 } from "@angular/core";
-import { FormFieldDirective } from "./select-field.directive";
+import { IDynamicFormSelectComponentDirective } from "./select-field.directive";
 import {
-  FormFieldTypes,
-  MaterialFormData,
-  FormField,
-  FormModel
+  EDynamicFormFieldTypes,
+  IDynamicFormMaterialData,
+  IDynamicFormField,
+  IDynamicFormModel
 } from "../../dynamic-form.interfaces";
-import { FormFieldComponent } from "./select-field.component";
+import { IDynamicFormFieldComponent } from "./select-field.component";
 import { AsyncAutocompleteComponent } from "../../fields/async-autocomplete/async-autocomplete.component";
 import { TextFieldComponent } from "../../fields/text-field/text-field.component";
 import { AutocompleteComponent } from "../../fields/autocomplete/autocomplete.component";
@@ -29,31 +29,32 @@ import { SelectComponent } from "../../fields/select/select.component";
 import { SwitchComponent } from "../../fields/switch/switch.component";
 import { TextareaComponent } from "../../fields/textarea/textarea.component";
 import { FormGroup } from "@angular/forms";
-import { StringListComponent } from '../../fields/string-list/string-list.component';
+import { StringListComponent } from "../../fields/string-list/string-list.component";
 
 @Component({
   selector: "app-select-field",
   template: `
-    <ng-template app-select-field-directive></ng-template>
+    <ng-template dynamic-form-select-component-directive></ng-template>
   `
 })
-export class SelectFieldComponent implements OnInit, OnChanges {
-  @ViewChild(FormFieldDirective) formfieldDirective: FormFieldDirective;
-  @Input() field: FormField;
-  @Input() materialData: MaterialFormData;
+export class DynamicFormSelectComponent implements OnInit, OnChanges {
+  @ViewChild(IDynamicFormSelectComponentDirective)
+  dynamicFormSelectComponentDirective: IDynamicFormSelectComponentDirective;
+  @Input() field: IDynamicFormField;
+  @Input() materialData: IDynamicFormMaterialData;
   @Input() form: FormGroup;
-  @Input() model: FormModel;
+  @Input() model: IDynamicFormModel;
   public componentInstance: any;
-  public formField: FormFieldComponent;
+  public IDynamicFormField: IDynamicFormFieldComponent;
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    const field: FormField = changes.field
+    const field: IDynamicFormField = changes.field
       ? changes.field.currentValue
       : undefined;
-    const model: FormModel = changes.model
+    const model: IDynamicFormModel = changes.model
       ? changes.model.currentValue
       : undefined;
     if (field) {
@@ -69,7 +70,7 @@ export class SelectFieldComponent implements OnInit, OnChanges {
 
   loadComponent() {
     if (this.field.component) {
-      this.formField = new FormFieldComponent(
+      this.IDynamicFormField = new IDynamicFormFieldComponent(
         this.components()[this.field.component],
         this.field,
         this.materialData,
@@ -79,7 +80,7 @@ export class SelectFieldComponent implements OnInit, OnChanges {
     }
 
     if (this.field.dynamicComponent) {
-      this.formField = new FormFieldComponent(
+      this.IDynamicFormField = new IDynamicFormFieldComponent(
         this.field.dynamicComponent,
         this.field,
         this.materialData,
@@ -87,10 +88,10 @@ export class SelectFieldComponent implements OnInit, OnChanges {
         this.model
       );
     }
-    this.componentInstance = this.generateInstance<any>(this.formField);
-    this.componentInstance.field = this.formField.field;
-    this.componentInstance.form = this.formField.form;
-    this.componentInstance.materialData = this.formField.materialData;
+    this.componentInstance = this.generateInstance<any>(this.IDynamicFormField);
+    this.componentInstance.field = this.IDynamicFormField.field;
+    this.componentInstance.form = this.IDynamicFormField.form;
+    this.componentInstance.materialData = this.IDynamicFormField.materialData;
   }
 
   updateModel() {
@@ -99,28 +100,31 @@ export class SelectFieldComponent implements OnInit, OnChanges {
 
   components() {
     return {
-      [FormFieldTypes.asyncAutocomplete]: AsyncAutocompleteComponent,
-      [FormFieldTypes.autocomplete]: AutocompleteComponent,
-      [FormFieldTypes.checkbox]: CheckboxComponent,
-      [FormFieldTypes.datepicker]: DatepickerComponent,
-      [FormFieldTypes.enum]: EnumSelectComponent,
-      [FormFieldTypes.image]: ImageComponent,
-      [FormFieldTypes.numericField]: NumericFieldComponent,
-      [FormFieldTypes.passwordField]: PasswordFieldComponent,
-      [FormFieldTypes.radioGroup]: RadioGroupComponent,
-      [FormFieldTypes.select]: SelectComponent,
-      [FormFieldTypes.switch]: SwitchComponent,
-      [FormFieldTypes.textField]: TextFieldComponent,
-      [FormFieldTypes.textarea]: TextareaComponent,
-      [FormFieldTypes.stringList]: StringListComponent
+      [EDynamicFormFieldTypes.asyncAutocomplete]: AsyncAutocompleteComponent,
+      [EDynamicFormFieldTypes.autocomplete]: AutocompleteComponent,
+      [EDynamicFormFieldTypes.checkbox]: CheckboxComponent,
+      [EDynamicFormFieldTypes.datepicker]: DatepickerComponent,
+      [EDynamicFormFieldTypes.enum]: EnumSelectComponent,
+      [EDynamicFormFieldTypes.image]: ImageComponent,
+      [EDynamicFormFieldTypes.numericField]: NumericFieldComponent,
+      [EDynamicFormFieldTypes.passwordField]: PasswordFieldComponent,
+      [EDynamicFormFieldTypes.radioGroup]: RadioGroupComponent,
+      [EDynamicFormFieldTypes.select]: SelectComponent,
+      [EDynamicFormFieldTypes.switch]: SwitchComponent,
+      [EDynamicFormFieldTypes.textField]: TextFieldComponent,
+      [EDynamicFormFieldTypes.textarea]: TextareaComponent,
+      [EDynamicFormFieldTypes.stringList]: StringListComponent
     };
   }
 
-  private generateInstance<T>(FieldInstanceComponent: FormFieldComponent) {
+  private generateInstance<T>(
+    FieldInstanceComponent: IDynamicFormFieldComponent
+  ) {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
       FieldInstanceComponent.component
     );
-    const viewContainerRef = this.formfieldDirective.viewContainerRef;
+    const viewContainerRef = this.dynamicFormSelectComponentDirective
+      .viewContainerRef;
     viewContainerRef.clear();
     const componentRef = viewContainerRef.createComponent(componentFactory);
     const componentInstance = <T>componentRef.instance;

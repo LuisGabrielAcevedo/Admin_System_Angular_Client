@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 import {
-  FormMainGroup,
-  MaterialFormData,
-  FormModel
+  IDynamicFormMainGroup,
+  IDynamicFormMaterialData,
+  IDynamicFormModel
 } from "../../dynamic-form.interfaces";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Subscription } from "rxjs";
@@ -16,14 +16,13 @@ import { DynamicFormService } from "../../dynamic-form.service";
 export class TabsFormComponent implements OnInit, OnDestroy {
   public selectedTab: FormControl;
   public subscriptions: Subscription[] = [];
-  @Input() public mainGroups: FormMainGroup[];
+  @Input() public mainGroups: IDynamicFormMainGroup[];
   @Input() public form: FormGroup;
-  @Input() public materialData: MaterialFormData;
-  @Input() public model: FormModel;
+  @Input() public materialData: IDynamicFormMaterialData;
+  @Input() public model: IDynamicFormModel;
   constructor(public dynamicFormService: DynamicFormService) {}
 
   ngOnInit() {
-    console.log(this.mainGroups);
     this.selectedTab = new FormControl(0);
     this.subscriptions.push(
       this.dynamicFormService.setActiveGroup.subscribe(value => {

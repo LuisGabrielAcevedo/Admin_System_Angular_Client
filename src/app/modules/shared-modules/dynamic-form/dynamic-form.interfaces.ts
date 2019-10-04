@@ -7,14 +7,14 @@ import {
 import { DynamicFormValidator } from "./validate/dynamin-form-validator";
 import { Observable } from "rxjs";
 
-export type VisibleCallback = (arg: FormModel) => boolean;
-export type DisableCallback = (arg: FormModel) => boolean;
-export type ValidatorCallback = (form: FormGroup) => ValidatorFn;
-export type AsyncValidatorCallback = (
+export type TDynamicFormVisibleCallback = (arg: IDynamicFormModel) => boolean;
+export type TDynamicFormDisableCallback = (arg: IDynamicFormModel) => boolean;
+export type TDynamicFormValidatorCallback = (form: FormGroup) => ValidatorFn;
+export type TDynamicFormAsyncValidatorCallback = (
   control: AbstractControl
 ) => Observable<ValidationErrors>;
 
-export enum FormFieldTypes {
+export enum EDynamicFormFieldTypes {
   autocomplete = "AutocompleteComponent",
   asyncAutocomplete = "AsyncAutocompleteComponent",
   checkbox = "CheckboxComponent",
@@ -28,18 +28,18 @@ export enum FormFieldTypes {
   datepicker = "DatepickerComponent",
   numericField = "NumericFieldComponent",
   passwordField = "PasswordFieldComponent",
-  stringList = 'StringListComponent'
+  stringList = "StringListComponent"
 }
 
-export interface MaterialFormData {
+export interface IDynamicFormMaterialData {
   appearance?: string;
   floatLabel?: string;
 }
 
-export interface FormField {
-  name: any;
+export interface IDynamicFormField {
+  name: string;
   key: string;
-  component?: FormFieldTypes;
+  component?: EDynamicFormFieldTypes;
   dynamicComponent?: any;
   defaultValue?: any;
   mainGroup?: string;
@@ -47,17 +47,16 @@ export interface FormField {
     rowTitle?: string;
     row?: number;
     flex?: number;
-    group?: FormLateralGroup;
+    group?: IDynamicFormLateralGroup;
   };
   validators?: DynamicFormValidator[];
-  asyncValidator?: AsyncValidatorCallback;
   options?: {
     selectOptions?: (...arg: any[]) => Promise<any> | any;
     placeholder?: string;
     label?: string;
     fieldOptions?: (...arg: any[]) => Observable<any>;
-    visibleCondition?: VisibleCallback;
-    disableCondition?: DisableCallback;
+    visibleCondition?: TDynamicFormVisibleCallback;
+    disableCondition?: TDynamicFormDisableCallback;
     associationValue?: string;
     associationText?: string;
     multiple?: boolean;
@@ -65,50 +64,46 @@ export interface FormField {
   };
 }
 
-export interface FormMainGroup {
+export interface IDynamicFormMainGroup {
   order: number | null;
   name: string;
-  fields: FormField[] | FormField[][];
-  leftFieldGroup?: FormField[];
-  rightFieldGroup?: FormField[];
+  fields: IDynamicFormField[] | IDynamicFormField[][];
+  leftFieldGroup?: IDynamicFormField[];
+  rightFieldGroup?: IDynamicFormField[];
 }
 
-export interface FormModel {
+export interface IDynamicFormModel {
   [key: string]: any;
 }
 
-export interface Option {
+export interface IDynamicFormOption {
   value: any;
   text: any;
 }
 
-export enum ImageMode {
-  select = "SELECT_PHOTO",
-  camera = "CAMERA"
+export enum EDynamicFormImageComponentMode {
+  SELECT = "SELECT_PHOTO",
+  CAMERA = "CAMERA"
 }
 
-export enum FormLateralGroup {
+export enum IDynamicFormLateralGroup {
   left = "left",
   right = "right"
 }
 
-export interface FormattedValidations {
+export interface IDynamicFormFormattedValidations {
   validations: ValidatorFn[];
   errorMessages: object;
 }
 
-export interface FormResponse {
+export interface IDynamicFormResponse {
   valid: boolean;
-  currentModel?: any;
+  model?: any;
   errors?: ValidationErrors;
-  editedFields?: FormModel;
+  editedFields?: IDynamicFormModel;
 }
 
-export interface FormatFieldsResponse {
-  mainGroupsFormatted: FormMainGroup[];
+export interface IDynamicFormFormatFieldsResponse {
+  mainGroupsFormatted: IDynamicFormMainGroup[];
   groupIndexes: object;
-}
-
-export interface FormatFieldsOptions {
-  changeForm: boolean;
 }

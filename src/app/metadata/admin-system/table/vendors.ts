@@ -1,26 +1,29 @@
-import { DynamicTableHeader, DynamicTableComponentType } from 'src/app/modules/shared-modules/table/table.interfaces';
+import {
+  IDynamicTableHeader,
+  EDynamicTableComponentType
+} from "src/app/modules/shared-modules/table/table.interfaces";
 
-export const vendorHeaders: DynamicTableHeader[] = [
-    {
-        label: 'Empresa',
-        key: 'company.name',
-        component: DynamicTableComponentType.text
-    },
-    {
-        label: 'Nombre',
-        key: 'name',
-        component: DynamicTableComponentType.text
-    },
-    {
-        label: 'Email',
-        key: 'email',
-        component: DynamicTableComponentType.text
-    },
-    {
-        label: 'Phone',
-        key: 'phone',
-        component: DynamicTableComponentType.text
-    }
+export const vendorHeaders: IDynamicTableHeader[] = [
+  {
+    label: "Empresa",
+    key: "company.name",
+    component: EDynamicTableComponentType.text
+  },
+  {
+    label: "Nombre",
+    key: "name",
+    component: EDynamicTableComponentType.text
+  },
+  {
+    label: "Email",
+    key: "email",
+    component: EDynamicTableComponentType.text
+  },
+  {
+    label: "Phone",
+    key: "phone",
+    component: EDynamicTableComponentType.text
+  }
 ];
 
 export default vendorHeaders;

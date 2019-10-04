@@ -1,15 +1,15 @@
-import { FormField, FormFieldTypes } from "src/app/modules/shared-modules/dynamic-form/dynamic-form.interfaces";
+import { IDynamicFormField, EDynamicFormFieldTypes } from "src/app/modules/shared-modules/dynamic-form/dynamic-form.interfaces";
 import { DynamicFormValidators } from 'src/app/modules/shared-modules/dynamic-form/validate/dynamic-form-validators';
 import Company from 'src/app/models/admin-system/companies';
 import { map } from 'rxjs/operators';
 import Country from 'src/app/models/admin-system/countries';
 import State from 'src/app/models/admin-system/states';
 
-const vendorFields: FormField[] = [
+const vendorFields: IDynamicFormField[] = [
     {
         name: 'Company',
         key: 'company',
-        component: FormFieldTypes.asyncAutocomplete,
+        component: EDynamicFormFieldTypes.asyncAutocomplete,
         mainGroup: 'App info',
         flexConfig: {
             row: 1,
@@ -28,7 +28,7 @@ const vendorFields: FormField[] = [
     {
         name: 'Name',
         key: 'name',
-        component: FormFieldTypes.textField,
+        component: EDynamicFormFieldTypes.textField,
         mainGroup: 'Contact',
         flexConfig: {
             row: 1,
@@ -41,7 +41,7 @@ const vendorFields: FormField[] = [
     {
         name: 'Email',
         key: 'email',
-        component: FormFieldTypes.textField,
+        component: EDynamicFormFieldTypes.textField,
         mainGroup: 'Contact',
         flexConfig: {
             row: 1,
@@ -55,7 +55,7 @@ const vendorFields: FormField[] = [
     {
         name: 'Phone',
         key: 'phone',
-        component: FormFieldTypes.textField,
+        component: EDynamicFormFieldTypes.textField,
         mainGroup: 'Contact',
         flexConfig: {
             row: 1,
@@ -68,7 +68,7 @@ const vendorFields: FormField[] = [
     {
         name: 'Country',
         key: 'country',
-        component: FormFieldTypes.autocomplete,
+        component: EDynamicFormFieldTypes.autocomplete,
         mainGroup: 'Contact',
         validators: [
             DynamicFormValidators.required()
@@ -86,7 +86,7 @@ const vendorFields: FormField[] = [
     {
         name: 'State',
         key: 'state',
-        component: FormFieldTypes.autocomplete,
+        component: EDynamicFormFieldTypes.autocomplete,
         mainGroup: 'Contact',
         validators: [
             DynamicFormValidators.required()
@@ -105,7 +105,7 @@ const vendorFields: FormField[] = [
         name: 'City',
         key: 'city',
         mainGroup: 'Contact',
-        component: FormFieldTypes.textField,
+        component: EDynamicFormFieldTypes.textField,
         validators: [
             DynamicFormValidators.required()
         ],
@@ -118,7 +118,7 @@ const vendorFields: FormField[] = [
         name: 'Postal code',
         key: 'zip',
         mainGroup: 'Contact',
-        component: FormFieldTypes.textField,
+        component: EDynamicFormFieldTypes.textField,
         flexConfig: {
             row: 3,
             flex: 35
@@ -127,7 +127,7 @@ const vendorFields: FormField[] = [
     {
         name: 'Company name',
         key: 'companyName',
-        component: FormFieldTypes.textField,
+        component: EDynamicFormFieldTypes.textField,
         mainGroup: 'Company',
         flexConfig: {
             row: 1,
@@ -140,7 +140,7 @@ const vendorFields: FormField[] = [
     {
         name: 'Company email',
         key: 'companyEmail',
-        component: FormFieldTypes.textField,
+        component: EDynamicFormFieldTypes.textField,
         mainGroup: 'Company',
         flexConfig: {
             row: 1,
@@ -154,7 +154,7 @@ const vendorFields: FormField[] = [
     {
         name: 'Company phone',
         key: 'companyPhone',
-        component: FormFieldTypes.textField,
+        component: EDynamicFormFieldTypes.textField,
         mainGroup: 'Company',
         flexConfig: {
             row: 1,
@@ -167,7 +167,7 @@ const vendorFields: FormField[] = [
     {
         name: 'Website',
         key: 'companyWebsite',
-        component: FormFieldTypes.textField,
+        component: EDynamicFormFieldTypes.textField,
         mainGroup: 'Company',
         flexConfig: {
             row: 2,
@@ -181,7 +181,7 @@ const vendorFields: FormField[] = [
         name: 'Street',
         key: 'companyAddress.street',
         mainGroup: 'Company',
-        component: FormFieldTypes.textField,
+        component: EDynamicFormFieldTypes.textField,
         flexConfig: {
             row: 3,
             flex: 35
@@ -191,7 +191,7 @@ const vendorFields: FormField[] = [
         name: 'Number',
         key: 'companyAddress.number',
         mainGroup: 'Company',
-        component: FormFieldTypes.textField,
+        component: EDynamicFormFieldTypes.textField,
         flexConfig: {
             row: 3,
             flex: 35,
@@ -202,7 +202,7 @@ const vendorFields: FormField[] = [
         name: 'Floor',
         key: 'companyAddress.floor',
         mainGroup: 'Company',
-        component: FormFieldTypes.textField,
+        component: EDynamicFormFieldTypes.textField,
         flexConfig: {
             row: 3,
             flex: 15
@@ -212,7 +212,7 @@ const vendorFields: FormField[] = [
         name: 'Department/Office',
         key: 'companyAddress.office',
         mainGroup: 'Company',
-        component: FormFieldTypes.textField,
+        component: EDynamicFormFieldTypes.textField,
         flexConfig: {
             row: 3,
             flex: 15

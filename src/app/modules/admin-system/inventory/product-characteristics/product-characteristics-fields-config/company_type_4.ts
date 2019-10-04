@@ -1,13 +1,13 @@
 import {
-  FormField,
-  FormFieldTypes
+  IDynamicFormField,
+  EDynamicFormFieldTypes
 } from "src/app/modules/shared-modules/dynamic-form/dynamic-form.interfaces";
 
-const carSaleFields: FormField[] = [
+const carSaleFields: IDynamicFormField[] = [
   {
     name: "Engine",
     key: "characteristics.engine",
-    component: FormFieldTypes.textField,
+    component: EDynamicFormFieldTypes.textField,
     flexConfig: {
       row: 1,
       flex: 50
@@ -16,7 +16,7 @@ const carSaleFields: FormField[] = [
   {
     name: "Chassis",
     key: "characteristics.chassis",
-    component: FormFieldTypes.textField,
+    component: EDynamicFormFieldTypes.textField,
     flexConfig: {
       row: 1,
       flex: 50
@@ -25,7 +25,7 @@ const carSaleFields: FormField[] = [
   {
     name: "Power",
     key: "characteristics.power",
-    component: FormFieldTypes.textField,
+    component: EDynamicFormFieldTypes.textField,
     flexConfig: {
       row: 2,
       flex: 50

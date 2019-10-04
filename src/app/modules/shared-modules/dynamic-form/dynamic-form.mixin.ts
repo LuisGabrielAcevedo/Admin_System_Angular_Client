@@ -1,10 +1,10 @@
 import { Input } from "@angular/core";
 import {
-  FormModel,
-  FormField,
-  FormMainGroup,
-  MaterialFormData,
-  FormatFieldsResponse
+  IDynamicFormModel,
+  IDynamicFormField,
+  IDynamicFormMainGroup,
+  IDynamicFormMaterialData,
+  IDynamicFormFormatFieldsResponse
 } from "./dynamic-form.interfaces";
 import cloneDeep from "lodash/cloneDeep";
 import set from "lodash/set";
@@ -18,17 +18,17 @@ import { DynamicFormService } from "./dynamic-form.service";
 export class FormComponent {
   public form: FormGroup;
   protected active: number = null;
-  protected currentModel: FormModel = {};
-  protected editedFieldsModel: FormModel = {};
+  protected currentModel: IDynamicFormModel = {};
+  protected editedFieldsModel: IDynamicFormModel = {};
   protected errors: ValidationErrors = {};
   protected groupIndexes: object = {};
-  protected mainGroupsFormatted: FormMainGroup[] = [];
+  protected mainGroupsFormatted: IDynamicFormMainGroup[] = [];
   protected activeGroup: number = 0;
-  @Input() protected fieldsConfig!: FormField[];
-  @Input() protected model: FormModel;
+  @Input() protected fieldsConfig!: IDynamicFormField[];
+  @Input() protected model: IDynamicFormModel;
   @Input() protected formType: string = "tabs";
   @Input() protected columns: number;
-  @Input() protected materialData: MaterialFormData = {};
+  @Input() protected materialData: IDynamicFormMaterialData = {};
   @Input() protected formatId: string = "_id";
 
   constructor(
@@ -38,26 +38,26 @@ export class FormComponent {
     this.form = this.fb.group({});
   }
 
-  protected formatFields(): FormMainGroup[] {
-    let mainGroupsFormatted: FormMainGroup[] = [];
+  protected formatFields(): IDynamicFormMainGroup[] {
+    let mainGroupsFormatted: IDynamicFormMainGroup[] = [];
     this.groupIndexes = {};
     this.form = this.fb.group({});
     this.form.addControl(this.formatId, this.fb.control(null));
 
-    const formatFieldsResponse: FormatFieldsResponse = this.dynamicFormService.formatFields(
+    const IDynamicFormFormatFieldsResponse: IDynamicFormFormatFieldsResponse = this.dynamicFormService.formatFields(
       this.fieldsConfig,
       this.form,
       this.columns
     );
 
-    mainGroupsFormatted = formatFieldsResponse.mainGroupsFormatted;
-    this.groupIndexes = formatFieldsResponse.groupIndexes;
+    mainGroupsFormatted = IDynamicFormFormatFieldsResponse.mainGroupsFormatted;
+    this.groupIndexes = IDynamicFormFormatFieldsResponse.groupIndexes;
 
     return mainGroupsFormatted;
   }
 
-  protected updateForm(model: FormModel) {
-    const currentModel: FormModel = cloneDeep(model);
+  protected updateForm(model: IDynamicFormModel) {
+    const currentModel: IDynamicFormModel = cloneDeep(model);
     if (currentModel[this.formatId])
       this.form.controls[this.formatId].patchValue(currentModel[this.formatId]);
     this.dynamicFormService.updateForm(
@@ -81,18 +81,28 @@ export class FormComponent {
 
   protected updateModel(): void {
     Object.keys(this.form.value).forEach(field => {
-      set(
-        this.currentModel,
-        field,
-        this.form.value[field]
-          ? !Array.isArray(this.form.value[field]) &&
-            typeof this.form.value[field] === "object"
-            ? this.form.value[field][this.formatId]
-            : this.form.value[field]
-          : null
-      );
+      let value;
+      if (this.form.value[field]) {
+        if (
+          this.form.value[field] instanceof File ||
+          this.form.value[field] instanceof Blob
+        ) {
+          value = this.form.value[field];
+        } else if (
+          !Array.isArray(this.form.value[field]) &&
+          typeof this.form.value[field] === "object"
+        ) {
+          value = this.form.value[field][this.formatId];
+        } else {
+          value = this.form.value[field];
+        }
+      } else {
+        value = null;
+      }
+      set(this.currentModel, field, value);
     });
   }
+
   protected searchInvalidMainGroup() {
     this.dynamicFormService.setActiveGroup.emit(
       this.groupIndexes[Object.keys(this.errors)[0]]

@@ -1,11 +1,14 @@
 import { NgModule } from "@angular/core";
-import { SelectFieldComponent } from "./select-field.instance";
-import { FormFieldDirective } from "./select-field.directive";
+import { DynamicFormSelectComponent } from "./select-field.instance";
+import { IDynamicFormSelectComponentDirective } from "./select-field.directive";
 import { CommonModule } from "@angular/common";
 
 @NgModule({
-  declarations: [SelectFieldComponent, FormFieldDirective],
+  declarations: [
+    DynamicFormSelectComponent,
+    IDynamicFormSelectComponentDirective
+  ],
   imports: [CommonModule],
-  exports: [SelectFieldComponent]
+  exports: [DynamicFormSelectComponent]
 })
-export class DynamicFormSelectFieldModule {}
+export class DynamicFormSelectComponentModule {}

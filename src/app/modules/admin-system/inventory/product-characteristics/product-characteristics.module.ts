@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ProductCharacteristicsComponent } from "./product-characteristics.component";
-import { DynamicFormSelectFieldModule } from "src/app/modules/shared-modules/dynamic-form/components/select-field/select-field.module";
+import { DynamicFormSelectComponentModule } from "src/app/modules/shared-modules/dynamic-form/components/select-field/select-field.module";
 import { DynamicFormRowModule } from "src/app/modules/shared-modules/dynamic-form/components/row/row.module";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -10,7 +10,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
   declarations: [ProductCharacteristicsComponent],
   imports: [
     CommonModule,
-    DynamicFormSelectFieldModule,
+    DynamicFormSelectComponentModule,
     DynamicFormRowModule,
     ReactiveFormsModule,
     FlexLayoutModule

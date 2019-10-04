@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import {
-  DynamicTableHeader,
-  DynamicTableButtonAction,
-  DynamicTableItem
+  IDynamicTableHeader,
+  IDynamicTableButton,
+  IDynamicTableItem
 } from "src/app/modules/shared-modules/table/table.interfaces";
 import { youtubeHeaders } from "src/app/metadata/examples/youtube";
 import { YoutubeBaseModel } from "src/app/models/examples/youtube/base-model";
@@ -14,11 +14,11 @@ import { map } from "rxjs/operators";
   styleUrls: ["./youtube.component.css"]
 })
 export class YoutubeComponent implements OnInit {
-  public title: string = 'Youtube';
-  public data: DynamicTableItem[] = [];
-  public headers: DynamicTableHeader[] = youtubeHeaders;
+  public title: string = "Youtube";
+  public data: IDynamicTableItem[] = [];
+  public headers: IDynamicTableHeader[] = youtubeHeaders;
   public loading: boolean = false;
-  public rowActions: DynamicTableButtonAction[] = [];
+  public rowActions: IDynamicTableButton[] = [];
   public videoSelected: string = null;
   @ViewChild("iframe") iframe: ElementRef;
   constructor() {}

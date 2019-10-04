@@ -1,4 +1,4 @@
-import { DynamicTableButtonAction } from 'src/app/modules/shared-modules/table/table.interfaces';
+import { IDynamicTableButton } from 'src/app/modules/shared-modules/table/table.interfaces';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 
@@ -10,7 +10,7 @@ export default class StoreService {
         private router: Router
     ) {}
 
-    getRowActions(): DynamicTableButtonAction[] {
+    getRowActions(): IDynamicTableButton[] {
         return [];
     }
 }

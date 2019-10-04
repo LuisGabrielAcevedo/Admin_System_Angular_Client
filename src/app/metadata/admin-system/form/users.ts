@@ -1,7 +1,7 @@
 import {
-  FormField,
-  FormFieldTypes,
-  FormLateralGroup
+  IDynamicFormField,
+  EDynamicFormFieldTypes,
+  IDynamicFormLateralGroup
 } from "src/app/modules/shared-modules/dynamic-form/dynamic-form.interfaces";
 import { DynamicFormValidators } from "src/app/modules/shared-modules/dynamic-form/validate/dynamic-form-validators";
 import Company from "src/app/models/admin-system/companies";
@@ -11,20 +11,20 @@ import Store from "src/app/models/admin-system/stores";
 import { of } from "rxjs";
 import { map } from "rxjs/operators";
 
-const userFields: FormField[] = [
+const userFields: IDynamicFormField[] = [
   {
     name: "Profile image",
-    key: "profileImage",
-    component: FormFieldTypes.image,
+    key: "profileImageFile",
+    component: EDynamicFormFieldTypes.image,
     mainGroup: "App info",
     flexConfig: {
-      group: FormLateralGroup.left
+      group: IDynamicFormLateralGroup.left
     }
   },
   {
     name: "Company",
     key: "company",
-    component: FormFieldTypes.asyncAutocomplete,
+    component: EDynamicFormFieldTypes.asyncAutocomplete,
     mainGroup: "App info",
     flexConfig: {
       row: 1,
@@ -43,7 +43,7 @@ const userFields: FormField[] = [
   {
     name: "Application",
     key: "application",
-    component: FormFieldTypes.asyncAutocomplete,
+    component: EDynamicFormFieldTypes.asyncAutocomplete,
     mainGroup: "App info",
     flexConfig: {
       row: 2,
@@ -62,7 +62,7 @@ const userFields: FormField[] = [
   {
     name: "Application role",
     key: "applicationRole",
-    component: FormFieldTypes.enum,
+    component: EDynamicFormFieldTypes.enum,
     mainGroup: "App info",
     flexConfig: {
       row: 2,
@@ -77,7 +77,7 @@ const userFields: FormField[] = [
   {
     name: "Active user",
     key: "isActive",
-    component: FormFieldTypes.switch,
+    component: EDynamicFormFieldTypes.switch,
     mainGroup: "App info",
     flexConfig: {
       row: 3,
@@ -87,7 +87,7 @@ const userFields: FormField[] = [
   {
     name: "First name",
     key: "firstName",
-    component: FormFieldTypes.textField,
+    component: EDynamicFormFieldTypes.textField,
     mainGroup: "Basic info",
     flexConfig: {
       row: 2,
@@ -105,7 +105,7 @@ const userFields: FormField[] = [
   {
     name: "Last name",
     key: "lastName",
-    component: FormFieldTypes.textField,
+    component: EDynamicFormFieldTypes.textField,
     mainGroup: "Basic info",
     flexConfig: {
       row: 2,
@@ -119,7 +119,7 @@ const userFields: FormField[] = [
   {
     name: "User name",
     key: "userName",
-    component: FormFieldTypes.textField,
+    component: EDynamicFormFieldTypes.textField,
     mainGroup: "Basic info",
     flexConfig: {
       row: 1,
@@ -132,7 +132,7 @@ const userFields: FormField[] = [
   {
     name: "Document type",
     key: "userInformation.documentType",
-    component: FormFieldTypes.enum,
+    component: EDynamicFormFieldTypes.enum,
     mainGroup: "Basic info",
     flexConfig: {
       row: 3,
@@ -150,7 +150,7 @@ const userFields: FormField[] = [
   {
     name: "Document number",
     key: "userInformation.documentNumber",
-    component: FormFieldTypes.textField,
+    component: EDynamicFormFieldTypes.textField,
     mainGroup: "Basic info",
     flexConfig: {
       row: 3,
@@ -163,7 +163,7 @@ const userFields: FormField[] = [
   {
     name: "Birthdate",
     key: "userInformation.birthdate",
-    component: FormFieldTypes.datepicker,
+    component: EDynamicFormFieldTypes.datepicker,
     mainGroup: "Basic info",
     flexConfig: {
       row: 3,
@@ -176,7 +176,7 @@ const userFields: FormField[] = [
   {
     name: "Gender",
     key: "userInformation.gender",
-    component: FormFieldTypes.radioGroup,
+    component: EDynamicFormFieldTypes.radioGroup,
     mainGroup: "Basic info",
     flexConfig: {
       row: 4,
@@ -193,7 +193,7 @@ const userFields: FormField[] = [
   {
     name: "Email",
     key: "email",
-    component: FormFieldTypes.textField,
+    component: EDynamicFormFieldTypes.textField,
     mainGroup: "Basic info",
     validators: [
       DynamicFormValidators.required({ message: "The email is required" }),
@@ -206,7 +206,7 @@ const userFields: FormField[] = [
   {
     name: "Password",
     key: "password",
-    component: FormFieldTypes.passwordField,
+    component: EDynamicFormFieldTypes.passwordField,
     mainGroup: "Basic info",
     // validators: [
     //     DynamicFormValidators.required({message: 'The field password is required'}),
@@ -223,7 +223,7 @@ const userFields: FormField[] = [
   {
     name: "Confirm password",
     key: "confirm_password",
-    component: FormFieldTypes.passwordField,
+    component: EDynamicFormFieldTypes.passwordField,
     mainGroup: "Basic info",
     // validators: [
     //     DynamicFormValidators.required({message: 'The confirm is required'}),
@@ -236,7 +236,7 @@ const userFields: FormField[] = [
   {
     name: "Phone",
     key: "userInformation.phone",
-    component: FormFieldTypes.textField,
+    component: EDynamicFormFieldTypes.textField,
     mainGroup: "More info",
     flexConfig: {
       row: 2,
@@ -249,7 +249,7 @@ const userFields: FormField[] = [
   // {
   //     name: 'Note',
   //     key: 'userInformation.note',
-  //     component: FormFieldTypes.textarea,
+  //     component: EDynamicFormFieldTypes.textarea,
   //     mainGroup: 'More info',
   //     flexConfig: {
   //         row: 3,
@@ -265,7 +265,7 @@ const userFields: FormField[] = [
   {
     name: "Role",
     key: "role",
-    component: FormFieldTypes.autocomplete,
+    component: EDynamicFormFieldTypes.autocomplete,
     mainGroup: "Basic info",
     options: {
       placeholder: "Select a role",
@@ -284,7 +284,7 @@ const userFields: FormField[] = [
   {
     name: "Current store",
     key: "userConfigurations.currentStore",
-    component: FormFieldTypes.autocomplete,
+    component: EDynamicFormFieldTypes.autocomplete,
     mainGroup: "Configurations",
     options: {
       placeholder: "Select a store",
@@ -303,7 +303,7 @@ const userFields: FormField[] = [
   {
     name: "Language",
     key: "userConfigurations.language",
-    component: FormFieldTypes.enum,
+    component: EDynamicFormFieldTypes.enum,
     mainGroup: "Configurations",
     options: {
       placeholder: "Select a language",

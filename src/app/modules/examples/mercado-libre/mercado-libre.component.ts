@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import {
-  DynamicTableHeader,
-  DynamicTableButtonAction,
-  DynamicTableItem
+  IDynamicTableHeader,
+  IDynamicTableButton,
+  IDynamicTableItem
 } from "src/app/modules/shared-modules/table/table.interfaces";
 import { mercadoLibreHeaders } from "src/app/metadata/examples/mercado-libre";
 import { MercadoLibreBaseModel } from "src/app/models/examples/mercado-libre/base-model/base-model";
@@ -16,11 +16,11 @@ import { DocumentViewerThumbnail } from "src/app/modules/shared-modules/document
 })
 export class MercadoLibreComponent implements OnInit {
   public title: string = "Mercado libre";
-  public data: DynamicTableItem[] = [];
-  public headers: DynamicTableHeader[] = mercadoLibreHeaders;
+  public data: IDynamicTableItem[] = [];
+  public headers: IDynamicTableHeader[] = mercadoLibreHeaders;
   public loading: boolean = false;
   public documentViewerStatus: boolean = false;
-  public rowActions: DynamicTableButtonAction[] = [];
+  public rowActions: IDynamicTableButton[] = [];
   public pictures: DocumentViewerThumbnail[] = [];
   constructor() {}
 
@@ -30,7 +30,7 @@ export class MercadoLibreComponent implements OnInit {
 
   loadProducts(value?: string) {
     this.loading = true;
-    MercadoLibreBaseModel.setUrl("sites/MLA/search")
+    MercadoLibreBaseModel.url("sites/MLA/search")
       .option("q", value)
       .findRx()
       .subscribe(resp => {

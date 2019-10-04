@@ -2,9 +2,9 @@ import { Component, ViewChild, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ILgxModel, ILgx } from "src/app/lgx-axios-dev-tools/index";
 import {
-  FormField,
-  FormModel,
-  MaterialFormData
+  IDynamicFormField,
+  IDynamicFormModel,
+  IDynamicFormMaterialData
 } from "../dynamic-form/dynamic-form.interfaces";
 import { DynamicFormComponent } from "../dynamic-form/dynamic-form.component";
 import { Subscription } from "rxjs";
@@ -18,7 +18,7 @@ import { TranslateService } from "@ngx-translate/core";
 export class FormComponent implements OnDestroy {
   @ViewChild("dynamicForm") public form: DynamicFormComponent;
   public subscriptions: Subscription[] = [];
-  public materialData: MaterialFormData = {
+  public materialData: IDynamicFormMaterialData = {
     // appearance: "fill",
     floatLabel: "always"
   };
@@ -27,7 +27,7 @@ export class FormComponent implements OnDestroy {
   public resource: string;
   public id: string;
   public modelClass: ILgx;
-  public fieldsConfig: FormField[];
+  public fieldsConfig: IDynamicFormField[];
   public title: string;
   public buttonLabel: string;
   constructor(
@@ -74,9 +74,9 @@ export class FormComponent implements OnDestroy {
   public save(): void {
     this.form.submit().subscribe(resp => {
       resp.valid
-        ? resp.currentModel._id
-          ? this.updateAction(resp.currentModel)
-          : this.saveAction(resp.currentModel)
+        ? resp.model._id
+          ? this.updateAction(resp.model)
+          : this.saveAction(resp.model)
         : console.log(resp);
     });
   }
@@ -101,11 +101,11 @@ export class FormComponent implements OnDestroy {
     return populateData[resource];
   }
 
-  public saveAction(model: FormModel): void {
+  public saveAction(model: IDynamicFormModel): void {
     this.modelClass.saveRx(model).subscribe(resp => this.goToTable());
   }
 
-  public updateAction(model: FormModel): void {
+  public updateAction(model: IDynamicFormModel): void {
     this.modelClass
       .updateRx(model._id, model)
       .subscribe(() => this.goToTable());

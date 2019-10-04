@@ -3,12 +3,12 @@ import { Router, ActivationEnd } from "@angular/router";
 import { filter, map } from "rxjs/operators";
 import { Subscription } from "rxjs";
 import {
-  DynamicTableHeader,
-  DynamicTableButtonAction,
+  IDynamicTableHeader,
+  IDynamicTableButton,
   DynamicTablePagination,
   DynamicTablePaginationDefault,
   DynamicTableChanges,
-  DynamicTableItem
+  IDynamicTableItem
 } from "../table/table.interfaces";
 
 import { TranslateService } from "@ngx-translate/core";
@@ -21,14 +21,14 @@ import { ELgxSortDirection, ILgx } from "src/app/lgx-axios-dev-tools/index";
 })
 export class ListComponent implements OnDestroy {
   public subscriptions: Subscription[] = [];
-  public data: DynamicTableItem[] = [];
+  public data: IDynamicTableItem[] = [];
   public loading: boolean;
   public resource: string;
   public modelClass: ILgx;
   public title: string;
   public service: any;
-  public headers: DynamicTableHeader[] = [];
-  public rowActions: DynamicTableButtonAction[] = [];
+  public headers: IDynamicTableHeader[] = [];
+  public rowActions: IDynamicTableButton[] = [];
   public pagination: DynamicTablePagination = DynamicTablePaginationDefault;
   public sort: string;
   public sortDirection: ELgxSortDirection = ELgxSortDirection.ASC;

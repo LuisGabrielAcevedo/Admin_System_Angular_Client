@@ -5,6 +5,18 @@ import { ILgxModel } from "./lgx-model";
 import { ELgxUrlAction } from "../enums/lgx-url-actions";
 
 export interface ILgx {
+  filter(attribute: string, value: string): Builder;
+  where(attribute: string, value: string): Builder;
+  orWhere(attribute: string | string[], value: string, type?: string): Builder;
+  orderBy(attribute: string, direction?: ELgxSortDirection): Builder;
+  with(value: string | string[]): Builder;
+  option(queryParameter: string, value: string): Builder;
+  url(url: string): Builder;
+  urlParam(urlParam: string): Builder;
+  header(header: string, value: string): Builder;
+  page(page: number): Builder;
+  perPage(perPage: number): Builder;
+  formData(): Builder;
   find(page: number, perPage: number): Promise<any>;
   findById(id: string | number): Promise<any>;
   save(model: ILgxModel): Promise<any>;
@@ -15,15 +27,4 @@ export interface ILgx {
   saveRx(model: ILgxModel): Observable<any>;
   updateRx(id: string | number, model: ILgxModel): Observable<any>;
   destroyRx(id: string | number): Observable<any>;
-  filter(attribute: string, value: string): Builder;
-  where(attribute: string, value: string): Builder;
-  orWhere(attribute: string | string[], value: string, type?: string): Builder;
-  orderBy(attribute: string, direction?: ELgxSortDirection | string): Builder;
-  with(value: string | string[]): Builder;
-  option(queryParameter: string, value: string): Builder;
-  setUrl(url: string | string[], action?: ELgxUrlAction): Builder;
-  header(name: string, value: string): Builder;
-  page(page: number): Builder;
-  perPage(perPage: number): Builder;
-  formData(): Builder;
 }

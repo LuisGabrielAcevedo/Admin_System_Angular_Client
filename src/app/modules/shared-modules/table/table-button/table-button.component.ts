@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { DynamicTableButtonAction } from "../table.interfaces";
+import { IDynamicTableButton } from "../table.interfaces";
 import { TableService } from "../table.service";
 
 @Component({
@@ -11,12 +11,12 @@ export class TableButtonComponent implements OnInit {
   @Input() field: string | string[];
   @Input() item: object;
   @Input() position: number;
-  @Input() button: DynamicTableButtonAction;
+  @Input() button: IDynamicTableButton;
   constructor(private tableService: TableService) {}
 
   ngOnInit() {}
 
-  disabledButton(button: DynamicTableButtonAction) {
+  disabledButton(button: IDynamicTableButton) {
     return button.disabled ? button.disabled(this.item) : false;
   }
 

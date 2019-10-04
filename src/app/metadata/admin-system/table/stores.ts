@@ -1,16 +1,19 @@
-import { DynamicTableHeader, DynamicTableComponentType } from 'src/app/modules/shared-modules/table/table.interfaces';
+import {
+  IDynamicTableHeader,
+  EDynamicTableComponentType
+} from "src/app/modules/shared-modules/table/table.interfaces";
 
-const storeHeaders: DynamicTableHeader[] = [
-    {
-        label: 'Nombre',
-        key: 'name',
-        component: DynamicTableComponentType.text
-    },
-    {
-        label: 'Empresa',
-        key: 'company.name',
-        component: DynamicTableComponentType.text
-    }
+const storeHeaders: IDynamicTableHeader[] = [
+  {
+    label: "Nombre",
+    key: "name",
+    component: EDynamicTableComponentType.text
+  },
+  {
+    label: "Empresa",
+    key: "company.name",
+    component: EDynamicTableComponentType.text
+  }
 ];
 
 export default storeHeaders;

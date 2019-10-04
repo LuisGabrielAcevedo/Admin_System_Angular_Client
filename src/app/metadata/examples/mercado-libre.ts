@@ -1,27 +1,27 @@
 import {
-  DynamicTableHeader,
-  DynamicTableComponentType
+  IDynamicTableHeader,
+  EDynamicTableComponentType
 } from "../../modules/shared-modules/table/table.interfaces";
 
-export const mercadoLibreHeaders: DynamicTableHeader[] = [
+export const mercadoLibreHeaders: IDynamicTableHeader[] = [
   {
     label: "",
     key: "thumbnail",
-    component: DynamicTableComponentType.image
+    component: EDynamicTableComponentType.image
   },
   {
     label: "Id",
     key: "id",
-    component: DynamicTableComponentType.text
+    component: EDynamicTableComponentType.text
   },
   {
     label: "Titulo",
     key: "title",
-    component: DynamicTableComponentType.text
+    component: EDynamicTableComponentType.text
   },
   {
     label: "Precio",
     key: "price/b/$ AR",
-    component: DynamicTableComponentType.text
+    component: EDynamicTableComponentType.text
   }
 ];

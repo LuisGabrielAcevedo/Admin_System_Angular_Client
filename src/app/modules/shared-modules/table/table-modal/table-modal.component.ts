@@ -1,26 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { DynamicTableModal, DynamicTableButtonAction } from '../table.interfaces';
-import { TableService } from 'src/app/modules/shared-modules/table/table.service';
+import { Component, OnInit, Input } from "@angular/core";
+import { IDynamicTableModal, IDynamicTableButton } from "../table.interfaces";
+import { TableService } from "src/app/modules/shared-modules/table/table.service";
 
 @Component({
-  selector: 'app-table-modal',
-  templateUrl: './table-modal.component.html',
-  styleUrls: ['./table-modal.component.css']
+  selector: "app-table-modal",
+  templateUrl: "./table-modal.component.html",
+  styleUrls: ["./table-modal.component.css"]
 })
-export class DynamicTableModalComponent implements OnInit {
+export class IDynamicTableModalComponent implements OnInit {
   public buttonSelected: string;
   public loading: boolean;
-  @Input() modalData: DynamicTableModal;
+  @Input() modalData: IDynamicTableModal;
   @Input() item: object;
   @Input() position: number;
-  constructor(
-    public tableService: TableService
-  ) { }
+  constructor(public tableService: TableService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  buttonActions(button: DynamicTableButtonAction) {
+  buttonActions(button: IDynamicTableButton) {
     this.buttonSelected = button.label;
     this.tableService.buttonActions(button, this.position, this.item);
   }
@@ -36,15 +33,17 @@ export class DynamicTableModalComponent implements OnInit {
     }
   }
 
-  visibleButton(button: DynamicTableButtonAction) {
+  visibleButton(button: IDynamicTableButton) {
     return button.visible ? button.visible(this.item) : true;
   }
 
-  disabledButton(button: DynamicTableButtonAction) {
+  disabledButton(button: IDynamicTableButton) {
     return button.disabled ? button.disabled(this.item) : false;
   }
 
-  color(button: DynamicTableButtonAction) {
-    return this.buttonSelected === button.label ? { 'color': '#304ffe' } : { 'color': 'rgba(127,127,127,0.5)' };
+  color(button: IDynamicTableButton) {
+    return this.buttonSelected === button.label
+      ? { color: "#304ffe" }
+      : { color: "rgba(127,127,127,0.5)" };
   }
 }

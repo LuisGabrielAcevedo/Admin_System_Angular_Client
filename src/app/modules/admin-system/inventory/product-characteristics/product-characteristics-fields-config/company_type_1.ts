@@ -1,13 +1,13 @@
 import {
-  FormField,
-  FormFieldTypes
+  IDynamicFormField,
+  EDynamicFormFieldTypes
 } from "src/app/modules/shared-modules/dynamic-form/dynamic-form.interfaces";
 
-const restaurantFields: FormField[] = [
+const restaurantFields: IDynamicFormField[] = [
   {
     name: "Ingredients",
     key: "characteristics.ingredients",
-    component: FormFieldTypes.stringList,
+    component: EDynamicFormFieldTypes.stringList,
     flexConfig: {
       row: 1,
       flex: 100,

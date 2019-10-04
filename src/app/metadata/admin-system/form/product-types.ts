@@ -1,16 +1,16 @@
 import {
-  FormField,
-  FormFieldTypes
+  IDynamicFormField,
+  EDynamicFormFieldTypes
 } from "src/app/modules/shared-modules/dynamic-form/dynamic-form.interfaces";
 import Company from "src/app/models/admin-system/companies";
 import { DynamicFormValidators } from "src/app/modules/shared-modules/dynamic-form/validate/dynamic-form-validators";
 import { map } from "rxjs/operators";
 
-const productTypeFields: FormField[] = [
+const productTypeFields: IDynamicFormField[] = [
   {
     name: "Company",
     key: "company",
-    component: FormFieldTypes.asyncAutocomplete,
+    component: EDynamicFormFieldTypes.asyncAutocomplete,
     flexConfig: {
       row: 1,
       flex: 50
@@ -29,7 +29,7 @@ const productTypeFields: FormField[] = [
   {
     name: "Name",
     key: "name",
-    component: FormFieldTypes.textField,
+    component: EDynamicFormFieldTypes.textField,
     flexConfig: {
       row: 1,
       flex: 50

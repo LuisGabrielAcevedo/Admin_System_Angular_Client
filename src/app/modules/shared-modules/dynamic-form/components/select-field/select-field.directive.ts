@@ -1,8 +1,8 @@
-import { Directive, ViewContainerRef } from '@angular/core';
+import { Directive, ViewContainerRef } from "@angular/core";
 
 @Directive({
-  selector: '[app-select-field-directive]'
+  selector: "[dynamic-form-select-component-directive]"
 })
-export class FormFieldDirective {
-  constructor(public viewContainerRef: ViewContainerRef) { }
+export class IDynamicFormSelectComponentDirective {
+  constructor(public viewContainerRef: ViewContainerRef) {}
 }

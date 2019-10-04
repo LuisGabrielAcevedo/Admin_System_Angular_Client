@@ -1,19 +1,15 @@
-<div class="form-image">
-  <div fxLayout="column" fxLayoutAlign="center center">
-    <label style="margin-bottom: 10px;"
-      ><span
-        class="form-label"
-        [ngClass]="validateControl() ? 'form-error' : 'form-normal-label'"
-        >{{ label() }}
-        <span class="form-required" *ngIf="required()">*</span>
-      </span>
-    </label>
-    <div class="form-image-container">
-      <div class="form-image-border form-image-border-left-top"></div>
-      <div class="form-image-border form-image-border-right-top"></div>
-      <div class="form-image-border form-image-border-right-bottom"></div>
-      <div class="form-image-border form-image-border-left-bottom"></div>
-    </div>
-    <div class="form-image-content"></div>
+<div fxLayout="column">
+  <div class="form-image-content">
+    <img *ngIf="!fileSelected" src="{{ defaultImage }}" />
+    <img *ngIf="fileSelected" src="{{ fileSelected }}" />
   </div>
+  <input
+    style="display: none;"
+    #fileInput
+    type="file"
+    (change)="fileChangeEvent($event)"
+  />
+  <button mat-flat-button color="primary" (click)="fileInput.click()">
+    Seleccione una imagen
+  </button>
 </div>

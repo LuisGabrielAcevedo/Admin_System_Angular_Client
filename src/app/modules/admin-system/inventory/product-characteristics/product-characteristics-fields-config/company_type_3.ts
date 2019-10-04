@@ -1,13 +1,13 @@
 import {
-  FormField,
-  FormFieldTypes
+  IDynamicFormField,
+  EDynamicFormFieldTypes
 } from "src/app/modules/shared-modules/dynamic-form/dynamic-form.interfaces";
 
-const musicalInstrumentsFields: FormField[] = [
+const musicalInstrumentsFields: IDynamicFormField[] = [
   {
     name: "Color",
     key: "characteristics.color",
-    component: FormFieldTypes.textField
+    component: EDynamicFormFieldTypes.textField
   }
 ];
 

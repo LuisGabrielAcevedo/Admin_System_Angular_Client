@@ -1,9 +1,9 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import {
-  DynamicTableButtonAction,
-  DynamicTableActiveModalAction,
-  DynamicTableActiveComponentAction,
-  TableDialog
+  IDynamicTableButton,
+  IDynamicTableActiveModalAction,
+  DynamicITableActiveComponentAction,
+  ITableDialog
 } from "./table.interfaces";
 import { Router, NavigationExtras } from "@angular/router";
 
@@ -15,17 +15,17 @@ export class TableService {
   public closeModal: EventEmitter<any> = new EventEmitter();
 
   public openModal: EventEmitter<
-    DynamicTableActiveModalAction
+    IDynamicTableActiveModalAction
   > = new EventEmitter();
-  public openDialog: EventEmitter<TableDialog> = new EventEmitter();
+  public openDialog: EventEmitter<ITableDialog> = new EventEmitter();
   public activeComponent: EventEmitter<
-    DynamicTableActiveComponentAction
+    DynamicITableActiveComponentAction
   > = new EventEmitter();
 
   constructor(private router: Router) {}
 
   buttonActions(
-    button: DynamicTableButtonAction,
+    button: IDynamicTableButton,
     position: number,
     item: object | object[]
   ) {
@@ -35,7 +35,7 @@ export class TableService {
     }
     // 2. Open Modal
     if (button.modal) {
-      const data: DynamicTableActiveModalAction = {
+      const data: IDynamicTableActiveModalAction = {
         modal: button.modal,
         position: position
       };
@@ -53,7 +53,7 @@ export class TableService {
     }
     // 5. Active component
     if (button.activeComponet) {
-      const data: DynamicTableActiveComponentAction = {
+      const data: DynamicITableActiveComponentAction = {
         activeComponent: button.activeComponet,
         position: position
       };

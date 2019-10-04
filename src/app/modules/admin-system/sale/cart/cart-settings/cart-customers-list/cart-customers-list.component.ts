@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import Customer from "src/app/models/admin-system/customers";
 import { ELgxSortDirection } from "src/app/lgx-axios-dev-tools";
 import {
-  DynamicTableItem,
-  DynamicTableHeader,
+  IDynamicTableItem,
+  IDynamicTableHeader,
   DynamicTablePagination,
   DynamicTablePaginationDefault,
   DynamicTableChanges
@@ -17,8 +17,8 @@ import customerHeaders from "src/app/metadata/admin-system/table/customers";
 })
 export class CartCustomersListComponent implements OnInit {
   public title: string = "Customers list";
-  public headers: DynamicTableHeader[] = customerHeaders;
-  public data: DynamicTableItem[] = [];
+  public headers: IDynamicTableHeader[] = customerHeaders;
+  public data: IDynamicTableItem[] = [];
   public loading: boolean = false;
   public pagination: DynamicTablePagination = DynamicTablePaginationDefault;
   constructor() {}

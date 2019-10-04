@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { BaseFieldComponent } from "../base-field.mixin";
-import { FormModel } from "../../dynamic-form.interfaces";
+import { IDynamicFormModel } from "../../dynamic-form.interfaces";
 
 @Component({
   selector: "app-text-field",

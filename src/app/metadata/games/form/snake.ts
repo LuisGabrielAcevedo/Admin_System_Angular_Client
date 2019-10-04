@@ -1,15 +1,15 @@
 import {
-  FormField,
-  FormFieldTypes
+  IDynamicFormField,
+  EDynamicFormFieldTypes
 } from "src/app/modules/shared-modules/dynamic-form/dynamic-form.interfaces";
 import { DynamicFormValidators } from "src/app/modules/shared-modules/dynamic-form/validate/dynamic-form-validators";
 
-const snakeFields: FormField[] = [
+const snakeFields: IDynamicFormField[] = [
   // {
   //   name: "Cell size(px)",
   //   key: "cellSize",
   //   defaultValue: 10,
-  //   component: FormFieldTypes.numericField,
+  //   component: EDynamicFormFieldTypes.numericField,
   //   validators: [
   //     DynamicFormValidators.required(),
   //     DynamicFormValidators.min(10),
@@ -20,7 +20,7 @@ const snakeFields: FormField[] = [
   //   name: "Board size(px)",
   //   key: "boardSize",
   //   defaultValue: 30,
-  //   component: FormFieldTypes.numericField,
+  //   component: EDynamicFormFieldTypes.numericField,
   //   validators: [
   //     DynamicFormValidators.required(),
   //     DynamicFormValidators.min(10),
@@ -31,7 +31,7 @@ const snakeFields: FormField[] = [
     name: "Speed",
     key: "speed",
     defaultValue: 10,
-    component: FormFieldTypes.numericField,
+    component: EDynamicFormFieldTypes.numericField,
     validators: [DynamicFormValidators.required()]
   }
 ];

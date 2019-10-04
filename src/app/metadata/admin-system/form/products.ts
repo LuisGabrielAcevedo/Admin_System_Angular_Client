@@ -1,6 +1,6 @@
 import {
-  FormField,
-  FormFieldTypes
+  IDynamicFormField,
+  EDynamicFormFieldTypes
 } from "src/app/modules/shared-modules/dynamic-form/dynamic-form.interfaces";
 import { DynamicFormValidators } from "src/app/modules/shared-modules/dynamic-form/validate/dynamic-form-validators";
 import Company from "src/app/models/admin-system/companies";
@@ -14,11 +14,11 @@ import { ProductCharacteristicsComponent } from "src/app/modules/admin-system/in
 import Store from "src/app/models/admin-system/stores";
 import { ProductPricesComponent } from "src/app/modules/admin-system/inventory/product-prices/product-prices.component";
 
-const productFields: FormField[] = [
+const productFields: IDynamicFormField[] = [
   {
     name: "Company",
     key: "company",
-    component: FormFieldTypes.asyncAutocomplete,
+    component: EDynamicFormFieldTypes.asyncAutocomplete,
     mainGroup: "Company",
     flexConfig: {
       row: 1,
@@ -40,7 +40,7 @@ const productFields: FormField[] = [
   {
     name: "Store",
     key: "stores",
-    component: FormFieldTypes.select,
+    component: EDynamicFormFieldTypes.select,
     mainGroup: "Company",
     flexConfig: {
       row: 2,
@@ -64,7 +64,7 @@ const productFields: FormField[] = [
   {
     name: "Name",
     key: "name",
-    component: FormFieldTypes.textField,
+    component: EDynamicFormFieldTypes.textField,
     mainGroup: "Product info",
     flexConfig: {
       row: 1,
@@ -75,7 +75,7 @@ const productFields: FormField[] = [
   {
     name: "Unit",
     key: "unit",
-    component: FormFieldTypes.enum,
+    component: EDynamicFormFieldTypes.enum,
     mainGroup: "Product info",
     flexConfig: {
       row: 2,
@@ -84,7 +84,7 @@ const productFields: FormField[] = [
     validators: [DynamicFormValidators.required()],
     options: {
       fieldOptions: () =>
-        AdminSystem.setUrl("units")
+        AdminSystem.urlParam("units")
           .findRx()
           .pipe(
             map(resp =>
@@ -101,7 +101,7 @@ const productFields: FormField[] = [
   {
     name: "Price",
     key: "basePrice",
-    component: FormFieldTypes.numericField,
+    component: EDynamicFormFieldTypes.numericField,
     mainGroup: "Product info",
     flexConfig: {
       row: 2,
@@ -111,7 +111,7 @@ const productFields: FormField[] = [
   {
     name: "Require inventory",
     key: "requireInventory",
-    component: FormFieldTypes.switch,
+    component: EDynamicFormFieldTypes.switch,
     mainGroup: "Product info",
     flexConfig: {
       row: 2,
@@ -121,7 +121,7 @@ const productFields: FormField[] = [
   {
     name: "Require inventory by boxes",
     key: "requireInventoryByBoxes",
-    component: FormFieldTypes.switch,
+    component: EDynamicFormFieldTypes.switch,
     mainGroup: "Product info",
     flexConfig: {
       row: 2,
@@ -134,7 +134,7 @@ const productFields: FormField[] = [
   {
     name: "Active product",
     key: "isActive",
-    component: FormFieldTypes.switch,
+    component: EDynamicFormFieldTypes.switch,
     defaultValue: true,
     mainGroup: "Product info",
     flexConfig: {
@@ -145,7 +145,7 @@ const productFields: FormField[] = [
   {
     name: "Online sale",
     key: "isOnlineSale",
-    component: FormFieldTypes.switch,
+    component: EDynamicFormFieldTypes.switch,
     mainGroup: "Product info",
     flexConfig: {
       row: 3,
@@ -155,7 +155,7 @@ const productFields: FormField[] = [
   {
     name: "Description",
     key: "description",
-    component: FormFieldTypes.textarea,
+    component: EDynamicFormFieldTypes.textarea,
     mainGroup: "Product info",
     flexConfig: {
       row: 4,
@@ -165,7 +165,7 @@ const productFields: FormField[] = [
   {
     name: "Details",
     key: "details",
-    component: FormFieldTypes.textarea,
+    component: EDynamicFormFieldTypes.textarea,
     mainGroup: "Product info",
     flexConfig: {
       row: 5,
@@ -175,7 +175,7 @@ const productFields: FormField[] = [
   {
     name: "Category",
     key: "category",
-    component: FormFieldTypes.autocomplete,
+    component: EDynamicFormFieldTypes.autocomplete,
     mainGroup: "Product info",
     options: {
       fieldOptions: arg =>
@@ -194,7 +194,7 @@ const productFields: FormField[] = [
   {
     name: "Type",
     key: "type",
-    component: FormFieldTypes.autocomplete,
+    component: EDynamicFormFieldTypes.autocomplete,
     mainGroup: "Product info",
     options: {
       fieldOptions: arg =>
@@ -213,7 +213,7 @@ const productFields: FormField[] = [
   {
     name: "Brand",
     key: "brand",
-    component: FormFieldTypes.autocomplete,
+    component: EDynamicFormFieldTypes.autocomplete,
     mainGroup: "Product info",
     options: {
       fieldOptions: arg =>
@@ -232,7 +232,7 @@ const productFields: FormField[] = [
   {
     name: "Vendor",
     key: "vendor",
-    component: FormFieldTypes.autocomplete,
+    component: EDynamicFormFieldTypes.autocomplete,
     mainGroup: "Product info",
     options: {
       fieldOptions: arg =>

@@ -207,16 +207,13 @@ export class Builder implements ILgx {
     return this;
   }
 
-  public setUrl(url: string | string[], action?: ELgxUrlAction): Builder {
-    if (typeof url === "string") {
-      this.query.setUrl(new LgxUrl(url, action));
-    } else if (Array.isArray(url)) {
-      let urlFormatted = "";
-      for (const u of url) {
-        urlFormatted += !urlFormatted ? u : `/${u}`;
-      }
-      this.query.setUrl(new LgxUrl(urlFormatted, action));
-    }
+  public url(url: string): Builder {
+    this.query.setUrl(new LgxUrl(url, ELgxUrlAction.FORCE));
+    return this;
+  }
+
+  public urlParam(url: string): Builder {
+    this.query.setUrl(new LgxUrl(url));
     return this;
   }
 

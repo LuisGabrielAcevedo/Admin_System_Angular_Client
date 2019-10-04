@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 import { FormGroup, FormBuilder } from "@angular/forms";
 import {
-  MaterialFormData,
-  FormField,
-  FormatFieldsResponse,
-  FormMainGroup,
-  FormModel
+  IDynamicFormMaterialData,
+  IDynamicFormField,
+  IDynamicFormFormatFieldsResponse,
+  IDynamicFormMainGroup,
+  IDynamicFormModel
 } from "src/app/modules/shared-modules/dynamic-form/dynamic-form.interfaces";
 import { Subscription } from "rxjs";
 import { filter } from "rxjs/operators";
@@ -18,16 +18,16 @@ import { DynamicFormService } from "src/app/modules/shared-modules/dynamic-form/
 })
 export class ProductCharacteristicsComponent implements OnInit, OnDestroy {
   public subscriptions: Subscription[] = [];
-  public currentModel: FormModel;
-  @Input() public field: FormField;
+  public currentModel: IDynamicFormModel;
+  @Input() public field: IDynamicFormField;
   @Input() public form: FormGroup;
-  @Input() public materialData: MaterialFormData;
-  @Input() set model(model: FormModel) {
+  @Input() public materialData: IDynamicFormMaterialData;
+  @Input() set model(model: IDynamicFormModel) {
     this.currentModel = model;
   }
 
-  public rowsFormatted: FormMainGroup[] = [];
-  public fieldsConfig: FormField[] = [];
+  public rowsFormatted: IDynamicFormMainGroup[] = [];
+  public fieldsConfig: IDynamicFormField[] = [];
   constructor(
     public fb: FormBuilder,
     public dynamicFormService: DynamicFormService
@@ -58,12 +58,12 @@ export class ProductCharacteristicsComponent implements OnInit, OnDestroy {
       `./product-characteristics-fields-config/${value}`
     );
     this.fieldsConfig = fieldsConfigModule.default;
-    const formatFieldsResponse: FormatFieldsResponse = this.dynamicFormService.formatFields(
+    const IDynamicFormFormatFieldsResponse: IDynamicFormFormatFieldsResponse = this.dynamicFormService.formatFields(
       this.fieldsConfig,
       this.form
     );
     if (this.currentModel) this.updateForm();
-    this.rowsFormatted = formatFieldsResponse.mainGroupsFormatted;
+    this.rowsFormatted = IDynamicFormFormatFieldsResponse.mainGroupsFormatted;
   }
 
   public updateForm() {

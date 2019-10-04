@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { FormField } from "src/app/modules/shared-modules/dynamic-form/dynamic-form.interfaces";
+import { IDynamicFormField } from "src/app/modules/shared-modules/dynamic-form/dynamic-form.interfaces";
 import snakeFields from "src/app/metadata/games/form/snake";
 import { DynamicFormComponent } from "src/app/modules/shared-modules/dynamic-form/dynamic-form.component";
 import { ISnakeGameConfig } from "src/app/inferfaces/games/snake";
@@ -12,7 +12,7 @@ import { ISnakeGameConfig } from "src/app/inferfaces/games/snake";
 export class SnakeComponent implements OnInit {
   @ViewChild("snakeDynamicForm") public snakeForm: DynamicFormComponent;
   public title: string = "Snake";
-  public fieldsConfig: FormField[] = snakeFields;
+  public fieldsConfig: IDynamicFormField[] = snakeFields;
   public snakeGameConfig: ISnakeGameConfig = {
     speed: 0,
     boardSize: 30,
@@ -28,7 +28,7 @@ export class SnakeComponent implements OnInit {
       if (data.valid) {
         this.snakeGameConfig = {
           ...this.snakeGameConfig,
-          ...data.currentModel
+          ...data.model
         };
         this.isPlaying = true;
       }

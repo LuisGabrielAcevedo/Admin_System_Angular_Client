@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DynamicTableButtonAction } from 'src/app/modules/shared-modules/table/table.interfaces';
+import { IDynamicTableButton } from 'src/app/modules/shared-modules/table/table.interfaces';
 import { ProfileCardComponent } from 'src/app/modules/admin-system/system/profile-card/profile-card.component';
 import { Router } from '@angular/router';
 import Store from 'src/app/models/admin-system/stores';
@@ -17,7 +17,7 @@ export default class CompanyService {
     ) {}
 
     getRowActions() {
-        const actions: DynamicTableButtonAction[] = [
+        const actions: IDynamicTableButton[] = [
             {
                 icon: 'chevron_left',
                 type: 'TableButtonComponent',

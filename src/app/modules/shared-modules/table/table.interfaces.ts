@@ -1,13 +1,13 @@
 import { Observable } from "rxjs";
 
-export interface DynamicTableHeader {
+export interface IDynamicTableHeader {
   label: string;
   key: string;
-  component: DynamicTableComponentType;
+  component: EDynamicTableComponentType;
   sortable?: string;
 }
 
-export enum DynamicTableComponentType {
+export enum EDynamicTableComponentType {
   text = "TableTextComponent",
   search = "TableSearchComponent",
   button = "TableButtonComponent",
@@ -18,43 +18,43 @@ export enum DynamicTableComponentType {
   secondTable = "TableSecondTableComponent"
 }
 
-export interface DynamicTableItem {
+export interface IDynamicTableItem {
   [key: string]: any;
 }
 
-export interface DynamicTableContainerComponentData {
+export interface IDynamicTableContainerComponentData {
   item?: object | object[];
   field?: string | string[];
-  button?: DynamicTableButtonAction;
+  button?: IDynamicTableButton;
   observable?: (...arg: any[]) => Observable<any>;
-  galleryConfig?: DynamicTableGalleryConfig;
-  secondTableConfig?: DynamicTableSecondTableConfig;
-  cardConfig?: DynamicTableCardConfig;
+  galleryConfig?: IDynamicTableGalleryConfig;
+  secondTableConfig?: IDynamicTableSecondTableConfig;
+  cardConfig?: IDynamicTableCardConfig;
   position?: number;
 }
 
-export interface DynamicTableGalleryConfig {
+export interface IDynamicTableGalleryConfig {
   galleryType?: string;
   galleryListData?: string;
   galleryImage?: string;
   galleryTitle?: string;
   gallerySubTitle?: string;
   galleryDescription?: string;
-  button?: DynamicTableButtonAction;
+  button?: IDynamicTableButton;
 }
 
-export interface DynamicTableCardConfig {
+export interface IDynamicTableCardConfig {
   cardType: string;
   cardImage?: string;
   cardTitle?: string;
   cardSubTitle?: string;
   labels?: string[];
   columnData: string[];
-  rowActions?: DynamicTableButtonAction[];
+  rowActions?: IDynamicTableButton[];
 }
 
-export interface DynamicTableSecondTableConfig {
-  rowActions?: DynamicTableButtonAction[];
+export interface IDynamicTableSecondTableConfig {
+  rowActions?: IDynamicTableButton[];
   multiSelect?: boolean;
   secondTableListData?: string;
   fields: Array<{
@@ -64,22 +64,22 @@ export interface DynamicTableSecondTableConfig {
   }>;
 }
 
-export interface DynamicTableButtonAction {
+export interface IDynamicTableButton {
   icon?: string;
   class?: string;
   label?: string;
   event?: (...arg: any[]) => void;
-  modal?: DynamicTableModal;
+  modal?: IDynamicTableModal;
   type?: string;
-  activeComponet?: TableActiveComponent;
-  dialog?: TableDialog;
+  activeComponet?: ITableActiveComponent;
+  dialog?: ITableDialog;
   redirectTo?: string;
   outputItemAction?: string;
   visible?: (...arg: any[]) => boolean;
   disabled?: (...arg: any[]) => boolean;
 }
 
-export interface DynamicTableModal {
+export interface IDynamicTableModal {
   number: number;
   row: number;
   question?: string;
@@ -91,29 +91,29 @@ export interface DynamicTableModal {
   cancelButtonEvent?: string;
   cancelButtonClass?: string;
   buttonsClass?: string;
-  buttons?: DynamicTableButtonAction[];
+  buttons?: IDynamicTableButton[];
 }
 
-export interface TableDialog {
+export interface ITableDialog {
   component: any;
   width?: string;
   height?: string;
-  data: DynamicTableContainerComponentData;
+  data: IDynamicTableContainerComponentData;
 }
 
-export interface TableActiveComponent {
+export interface ITableActiveComponent {
   type: string;
   row: number;
-  data?: DynamicTableContainerComponentData;
+  data?: IDynamicTableContainerComponentData;
 }
 
-export interface DynamicTableActiveModalAction {
-  modal: DynamicTableModal;
+export interface IDynamicTableActiveModalAction {
+  modal: IDynamicTableModal;
   position: number;
 }
 
-export interface DynamicTableActiveComponentAction {
-  activeComponent: TableActiveComponent;
+export interface DynamicITableActiveComponentAction {
+  activeComponent: ITableActiveComponent;
   position: number;
 }
 

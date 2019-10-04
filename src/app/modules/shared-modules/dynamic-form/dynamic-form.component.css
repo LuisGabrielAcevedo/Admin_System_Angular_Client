@@ -35,60 +35,13 @@ mat-icon {
   font-size: 12px;
 }
 
-/* Image classes */
-.form-image-container {
-  position: relative;
-  width: 200px;
-  height: 190px;
-}
-
-.form-image-border {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 46.4px;
-  height: 46.4px;
-  border-color: #d8d8d8 !important;
-}
-
-.form-image-border-left-top {
-  top: -11px;
-  left: -15px;
-  border-top: solid 3px;
-  border-left: solid 3px;
-}
-
-.form-image-border-right-top {
-  top: -11px;
-  left: -15px;
-  border-top: solid 3px;
-  border-right: solid 3px;
-}
-
-.form-image-border-right-bottom {
-  top: -11px;
-  left: -15px;
-  border-right: solid 3px;
-  border-bottom: solid 3px;
-}
-
-.form-image-border-left-bottom {
-  top: -11px;
-  left: -15px;
-  border-bottom: solid 3px;
-  border-left: solid 3px;
-}
-
 .form-image-content {
-  margin-bottom: 10px;
-  text-align: center;
-  border: 2px solid #d8d8d8;
-  display: flex;
-  flex-direction: column;
-  position: relative;
+  width: 200px;
+  height: 200px;
   overflow: hidden;
-  flex-grow: 0;
-  background-size: cover;
-  background-position: center;
-  height: 100%;
+}
+
+img {
+  width: 200px;
+  height: 200px;
 }

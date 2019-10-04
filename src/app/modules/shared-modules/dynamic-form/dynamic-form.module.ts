@@ -36,7 +36,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { DynamicFormService } from "./dynamic-form.service";
 import { PanelsFormComponent } from "./components/panels-form/panels-form.component";
 import { MatExpansionModule } from "@angular/material/expansion";
-import { DynamicFormSelectFieldModule } from "./components/select-field/select-field.module";
+import { DynamicFormSelectComponentModule } from "./components/select-field/select-field.module";
 import { DynamicFormRowModule } from "./components/row/row.module";
 import { StringListComponent } from "./fields/string-list/string-list.component";
 import { StringListModule } from "./fields/string-list/string-list.module";
@@ -69,7 +69,7 @@ import { StringListModule } from "./fields/string-list/string-list.module";
     ReactiveFormsModule,
     MatTabsModule,
     MatExpansionModule,
-    DynamicFormSelectFieldModule,
+    DynamicFormSelectComponentModule,
     DynamicFormRowModule,
     StringListModule
   ],

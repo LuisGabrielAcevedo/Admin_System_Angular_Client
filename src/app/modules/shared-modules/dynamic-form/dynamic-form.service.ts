@@ -1,12 +1,12 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { ValidatorFn, FormGroup, FormBuilder } from "@angular/forms";
 import {
-  FormattedValidations,
-  FormField,
-  FormMainGroup,
-  FormLateralGroup,
-  FormatFieldsResponse,
-  FormModel
+  IDynamicFormFormattedValidations,
+  IDynamicFormField,
+  IDynamicFormMainGroup,
+  IDynamicFormLateralGroup,
+  IDynamicFormFormatFieldsResponse,
+  IDynamicFormModel
 } from "./dynamic-form.interfaces";
 import { DynamicFormValidator } from "./validate/dynamin-form-validator";
 import chunk from "lodash/chunk";
@@ -24,31 +24,31 @@ export class DynamicFormService {
   public formatValidations(
     validations: DynamicFormValidator[],
     form: FormGroup
-  ): FormattedValidations {
+  ): IDynamicFormFormattedValidations {
     let errorMessages: object = {};
-    let formattedValidations: ValidatorFn[] = [];
+    let IDynamicFormFormattedValidations: ValidatorFn[] = [];
     validations.forEach(validation => {
-      formattedValidations.push(validation.validate(form));
+      IDynamicFormFormattedValidations.push(validation.validate(form));
       errorMessages[validation.name.toLowerCase()] = validation.message;
     });
     return {
-      validations: formattedValidations,
+      validations: IDynamicFormFormattedValidations,
       errorMessages
     };
   }
 
   public formatFields(
-    fieldsConfig: FormField[],
+    fieldsConfig: IDynamicFormField[],
     form: FormGroup,
-    columns?: number,
-  ): FormatFieldsResponse {
-    let mainGroupsFormatted: FormMainGroup[] = [];
+    columns?: number
+  ): IDynamicFormFormatFieldsResponse {
+    let mainGroupsFormatted: IDynamicFormMainGroup[] = [];
     let order: number = 0;
     let groupIndexes: object = {};
     fieldsConfig.forEach(field => {
       if (form && field.key) {
         if (field.validators) {
-          const formattedValidations: FormattedValidations = this.formatValidations(
+          const IDynamicFormFormattedValidations: IDynamicFormFormattedValidations = this.formatValidations(
             field.validators,
             form
           );
@@ -56,11 +56,11 @@ export class DynamicFormService {
             field.key,
             this.fb.control(
               field.defaultValue,
-              formattedValidations.validations
+              IDynamicFormFormattedValidations.validations
             )
           );
           form.controls[field.key]["errorMessages"] =
-            formattedValidations.errorMessages;
+            IDynamicFormFormattedValidations.errorMessages;
         } else {
           form.addControl(field.key, this.fb.control(field.defaultValue));
         }
@@ -75,15 +75,15 @@ export class DynamicFormService {
       );
       if (item) {
         if (group) {
-          group === FormLateralGroup.left
+          group === IDynamicFormLateralGroup.left
             ? item.leftFieldGroup!.push(field)
             : item.rightFieldGroup!.push(field);
         } else {
-          (item.fields as FormField[]).push(field);
+          (item.fields as IDynamicFormField[]).push(field);
         }
         groupIndexes[field.key] = item.order;
       } else {
-        const tabNewItem: FormMainGroup = {
+        const tabNewItem: IDynamicFormMainGroup = {
           order,
           name,
           fields: [],
@@ -91,11 +91,11 @@ export class DynamicFormService {
           rightFieldGroup: []
         };
         if (group) {
-          group === FormLateralGroup.left
+          group === IDynamicFormLateralGroup.left
             ? tabNewItem.leftFieldGroup!.push(field)
             : tabNewItem.rightFieldGroup!.push(field);
         } else {
-          (tabNewItem.fields as FormField[]).push(field);
+          (tabNewItem.fields as IDynamicFormField[]).push(field);
         }
         groupIndexes[field.key] = order;
         order++;
@@ -110,29 +110,32 @@ export class DynamicFormService {
   }
 
   private buildColumns(
-    mainGroups: FormMainGroup[],
+    mainGroups: IDynamicFormMainGroup[],
     columns?: number
-  ): FormMainGroup[] {
-    let mainGroupsFormatted: FormMainGroup[] = [];
+  ): IDynamicFormMainGroup[] {
+    let mainGroupsFormatted: IDynamicFormMainGroup[] = [];
     mainGroupsFormatted = mainGroups.map(group => {
       if (group.fields.length === 1) {
-        if (!(group.fields as FormField[])[0].flexConfig) {
-          (group.fields as FormField[])[0].flexConfig = {};
+        if (!(group.fields as IDynamicFormField[])[0].flexConfig) {
+          (group.fields as IDynamicFormField[])[0].flexConfig = {};
         }
-        (group.fields as FormField[])[0].flexConfig!.flex = 100;
-        group.fields = [group.fields as FormField[]];
+        (group.fields as IDynamicFormField[])[0].flexConfig!.flex = 100;
+        group.fields = [group.fields as IDynamicFormField[]];
       } else {
         group.fields = columns
-          ? this.buildRowsByColumns(group.fields as FormField[], columns)
-          : this.buildRows(group.fields as FormField[]);
+          ? this.buildRowsByColumns(
+              group.fields as IDynamicFormField[],
+              columns
+            )
+          : this.buildRows(group.fields as IDynamicFormField[]);
       }
       return group;
     });
     return mainGroupsFormatted;
   }
 
-  private buildRows(fields: FormField[]): FormField[][] {
-    const rows: FormField[][] = [];
+  private buildRows(fields: IDynamicFormField[]): IDynamicFormField[][] {
+    const rows: IDynamicFormField[][] = [];
     fields = fields.map((field, i) => {
       return field.flexConfig
         ? field.flexConfig.row
@@ -148,7 +151,7 @@ export class DynamicFormService {
     });
     const fieldsGroups = groupBy(
       fields,
-      (field: FormField) => field.flexConfig!.row
+      (field: IDynamicFormField) => field.flexConfig!.row
     );
     Object.keys(fieldsGroups).forEach(group => {
       rows.push(fieldsGroups[group]);
@@ -157,9 +160,9 @@ export class DynamicFormService {
   }
 
   private buildRowsByColumns(
-    fields: FormField[],
+    fields: IDynamicFormField[],
     columns: number
-  ): FormField[][] {
+  ): IDynamicFormField[][] {
     const flex: number = Math.floor(100 / columns!);
     fields.map(fieldItem => {
       if (!fieldItem.flexConfig) {
@@ -171,8 +174,12 @@ export class DynamicFormService {
     return chunk(fields, columns!);
   }
 
-  public updateForm(fieldsConfig:FormField[], model: FormModel, form: FormGroup) {
-    const currentModel: FormModel = cloneDeep(model);
+  public updateForm(
+    fieldsConfig: IDynamicFormField[],
+    model: IDynamicFormModel,
+    form: FormGroup
+  ) {
+    const currentModel: IDynamicFormModel = cloneDeep(model);
     fieldsConfig.forEach(field => {
       if (field.key) {
         const value: any = get(

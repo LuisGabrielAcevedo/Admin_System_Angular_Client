@@ -1,4 +1,4 @@
-import { DynamicTableButtonAction } from "src/app/modules/shared-modules/table/table.interfaces";
+import { IDynamicTableButton } from "src/app/modules/shared-modules/table/table.interfaces";
 import { Router } from "@angular/router";
 import { Injectable } from "@angular/core";
 import Room from "src/app/models/admin-system/rooms";
@@ -9,7 +9,7 @@ import Room from "src/app/models/admin-system/rooms";
 export default class RoomService {
   constructor(private router: Router) {}
 
-  getRowActions(): DynamicTableButtonAction[] {
+  getRowActions(): IDynamicTableButton[] {
     return [
       {
         icon: "edit",

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import {
-  FormModel,
-  FormField,
-  MaterialFormData
+  IDynamicFormModel,
+  IDynamicFormField,
+  IDynamicFormMaterialData
 } from "src/app/modules/shared-modules/dynamic-form/dynamic-form.interfaces";
 import { FormGroup } from "@angular/forms";
 import Store from "src/app/models/admin-system/stores";
@@ -13,11 +13,11 @@ import Store from "src/app/models/admin-system/stores";
   styleUrls: ["./product-prices.component.css"]
 })
 export class ProductPricesComponent implements OnInit {
-  public currentModel: FormModel;
-  @Input() public field: FormField;
+  public currentModel: IDynamicFormModel;
+  @Input() public field: IDynamicFormField;
   @Input() public form: FormGroup;
-  @Input() public materialData: MaterialFormData;
-  @Input() set model(model: FormModel) {
+  @Input() public materialData: IDynamicFormMaterialData;
+  @Input() set model(model: IDynamicFormModel) {
     this.currentModel = model;
   }
   constructor() {}

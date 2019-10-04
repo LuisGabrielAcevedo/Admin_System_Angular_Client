@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import { DynamicTableButtonAction } from '../table.interfaces';
+import { IDynamicTableButton } from '../table.interfaces';
 import { TableService } from '../table.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { TableService } from '../table.service';
 export class TableMultiActionsComponent implements OnInit {
   @Input() colors: string[];
   @Input() items: object[];
-  @Input() multiActions: DynamicTableButtonAction[];
+  @Input() multiActions: IDynamicTableButton[];
   @Output() unSelectItems: EventEmitter<any> = new EventEmitter();
   constructor(
     public tableService: TableService
@@ -23,11 +23,11 @@ export class TableMultiActionsComponent implements OnInit {
     this.unSelectItems.emit();
   }
 
-  buttonActions(button: DynamicTableButtonAction) {
+  buttonActions(button: IDynamicTableButton) {
     this.tableService.buttonActions(button, null, this.items);
   }
 
-  visibleButton(button: DynamicTableButtonAction) {
+  visibleButton(button: IDynamicTableButton) {
     return button.visible ? button.visible(this.items) : true;
   }
 

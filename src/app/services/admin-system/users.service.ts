@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import {
   DynamicTablePagination,
-  DynamicTableButtonAction
+  IDynamicTableButton
 } from "src/app/modules/shared-modules/table/table.interfaces";
 import {
   ILoadRequest,
@@ -110,7 +110,7 @@ export default class UserService {
   }
 
   getRowActions() {
-    const actions: DynamicTableButtonAction[] = [
+    const actions: IDynamicTableButton[] = [
       {
         icon: "chevron_left",
         type: "TableButtonComponent",
