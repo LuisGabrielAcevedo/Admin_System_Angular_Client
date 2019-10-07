@@ -15,12 +15,7 @@ import { CartEffects } from "./cart/cart.effects";
   imports: [
     StoreModule.forRoot(reducers),
     StoreRouterConnectingModule,
-    EffectsModule.forRoot([
-      UserEffects,
-      RouterEffects,
-      AuthEffects,
-      CartEffects
-    ])
+    EffectsModule.forRoot([CartEffects])
   ],
   exports: [],
   declarations: [],
