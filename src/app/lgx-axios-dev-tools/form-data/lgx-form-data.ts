@@ -2,7 +2,7 @@ import {
   TFormDataCallback,
   IFormDataConfig
 } from "../interfaces/lgx-form-data";
-import * as LgxFormData from "form-data";
+import * as FormData from "form-data";
 
 const isUndefined: TFormDataCallback = value => value === undefined;
 const isNull: TFormDataCallback = value => value === null;
@@ -23,7 +23,7 @@ const isFile: TFormDataCallback = value =>
 const lgxObjectToFormData = (
   obj: any,
   cfg?: IFormDataConfig,
-  fd?: LgxFormData,
+  fd?: FormData,
   pre?: string
 ) => {
   cfg = cfg || {};
@@ -31,7 +31,7 @@ const lgxObjectToFormData = (
   cfg.nullsAsUndefineds = isUndefined(cfg.nullsAsUndefineds)
     ? false
     : cfg.nullsAsUndefineds;
-  fd = fd || new LgxFormData();
+  fd = fd || new FormData();
 
   if (isUndefined(obj)) {
     return fd;

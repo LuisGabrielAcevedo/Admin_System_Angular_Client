@@ -30,7 +30,7 @@
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "@types/moment": "^2.13.0",
-    "@types/node": "^11.13.8",
+    "@types/node": "^11.13.22",
     "acorn": "^7.0.0",
     "axios": "^0.19.0",
     "axiosquent-ts": "^2.0.3",
