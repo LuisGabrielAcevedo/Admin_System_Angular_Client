@@ -38,7 +38,7 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
   protected boxes: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   protected subscriptions: Subscription[] = [];
   protected openRows: number[] = [];
-  protected itemsSelected: IDynamicTableItem[] = [];
+  public itemsSelected: IDynamicTableItem[] = [];
   protected checkedAll: boolean = null;
   protected activeSort: string = "";
   protected asc: boolean = false;

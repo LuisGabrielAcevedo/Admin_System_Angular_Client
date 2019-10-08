@@ -1,11 +1,11 @@
-import { DynamicFormValidator } from "./dynamin-form-validator";
+import { DynamicFormValidator } from "./dynamic-form-validator";
 import { Validators, FormGroup } from "@angular/forms";
 import { DynamicFormValidationsFunctions } from "./dynamic-form-validations";
-import { Observable } from "rxjs";
-import { TDynamicFormAsyncValidatorCallback } from "../dynamic-form.interfaces";
 
 export class DynamicFormValidators {
-  public static required(data?: ValidatorData): DynamicFormValidator {
+  public static required(
+    data?: IDynamicFormValidatorData
+  ): DynamicFormValidator {
     return new DynamicFormValidator(
       "required",
       data && data.message ? data.message : "The field is required",
@@ -13,7 +13,9 @@ export class DynamicFormValidators {
     );
   }
 
-  public static requiredTrue(data?: ValidatorData): DynamicFormValidator {
+  public static requiredTrue(
+    data?: IDynamicFormValidatorData
+  ): DynamicFormValidator {
     return new DynamicFormValidator(
       "required",
       data && data.message ? data.message : "The field is required",
@@ -21,7 +23,7 @@ export class DynamicFormValidators {
     );
   }
 
-  public static email(data?: ValidatorData): DynamicFormValidator {
+  public static email(data?: IDynamicFormValidatorData): DynamicFormValidator {
     return new DynamicFormValidator(
       "email",
       data && data.message
@@ -32,7 +34,7 @@ export class DynamicFormValidators {
   }
 
   public static minLength(
-    data: ValidatorDataWithValue | number
+    data: IDynamicFormValidatorDataWithValue | number
   ): DynamicFormValidator {
     const value: number = typeof data === "object" ? data.value : data;
     const message: string = typeof data === "object" ? data.message : null;
@@ -43,7 +45,9 @@ export class DynamicFormValidators {
     );
   }
 
-  public static maxLength(data: ValidatorDataWithValue): DynamicFormValidator {
+  public static maxLength(
+    data: IDynamicFormValidatorDataWithValue
+  ): DynamicFormValidator {
     const value: number = typeof data === "object" ? data.value : data;
     const message: string = typeof data === "object" ? data.message : null;
     return new DynamicFormValidator(
@@ -54,7 +58,7 @@ export class DynamicFormValidators {
   }
 
   public static min(
-    data: ValidatorDataWithValue | number
+    data: IDynamicFormValidatorDataWithValue | number
   ): DynamicFormValidator {
     const value: number = typeof data === "object" ? data.value : data;
     const message: string = typeof data === "object" ? data.message : null;
@@ -66,7 +70,7 @@ export class DynamicFormValidators {
   }
 
   public static max(
-    data: ValidatorDataWithValue | number
+    data: IDynamicFormValidatorDataWithValue | number
   ): DynamicFormValidator {
     const value: number = typeof data === "object" ? data.value : data;
     const message: string = typeof data === "object" ? data.message : null;
@@ -78,7 +82,7 @@ export class DynamicFormValidators {
   }
 
   public static digits(
-    data: ValidatorDataWithValue | number
+    data: IDynamicFormValidatorDataWithValue | number
   ): DynamicFormValidator {
     const value: number = typeof data === "object" ? data.value : data;
     const message: string = typeof data === "object" ? data.message : null;
@@ -90,7 +94,9 @@ export class DynamicFormValidators {
     );
   }
 
-  public static hasNumber(data?: ValidatorData): DynamicFormValidator {
+  public static hasNumber(
+    data?: IDynamicFormValidatorData
+  ): DynamicFormValidator {
     return new DynamicFormValidator(
       "hasNumber",
       data && data.message ? data.message : "Must contain at least 1 number",
@@ -101,7 +107,9 @@ export class DynamicFormValidators {
     );
   }
 
-  public static hasCapitalCase(data?: ValidatorData): DynamicFormValidator {
+  public static hasCapitalCase(
+    data?: IDynamicFormValidatorData
+  ): DynamicFormValidator {
     return new DynamicFormValidator(
       "hasCapitalCase",
       data && data.message
@@ -114,7 +122,9 @@ export class DynamicFormValidators {
     );
   }
 
-  public static onlyCapitalCase(data?: ValidatorData): DynamicFormValidator {
+  public static onlyCapitalCase(
+    data?: IDynamicFormValidatorData
+  ): DynamicFormValidator {
     return new DynamicFormValidator(
       "onlyCapitalCase",
       data && data.message ? data.message : "Must contain only uppercase",
@@ -125,7 +135,9 @@ export class DynamicFormValidators {
     );
   }
 
-  public static hasSmallCase(data?: ValidatorData): DynamicFormValidator {
+  public static hasSmallCase(
+    data?: IDynamicFormValidatorData
+  ): DynamicFormValidator {
     return new DynamicFormValidator(
       "hasSmallCase",
       data && data.message
@@ -139,7 +151,7 @@ export class DynamicFormValidators {
   }
 
   public static hasSpecialCharacters(
-    data?: ValidatorData
+    data?: IDynamicFormValidatorData
   ): DynamicFormValidator {
     return new DynamicFormValidator(
       "hasSpecialCharacters",
@@ -155,7 +167,7 @@ export class DynamicFormValidators {
   }
 
   public static confirm(
-    data?: ValidatorDataWithField | string
+    data?: IDynamicFormValidatorDataWithField | string
   ): DynamicFormValidator {
     const field: string = typeof data === "object" ? data.field : data;
     const message: string = typeof data === "object" ? data.message : null;
@@ -170,14 +182,16 @@ export class DynamicFormValidators {
   }
 }
 
-export interface ValidatorData {
+export interface IDynamicFormValidatorData {
   message?: string;
 }
 
-export interface ValidatorDataWithValue extends ValidatorData {
+export interface IDynamicFormValidatorDataWithValue
+  extends IDynamicFormValidatorData {
   value: number;
 }
 
-export interface ValidatorDataWithField extends ValidatorData {
+export interface IDynamicFormValidatorDataWithField
+  extends IDynamicFormValidatorData {
   field: string;
 }

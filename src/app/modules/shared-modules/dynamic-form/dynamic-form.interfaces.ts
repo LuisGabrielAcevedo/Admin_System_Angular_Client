@@ -4,7 +4,7 @@ import {
   ValidationErrors,
   AbstractControl
 } from "@angular/forms";
-import { DynamicFormValidator } from "./validate/dynamin-form-validator";
+import { DynamicFormValidator } from "./validate/dynamic-form-validator";
 import { Observable } from "rxjs";
 
 export type TDynamicFormVisibleCallback = (arg: IDynamicFormModel) => boolean;
@@ -29,6 +29,12 @@ export enum EDynamicFormFieldTypes {
   numericField = "NumericFieldComponent",
   passwordField = "PasswordFieldComponent",
   stringList = "StringListComponent"
+}
+
+export enum EDynamicFormType {
+  panels = "PanelsFormComponent",
+  tabs = "TabsFormComponent",
+  steps = "StepsFormComponent"
 }
 
 export interface IDynamicFormMaterialData {

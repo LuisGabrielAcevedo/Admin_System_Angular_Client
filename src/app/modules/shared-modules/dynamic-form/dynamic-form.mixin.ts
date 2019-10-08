@@ -22,7 +22,7 @@ export class FormComponent {
   protected editedFieldsModel: IDynamicFormModel = {};
   protected errors: ValidationErrors = {};
   protected groupIndexes: object = {};
-  protected mainGroupsFormatted: IDynamicFormMainGroup[] = [];
+  public mainGroupsFormatted: IDynamicFormMainGroup[] = [];
   protected activeGroup: number = 0;
   @Input() protected fieldsConfig!: IDynamicFormField[];
   @Input() protected model: IDynamicFormModel;

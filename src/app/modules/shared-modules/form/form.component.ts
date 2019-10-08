@@ -73,6 +73,7 @@ export class FormComponent implements OnDestroy {
 
   public save(): void {
     this.form.submit().subscribe(resp => {
+      console.log(resp);
       resp.valid
         ? resp.model._id
           ? this.updateAction(resp.model)

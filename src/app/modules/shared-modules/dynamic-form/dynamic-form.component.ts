@@ -47,7 +47,7 @@ export class DynamicFormComponent extends FormComponent
     if (this.form.valid) {
       return of({
         valid: true,
-        currentModel: this.currentModel,
+        model: this.currentModel,
         errors: null
       });
     } else {
@@ -56,7 +56,7 @@ export class DynamicFormComponent extends FormComponent
       this.searchInvalidMainGroup();
       return of({
         valid: false,
-        currentModel: this.currentModel,
+        model: this.currentModel,
         errors: this.errors
       });
     }

@@ -8,7 +8,7 @@ import {
   IDynamicFormFormatFieldsResponse,
   IDynamicFormModel
 } from "./dynamic-form.interfaces";
-import { DynamicFormValidator } from "./validate/dynamin-form-validator";
+import { DynamicFormValidator } from "./validate/dynamic-form-validator";
 import chunk from "lodash/chunk";
 import groupBy from "lodash/groupBy";
 import cloneDeep from "lodash/cloneDeep";
@@ -26,13 +26,13 @@ export class DynamicFormService {
     form: FormGroup
   ): IDynamicFormFormattedValidations {
     let errorMessages: object = {};
-    let IDynamicFormFormattedValidations: ValidatorFn[] = [];
+    let dynamicFormFormattedValidations: ValidatorFn[] = [];
     validations.forEach(validation => {
-      IDynamicFormFormattedValidations.push(validation.validate(form));
+      dynamicFormFormattedValidations.push(validation.validate(form));
       errorMessages[validation.name.toLowerCase()] = validation.message;
     });
     return {
-      validations: IDynamicFormFormattedValidations,
+      validations: dynamicFormFormattedValidations,
       errorMessages
     };
   }
@@ -48,7 +48,7 @@ export class DynamicFormService {
     fieldsConfig.forEach(field => {
       if (form && field.key) {
         if (field.validators) {
-          const IDynamicFormFormattedValidations: IDynamicFormFormattedValidations = this.formatValidations(
+          const dynamicFormFormattedValidations: IDynamicFormFormattedValidations = this.formatValidations(
             field.validators,
             form
           );
@@ -56,11 +56,11 @@ export class DynamicFormService {
             field.key,
             this.fb.control(
               field.defaultValue,
-              IDynamicFormFormattedValidations.validations
+              dynamicFormFormattedValidations.validations
             )
           );
           form.controls[field.key]["errorMessages"] =
-            IDynamicFormFormattedValidations.errorMessages;
+            dynamicFormFormattedValidations.errorMessages;
         } else {
           form.addControl(field.key, this.fb.control(field.defaultValue));
         }

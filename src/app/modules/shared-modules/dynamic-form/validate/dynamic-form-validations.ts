@@ -1,5 +1,4 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
-import { TDynamicFormAsyncValidatorCallback } from "../dynamic-form.interfaces";
 
 export class DynamicFormValidationsFunctions {
   public static patternValidator(
