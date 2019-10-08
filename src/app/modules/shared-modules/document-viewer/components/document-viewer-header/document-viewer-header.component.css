@@ -1,5 +1,12 @@
 mat-toolbar {
-  height: 60px;
+  height: 54px;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+mat-icon {
+  margin: 5px;
+  cursor: pointer;
 }
 
 .document-viewer-header-spacer {

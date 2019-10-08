@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { ILgxModel, ILgx } from "src/app/lgx-axios-dev-tools/index";
+import { ILgxModel, Lgx } from "src/app/lgx-axios-dev-tools/index";
 import {
   IDynamicFormField,
   IDynamicFormModel,
@@ -19,14 +19,14 @@ export class FormComponent implements OnDestroy {
   @ViewChild("dynamicForm") public form: DynamicFormComponent;
   public subscriptions: Subscription[] = [];
   public materialData: IDynamicFormMaterialData = {
-    // appearance: "fill",
+    appearance: "legacy",
     floatLabel: "always"
   };
   public loading: boolean;
   public model: ILgxModel;
   public resource: string;
   public id: string;
-  public modelClass: ILgx;
+  public modelClass: Lgx;
   public fieldsConfig: IDynamicFormField[];
   public title: string;
   public buttonLabel: string;
@@ -73,7 +73,6 @@ export class FormComponent implements OnDestroy {
 
   public save(): void {
     this.form.submit().subscribe(resp => {
-      console.log(resp);
       resp.valid
         ? resp.model._id
           ? this.updateAction(resp.model)

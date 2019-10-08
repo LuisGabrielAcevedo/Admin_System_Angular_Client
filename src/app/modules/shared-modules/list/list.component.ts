@@ -12,7 +12,7 @@ import {
 } from "../table/table.interfaces";
 
 import { TranslateService } from "@ngx-translate/core";
-import { ELgxSortDirection, ILgx } from "src/app/lgx-axios-dev-tools/index";
+import { ELgxSortDirection, Lgx } from "src/app/lgx-axios-dev-tools/index";
 
 @Component({
   selector: "app-list",
@@ -24,7 +24,7 @@ export class ListComponent implements OnDestroy {
   public data: IDynamicTableItem[] = [];
   public loading: boolean;
   public resource: string;
-  public modelClass: ILgx;
+  public modelClass: Lgx;
   public title: string;
   public service: any;
   public headers: IDynamicTableHeader[] = [];

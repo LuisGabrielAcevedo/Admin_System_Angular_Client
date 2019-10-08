@@ -1,6 +1,9 @@
 <div class="document-viewer-container" *ngIf="opened">
   <div fxLayout="column" class="document-viewer-content">
-    <app-document-viewer-header [title]="title"></app-document-viewer-header>
+    <app-document-viewer-header
+      [title]="title"
+      (closeDocumentViewerEvent)="closeDocumentViewer($event)"
+    ></app-document-viewer-header>
     <div fxFlex>
       <div fxLayout="row" style="height: 100%;">
         <app-document-viewer-pages

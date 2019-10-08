@@ -53,4 +53,8 @@ export class MercadoLibreComponent implements OnInit {
       }
     });
   }
+
+  closeDocumentViewer(): void {
+    this.documentViewerStatus = false;
+  }
 }
