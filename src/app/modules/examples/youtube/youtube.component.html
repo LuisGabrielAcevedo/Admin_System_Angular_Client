@@ -8,5 +8,7 @@
     [data]="data"
     [loading]="loading"
     [rowActions]="rowActions"
+    [clickRowEvent]="true"
+    (dynamicTableChanges)="dynamicTableChanges($event)"
   ></app-table>
 </div>

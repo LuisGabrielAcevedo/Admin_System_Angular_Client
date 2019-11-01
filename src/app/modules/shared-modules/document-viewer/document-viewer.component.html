@@ -11,9 +11,14 @@
           [currentPage]="currentPage"
           (setCurrentPage)="setCurrentPage($event)"
         ></app-document-viewer-pages>
-        <div fxFlex>
+        <div fxFlex style="position: relative;">
           <app-document-viewer-canvas></app-document-viewer-canvas>
-          <app-document-viewer-canvas-buttons></app-document-viewer-canvas-buttons>
+          <app-document-viewer-canvas-buttons
+            [currentPage]="currentPage"
+            [totalPages]="thumbnailList?.length || 0"
+            (onZoomIn)="zoomIn()"
+            (onZoomOut)="zoomOut()"
+          ></app-document-viewer-canvas-buttons>
         </div>
       </div>
     </div>

@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import {
   IDynamicTableHeader,
   IDynamicTableButton,
-  IDynamicTableItem
+  IDynamicTableItem,
+  DynamicTableChanges
 } from "src/app/modules/shared-modules/table/table.interfaces";
 import { mercadoLibreHeaders } from "src/app/metadata/examples/mercado-libre";
 import { MercadoLibreBaseModel } from "src/app/models/examples/mercado-libre/base-model/base-model";
@@ -36,12 +37,11 @@ export class MercadoLibreComponent implements OnInit {
       .subscribe(resp => {
         this.data = resp.results;
         this.loading = false;
-        this.loadItem();
       });
   }
 
-  loadItem(): void {
-    MercadolibreItem.findByIdRx("MLA632558971").subscribe(item => {
+  loadItem(id: string): void {
+    MercadolibreItem.findByIdRx(id).subscribe(item => {
       this.pictures = [];
       if (item.pictures.length) {
         item.pictures.forEach(picture => {
@@ -56,5 +56,9 @@ export class MercadoLibreComponent implements OnInit {
 
   closeDocumentViewer(): void {
     this.documentViewerStatus = false;
+  }
+
+  dynamicTableChanges(changes: DynamicTableChanges) {
+    if (changes.selectedItem) this.loadItem(changes.selectedItem.id);
   }
 }

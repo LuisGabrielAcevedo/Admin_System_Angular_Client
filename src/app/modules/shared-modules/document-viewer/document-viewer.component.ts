@@ -23,4 +23,12 @@ export class DocumentViewerComponent implements OnInit {
   public closeDocumentViewer() {
     this.close.emit();
   }
+
+  public zoomIn() {
+    console.log("in");
+  }
+
+  public zoomOut() {
+    console.log("out");
+  }
 }

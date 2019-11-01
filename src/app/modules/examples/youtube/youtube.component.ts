@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import {
   IDynamicTableHeader,
   IDynamicTableButton,
-  IDynamicTableItem
+  IDynamicTableItem,
+  DynamicTableChanges
 } from "src/app/modules/shared-modules/table/table.interfaces";
 import { youtubeHeaders } from "src/app/metadata/examples/youtube";
 import { YoutubeBaseModel } from "src/app/models/examples/youtube/base-model";
@@ -40,8 +41,12 @@ export class YoutubeComponent implements OnInit {
       });
   }
 
-  public videoSelectedAction(data: any) {
-    const url = `https://www.youtube.com/embed/${data.item.id.videoId}`;
+  public dynamicTableChanges(changes: DynamicTableChanges) {
+    if (changes.selectedItem) this.videoSelectedAction(changes.selectedItem);
+  }
+
+  public videoSelectedAction(item: any) {
+    const url = `https://www.youtube.com/embed/${item.id.videoId}`;
     this.iframe.nativeElement.src = url;
   }
 }

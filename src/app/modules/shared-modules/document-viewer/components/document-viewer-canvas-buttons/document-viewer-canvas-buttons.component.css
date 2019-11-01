@@ -1,0 +1,28 @@
+.document-viewer-canvas-buttons-container {
+  position: absolute;
+  width: 100%;
+  bottom: 30px;
+  color: white;
+}
+
+.document-viewer-canvas-buttons-content {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0 20px;
+  font-size: 14px;
+  border-radius: 50px;
+}
+
+.document-viewer-canvas-buttons-divider {
+  height: 46px;
+  width: 4px;
+  border-left: 1px solid #dee2e6;
+  margin: 0 10px;
+}
+
+button {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+mat-icon {
+  color: white !important;
+}

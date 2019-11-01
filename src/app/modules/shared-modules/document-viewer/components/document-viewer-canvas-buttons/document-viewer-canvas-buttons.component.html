@@ -1,3 +1,20 @@
-<p>
-  document-viewer-canvas-buttons works!
-</p>
+<div
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  class="document-viewer-canvas-buttons-container"
+>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    class="document-viewer-canvas-buttons-content"
+  >
+    <p>Page {{ currentPage }} / {{ totalPages }}</p>
+    <div class="document-viewer-canvas-buttons-divider"></div>
+    <button mat-mini-fab (click)="zoomOut()">
+      <mat-icon>zoom_out</mat-icon>
+    </button>
+    <button mat-mini-fab (click)="zoomIn()">
+      <mat-icon>zoom_in</mat-icon>
+    </button>
+  </div>
+</div>

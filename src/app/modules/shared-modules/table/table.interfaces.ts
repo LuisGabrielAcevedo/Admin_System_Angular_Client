@@ -133,4 +133,5 @@ export interface DynamicTableChanges {
   sort?: string;
   sortDirection?: string;
   pagination?: DynamicTablePagination;
+  selectedItem?: IDynamicTableItem;
 }
