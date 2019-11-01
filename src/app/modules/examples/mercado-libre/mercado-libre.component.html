@@ -4,9 +4,12 @@
   [data]="data"
   [loading]="loading"
   [rowActions]="rowActions"
+  [clickRowEvent]="true"
+  (dynamicTableChanges)="dynamicTableChanges($event)"
 ></app-table>
 <app-document-viewer
   [title]="'Mercado libre'"
   [opened]="documentViewerStatus"
   [thumbnailList]="pictures"
+  (close)="documentViewerStatus = false"
 ></app-document-viewer>

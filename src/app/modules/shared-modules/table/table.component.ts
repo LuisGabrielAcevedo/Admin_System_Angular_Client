@@ -62,7 +62,8 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() rowActions: IDynamicTableButton[] = [];
   @Input() multiActions: IDynamicTableButton[] = [];
   @Input() pagination: DynamicTablePagination;
-  @Output() DynamicTableChanges: EventEmitter<
+  @Input() clickRowEvent: boolean = null;
+  @Output() dynamicTableChanges: EventEmitter<
     DynamicTableChanges
   > = new EventEmitter();
   @Output() reloadData: EventEmitter<any> = new EventEmitter();
@@ -233,9 +234,10 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
   changePageAction(newPagination: DynamicTablePagination) {
     this.tableChanges = {
       ...this.tableChanges,
+      selectedItem: null,
       pagination: newPagination
     };
-    this.DynamicTableChanges.emit(this.tableChanges);
+    this.dynamicTableChanges.emit(this.tableChanges);
   }
 
   changeSortAction(header: IDynamicTableHeader) {
@@ -244,10 +246,18 @@ export class TableComponent implements AfterViewInit, OnChanges, OnDestroy {
       this.tableChanges = {
         ...this.tableChanges,
         sort: header.sortable,
+        selectedItem: null,
         sortDirection: this.asc ? "asc" : "desc"
       };
       this.asc = !this.asc;
-      this.DynamicTableChanges.emit(this.tableChanges);
+      this.dynamicTableChanges.emit(this.tableChanges);
+    }
+  }
+
+  clickRowEventAction(item: IDynamicTableItem) {
+    if (this.clickRowEvent) {
+      this.tableChanges = { ...this.tableChanges, selectedItem: item };
+      this.dynamicTableChanges.emit(this.tableChanges);
     }
   }
 

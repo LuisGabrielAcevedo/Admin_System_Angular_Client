@@ -6,7 +6,11 @@ import { DocumentViewerPagesComponent } from "./components/document-viewer-pages
 import { DocumentViewerCanvasComponent } from "./components/document-viewer-canvas/document-viewer-canvas.component";
 import { DocumentViewerCanvasButtonsComponent } from "./components/document-viewer-canvas-buttons/document-viewer-canvas-buttons.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { MatToolbarModule, MatIconModule } from "@angular/material";
+import {
+  MatToolbarModule,
+  MatIconModule,
+  MatButtonModule
+} from "@angular/material";
 import { ScrollingModule } from "@angular/cdk/scrolling";
 
 @NgModule({
@@ -22,6 +26,7 @@ import { ScrollingModule } from "@angular/cdk/scrolling";
     FlexLayoutModule,
     MatToolbarModule,
     MatIconModule,
+    MatButtonModule,
     ScrollingModule
   ],
   exports: [DocumentViewerComponent]

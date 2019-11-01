@@ -1,6 +1,8 @@
-<mat-toolbar color="primary">
+<mat-toolbar>
   <span>{{ title }}</span>
   <span class="document-viewer-header-spacer"></span>
-  <mat-icon class="document-viewer-icon">favorite</mat-icon>
-  <mat-icon class="document-viewer-icon">close</mat-icon>
+  <!-- <mat-icon class="document-viewer-icon">favorite</mat-icon> -->
+  <mat-icon class="document-viewer-icon" (click)="closeDocumentViewer()"
+    >close</mat-icon
+  >
 </mat-toolbar>

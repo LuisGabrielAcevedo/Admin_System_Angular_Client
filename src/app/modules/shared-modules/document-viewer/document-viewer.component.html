@@ -1,6 +1,9 @@
 <div class="document-viewer-container" *ngIf="opened">
   <div fxLayout="column" class="document-viewer-content">
-    <app-document-viewer-header [title]="title"></app-document-viewer-header>
+    <app-document-viewer-header
+      [title]="title"
+      (closeDocumentViewerEvent)="closeDocumentViewer($event)"
+    ></app-document-viewer-header>
     <div fxFlex>
       <div fxLayout="row" style="height: 100%;">
         <app-document-viewer-pages
@@ -8,9 +11,14 @@
           [currentPage]="currentPage"
           (setCurrentPage)="setCurrentPage($event)"
         ></app-document-viewer-pages>
-        <div fxFlex>
+        <div fxFlex style="position: relative;">
           <app-document-viewer-canvas></app-document-viewer-canvas>
-          <app-document-viewer-canvas-buttons></app-document-viewer-canvas-buttons>
+          <app-document-viewer-canvas-buttons
+            [currentPage]="currentPage"
+            [totalPages]="thumbnailList?.length || 0"
+            (onZoomIn)="zoomIn()"
+            (onZoomOut)="zoomOut()"
+          ></app-document-viewer-canvas-buttons>
         </div>
       </div>
     </div>
