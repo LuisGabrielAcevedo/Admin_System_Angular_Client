@@ -1,0 +1,102 @@
+<div #legends class="legend__item">
+  <ng-container *ngIf="coOwner?.firstName && !coOwnerIsSpouse">
+    <div class="row legend__item-header d-flex align-items-center">
+      <div class="col">
+        <p class="legend__item-header-title">
+          {{ '@Coowner legend' | translate }}
+        </p>
+      </div>
+    </div>
+    <div class="legend__item-body">
+      <p class="legend__item-body-message">
+        {{ '@Coowner data' | translate }}: {{ coOwner?.lastName }},
+        {{ coOwner?.firstName }} - {{ coOwner?.maritalStatus?.description }} -
+        {{ coOwner?.afipActivity?.description }} -
+        {{ coOwner?.nationality?.description }} - {{ coOwnerAge }}
+        {{ '@Years' | translate }} -
+        {{ coOwner?.address?.street }}
+        {{ coOwner?.address?.number }} - {{ '@Dni' | translate }}:
+        {{ coOwner?.document | mask: 'dot_separator' }}
+      </p>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="coOwnerIsSpouse">
+    <div class="row legend__item-header d-flex align-items-center">
+      <div class="col">
+        <p class="legend__item-header-title mt-4">
+          {{ '@Coowner legend' | translate }}
+        </p>
+      </div>
+    </div>
+    <div class="legend__item-body">
+      <p class="legend__item-body-message">
+        {{ '@Coowner data' | translate }}: {{ coOwner?.lastName }},
+        {{ coOwner?.firstName }} - {{ coOwner?.maritalStatus?.description }} -
+        {{ coOwner?.afipActivity?.description }} -
+        {{ coOwner?.nationality?.description }} - {{ coOwnerAge }}
+        {{ '@Years' | translate }} - {{ coOwner?.address?.street }}
+        {{ coOwner?.address?.number }} - {{ '@Dni' | translate }} :
+        {{ coOwner?.document | mask: 'dot_separator' }}
+        {{ '@Debtors are spouses of each other.' | translate }}
+      </p>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="ownerSpouse?.firstName">
+    <div class="row legend__item-header d-flex align-items-center">
+      <div class="col">
+        <p class="legend__item-header-title">
+          {{ '@Owner Spousal Assent' | translate }}
+        </p>
+      </div>
+    </div>
+    <div class="legend__item-body">
+      <p class="legend__item-body-message">
+        {{ '@Spouse Data' | translate }}: {{ ownerSpouse?.lastName }},
+        {{ ownerSpouse?.firstName }} - {{ '@Married' | translate }} –
+        {{ ownerSpouse?.nationality?.description }} – {{ ownerSpouseAge }}
+        {{ '@Years' | translate }} – {{ owner?.address?.street }}
+        {{ owner?.address?.number }} - {{ '@Dni' | translate }} :
+        {{ ownerSpouse?.document | mask: 'dot_separator' }}
+        {{
+          '@Who gives his assent according to what is established in art. 470 and concordant of the civil and commercial code.'
+            | translate
+        }}
+      </p>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="coOwnerHasSpouse">
+    <div class="row legend__item-header d-flex align-items-center">
+      <div class="col">
+        <p class="legend__item-header-title">
+          {{ '@Coowner Spousal Assent' | translate }}
+        </p>
+      </div>
+    </div>
+    <div class="legend__item-body">
+      <p class="legend__item-body-message">
+        {{ '@Spouse Data' | translate }}: {{ coOwnerSpouse?.lastName }},
+        {{ coOwnerSpouse?.firstName }} - {{ '@Married' | translate }} –
+        {{ coOwnerSpouse?.nationality?.description }} – {{ coOwnerSpouseAge }}
+        {{ '@Years' | translate }} – {{ coOwner?.address?.street }}
+        {{ coOwner?.address?.number }} - {{ '@Dni' | translate }} :
+        {{ coOwnerSpouse?.document | mask: 'dot_separator' }}
+        {{
+          '@Who gives his assent according to what is established in art. 470 and concordant of the civil and commercial code.'
+            | translate
+        }}
+      </p>
+    </div>
+  </ng-container>
+
+  <div class="text-center">
+    <button
+      [copy-clipboard]="clipboardPayload"
+      (isCopied)="isCopied($event)"
+      class="btn rounded-pill btn-info legend__item-header-button"
+    >
+      <span>{{ '@Copy legends' | translate }}</span>
+      <i class="far fa-copy"></i>
+    </button>
+  </div>
+</div>

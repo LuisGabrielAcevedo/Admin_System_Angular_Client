@@ -1,0 +1,13 @@
+@import 'scss/breakpoints';
+
+.has-nav {
+  padding-top: 4rem;
+
+  @include media-breakpoint-down(md) {
+    padding-top: 3rem;
+  }
+}
+
+.no-nav {
+  padding-top: 0;
+}

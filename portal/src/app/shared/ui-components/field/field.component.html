@@ -1,0 +1,30 @@
+<div
+  class="form-group"
+  [ngClass]="{
+    'form-group--required': required
+  }"
+>
+  <label *ngIf="label"
+    >{{ label }}
+    <span
+      placement="top"
+      [ngbPopover]="tooltip"
+      [openDelay]="400"
+      triggers="mouseenter:mouseleave"
+    >
+      <button
+        type="button"
+        class="btn btn-link form-group__tooltip"
+        tabindex="-1"
+        *ngIf="tooltip"
+      >
+        <i class="fas fa-info-circle"></i>
+      </button>
+    </span>
+  </label>
+
+  <ng-content></ng-content>
+  <div class="alert alert-danger" *ngFor="let error of errors">
+    {{ error }}
+  </div>
+</div>

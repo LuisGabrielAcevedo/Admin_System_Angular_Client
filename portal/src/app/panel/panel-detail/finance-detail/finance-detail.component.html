@@ -1,0 +1,113 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <app-readonly label="{{ '@Rate Type' | translate }}">
+        {{ indexerType }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Maximum Amount to Finance' | translate }}">
+        {{ finalAmount | currency: 'ARS':'symbol-narrow':'1.0':'es-AR' }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Value Infoauto Vehicle' | translate }}">
+        {{
+          finance?.calculatedValueDTO?.infoAutoValue
+            | currency: 'ARS':'symbol-narrow':'1.0':'es-AR'
+        }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Initial Payment' | translate }}">
+        {{
+          finance?.calculatedValueDTO?.initialPayment
+            | currency: 'ARS':'symbol-narrow':'1.0':'es-AR'
+        }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Amount to Finance' | translate }}">
+        {{
+          finance?.calculatedValueDTO?.financedAmount
+            | currency: 'ARS':'symbol-narrow':'1.0':'es-AR'
+        }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@TEA' | translate }}">
+        {{ finance?.calculatedValueDTO?.tea | number: '0.0-2':'es-AR' }} %
+      </app-readonly>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+      <app-readonly label="{{ '@CFTEA' | translate }}">
+        {{ finance?.calculatedValueDTO?.cftea | number: '0.0-2':'es-AR' }} %
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Estimated Pure Fee' | translate }}">
+        {{
+          finance?.calculatedValueDTO?.pureEstimatedInstallmentValue
+            | currency: 'ARS':'symbol-narrow':'1.0':'es-AR'
+        }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Estimated Pure Fee with IVA' | translate }}">
+        {{
+          finance?.calculatedValueDTO?.pureEstimatedInstallmentValueWithIva
+            | currency: 'ARS':'symbol-narrow':'1.0':'es-AR'
+        }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Amount of Fees' | translate }}">
+        {{ finance?.calculatedValueDTO?.terms | mask: 'dot_separator' }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@TNA' | translate }}">
+        {{ percentageRate | number: '0.0-2':'es-AR' }} %
+      </app-readonly>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2" *ngIf="indexerType === UVA">
+      <app-readonly label="{{ '@Pure Fee in UVA' | translate }}">
+        {{
+          finance?.calculatedValueDTO?.pureEstimatedInstallmentValueInUVA
+            | number: '0.0-2':'es-AR'
+        }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2" *ngIf="indexerType === UVA">
+      <app-readonly label="{{ '@Capital in UVAs' | translate }}">
+        {{
+          finance?.calculatedValueDTO?.capitalInUVAs | number: '0.0-2':'es-AR'
+        }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2" *ngIf="indexerType === UVA">
+      <app-readonly label="{{ '@Value UVA' | translate }}">
+        {{
+          finance?.calculatedValueDTO?.indexerValue | number: '0.0-2':'es-AR'
+        }}
+      </app-readonly>
+    </div>
+  </div>
+</div>

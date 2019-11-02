@@ -1,0 +1,12 @@
+.detail-header {
+  &__actions {
+    padding: 1rem 0;
+    text-align: right;
+
+    &-button {
+      i {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}

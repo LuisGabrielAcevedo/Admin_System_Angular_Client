@@ -1,0 +1,11 @@
+export const ON_BOARDING_RES = {
+  APPROVED: 'APR',
+  PENDING: 'PEN',
+  REJECTED: 'REC',
+  SUBMITTED: 'SUB'
+};
+
+export const ON_BOARDING_ACTIONS = {
+  DISABLE: 'DISABLE',
+  RESET: 'RESET'
+};

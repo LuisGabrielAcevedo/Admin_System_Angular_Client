@@ -1,0 +1,24 @@
+<div class="zoom__footer d-flex justify-content-center align-self-bottom">
+  <div class="zoom-control rounded-pill">
+    <p class="zoom-control__pages">
+      Página {{ currentPageNumber }} / {{ totalOfPages }}
+    </p>
+    <div class="zoom-control__buttons">
+      <button
+        type="button"
+        class="btn btn-link zoom-control__btn"
+        (click)="zoomOut()"
+      >
+        <i class="fas fa-minus"></i>
+      </button>
+      <i class="fas fa-search zoom-control__zoom-icon"></i>
+      <button
+        type="button"
+        class="btn btn-link zoom-control__btn"
+        (click)="zoomIn()"
+      >
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+  </div>
+</div>

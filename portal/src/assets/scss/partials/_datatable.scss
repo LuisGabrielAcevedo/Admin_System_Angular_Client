@@ -1,0 +1,311 @@
+@import 'scss/fontawesome/fontawesome.scss';
+@import 'scss/fontawesome/solid.scss';
+
+/*
+bootstrap table theme
+*/
+.ngx-datatable.bootstrap {
+  box-shadow: none;
+  font-size: 13px;
+
+  &.selectable {
+    .datatable-body-row {
+      cursor: pointer;
+    }
+
+    .datatable-body-row.active {
+      .btn-sm {
+        color: $white;
+        border-color: $white;
+      }
+    }
+  }
+
+  .datatable-header {
+    height: unset !important;
+
+    &-cell {
+      vertical-align: bottom;
+      padding: 0.75rem;
+    }
+
+    &-cell-label {
+      line-height: 24px;
+      font-weight: bold;
+    }
+
+    .sort-btn {
+      margin-left: 5px;
+      font-size: 0.5rem;
+      margin-top: -2px;
+    }
+  }
+
+  .datatable-body {
+    &-row {
+      vertical-align: top;
+      border-top: 1px solid #d1d4d7;
+
+      &.datatable-row-even {
+        background-color: rgba(0, 0, 0, 0.05);
+
+        & + .datatable-row-detail {
+          background-color: rgba(0, 0, 0, 0.05);
+        }
+      }
+
+      &.active {
+        background-color: $santander-secondary;
+        color: #fff;
+      }
+    }
+
+    &-cell {
+      padding: 0.9rem;
+      text-align: left;
+      vertical-align: top;
+
+      .btn-sm {
+        margin-top: -2px;
+      }
+    }
+
+    .empty-row {
+      position: relative;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 0;
+    }
+
+    .form-group.radio-button-group {
+      position: absolute;
+      top: 0;
+    }
+
+    a i.fas {
+      color: $gray;
+    }
+
+    .datatable-row-detail {
+      padding: 1rem;
+
+      & > div {
+        padding: 0 !important;
+      }
+    }
+  }
+
+  .datatable-footer {
+    background: transparent;
+    color: $gray-dark;
+
+    .page-count {
+      line-height: 50px;
+      height: 50px;
+      padding: 0 1.2rem;
+      display: none;
+    }
+
+    .datatable-pager {
+      ul {
+        li {
+          margin: 10px 0px;
+
+          &:not(.disabled).active a {
+            background-color: #545454;
+            font-weight: bold;
+          }
+
+          &:not(.disabled).hover a {
+            background-color: #545454;
+            font-weight: bold;
+          }
+
+          a {
+            position: relative;
+            color: $gray-dark;
+
+            i {
+              line-height: 23px !important;
+            }
+          }
+
+          &.disabled {
+            a i {
+              opacity: 0.3;
+            }
+          }
+
+          &.active {
+            a {
+              background-color: transparent !important;
+              border: 2px solid $santander-secondary;
+              line-height: 1.4;
+            }
+          }
+        }
+      }
+
+      a {
+        height: 22px;
+        min-width: 24px;
+        line-height: 22px;
+        padding: 0;
+        border-radius: 3px;
+        margin: 0 3px;
+        text-align: center;
+        vertical-align: top;
+        text-decoration: none;
+        vertical-align: bottom;
+        color: #ededed;
+      }
+
+      .datatable-icon-left,
+      .datatable-icon-skip,
+      .datatable-icon-right,
+      .datatable-icon-prev {
+        font-size: 18px;
+        line-height: 27px;
+        padding: 0 3px;
+      }
+    }
+
+    &__last-update {
+      float: left;
+      margin-top: 0.7rem;
+      min-width: 30%;
+
+      .fa-clock {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .datatable-footer-inner {
+      height: auto !important;
+    }
+  }
+
+  .datatable-summary-row .datatable-body-cell {
+    font-weight: bold;
+  }
+
+  .datatable-row-wrapper:last-child {
+    border-bottom: 1px solid $gray-light;
+  }
+
+  .empty-row {
+    display: none;
+  }
+}
+
+.datatable {
+  &__empty-message {
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 1px solid $gray-light;
+
+    .btn-redo {
+      margin-top: 1rem;
+    }
+  }
+
+  &__filters {
+    padding-bottom: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px dashed $gray-light;
+
+    .form-group {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* data-table */
+[data-icon]:before {
+  font-family: 'Font Awesome 5 Free' !important;
+  content: '';
+  font-style: normal !important;
+  font-weight: 900 !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^='datatable-icon-']:before,
+[class*=' datatable-icon-']:before {
+  font-family: 'Font Awesome 5 Free' !important;
+  font-style: normal !important;
+  font-weight: 900 !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.datatable-icon-filter:before {
+  content: '\f0b0';
+}
+
+.datatable-icon-collapse:before {
+  content: '\f147';
+}
+
+.datatable-icon-expand:before {
+  content: '\f196';
+}
+
+.datatable-icon-close:before {
+  content: '\f2d3';
+}
+
+.datatable-icon-up:before {
+  content: '\f077';
+}
+
+.datatable-icon-down:before {
+  content: '\f078';
+}
+
+.datatable-icon-sort:before {
+  content: '\f0dc';
+}
+
+.datatable-icon-done:before {
+  content: '\f00c';
+}
+
+.datatable-icon-done-all:before {
+  content: '\f05d';
+}
+
+.datatable-icon-search:before {
+  content: '\f002';
+}
+
+.datatable-icon-pin:before {
+  content: '\f276';
+}
+
+.datatable-icon-add:before {
+  content: '\f196';
+}
+
+.datatable-icon-left:before {
+  content: '\f104';
+}
+
+.datatable-icon-right:before {
+  content: '\f105';
+}
+
+.datatable-icon-skip:before {
+  content: '\f101';
+}
+
+.datatable-icon-prev:before {
+  content: '\f100';
+}

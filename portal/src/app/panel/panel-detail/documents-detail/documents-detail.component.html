@@ -1,0 +1,15 @@
+<app-view-document-manager-window></app-view-document-manager-window>
+<div class="container">
+  <div class="documents__list">
+    <div class="row">
+      <div class="col-md-12 documents__list">
+        <app-view-checklist-manager
+          *ngIf="proposalId !== 0"
+          [proposalId]="proposalId"
+          [filterFunction]="filterViewOnlyAnalyzed()"
+        ></app-view-checklist-manager>
+        <label *ngIf="!hasDocuments">{{ '@No Documents' | translate }}</label>
+      </div>
+    </div>
+  </div>
+</div>

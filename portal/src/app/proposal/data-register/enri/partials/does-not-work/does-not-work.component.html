@@ -1,0 +1,30 @@
+<form autocomplete="off" [formGroup]="formDoesNotWork">
+  <div class="row">
+    <div class="col">
+      <app-form-field
+        label="{{ '@Tax Residence' | translate }}"
+        [formSubmitted]="formSubmitAttempt"
+      >
+        <div
+          class="btn-group-vertical btn-group-toggle btn-group-radio"
+          ngbRadioGroup
+          name="questionOne"
+          formControlName="questionOne"
+        >
+          <label ngbButtonLabel>
+            <input ngbButton type="radio" [value]="0" />{{
+              '@I am an Argentine tax resident and I do not reside in another country'
+                | translate
+            }}
+          </label>
+          <label ngbButtonLabel>
+            <input ngbButton type="radio" [value]="1" />{{
+              '@I am an Argentine tax resident and I reside in another country'
+                | translate
+            }}
+          </label>
+        </div>
+      </app-form-field>
+    </div>
+  </div>
+</form>

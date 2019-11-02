@@ -1,0 +1,46 @@
+@import 'assets/scss/mixins';
+@import 'assets/scss/variables';
+@import 'assets/scss/breakpoints';
+@import 'assets/scss/colors';
+
+/* Bootstrap */
+
+// Required
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+// Optional
+@import '~bootstrap/scss/utilities';
+@import '~bootstrap/scss/root';
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/type';
+@import '~bootstrap/scss/grid';
+@import '~bootstrap/scss/navbar';
+@import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/dropdown';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/card';
+@import '~bootstrap/scss/close';
+
+/* END Bootstrap */
+
+@import 'assets/scss/fonts';
+
+@import '~nouislider/distribute/nouislider.min.css';
+@import '~@ng-select/ng-select/themes/default.theme.css';
+
+@import 'assets/scss/partials/base';
+@import 'assets/scss/partials/alerts';
+@import 'assets/scss/partials/forms';
+@import 'assets/scss/partials/accordion';
+@import 'assets/scss/partials/datatable';
+@import 'assets/scss/partials/header';
+@import 'assets/scss/partials/radiobutton';
+@import 'assets/scss/partials/checkbox';
+@import 'assets/scss/partials/select';
+@import 'assets/scss/partials/modal';
+@import 'assets/scss/partials/buttons';
+
+@import 'assets/scss/fontawesome/fontawesome.scss';
+@import 'assets/scss/fontawesome/solid.scss';

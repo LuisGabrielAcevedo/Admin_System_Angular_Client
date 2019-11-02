@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Rate Type' | translate }}">
+      {{ indexerType ? indexerType : noData }}
+    </app-readonly>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@CapitalWithInterst' | translate }}">
+      {{
+        calcValue?.capitalWithInterests
+          ? (calcValue.capitalWithInterests
+            | currency: 'ARS':'symbol-narrow':'1.0':'es-AR')
+          : noData
+      }}
+    </app-readonly>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Amount to Finance' | translate }}">
+      {{
+        calcValue?.financedAmount
+          ? (calcValue.financedAmount
+            | currency: 'ARS':'symbol-narrow':'1.0':'es-AR')
+          : noData
+      }}
+    </app-readonly>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Quota quantity' | translate }}">
+      {{ calcValue?.terms ? calcValue.terms : noData }}
+    </app-readonly>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@TNA' | translate }}">
+      {{
+        percentageRate
+          ? (percentageRate | number: '0.0-2':'es-AR') + '%'
+          : noData
+      }}
+    </app-readonly>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@TEA' | translate }}">
+      {{
+        calcValue?.tea
+          ? (calcValue.tea | number: '0.0-2':'es-AR') + '%'
+          : noData
+      }}
+    </app-readonly>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@CFTEA' | translate }}">
+      {{
+        calcValue?.cftea
+          ? (calcValue.cftea | number: '0.0-2':'es-AR') + '%'
+          : noData
+      }}
+    </app-readonly>
+  </div>
+  <div class="col-2">
+    <app-readonly label="{{ '@Pure Fee' | translate }}">
+      {{
+        calcValue?.pureEstimatedInstallmentValue
+          ? (calcValue.pureEstimatedInstallmentValue
+            | currency: 'ARS':'symbol-narrow':'1.0':'es-AR')
+          : noData
+      }}
+    </app-readonly>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Monthly installmente due date' | translate }}">
+      {{ calcValue?.dueDate ? calcValue.dueDate : noData }}
+    </app-readonly>
+  </div>
+  <ng-container *ngIf="indexerType === 'UVA'">
+    <div class="col-md-3 col-sm-6">
+      <app-readonly label="{{ '@Capital in UVAs' | translate }}">
+        {{
+          calcValue?.capitalInUVAs
+            ? (calcValue.capitalInUVAs | number: '0.0-2':'es-AR')
+            : noData
+        }}
+      </app-readonly>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <app-readonly label="{{ '@Value UVA' | translate }}">
+        {{
+          calcValue?.indexerValue
+            ? (calcValue.indexerValue | number: '0.0-2':'es-AR')
+            : noData
+        }}
+      </app-readonly>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,460 @@
+<form autocomplete="off" [formGroup]="personalData">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="firstName">{{ '@Name' | translate }}</label>
+          <input type="text" class="form-control" formControlName="firstName" />
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="lastName">{{ '@Surname' | translate }}</label>
+          <input type="text" class="form-control" formControlName="lastName" />
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>
+            {{ '@Born Date' | translate }}
+          </label>
+          <input
+            class="form-control"
+            type="text"
+            formControlName="birthDate"
+            mask="00/00/0000"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>
+            {{ '@Document Type' | translate }}
+          </label>
+          <ng-select
+            [items]="personalDocumentTypes"
+            class="form-control"
+            formControlName="personalDocumentType"
+            bindLabel="description"
+          ></ng-select>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>
+            {{ '@Document Number' | translate }}
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="personalDocumentNumber"
+            mask="dot_separator"
+          />
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>
+            {{ '@Sexo' | translate }}
+          </label>
+          <ng-select
+            [items]="genders"
+            type="text"
+            class="form-control"
+            formControlName="gender"
+            bindLabel="description"
+          ></ng-select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <app-form-field
+          label="{{ '@Country of Birth' | translate }}"
+          [formSubmitted]="formSubmitAttempt"
+        >
+          <ng-select
+            [items]="countries"
+            bindLabel="description"
+            placeholder="{{ '@Select Country of Birth' | translate }}"
+            formControlName="countryOfBirth"
+            (change)="setNationality($event)"
+          >
+          </ng-select>
+        </app-form-field>
+      </div>
+      <div class="col-sm-4">
+        <app-form-field
+          label="{{ '@Nationality' | translate }}"
+          [formSubmitted]="formSubmitAttempt"
+        >
+          <ng-select
+            [items]="countries"
+            bindLabel="description"
+            placeholder="{{ '@Select Nationality' | translate }}"
+            formControlName="nationality"
+          >
+          </ng-select>
+        </app-form-field>
+      </div>
+      <div class="col-sm-4">
+        <app-form-field
+          label="{{ '@Civil State' | translate }}"
+          [formSubmitted]="formSubmitAttempt"
+        >
+          <ng-select
+            [items]="maritalStatusList"
+            bindLabel="description"
+            placeholder="{{ '@Select Civil State' | translate }}"
+            formControlName="maritalStatus"
+            (change)="clearSpouseForm($event)"
+          >
+          </ng-select>
+        </app-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-md-6">
+        <app-form-field
+          label="{{ '@Type of Registration' | translate }}"
+          [formSubmitted]="formSubmitAttempt"
+        >
+          <ng-select
+            [items]="workDocumentTypes"
+            placeholder="{{ '@Select Type of Registration' | translate }}"
+            bindLabel="description"
+            formControlName="workDocumentType"
+            (change)="workDocumentTypeChange()"
+          >
+          </ng-select>
+        </app-form-field>
+      </div>
+      <div class="col-sm-6 col-md-6">
+        <div class="form-group">
+          <label> {{ '@Registration Number' | translate }} </label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="workDocumentNumber"
+            mask="99-99999999-9"
+          />
+        </div>
+      </div>
+    </div>
+    <ng-container
+      *ngIf="personalData.get('workDocumentType').value?.id === CUIT"
+    >
+      <div class="row">
+        <div class="col-sm-6">
+          <app-form-field
+            label="{{ '@IVA Category' | translate }}"
+            [formSubmitted]="formSubmitAttempt"
+          >
+            <ng-select
+              [items]="ivaCategories"
+              bindLabel="description"
+              formControlName="ivaCategory"
+              placeholder="{{ '@Select Category' | translate }}"
+              (change)="ivaCategoryChange()"
+            >
+            </ng-select>
+          </app-form-field>
+        </div>
+        <div class="col-sm-6">
+          <app-form-field
+            label="{{ '@Category IIBB' | translate }}"
+            [formSubmitted]="formSubmitAttempt"
+          >
+            <ng-select
+              [items]="iibbCategories"
+              bindLabel="description"
+              formControlName="iibbCategory"
+              placeholder="{{ '@Select Category' | translate }}"
+            >
+            </ng-select>
+          </app-form-field>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="container">
+    <h4 class="form-subtitle__divider">
+      {{ '@Sworn Declaration of Politically Exposed Person' | translate }}
+    </h4>
+    <div class="form-group">
+      <div class="row">
+        <div class="col">
+          <app-form-field
+            label="{{ '@Is the customer' | translate }}{{ title }}{{
+              '@a politically exposed person?' | translate
+            }}"
+            [formSubmitted]="formSubmitAttempt"
+          >
+            <a
+              target="_blank"
+              href="http://servicios.infoleg.gob.ar/infolegInternet/anexos/315000-319999/316668/norma.htm"
+              style="display:inline-block; font-style: italic; font-weight: 300;width: 100%;font-size: 0.8rem; margin-bottom: 1rem"
+              >{{ '@See politically exposed persons' | translate }}</a
+            >
+            <div
+              class="btn-group btn-group-toggle btn-group-radio"
+              ngbRadioGroup
+              name="isPep"
+              formControlName="isPep"
+            >
+              <label ngbButtonLabel>
+                <input
+                  ngbButton
+                  type="radio"
+                  [value]="true"
+                  (change)="isPepChanged()"
+                />{{ '@Yes' | translate }}
+              </label>
+              <label ngbButtonLabel>
+                <input
+                  ngbButton
+                  type="radio"
+                  [value]="false"
+                  (change)="isPepChanged()"
+                />{{ '@Not' | translate }}
+              </label>
+            </div>
+          </app-form-field>
+        </div>
+      </div>
+      <div class="row" *ngIf="personalData.get('isPep').value">
+        <div class="col">
+          <app-form-field
+            label="{{
+              '@Are you a politically exposed national or foreigner?'
+                | translate
+            }}"
+            [formSubmitted]="formSubmitAttempt"
+          >
+            <div
+              class="btn-group btn-group-toggle btn-group-radio"
+              ngbRadioGroup
+              name="pepType"
+              formControlName="pepType"
+            >
+              <label ngbButtonLabel>
+                <input
+                  ngbButton
+                  type="radio"
+                  [value]="'N'"
+                  (change)="pepTypeChange()"
+                />{{ '@National PEP' | translate }}
+              </label>
+              <label ngbButtonLabel>
+                <input
+                  ngbButton
+                  type="radio"
+                  [value]="'F'"
+                  (change)="pepTypeChange()"
+                />{{ '@Foreign PEP' | translate }}
+              </label>
+            </div>
+          </app-form-field>
+        </div>
+      </div>
+      <div
+        class="row"
+        *ngIf="
+          personalData.get('pepType').value === 'N' &&
+          personalData.get('isPep').value
+        "
+      >
+        <div class="col">
+          <div class="form-group">
+            <app-form-field
+              label="{{ '@Reason' | translate }}"
+              [formSubmitted]="formSubmitAttempt"
+            >
+              <textarea
+                class="form-control"
+                formControlName="pepReason"
+                placeholder="{{ '@Enter reason' | translate }}"
+                maxlength="1000"
+                style="height: 5rem !important"
+              ></textarea>
+            </app-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="container"
+    *ngIf="
+      !isMarriedWithCoOwner &&
+      personalData.get('maritalStatus').value?.id === CASADO
+    "
+  >
+    <ng-container formGroupName="spouseData">
+      <h4 class="form-subtitle__divider">
+        {{ '@Spouse Data of' | translate }} {{ title }}
+      </h4>
+      <div class="row">
+        <div class="col-md-4">
+          <app-form-field
+            label="{{ '@Name' | translate }}"
+            [formSubmitted]="formSubmitAttempt"
+          >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="firstName"
+              placeholder="{{ '@Enter Name' | translate }}"
+              appNameMask
+              maxlength="40"
+            />
+          </app-form-field>
+        </div>
+        <div class="col-md-4">
+          <app-form-field
+            label="{{ '@Surname' | translate }}"
+            [formSubmitted]="formSubmitAttempt"
+          >
+            <input
+              type="text"
+              class="form-control"
+              formControlName="lastName"
+              placeholder="{{ '@Enter Surname' | translate }}"
+              appNameMask
+              maxlength="20"
+            />
+          </app-form-field>
+        </div>
+        <div class="col-md-4">
+          <app-form-field
+            label="{{ '@Born Date' | translate }}"
+            [formSubmitted]="formSubmitAttempt"
+          >
+            <input
+              class="form-control"
+              type="text"
+              mask="00/00/0000"
+              placeholder="DD/MM/AAAA"
+              formControlName="birthDate"
+            />
+          </app-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <app-form-field
+            label="{{ '@Document Type' | translate }}"
+            [formSubmitted]="formSubmitAttempt"
+          >
+            <ng-select
+              [items]="personalDocumentTypes"
+              placeholder="{{ '@Select Document Type' | translate }}"
+              bindLabel="description"
+              formControlName="personalDocumentType"
+              (change)="updateSpouseCountries($event)"
+            >
+            </ng-select>
+          </app-form-field>
+        </div>
+
+        <div class="col-sm-4">
+          <app-form-field
+            label="{{ '@Document Number' | translate }}"
+            [formSubmitted]="formSubmitAttempt"
+            [errorMessages]="duplicateDniErrorMessages"
+          >
+            <input
+              id="dni"
+              type="text"
+              class="form-control"
+              formControlName="personalDocumentNumber"
+              placeholder="{{ '@Enter Document Number' | translate }}"
+              [mask]="spouseDniMask"
+              maxlength="10"
+            />
+          </app-form-field>
+        </div>
+        <div class="col-sm-4">
+          <app-form-field
+            label="{{ '@Sexo' | translate }}"
+            [formSubmitted]="formSubmitAttempt"
+          >
+            <ng-select
+              [items]="genders"
+              bindLabel="description"
+              formControlName="gender"
+              placeholder="{{ '@Select Sexo' | translate }}"
+            >
+            </ng-select>
+          </app-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <app-form-field
+            label="{{ '@Type of Registration' | translate }}"
+            [formSubmitted]="formSubmitAttempt"
+          >
+            <ng-select
+              [items]="workDocumentTypes"
+              placeholder="{{ '@Select Type of Registration' | translate }}"
+              bindLabel="description"
+              formControlName="workDocumentType"
+            >
+            </ng-select>
+          </app-form-field>
+        </div>
+
+        <div class="col-sm-6">
+          <app-form-field
+            label="{{ '@Registration Number' | translate }}"
+            [formSubmitted]="formSubmitAttempt"
+          >
+            <input
+              id="cuitl"
+              type="text"
+              class="form-control"
+              formControlName="workDocumentNumber"
+              placeholder="{{ '@Enter CUIT/CUIL' | translate }}"
+              mask="00-00000000-0"
+            />
+          </app-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <app-form-field
+            label="{{ '@Country of Birth' | translate }}"
+            [formSubmitted]="formSubmitAttempt"
+          >
+            <ng-select
+              [items]="countries"
+              bindLabel="description"
+              placeholder="{{ '@Select Country of Birth' | translate }}"
+              formControlName="countryOfBirth"
+              (change)="setSpouseNationality($event)"
+            >
+            </ng-select>
+          </app-form-field>
+        </div>
+        <div class="col-sm-6">
+          <app-form-field
+            label="{{ '@Nationality' | translate }}"
+            [formSubmitted]="formSubmitAttempt"
+          >
+            <ng-select
+              [items]="countries"
+              bindLabel="description"
+              placeholder="{{ '@Select Nationality' | translate }}"
+              formControlName="nationality"
+            >
+            </ng-select>
+          </app-form-field>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</form>

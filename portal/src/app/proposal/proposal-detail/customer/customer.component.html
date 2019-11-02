@@ -1,0 +1,215 @@
+<div class="row">
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Name' | translate }}">
+      {{ customer?.firstName ? customer.firstName : noData }}
+    </app-readonly>
+  </div>
+
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Surname' | translate }}">
+      {{ customer?.lastName ? customer.lastName : noData }}
+    </app-readonly>
+  </div>
+
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Date of Birth' | translate }}">
+      {{
+        customer?.birthDate ? (customer.birthDate | date: 'dd/MM/yyyy') : noData
+      }}
+    </app-readonly>
+  </div>
+
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Civil State' | translate }}">
+      {{
+        customer?.maritalStatus?.description
+          ? customer.maritalStatus.description
+          : noData
+      }}
+    </app-readonly>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Document Type' | translate }}">
+      {{
+        customer?.documentType.description
+          ? customer.documentType.description
+          : noData
+      }}
+    </app-readonly>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Document Number' | translate }}">
+      {{
+        customer?.document
+          ? (customer.document | mask: 'dot_separator')
+          : noData
+      }}
+    </app-readonly>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@CUIL/CUIT' | translate }}">
+      {{ customer?.cuitl ? (customer.cuitl | mask: '00-00000000-0') : noData }}
+    </app-readonly>
+  </div>
+</div>
+
+<h4 class="form-subtitle__divider">
+  {{ '@Declared Address' | translate }}
+</h4>
+
+<div class="row">
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Province' | translate }}">
+      {{ address?.state?.description ? address.state.description : noData }}
+    </app-readonly>
+  </div>
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Location' | translate }}">
+      {{
+        address?.locality?.description ? address.locality.description : noData
+      }}
+    </app-readonly>
+  </div>
+
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Street' | translate }}">
+      {{ address?.street ? address.street : noData }}
+    </app-readonly>
+  </div>
+
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Number' | translate }}">
+      {{ address?.number ? address.number : noData }}
+    </app-readonly>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Floor' | translate }}">
+      {{ address?.floor ? address.floor : noData }}
+    </app-readonly>
+  </div>
+
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Department' | translate }}">
+      {{ address?.apartment ? address.apartment : noData }}
+    </app-readonly>
+  </div>
+
+  <div class="col-md-3 col-sm-6">
+    <app-readonly label="{{ '@Postal Code' | translate }}">
+      {{ address?.postalCode ? address.postalCode : noData }}
+    </app-readonly>
+  </div>
+</div>
+
+<ng-container *ngIf="customer?.personType === 'OWNER'">
+  <h4 class="form-subtitle__divider">
+    {{ '@DNI Address' | translate }}
+  </h4>
+
+  <div class="row">
+    <div class="col-md-3 col-sm-6">
+      <app-readonly label="{{ '@Province' | translate }}">
+        {{
+          addressDni?.state?.description ? addressDni.state.description : noData
+        }}
+      </app-readonly>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <app-readonly label="{{ '@Location' | translate }}">
+        {{
+          addressDni?.locality?.description
+            ? addressDni.locality.description
+            : noData
+        }}
+      </app-readonly>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+      <app-readonly label="{{ '@Street' | translate }}">
+        {{ addressDni?.street ? addressDni.street : noData }}
+      </app-readonly>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+      <app-readonly label="{{ '@Number' | translate }}">
+        {{ addressDni?.number ? addressDni.number : noData }}
+      </app-readonly>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-6">
+      <app-readonly label="{{ '@Floor' | translate }}">
+        {{ addressDni?.floor ? addressDni.floor : noData }}
+      </app-readonly>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+      <app-readonly label="{{ '@Department' | translate }}">
+        {{ addressDni?.apartment ? addressDni.apartment : noData }}
+      </app-readonly>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="spouse?.firstName">
+  <h4 class="form-subtitle__divider__thick">
+    {{ '@Spouse Data' | translate }}
+  </h4>
+
+  <div class="row">
+    <div class="col-md-3 col-sm-6">
+      <app-readonly label="{{ '@Name' | translate }}">
+        {{ spouse?.firstName ? spouse.firstName : noData }}
+      </app-readonly>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+      <app-readonly label="{{ '@Surname' | translate }}">
+        {{ spouse?.lastName ? spouse.lastName : noData }}
+      </app-readonly>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+      <app-readonly label="{{ '@Date of Birth' | translate }}">
+        {{
+          spouse?.birthDate ? (spouse.birthDate | date: 'dd/MM/yyyy') : noData
+        }}
+      </app-readonly>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+      <app-readonly label="{{ '@Sexo' | translate }}">
+        {{ spouse?.gender?.description ? spouse.gender.description : noData }}
+      </app-readonly>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 col-sm-6">
+      <app-readonly label="{{ '@Document Type' | translate }}">
+        {{
+          spouse?.documentType?.description
+            ? spouse.documentType.description
+            : noData
+        }}
+      </app-readonly>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <app-readonly label="{{ '@Document Number' | translate }}">
+        {{
+          spouse?.document ? (spouse.document | mask: 'dot_separator') : noData
+        }}
+      </app-readonly>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <app-readonly label="{{ '@CUIL/CUIT' | translate }}">
+        {{ spouse?.cuitl ? (spouse.cuitl | mask: '00-00000000-0') : noData }}
+      </app-readonly>
+    </div>
+  </div>
+</ng-container>

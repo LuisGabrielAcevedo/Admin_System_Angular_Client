@@ -1,0 +1,44 @@
+@import 'scss/colors';
+@import 'scss/fonts';
+
+.document {
+  color: $white;
+}
+
+.document-manager {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 4000;
+
+  &__overlay {
+    background: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.doc-manager {
+  &__pages {
+    background: $santander-secondary;
+    padding: 0;
+    height: 100%;
+    width: 10rem;
+  }
+  &__canvas {
+    height: 100%;
+    padding: 0;
+  }
+  &__content {
+    padding-top: 4rem;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+}
