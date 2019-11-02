@@ -1,4 +1,0 @@
-export const BLACKLIST_RES_STATUS = {
-  APPROVED: 'APR',
-  REJECTED: 'ERR'
-};

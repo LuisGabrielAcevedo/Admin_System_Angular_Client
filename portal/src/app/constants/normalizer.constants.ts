@@ -1,5 +1,0 @@
-export const NORMALIZER_RESULT_CODE = {
-  APPROVED: 'APR',
-  ERROR: 'ERR',
-  REVIEW: 'REV'
-};

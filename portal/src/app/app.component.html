@@ -1,7 +1,0 @@
-<app-loading-indicator></app-loading-indicator>
-<app-blocking-container></app-blocking-container>
-<app-nav *ngIf="router.url != '/home'"></app-nav>
-<app-toast-container></app-toast-container>
-<div class="h-100" [ngClass]="router.url != '/home' ? 'has-nav' : 'no-nav'">
-  <router-outlet></router-outlet>
-</div>

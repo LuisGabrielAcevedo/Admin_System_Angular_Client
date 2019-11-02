@@ -217,7 +217,8 @@ const userFields: IDynamicFormField[] = [
     //     DynamicFormValidators.hasSmallCase()
     // ],
     options: {
-      placeholder: "Write your password"
+      placeholder: "Write your password",
+      visibleCondition: arg => !arg._id
     }
   },
   {
@@ -230,7 +231,8 @@ const userFields: IDynamicFormField[] = [
     //     DynamicFormValidators.confirm('password')
     // ],
     options: {
-      placeholder: "Confirm your password"
+      placeholder: "Confirm your password",
+      visibleCondition: arg => !arg._id
     }
   },
   {
@@ -269,6 +271,7 @@ const userFields: IDynamicFormField[] = [
     mainGroup: "Basic info",
     options: {
       placeholder: "Select a role",
+      visibleCondition: arg => false,
       fieldOptions: arg => {
         return arg
           ? Role.filter("company", arg)

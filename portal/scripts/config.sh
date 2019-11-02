@@ -1,1 +1,0 @@
-rm ./dist/config/settings.js -f && mv "./dist/config/settings."$1".SANTANDER.js" ./dist/config/settings.js -f
