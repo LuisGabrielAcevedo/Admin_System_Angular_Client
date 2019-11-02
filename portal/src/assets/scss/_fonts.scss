@@ -1,0 +1,80 @@
+@import 'scss/breakpoints';
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+@import 'scss/colors';
+@import 'scss/breakpoints';
+
+$font-xxl: 2.5rem;
+$font-xl: 2rem;
+$font-lg: 1.5rem;
+$font-md: 1rem;
+$font-sm: 0.8rem;
+$font-xs: 0.6rem;
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  color: $santander-info;
+
+  &:hover {
+    color: $santander-secondary;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 100;
+}
+
+.section-header {
+  &__title {
+    margin-bottom: 2.5rem;
+
+    &-description {
+      font-size: 1.9rem;
+      color: $santander-secondary-lighter;
+      @include media-breakpoint-down(sm) {
+        display: block;
+      }
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: 2rem;
+  }
+
+  &__field {
+    padding: 0;
+  }
+
+  &__message {
+    color: $gray;
+    font-size: $font-sm;
+    text-align: center;
+    @include media-breakpoint-up(md) {
+      text-align: right;
+    }
+    .fa-asterisk {
+      color: $santander-info;
+      font-size: 0.6rem;
+    }
+  }
+}
+
+.bg-secondary,
+.bg-secondary-dark {
+  color: $white;
+}

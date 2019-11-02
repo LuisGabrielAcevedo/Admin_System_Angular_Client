@@ -1,0 +1,25 @@
+<div class="documents__item">
+  <input [id]="uid" type="file" style="display: none" [accept]="fileTypes" />
+  <div class="row documents__item-header d-flex align-items-center">
+    <div
+      class="col"
+      [ngClass]="
+        status ? 'documents__item--success' : 'documents__item--pending'
+      "
+    >
+      <p class="documents__item-header-title">
+        {{ title }}
+      </p>
+    </div>
+    <div class="col-auto text-right">
+      <button
+        class="btn rounded-pill btn-link documents__item-header-button"
+        *ngIf="isLoaded"
+        (click)="viewDocument()"
+      >
+        Visualizar documento
+        <i class="far fa-check-circle"></i>
+      </button>
+    </div>
+  </div>
+</div>

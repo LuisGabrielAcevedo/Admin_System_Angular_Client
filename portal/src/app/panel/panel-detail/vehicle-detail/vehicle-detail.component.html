@@ -1,0 +1,129 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <app-readonly label="{{ '@Vehicle Type' | translate }}">
+        {{ vehicle?.vehicleType?.description }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Brand' | translate }}">
+        {{ vehicle?.brand?.description }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Model' | translate }}">
+        {{ vehicle?.model?.description }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Year' | translate }}">
+        {{ vehicle?.fuelYear?.year }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@State' | translate }}">
+        {{ labelState }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Estimated Value' | translate }}">
+        {{ estimatedValue | currency: 'ARS':'symbol-narrow':'1.0':'es-AR' }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Engine Number' | translate }}">
+        {{ vehicle?.engineNumber }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Chassis Number' | translate }}">
+        {{ vehicle?.chassisNumber }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@GNC' | translate }}">
+        {{ labelGNC }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Domain' | translate }}">
+        {{ vehicle.domainNumber ? (vehicle?.domainNumber | domain) : '-' }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Transportation of People' | translate }}">
+        {{ labelTransportation }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Fleet insurance' | translate }}">
+        {{ labelFleetInsurance }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Use Type' | translate }}">
+        {{
+          vehicle?.useType?.code
+            ? vehicle.useType.code === 'P'
+              ? ('@Personal' | translate)
+              : ('@Commercial' | translate)
+            : '-'
+        }}
+      </app-readonly>
+    </div>
+  </div>
+
+  <div *ngIf="insurance">
+    <h4 class="form-subtitle__divider">{{ '@Insurance' | translate }}</h4>
+
+    <div class="row">
+      <div class="col-2">
+        <app-readonly label="{{ '@Insurance Company' | translate }}">
+          {{ insurance?.insuranceCompanyDescription }}
+        </app-readonly>
+      </div>
+
+      <div class="col-2">
+        <app-readonly label="{{ '@Coverage Type' | translate }}">
+          {{ insurance?.coverageType }}
+        </app-readonly>
+      </div>
+
+      <div class="col-2">
+        <app-readonly label="{{ '@Prize' | translate }}">
+          {{
+            insurance?.totalPrize
+              | currency: 'ARS':'symbol-narrow':'1.0':'es-AR'
+          }}
+        </app-readonly>
+      </div>
+
+      <div class="col-2">
+        <app-readonly label="{{ '@Fees' | translate }}">
+          {{ insurance?.installments }}
+        </app-readonly>
+      </div>
+
+      <div class="col-2">
+        <app-readonly label="{{ '@Monthly Fees' | translate }}">
+          {{
+            insurance?.installmentAmount
+              | currency: 'ARS':'symbol-narrow':'1.0':'es-AR'
+          }}
+        </app-readonly>
+      </div>
+    </div>
+  </div>
+</div>

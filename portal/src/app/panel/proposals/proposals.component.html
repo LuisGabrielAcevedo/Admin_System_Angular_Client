@@ -1,0 +1,7 @@
+<app-proposal-group
+  (allProposals)="allProposalsChanged($event)"
+></app-proposal-group>
+<app-proposal-list
+  id="proposal-list"
+  [allProposals]="allProposals"
+></app-proposal-list>

@@ -1,0 +1,71 @@
+.accordion {
+  width: 100%;
+
+  .card {
+    border: none;
+    margin-bottom: 1rem;
+    overflow: inherit;
+
+    &-header {
+      padding: 0;
+      background: transparent;
+      border-bottom: none;
+      margin: 0 !important;
+
+      .btn {
+        padding: 1rem;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid $gray-light;
+
+        .container {
+          position: relative;
+          padding-right: 0;
+          padding-left: 0;
+          @include media-breakpoint-up(sm) {
+            padding-right: 15px;
+            padding-left: 15px;
+          }
+        }
+
+        &:focus {
+          box-shadow: none;
+        }
+
+        i.fas {
+          position: absolute;
+          right: 1rem;
+          top: 0.5rem;
+          font-size: 1rem;
+        }
+
+        i.fa-chevron-down {
+          display: none;
+        }
+
+        i.fa-chevron-up {
+          display: block;
+        }
+
+        &.collapsed {
+          i.fa-chevron-down {
+            display: block;
+          }
+
+          i.fa-chevron-up {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &-body {
+      padding: 3rem 0;
+      @include media-breakpoint-up(sm) {
+        padding: 3rem 0;
+      }
+      background: $gray-lighter;
+      border-bottom: 1px solid $gray-light;
+    }
+  }
+}

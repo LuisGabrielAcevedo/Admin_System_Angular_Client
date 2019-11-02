@@ -1,0 +1,35 @@
+<i
+  class="fas"
+  [ngClass]="{
+    'fa-exclamation-circle': modalType === 'error',
+    'fa-exclamation-triangle': modalType === 'warning',
+    'fa-check-circle': modalType === 'success',
+    'fa-clock': modalType === 'wait'
+  }"
+></i>
+<div class="modal-header" *ngIf="modalTitle != null">
+  <h4 class="modal-title">{{ modalTitle }}</h4>
+  <button
+    [style.display]="modalType === 'wait' ? 'none' : 'inline-block'"
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="modalClose(); activeModal.dismiss('Cross click')"
+  >
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+<div class="modal-body">
+  <p>{{ modalMessage }}</p>
+</div>
+<div class="modal-footer d-flex justify-content-between" *ngIf="buttons">
+  <div *ngFor="let btn of buttons">
+    <button
+      type="button"
+      class="btn btn-{{ btn.type }} rounded-pill"
+      (click)="modalSubmit(btn.action); activeModal.close('Close click')"
+    >
+      {{ btn.label }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+@import 'scss/mixins';
+@import 'scss/variables';
+@import 'scss/colors';
+
+.loading-block {
+  text-align: center;
+}
+.loading-title {
+  margin-bottom: 1.5rem;
+}
+
+.loading-subtitle {
+  color: black;
+  margin-bottom: 0;
+}
+
+.fa-clock {
+  font-size: 3rem;
+  color: $santander-info;
+  margin-bottom: 1rem;
+}
+
+.loading-indicator {
+  position: relative;
+}
+
+/* SPINNER */
+/* Animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-indicator__animation {
+  position: relative;
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+  border: 3px transparent solid;
+  border-radius: 50%;
+  border-top-color: $santander-primary;
+  border-bottom-color: $santander-primary;
+
+  opacity: 1;
+}
+
+.loading-indicator__animation {
+  opacity: 0.8;
+  animation: spin 1s linear infinite;
+}

@@ -1,0 +1,100 @@
+@import 'scss/colors';
+@import 'scss/fonts';
+@import 'scss/breakpoints';
+
+.contract {
+  &__step {
+    &-circle {
+      width: 3.5rem;
+      height: 3.5rem;
+      margin: 0 auto;
+      border: 3px solid $santander-secondary;
+      @include media-breakpoint-up(sm) {
+        width: 5rem;
+        height: 5rem;
+        margin: 0 auto;
+        border: 3px solid $santander-secondary;
+      }
+      svg {
+        fill: $santander-secondary;
+        height: 35%;
+      }
+
+      &::after {
+        content: '';
+        border-top: 3px dashed $santander-secondary;
+        position: absolute;
+        left: 50%;
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+        right: -50%;
+      }
+
+      &::before {
+        content: '\f061';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        position: absolute;
+        right: -0.5rem;
+        color: $santander-info;
+        z-index: 9;
+        font-size: 1rem;
+        top: 0px;
+        @include media-breakpoint-up(sm) {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    &-text {
+      text-align: center;
+      margin-top: 0.5rem;
+      font-size: $font-sm;
+      @include media-breakpoint-up(sm) {
+        font-size: $font-md;
+      }
+    }
+
+    &-number {
+      font-family: 'Open Sans', sans-serif;
+      width: 2rem;
+      height: 2rem;
+      background: $santander-info;
+      border-radius: 50%;
+      display: block;
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      position: absolute;
+      top: -0.75rem;
+      left: 50%;
+      margin-left: -2.75rem;
+      padding: 0.25rem;
+    }
+
+    &-icon {
+      font-size: 1.5rem;
+      color: $santander-secondary;
+      @include media-breakpoint-up(sm) {
+        font-size: 2rem;
+      }
+    }
+
+    &:last-child {
+      .contract__step-circle {
+        &::after,
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &__btn-download {
+    margin-bottom: 1rem;
+
+    i {
+      margin-right: 0.5rem;
+    }
+  }
+}

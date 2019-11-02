@@ -1,0 +1,33 @@
+<!-- <div class="toolbar d-flex">
+  <button (click)="enableFitPage()">fit Page</button>
+  <button (click)="goToPreviousPage()">Previous Page</button>
+
+  <input [(ngModel)]="page" />
+  <span> of {{ totalPages }}</span>
+  <button (click)="goToNextPage()">Next Page</button>
+
+  <button (click)="lessZoom()">
+    less zoom
+  </button>
+  <input disabled="true" [value]="zoomPerc + '%'" />
+  <input [(ngModel)]="zoom" />
+  <button (click)="moreZoom()">more zoom</button>
+</div> -->
+<!-- style="display:block ;max-width: 300px ;max-height: 300px"   [style.max-width]="width"-->
+<div class="pdf-container">
+  <div>
+    <pdf-viewer
+      [src]="pdfSrc"
+      [original-size]="originalSize"
+      [render-text]="false"
+      [(page)]="page"
+      [autoresize]="autoresize"
+      [show-all]="showAll"
+      (after-load-complete)="afterLoadComplete($event)"
+      [zoom]="zoom"
+      [fit-to-page]="fitToPage"
+      style="display:block"
+    >
+    </pdf-viewer>
+  </div>
+</div>

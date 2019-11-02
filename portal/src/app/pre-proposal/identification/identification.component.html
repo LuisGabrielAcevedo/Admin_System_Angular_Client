@@ -1,0 +1,279 @@
+<div class="container-fluid identification py-5">
+  <form [formGroup]="form">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <h1 class="section-header__title">
+            {{ '@Customer Identification' | translate }}
+          </h1>
+        </div>
+        <div class="col-sm">
+          <div class="row">
+            <div class="col-sm identification__selling-point">
+              <ng-select
+                [items]="userSellingPoints"
+                placeholder="{{ '@Select Selling Point' | translate }}"
+                bindLabel="name"
+                formControlName="sellingPoint"
+                [clearable]="false"
+                (change)="selectedSellingPointChange($event)"
+              >
+                <ng-template ng-option-tmp let-item="item">
+                  <div
+                    title="{{
+                      !item.features.carEnabled &&
+                      !item.features.utilitarianEnabled
+                        ? translate.instant(
+                            '@This Selling Point is not enabled'
+                          )
+                        : item.name
+                    }}"
+                  >
+                    {{ item.name }}
+                  </div>
+                </ng-template>
+              </ng-select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm section-header__message">
+              <p>
+                {{ '@All fields marked with' | translate }}
+                <i class="fas fa-asterisk"></i>
+                {{ '@Are obligatory' | translate }}
+              </p>
+            </div>
+          </div>
+          <button
+            [disabled]="!form.touched"
+            type="button"
+            class="btn btn-light btn-xl rounded-pill float-right"
+            (click)="reset()"
+          >
+            {{ '@Reset' | translate }} <i class="far fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <ngb-accordion
+        #a="ngbAccordion"
+        [destroyOnHide]="false"
+        activeIds="ownerDataPanel, coOwnerDataPanel, vehicleDataPanel"
+      >
+        <ngb-panel id="ownerDataPanel">
+          <ng-template ngbPanelHeader let-opened="opened">
+            <button ngbPanelToggle class="btn btn-sm" tabindex="-1">
+              <div class="container">
+                <h4 class="m-0">{{ '@Data Owner' | translate }}</h4>
+                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-chevron-up"></i>
+              </div>
+            </button>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="container">
+              <!-- owner -->
+              <app-customer
+                #owner
+                [form]="form"
+                [formSubmitAttempt]="formSubmitAttempt"
+                [customerType]="'owner'"
+                [personalDocumentTypes]="personalDocumentTypes"
+                [formSubmitAttempt]="formSubmitAttempt"
+                [genders]="genders"
+                [persons]="persons.owner"
+                (personalDocumentNumberEmit)="
+                  updateWorkDocumentNumber('owner', $event)
+                "
+              ></app-customer>
+
+              <div class="row">
+                <div class="col">
+                  <app-form-field
+                    label="{{ '@Add CoOwner?' | translate }}"
+                    [formSubmitted]="formSubmitAttempt"
+                  >
+                    <div
+                      class="btn-group btn-group-toggle btn-group-radio"
+                      ngbRadioGroup
+                      name="hasCoOwner"
+                      formControlName="hasCoOwner"
+                    >
+                      <label ngbButtonLabel>
+                        <input ngbButton type="radio" [value]="true" />{{
+                          '@Yes' | translate
+                        }}
+                      </label>
+                      <label ngbButtonLabel>
+                        <input ngbButton type="radio" [value]="false" />{{
+                          '@Not' | translate
+                        }}
+                      </label>
+                    </div>
+                  </app-form-field>
+                </div>
+                <div class="col">
+                  <app-form-field
+                    label="{{
+                      '@Works In Dependency Relationship?' | translate
+                    }}"
+                    [formSubmitted]="formSubmitAttempt"
+                  >
+                    <div
+                      class="btn-group btn-group-toggle btn-group-radio"
+                      ngbRadioGroup
+                      name="worksInDependencyRelationship"
+                      formControlName="worksInDependencyRelationship"
+                    >
+                      <label ngbButtonLabel>
+                        <input ngbButton type="radio" [value]="true" />{{
+                          '@Yes' | translate
+                        }}
+                      </label>
+                      <label ngbButtonLabel>
+                        <input ngbButton type="radio" [value]="false" />{{
+                          '@Not' | translate
+                        }}
+                      </label>
+                    </div>
+                  </app-form-field>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-panel>
+
+        <ngb-panel *ngIf="form.get('hasCoOwner').value" id="coOwnerDataPanel">
+          <ng-template ngbPanelHeader>
+            <button ngbPanelToggle class="btn btn-sm" tabindex="-1">
+              <div class="container">
+                <h4 class="m-0">{{ '@CoOwner Data' | translate }}</h4>
+                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-chevron-up"></i>
+              </div>
+            </button>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <app-form-field
+                    label="{{ '@Is it Spouse?' | translate }}"
+                    [formSubmitted]="formSubmitAttempt"
+                  >
+                    <div
+                      class="btn-group btn-group-toggle btn-group-radio"
+                      ngbRadioGroup
+                      name="isMarried"
+                      formControlName="isMarried"
+                    >
+                      <label ngbButtonLabel>
+                        <input ngbButton type="radio" [value]="true" />{{
+                          '@Yes' | translate
+                        }}
+                      </label>
+                      <label ngbButtonLabel>
+                        <input ngbButton type="radio" [value]="false" />{{
+                          '@Not' | translate
+                        }}
+                      </label>
+                    </div>
+                  </app-form-field>
+                </div>
+              </div>
+              <!-- co owner -->
+              <app-customer
+                #coOwner
+                [form]="form"
+                [formSubmitAttempt]="formSubmitAttempt"
+                [customerType]="'coOwner'"
+                [persons]="persons.coOwner"
+                [personalDocumentTypes]="personalDocumentTypes"
+                [formSubmitAttempt]="formSubmitAttempt"
+                [genders]="genders"
+                (personalDocumentNumberEmit)="
+                  updateWorkDocumentNumber('coOwner', $event)
+                "
+              ></app-customer>
+            </div>
+          </ng-template>
+        </ngb-panel>
+
+        <ngb-panel id="vehicleDataPanel">
+          <ng-template ngbPanelHeader>
+            <button ngbPanelToggle class="btn btn-sm" tabindex="-1">
+              <div class="container">
+                <h4 class="m-0">{{ '@Id Vehicle Data' | translate }}</h4>
+                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-chevron-up"></i>
+              </div>
+            </button>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <!-- vehicle -->
+            <app-vehicle
+              #vehicle
+              [form]="form"
+              [formSubmitAttempt]="formSubmitAttempt"
+              [coupons]="coupons"
+              [vehicleData]="vehicleData"
+              [brands]="brands"
+              [models]="models"
+              [years]="years"
+            ></app-vehicle>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </div>
+  </form>
+
+  <div class="container">
+    <div class="row form-actions">
+      <div
+        [ngClass]="
+          onBoardingService.isRetry
+            ? 'justify-content-between'
+            : 'justify-content-end'
+        "
+        class="col d-flex"
+      >
+        <button
+          *ngIf="onBoardingService.isRetry"
+          type="button"
+          class="btn btn-light btn-lg rounded-pill"
+          (click)="cancel()"
+        >
+          <span class="d-none d-sm-inline-block">
+            {{ '@Edit' | translate }}</span
+          >
+          <i class="fas fa-trash-alt"></i>
+        </button>
+        <button
+          *ngIf="!onBoardingService.isRetry"
+          type="button"
+          class="btn btn-secondary btn-lg rounded-pill"
+          (click)="submit()"
+        >
+          <span class="d-none d-sm-inline-block">{{
+            '@Simulate' | translate
+          }}</span>
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <button
+          *ngIf="onBoardingService.isRetry"
+          type="button"
+          class="btn btn-secondary btn-lg rounded-pill"
+          (click)="retry()"
+        >
+          <span class="d-none d-sm-inline-block">{{
+            '@Retry' | translate
+          }}</span>
+          <i class="fas fa-redo-alt"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

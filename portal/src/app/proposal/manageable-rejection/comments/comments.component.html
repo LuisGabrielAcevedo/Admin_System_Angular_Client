@@ -1,0 +1,32 @@
+<h1>
+  {{ '@Comments' | translate }}
+</h1>
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <div class="comment__wrapper" *ngFor="let comment of comments">
+      <p class="comment__title">
+        {{ comment.user }}
+      </p>
+      <p class="comment__text">{{ comment.message }}</p>
+      <p class="comment__date">{{ comment.date | date: 'medium' }}</p>
+    </div>
+  </div>
+</div>
+<form autocomplete="off" [formGroup]="messageForm">
+  <div class="row comment__post">
+    <div class="col-md-8 offset-md-2">
+      <app-form-field>
+        <textarea
+          autofocus
+          type="text"
+          class="form-control"
+          formControlName="comment"
+          placeholder="{{ '@Write a comment' | translate }}"
+          maxlength="500"
+          rows="4"
+          (input)="typingComment($event)"
+        ></textarea>
+      </app-form-field>
+    </div>
+  </div>
+</form>

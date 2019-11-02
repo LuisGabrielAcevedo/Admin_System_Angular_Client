@@ -1,0 +1,7 @@
+/* 
+ * Fix default white body background from Bootstrap 
+*/
+body.sb-show-main {
+  background: transparent !important;
+  padding: 50px;
+}

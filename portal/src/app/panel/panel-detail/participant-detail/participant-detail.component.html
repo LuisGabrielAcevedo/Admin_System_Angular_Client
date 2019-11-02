@@ -1,0 +1,261 @@
+<div class="container">
+  <h4 class="form-subtitle">{{ '@Personal Data' | translate }}</h4>
+
+  <div class="row">
+    <div class="col-2">
+      <app-readonly label="{{ '@Document Type' | translate }}">
+        {{ customer?.documentType?.description }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Document Number' | translate }}">
+        {{ customer?.document | mask: 'dot_separator' }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Name' | translate }}">
+        {{ customer?.firstName }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Surname' | translate }}">
+        {{ customer?.lastName }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Sexo' | translate }}">
+        {{ customer?.gender?.description }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Born Date' | translate }}">
+        {{ customer?.birthDate | mask: '00/00/0000' }}
+      </app-readonly>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+      <app-readonly label="{{ '@Country of Birth' | translate }}">
+        {{ customer?.countryOfBirth?.description }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Civil State' | translate }}">
+        {{ customer?.maritalStatus?.description }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@CUIL/CUIT' | translate }}">
+        {{ customer?.cuitl | mask: '00-00000000-0' }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Declared Income' | translate }}">
+        {{ customer?.income | currency: 'ARS':'symbol-narrow':'1.0':'es-AR' }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@IVA Category' | translate }}">
+        {{ customer?.ivaCategory ? customer?.ivaCategory?.description : '-' }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Category IIBB' | translate }}">
+        {{ customer?.iibbCategory ? customer?.iibbCategory?.description : '-' }}
+      </app-readonly>
+    </div>
+  </div>
+
+  <h4 class="form-subtitle__divider">{{ '@Contact Data' | translate }}</h4>
+
+  <div class="row">
+    <div class="col-2">
+      <app-readonly label="{{ '@Province' | translate }}">
+        {{ customer?.address?.state?.description }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Location' | translate }}">
+        {{ customer?.address?.locality?.description }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Street' | translate }}">
+        {{ customer?.address?.street }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Number' | translate }}">
+        {{ customer?.address?.number }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Floor' | translate }}">
+        {{ customer?.address?.floor }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Department' | translate }}">
+        {{ customer?.address?.apartment }}
+      </app-readonly>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+      <app-readonly label="{{ '@Postal Code' | translate }}">
+        {{ customer?.address?.postalCode }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Area Code' | translate }}">
+        {{ customer?.cellPhone?.areaCode }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Number' | translate }}">
+        {{ customer?.cellPhone?.number }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Provider' | translate }}">
+        {{ customer?.cellPhone?.provider?.description }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@EMail Address' | translate }}">
+        {{ customer?.email }}
+      </app-readonly>
+    </div>
+  </div>
+
+  <h4 class="form-subtitle__divider">{{ '@Professional Data' | translate }}</h4>
+
+  <div class="row">
+    <div class="col-2">
+      <app-readonly label="{{ '@Labor Activity AFIP' | translate }}">
+        {{ customer?.afipActivity?.description }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Work Occupation' | translate }}">
+        {{ customer?.occupation?.description }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Work Funtion' | translate }}">
+        {{ customer?.role?.description }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Work Profession' | translate }}">
+        {{ customer?.profession?.description }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Work Study Level' | translate }}">
+        {{ customer?.educationLevel?.description }}
+      </app-readonly>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-2">
+      <app-readonly label="{{ '@Type of Company' | translate }}">
+        {{ customer?.enterpriseType?.description }}
+      </app-readonly>
+    </div>
+
+    <div class="col-2">
+      <app-readonly label="{{ '@Economic Sector' | translate }}">
+        {{ customer?.economicSector?.description }}
+      </app-readonly>
+    </div>
+  </div>
+
+  <div *ngIf="customer?.nonParticipantSpouse">
+    <h4 class="form-subtitle__divider">{{ '@Spouse Data' | translate }}</h4>
+
+    <div class="row">
+      <div class="col-2">
+        <app-readonly label="{{ '@Name' | translate }}">
+          {{ customer?.nonParticipantSpouse?.firstName }}
+        </app-readonly>
+      </div>
+
+      <div class="col-2">
+        <app-readonly label="{{ '@Surname' | translate }}">
+          {{ customer?.nonParticipantSpouse?.lastName }}
+        </app-readonly>
+      </div>
+
+      <div class="col-2">
+        <app-readonly label="{{ '@Date of Birth' | translate }}">
+          {{ customer?.nonParticipantSpouse?.birthDate | mask: '00/00/0000' }}
+        </app-readonly>
+      </div>
+
+      <div class="col-2">
+        <app-readonly label="{{ '@Document Type' | translate }}">
+          {{ customer?.nonParticipantSpouse?.documentType?.description }}
+        </app-readonly>
+      </div>
+
+      <div class="col-2">
+        <app-readonly label="{{ '@Document Number' | translate }}">
+          {{ customer?.nonParticipantSpouse?.document | mask: 'dot_separator' }}
+        </app-readonly>
+      </div>
+
+      <div class="col-2">
+        <app-readonly label="{{ '@Sexo' | translate }}">
+          {{ customer?.nonParticipantSpouse?.gender?.description }}
+        </app-readonly>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2">
+        <app-readonly label="{{ '@Country of Birth' | translate }}">
+          {{ customer?.nonParticipantSpouse?.countryOfBirth?.description }}
+        </app-readonly>
+      </div>
+
+      <div class="col-2">
+        <app-readonly label="{{ '@Nationality' | translate }}">
+          {{ customer?.nonParticipantSpouse?.nationality?.description }}
+        </app-readonly>
+      </div>
+
+      <div class="col-2">
+        <app-readonly label="{{ '@CUIL/CUIT' | translate }}">
+          {{ customer?.nonParticipantSpouse?.cuitl | mask: '00-00000000-0' }}
+        </app-readonly>
+      </div>
+    </div>
+  </div>
+</div>

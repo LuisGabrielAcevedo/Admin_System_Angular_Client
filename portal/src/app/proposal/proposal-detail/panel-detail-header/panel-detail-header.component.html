@@ -1,0 +1,29 @@
+<ui-header [fixed]="true">
+  <div expanded>
+    <div class="row">
+      <div class="col">
+        <app-readonly label="{{ '@Proposal Number' | translate }}">
+          {{ proposal.proposalNumber }}
+        </app-readonly>
+      </div>
+
+      <div class="col">
+        <app-readonly label="{{ '@Selling Point Code' | translate }}">
+          {{ proposal.store.integrationCode }}
+        </app-readonly>
+      </div>
+
+      <div class="col">
+        <app-readonly label="{{ '@Selling Point' | translate }}">
+          {{ proposal.store.name }}
+        </app-readonly>
+      </div>
+
+      <div class="col">
+        <app-readonly label="{{ 'Tipo de Prenda' | translate }}">
+          {{ pledgeType }}
+        </app-readonly>
+      </div>
+    </div>
+  </div>
+</ui-header>

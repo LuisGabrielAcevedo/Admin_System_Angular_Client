@@ -1,0 +1,31 @@
+@import 'scss/breakpoints';
+
+.toast-container {
+  position: fixed;
+  width: calc(100% - 30px);
+  left: 15px;
+  height: 0;
+  z-index: 2999;
+  padding-top: 80px;
+}
+
+@include media-breakpoint-up(sm) {
+  .toast-container {
+    width: 60%;
+    left: 20%;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .toast-container {
+    width: 50%;
+    left: 25%;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .toast-container {
+    width: 40%;
+    left: 30%;
+  }
+}

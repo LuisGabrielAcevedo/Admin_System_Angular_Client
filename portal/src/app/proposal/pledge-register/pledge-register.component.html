@@ -1,0 +1,68 @@
+<app-panel-detail-header></app-panel-detail-header>
+<app-view-document-manager-window></app-view-document-manager-window>
+<app-document-manager-window></app-document-manager-window>
+<div class="container pt-5">
+  <h1 class="section-header__title">
+    {{ '@Pledge Registration' | translate }}
+  </h1>
+</div>
+
+<app-proposal-detail
+  *ngIf="proposal"
+  [proposal]="proposal"
+></app-proposal-detail>
+
+<div class="container">
+  <h2 class="section-header__subtitle">
+    {{ '@Document digitalization' | translate }}
+  </h2>
+  <div class="row">
+    <div class="col">
+      <app-checklist-manager
+        [proposalId]="proposalId$ | async"
+        [filterFunction]="filterEditableList('VEHICLE')"
+      ></app-checklist-manager>
+
+      <app-view-checklist-manager
+        [proposalId]="proposalId$ | async"
+        [filterFunction]="filterViewOnlyList('VEHICLE')"
+      ></app-view-checklist-manager>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <ul>
+        <li>
+          <small class="text-muted">
+            {{
+              '@MSG_All files must be in PDF, JPG or PNG format (10 MB max.)'
+                | translate
+            }}
+          </small>
+        </li>
+        <li>
+          <small class="text-muted">
+            ** Asegúrese que todas las imágenes sean legibles
+          </small>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row form-actions">
+    <div class="col d-flex justify-content-end">
+      <button
+        type="button"
+        class="btn btn-secondary btn-lg rounded-pill"
+        [disabled]="pendingDocuments$ | async"
+        (click)="submitPledge()"
+      >
+        <span class="d-none d-sm-inline-block">{{
+          '@Send Documents' | translate
+        }}</span
+        ><i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+@import 'scss/mixins';
+@import 'scss/variables';
+@import 'scss/colors';
+@import 'scss/fonts';
+@import 'scss/breakpoints';
+
+::ng-deep .appointment {
+  &__date-container {
+    text-align: center;
+    @include media-breakpoint-up(sm) {
+      text-align: left;
+    }
+  }
+  &__date-title {
+    margin-bottom: 0;
+  }
+  &__date-text {
+    color: $santander-info;
+    border-bottom: 1px dashed $gray-light;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+  &__date-reminder-text {
+    font-size: $font-sm;
+    color: $gray-dark;
+    &--danger {
+      color: $white;
+      background: $santander-error;
+      padding: 10px;
+    }
+  }
+}
+
+::ng-deep ngb-datepicker {
+  border-radius: 0 !important;
+  border: none !important;
+  background: $gray-lighter !important;
+  .ngb-dp-header {
+    //background-color: $gray-light !important;
+    border-radius: 0;
+    padding-top: 0.5rem;
+  }
+  .ngb-dp-weekdays {
+    //background-color: $gray-light !important;
+    border-bottom: 1px solid $white !important;
+  }
+  .custom-select {
+    background-color: $white;
+    border: none;
+    border-radius: 0;
+    margin: 4px;
+  }
+  [ngbDatepickerDayView] {
+    border-radius: 1.25rem !important;
+  }
+}

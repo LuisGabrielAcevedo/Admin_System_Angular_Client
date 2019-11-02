@@ -1,0 +1,77 @@
+<div class="documents__item">
+  <input
+    [id]="uid"
+    type="file"
+    style="display: none"
+    [accept]="fileTypes"
+    (change)="upload($event)"
+  />
+  <div class="row documents__item-header d-flex align-items-center">
+    <div
+      class="col-12 col-md mb-3 mb-md-0"
+      [ngClass]="
+        status ? 'documents__item--success' : 'documents__item--pending'
+      "
+    >
+      <p
+        class="documents__item-header-title"
+        [ngClass]="{ 'documents__item-required': isRequired }"
+      >
+        {{ title }}
+      </p>
+    </div>
+    <div class="col-12 col-md-auto text-left text-md-right">
+      <button
+        class="btn rounded-pill btn-link documents__item-header-button"
+        *ngIf="isLoaded"
+        (click)="viewDocument()"
+      >
+        Visualizar documento
+        <i class="far fa-check-circle"></i>
+      </button>
+      <label
+        [for]="uid"
+        class="btn rounded-pill btn-info documents__item-header-button"
+        [ngClass]="{
+          'documents__item-header-button--loading': isLoading,
+          'documents__item-header-button--loaded': isLoaded
+        }"
+        *ngIf="!isLoaded"
+      >
+        <span *ngIf="!isLoading">Adjuntar archivo</span>
+        <span *ngIf="isLoading">Cargando</span>
+        <i class="fas fa-arrow-up"></i>
+        <i class="fas fa-plus"></i>
+        <i class="fas fa-check"></i>
+        <i class="fas fa-spinner"></i>
+      </label>
+      <label
+        [for]="uid"
+        class="btn rounded-pill btn-outline-info documents__item-header-button"
+        [ngClass]="{
+          'documents__item-header-button--loading': isLoading,
+          'documents__item-header-button--loaded': isLoaded && !isLoading
+        }"
+        *ngIf="isLoaded"
+      >
+        <span *ngIf="!isLoading">Adjuntar más archivo/s</span>
+        <span *ngIf="isLoading">Cargando</span>
+        <i class="fas fa-plus"></i>
+        <i class="fas fa-check"></i>
+        <i class="fas fa-spinner"></i>
+      </label>
+    </div>
+  </div>
+  <div class="documents__item-body" *ngIf="instructions">
+    <p class="documents__item-body-message">
+      {{ instructions }}
+    </p>
+    <a
+      class="documents__item-body-link"
+      href="{{ link.url }}"
+      target="_blank"
+      *ngIf="link?.url"
+      >{{ link.description }}</a
+    >
+  </div>
+</div>
