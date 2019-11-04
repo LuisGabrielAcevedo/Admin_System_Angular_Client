@@ -5,7 +5,14 @@
   >
     <mat-tab *ngFor="let group of mainGroups" label="{{ group.name }}">
       <div fxLayout="row" fxLayout.lt-sm="column" class="tabs-content">
-        <div fxFlex="20" *ngIf="group.leftFieldGroup.length">
+        <div
+          fxFlex.xs="100"
+          fxFlex.sm="40"
+          fxFlex.md="30"
+          fxFlex.lg="20"
+          fxFlex.xl="10"
+          *ngIf="group.leftFieldGroup.length"
+        >
           <div
             fxLayout="column"
             fxLayoutAlign="center center"
@@ -29,7 +36,14 @@
             ></app-row>
           </div>
         </div>
-        <div fxFlex="20" *ngIf="group.rightFieldGroup.length">
+        <div
+          fxFlex.xs="100"
+          fxFlex.sm="40"
+          fxFlex.md="30"
+          fxFlex.lg="20"
+          fxFlex.xl="10"
+          *ngIf="group.rightFieldGroup.length"
+        >
           <div
             fxLayout="column"
             fxLayoutAlign="center center"

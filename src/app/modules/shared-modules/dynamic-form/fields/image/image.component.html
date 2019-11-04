@@ -9,7 +9,12 @@
     type="file"
     (change)="fileChangeEvent($event)"
   />
-  <button mat-flat-button color="primary" (click)="fileInput.click()">
-    Seleccione una imagen
-  </button>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <button mat-mini-fab color="primary" (click)="fileInput.click()">
+      <mat-icon>camera</mat-icon>
+    </button>
+    <button mat-mini-fab color="primary" (click)="fileInput.click()">
+      <mat-icon>photo</mat-icon>
+    </button>
+  </div>
 </div>

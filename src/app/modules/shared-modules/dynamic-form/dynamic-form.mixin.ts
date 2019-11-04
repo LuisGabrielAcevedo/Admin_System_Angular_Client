@@ -81,6 +81,10 @@ export class FormComponent {
 
   protected updateModel(): void {
     Object.keys(this.form.value).forEach(field => {
+      if (field === "userInformation.birthdate") {
+        // console.log(typeof this.form.value[field]);
+        // console.log(this.form.value[field]);
+      }
       let value;
       if (this.form.value[field]) {
         if (

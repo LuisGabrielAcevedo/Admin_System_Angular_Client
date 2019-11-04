@@ -1,6 +1,7 @@
 import {
   IDynamicFormField,
-  EDynamicFormFieldTypes
+  EDynamicFormFieldTypes,
+  IDynamicFormLateralGroup
 } from "src/app/modules/shared-modules/dynamic-form/dynamic-form.interfaces";
 import { DynamicFormValidators } from "src/app/modules/shared-modules/dynamic-form/validate/dynamic-form-validators";
 import Country from "src/app/models/admin-system/countries";
@@ -10,6 +11,14 @@ import User from "src/app/models/admin-system/users";
 import { of } from "rxjs";
 
 const companyAspects: IDynamicFormField[] = [
+  {
+    name: "Profile image",
+    key: "profileImageFile",
+    component: EDynamicFormFieldTypes.image,
+    flexConfig: {
+      group: IDynamicFormLateralGroup.left
+    }
+  },
   {
     name: "Name",
     key: "name",

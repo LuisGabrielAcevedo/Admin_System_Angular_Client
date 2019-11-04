@@ -9,6 +9,7 @@ import {
 import { DynamicFormComponent } from "../dynamic-form/dynamic-form.component";
 import { Subscription } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
+import { switchMap } from "rxjs/operators";
 
 @Component({
   selector: "app-form",
@@ -19,7 +20,7 @@ export class FormComponent implements OnDestroy {
   @ViewChild("dynamicForm") public form: DynamicFormComponent;
   public subscriptions: Subscription[] = [];
   public materialData: IDynamicFormMaterialData = {
-    appearance: "legacy",
+    appearance: "fill",
     floatLabel: "always"
   };
   public loading: boolean;
@@ -86,7 +87,7 @@ export class FormComponent implements OnDestroy {
     if (resource.includes("-")) resource = resource.split("-").join("");
     const populateData = {
       users:
-        "company,application,userConfigurations.currentStore,userInformation,role",
+        "company,application,userConfigurations.currentStore,userInformation,role,profileImage",
       companies: "application,country,admin",
       applications: "",
       stores: "country,application,company,storeConfigurations",
@@ -106,9 +107,25 @@ export class FormComponent implements OnDestroy {
   }
 
   public updateAction(model: IDynamicFormModel): void {
-    this.modelClass
-      .updateRx(model._id, model)
-      .subscribe(() => this.goToTable());
+    if (model.profileImageFile) {
+      this.modelClass
+        .updateRx(model._id, model)
+        .pipe(
+          switchMap(() => {
+            return this.modelClass
+              .urlParam("images")
+              .formData()
+              .update(model._id, {
+                file: model.profileImageFile
+              });
+          })
+        )
+        .subscribe(() => this.goToTable());
+    } else {
+      this.modelClass
+        .updateRx(model._id, model)
+        .subscribe(() => this.goToTable());
+    }
   }
 
   public goToTable() {

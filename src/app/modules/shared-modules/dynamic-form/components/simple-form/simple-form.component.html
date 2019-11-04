@@ -1,19 +1,54 @@
 <div fxLayout="row" fxLayout.lt-sm="column">
-  <div fxFlex="20" *ngIf="mainGroups[0].leftFieldGroup.length">
-    
+  <div
+    fxFlex.xs="100"
+    fxFlex.sm="40"
+    fxFlex.md="30"
+    fxFlex.lg="20"
+    fxFlex.xl="10"
+    *ngIf="mainGroups[0].leftFieldGroup.length"
+  >
+    <div
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      *ngFor="let field of mainGroups[0].leftFieldGroup"
+    >
+      <app-select-field
+        [field]="field"
+        [materialData]="materialData"
+        [form]="form"
+        [model]="model"
+      ></app-select-field>
+    </div>
   </div>
   <div fxFlex>
-      <div *ngFor="let fields of mainGroups[0].fields">
-          <app-row
-          [fields]="fields" 
-          [form]="form"
-          [materialData]="materialData"
-          [model]="model"
-          ></app-row>
-      </div>
+    <div *ngFor="let fields of mainGroups[0].fields">
+      <app-row
+        [fields]="fields"
+        [form]="form"
+        [materialData]="materialData"
+        [model]="model"
+      ></app-row>
+    </div>
   </div>
-  <div fxFlex="20" *ngIf="mainGroups[0].rightFieldGroup.length">
-    
+  <div
+    fxFlex.xs="100"
+    fxFlex.sm="40"
+    fxFlex.md="30"
+    fxFlex.lg="20"
+    fxFlex.xl="10"
+    *ngIf="mainGroups[0].rightFieldGroup.length"
+  >
+    <div
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      *ngFor="let field of mainGroups[0].rightFieldGroup"
+    >
+      <app-select-field
+        [field]="field"
+        [materialData]="materialData"
+        [form]="form"
+        [model]="model"
+      ></app-select-field>
+    </div>
   </div>
 </div>
-

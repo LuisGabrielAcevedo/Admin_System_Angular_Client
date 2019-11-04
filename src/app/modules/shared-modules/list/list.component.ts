@@ -102,8 +102,8 @@ export class ListComponent implements OnDestroy {
     if (resource.includes("-")) resource = resource.split("-").join("");
     const populateData = {
       users:
-        "company,application,userConfigurations.currentStore,userInformation,role",
-      companies: "application,country,admin",
+        "company,application,userConfigurations.currentStore,userInformation,role,profileImage",
+      companies: "application,country,admin,profileImage",
       applications: "",
       stores: "country,application,company,storeConfigurations",
       states: "country",
