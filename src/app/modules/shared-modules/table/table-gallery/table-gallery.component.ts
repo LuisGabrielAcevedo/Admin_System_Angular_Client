@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewEncapsulation } from "@angular/core";
 import { Observable } from "rxjs";
 import { IDynamicTableGalleryConfig } from "../table.interfaces";
-import { TableService } from "../table.service";
+import formatTextFn from "../utilities/format-text";
 
 @Component({
   selector: "app-table-gallery",
@@ -16,7 +16,6 @@ export class TableGalleryComponent implements OnInit {
   @Input() galleryConfig: IDynamicTableGalleryConfig;
   public galleryLoading: boolean = null;
   public galleryList: object[] = null;
-  constructor(private tableService: TableService) {}
 
   ngOnInit() {
     this.loadList();
@@ -26,20 +25,17 @@ export class TableGalleryComponent implements OnInit {
     this.galleryLoading = true;
     const observable = this.observable(this.item);
     observable.subscribe(resp => {
-      this.galleryList = this.tableService.formatText(
-        resp,
-        this.galleryConfig.galleryListData
-      );
+      this.galleryList = formatTextFn(resp, this.galleryConfig.galleryListData);
       this.galleryLoading = false;
     });
   }
 
   formatImage(item: object, field: string) {
-    return this.tableService.formatText(item, field);
+    return formatTextFn(item, field);
   }
 
   formatText(item: object, field: string) {
-    let text = this.tableService.formatText(item, field);
+    let text = formatTextFn(item, field);
     text = text ? text : "Sin información";
     return text.length > 18 ? `${text.substr(0, 18)}...` : text;
   }

@@ -24,7 +24,7 @@ export interface IDynamicTableItem {
 
 export interface IDynamicTableContainerComponentData {
   item?: object | object[];
-  field?: string | string[];
+  field?: string;
   button?: IDynamicTableButton;
   observable?: (...arg: any[]) => Observable<any>;
   galleryConfig?: IDynamicTableGalleryConfig;

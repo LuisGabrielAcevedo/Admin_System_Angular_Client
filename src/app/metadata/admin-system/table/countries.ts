@@ -11,12 +11,12 @@ const countryHeaders: IDynamicTableHeader[] = [
   },
   {
     label: "Lenguaje",
-    key: "language",
+    key: "language[]",
     component: EDynamicTableComponentType.text
   },
   {
     label: "Moneda",
-    key: "currency",
+    key: "currency[]",
     component: EDynamicTableComponentType.text
   }
 ];

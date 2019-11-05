@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { IDynamicTableSecondTableConfig } from "../table.interfaces";
+import formatTextFn from "../utilities/format-text";
 import { Observable } from "rxjs";
-import { TableService } from "../table.service";
 
 @Component({
   selector: "app-table-second-table",
@@ -9,13 +9,13 @@ import { TableService } from "../table.service";
   styleUrls: ["./table-second-table.component.css"]
 })
 export class TableSecondTableComponent implements OnInit {
-  @Input() field: string | string[];
+  @Input() field: string;
   @Input() item: object;
   @Input() observable: (...arg: any[]) => Observable<any>;
   @Input() secondTableConfig: IDynamicTableSecondTableConfig;
   public secondTableLoading: boolean = null;
   public secondTableList: object[] = null;
-  constructor(private tableService: TableService) {}
+  constructor() {}
 
   ngOnInit() {
     this.loadList();
@@ -25,7 +25,7 @@ export class TableSecondTableComponent implements OnInit {
     this.secondTableLoading = true;
     const observable = this.observable(this.item);
     observable.subscribe(resp => {
-      this.secondTableList = this.tableService.formatText(
+      this.secondTableList = formatTextFn(
         resp,
         this.secondTableConfig.secondTableListData
       );
@@ -34,8 +34,8 @@ export class TableSecondTableComponent implements OnInit {
   }
 
   formatText(item: object, field: string) {
-    let text = this.tableService.formatText(item, field);
-    text = text ? text : "Sin información";
+    let text = formatTextFn(item, field);
+    text = text ? text : "--";
     return text.length > 18 ? `${text.substr(0, 18)}...` : text;
   }
 }
