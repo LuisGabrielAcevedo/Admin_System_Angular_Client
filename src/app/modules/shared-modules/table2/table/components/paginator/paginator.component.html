@@ -1,0 +1,65 @@
+<div
+  class="d-flex justify-content-end"
+  *ngIf="paginatorData && !isMobile; else loadMore"
+>
+  <div class="paginator d-flex flex-row">
+    <div
+      class="page paginator__icon"
+      [ngClass]="{ 'icon--disabled': paginatorData.page === 1 }"
+      (click)="fisrtPage()"
+    >
+      <span class="fa fa-angle-left"></span>
+      <span class="fa fa-angle-left"></span>
+    </div>
+    <div
+      class="page paginator__icon"
+      [ngClass]="{ 'icon--disabled': paginatorData.page === 1 }"
+      (click)="prevPage()"
+    >
+      <span class="fa fa-angle-left"></span>
+    </div>
+    <div
+      *ngFor="let p of paginatorData.tmpPages"
+      (click)="changePage(p)"
+      class="page paginator__page"
+      [ngClass]="{ 'page--active': p === paginatorData.page }"
+    >
+      <span>{{ p }}</span>
+    </div>
+    <div
+      class="page paginator__icon"
+      [ngClass]="{
+        'icon--disabled': paginatorData.page === paginatorData.pages
+      }"
+      (click)="nextPage()"
+    >
+      <span class="fa fa-angle-right"></span>
+    </div>
+    <div
+      class="page paginator__icon"
+      [ngClass]="{
+        'icon--disabled': paginatorData.page === paginatorData.pages
+      }"
+      (click)="lastPage()"
+    >
+      <span class="fa fa-angle-right"></span>
+      <span class="fa fa-angle-right"></span>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadMore>
+  <div class="d-flex justify-content-center" class="paginator__mobile">
+    <div class="column">
+      <div *ngIf="loading" class="paginator__mobile__loading">...Cargango</div>
+      <button
+        *ngIf="paginatorData.page !== paginatorData.pages"
+        type="button"
+        class="btn btn-outline-secondary btn-sm"
+        (click)="nextPage()"
+      >
+        <span>Cargar mas propuestas</span>
+      </button>
+    </div>
+  </div>
+</ng-template>

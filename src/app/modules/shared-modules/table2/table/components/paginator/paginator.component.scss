@@ -1,0 +1,31 @@
+.paginator {
+  margin: 10px 0;
+  padding: 4px;
+  &__icon {
+    font-weight: 700;
+  }
+  &__mobile {
+    text-align: center;
+    margin: 10px;
+    &__loading {
+      margin: 10px;
+    }
+  }
+}
+
+.page {
+  width: 30px;
+  margin: 2px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.page--active {
+  border: 1px solid #212529;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.icon--disabled {
+  color: #adb5bd;
+}

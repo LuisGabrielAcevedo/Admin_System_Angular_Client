@@ -1,0 +1,98 @@
+<div class="table">
+  <div class="table__content">
+    <!-- Headers -->
+    <div class="table__headers d-flex align-items-center">
+      <div *ngIf="expandComponent" class="table--small p-2"></div>
+      <div
+        *ngFor="let header of headers"
+        class="p-2"
+        [ngClass]="{
+          'd-none d-md-block': !header.visibleOnMobile,
+          'table--flex': !header.width
+        }"
+        (click)="changeSort(header)"
+        [ngStyle]="{ width: header.width || '100%' }"
+      >
+        <span>{{ header.label }}</span
+        ><i
+          *ngIf="header.sortable && tableSort.prop === header.key"
+          class="fa {{
+            tableSort.dir === 'desc' ? 'fa-angle-down' : 'fa-angle-up'
+          }}"
+        ></i>
+      </div>
+      <div class="table--button p-2" *ngFor="let button of rowActions"></div>
+    </div>
+    <!-- Loading -->
+    <!-- Data -->
+    <div #tableData class="table__data">
+      <div
+        *ngIf="!dataToRender.length"
+        class="d-flex justify-content-center table__data__default--message"
+      >
+        <span>{{ defaultMessage }}</span>
+      </div>
+      <div
+        class="table__data__row"
+        *ngFor="let item of dataToRender; index as i"
+      >
+        <div class="table__data__item d-flex align-items-center">
+          <div *ngIf="expandComponent" class="table--small p-2">
+            <i
+              *ngIf="expandConditionFn(item)"
+              (click)="openRows.includes(i) ? closeRow(i) : openRow(i)"
+              class="fa expand__caret {{
+                openRows.includes(i) ? 'fa-angle-up' : 'fa-angle-down'
+              }}"
+            ></i>
+          </div>
+          <div
+            *ngFor="let header of headers"
+            class="p-2"
+            [ngClass]="{
+              'd-none d-md-block': !header.visibleOnMobile,
+              'table--flex': !header.width
+            }"
+            [ngStyle]="{ width: header.width || '100%' }"
+          >
+            <app-dynamic-table-component
+              [item]="item"
+              [header]="header"
+            ></app-dynamic-table-component>
+          </div>
+          <div class="table--button p-2" *ngFor="let button of rowActions">
+            <app-button [button]="button" [item]="item"></app-button>
+          </div>
+        </div>
+        <div
+          *ngIf="table === 'panel'"
+          class="d-flex align-items-center d-block d-md-none status--mobile"
+        >
+          <app-dynamic-table-component
+            [item]="item"
+            [header]="{
+              label: 'Estado',
+              key: 'status',
+              component: 'StatusComponent'
+            }"
+          ></app-dynamic-table-component>
+        </div>
+        <div *ngIf="openRowsMemory.includes(i) && expandComponent">
+          <app-dynamic-table-component
+            [component]="expandComponent"
+            [item]="item"
+          ></app-dynamic-table-component>
+        </div>
+      </div>
+    </div>
+    <!-- Pagination -->
+    <div *ngIf="pagination && pagination.total">
+      <app-paginator
+        [isMobile]="isMobile"
+        [loading]="loading"
+        [pagination]="pagination"
+        (changePagination)="changePaginationFn($event)"
+      ></app-paginator>
+    </div>
+  </div>
+</div>
