@@ -1,0 +1,37 @@
+<mcy-landing-layout>
+	<div class="signup-error">
+		<div class="signup-error__container">
+			<h1 class="signup-error__title">
+				{{ 'pages.signupError.title' | translate }}
+			</h1>
+			<div class="signup-error__error-icon-container">
+				<mcy-icon class="signup-error__error-icon">fechar</mcy-icon>
+			</div>
+			<div class="signup-error__errors-list-container">
+				<p class="signup-error__error-list-title">
+					{{ 'pages.signupError.possibleErrors' | translate }}:
+				</p>
+				<ul class="signup-error__errors-list">
+					<li>- {{ 'pages.signupError.incorrectFields' | translate }}</li>
+					<li>- {{ 'pages.signupError.documentAlreadyTaken' | translate }}</li>
+				</ul>
+			</div>
+			<div class="signup-error__button-group">
+				<mcy-button
+					class="signup-error__button-secondary"
+					[id]="'singup-error__button-secondary'"
+					[color]="'secondary'"
+					(handleClick)="redirectToPreviousStep()"
+				>
+					{{ 'pages.signupError.reEnterDocument' | translate }}
+				</mcy-button>
+				<mcy-button
+					[id]="'singup-error__button-exit'"
+					(handleClick)="redirectToLogin()"
+				>
+					{{ 'pages.signupError.exit' | translate }}
+				</mcy-button>
+			</div>
+		</div>
+	</div>
+</mcy-landing-layout>

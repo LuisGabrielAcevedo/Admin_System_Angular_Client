@@ -1,0 +1,28 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.account-movements {
+	&__title {
+		@include font-primary-extrabold();
+		font-size: $font-size-XL;
+		margin: 0 0 $spacing-XS;
+	}
+
+	&__show-more {
+		display: flex;
+		justify-content: center;
+	}
+
+	&__bold-text {
+		@include font-primary-bold();
+	}
+
+	&__table {
+		margin: 0 0 $spacing-S;
+	}
+
+	&__show-more-text {
+		@include font-primary-extrabold();
+		font-size: $font-size-M;
+	}
+}

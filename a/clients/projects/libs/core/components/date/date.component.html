@@ -1,0 +1,24 @@
+<div class="date-input">
+	<mat-form-field class="date-input" appearance="outline" (click)="date.open()">
+		<mat-label class="date-input__label">
+			{{ label }}
+		</mat-label>
+		<input
+			id="{{id}}"
+			matInput
+			class="date-input__input"
+			[matDatepicker]="date"
+			[min]="minDate"
+			[max]="maxDate"
+			[formControl]="dateField"
+			autocomplete="off"
+			readonly
+			(dateChange)="onChange($event.target.value)"/>
+		<mat-datepicker #date> </mat-datepicker>
+		<mat-datepicker-toggle matSuffix [for]="date">
+			<mcy-icon matDatepickerToggleIcon class="icon-calendar">
+				{{ icon }}
+			</mcy-icon>
+		</mat-datepicker-toggle>
+	</mat-form-field>
+</div>

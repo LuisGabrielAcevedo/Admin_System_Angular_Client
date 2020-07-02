@@ -1,0 +1,60 @@
+<mcy-landing-layout>
+	<div class="signup">
+		<div *ngIf="isLoading" class="signup__loading">
+			<voxel-loading-circle [showLoading]="true" size="large"></voxel-loading-circle>
+		</div>
+		<div *ngIf="!isLoading" class="signup__container">
+			<div class="signup__form-container">
+				<h1 class="signup__title">
+					{{ getTitleTranslation() }}
+				</h1>
+				<form [formGroup]="signupForm" class="signup__form">
+					<span class="signup__warning">
+						{{ getWarningTranslation() }}
+					</span>
+					<div class="signup__document-container">
+						<div class="signup__document-type-select-container">
+							<mcy-select
+								[label]="'pages.signup.documentType' | translate"
+								[data]="documentTypesOptions"
+								[id]="'signup__document-type-select'"
+								formControlName="documentType"
+							></mcy-select>
+						</div>
+						<mcy-input
+							[label]="'pages.signup.documentNumber' | translate"
+							[id]="'singup__document-number-input'"
+							[validators]="documentNumberValidators"
+							class="signup__document-number-input"
+							formControlName="documentNumber"
+						></mcy-input>
+					</div>
+					<mcy-button
+						class="signup__submit-button"
+						[id]="'signup__submit-button'"
+						[disabled]="!signupForm.valid"
+						(handleClick)="validateForm()"
+					>
+						{{ getNextStepTranslation() }}
+					</mcy-button>
+				</form>
+			</div>
+			<div class="signup__login-box">
+				<h5 class="signup__login-title">
+					{{ 'pages.signup.loginBox.title' | translate }}
+				</h5>
+				<span class="signup__login-description">
+					{{ 'pages.signup.loginBox.description' | translate }}
+				</span>
+				<mcy-button
+					[color]="'primary2'"
+					[id]="'signup__submit-button'"
+					(handleClick)="redirectToLogin()"
+				>
+					{{ 'pages.signup.loginBox.submit' | translate }}
+				</mcy-button>
+			</div>
+		</div>
+	</div>
+
+</mcy-landing-layout>

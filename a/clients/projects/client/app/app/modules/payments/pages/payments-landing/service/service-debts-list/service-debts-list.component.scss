@@ -1,0 +1,19 @@
+@import 'variablesNew';
+
+.service-debts-list {
+	padding: $spacing-XS $spacing-XXL;
+
+	&__icon {
+		color: $icon-color-primary;
+		font-size: 24px;
+	}
+
+	&__options-icon {
+		color: $icon-color-spinner;
+		font-size: 24px;
+	}
+
+	&__icon-column {
+		width: 40px;
+	}
+}

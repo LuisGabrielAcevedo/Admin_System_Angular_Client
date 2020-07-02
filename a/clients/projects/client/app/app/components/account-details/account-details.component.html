@@ -1,0 +1,43 @@
+
+<div class="account-details">
+	<div class="account-details__balance-section">
+		<mcy-badge-icon
+			[iconSize]="'48px'"
+			[badgeSize]="'large'"
+			[type]="'logo'">
+			conta_corrente_outline
+		</mcy-badge-icon>
+		<div class="account-details__balance-detail">
+			<span class="account-details__currency-symbol">{{ account.currency.symbol }}</span>
+			<span class="account-details__balance">{{ account.balance | mcyAmount }}</span>
+		</div>
+	</div>
+
+	<div class="account-details__details-section">
+		<div class="account-details__detail">
+			<span class="account-details__label">{{ 'components.accountDetails.cbvu' | translate }}</span>
+			<span class="account-details__value"> {{ account.cbvu }}</span>
+		</div>
+		<div class="account-details__detail">
+			<span class="account-details__label">{{ 'components.accountDetails.alias' | translate }}</span>
+			<span class="account-details__value"> {{ account.alias }}</span>
+		</div>
+		<div class="account-details__detail">
+			<span class="account-details__label">{{ 'components.accountDetails.businessName' | translate }}</span>
+			<span class="account-details__value"> {{ businessName }}</span>
+		</div>
+		<div class="account-details__detail">
+			<span class="account-details__label">{{ 'components.accountDetails.cuilt' | translate }}</span>
+			<span class="account-details__value"> {{ account.cuilt }}</span>
+		</div>
+		<div class="account-details__copy">
+			<mcy-icon-button
+				[id]="'account-details__copy-button'"
+				class="account-details__copy-button"
+				(handleClick)="copyDetails()"
+			>
+				copiar_outline
+			</mcy-icon-button>
+		</div>
+	</div>
+</div>

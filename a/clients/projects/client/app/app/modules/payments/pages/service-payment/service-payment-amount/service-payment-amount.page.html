@@ -1,0 +1,143 @@
+<mcy-primary-page-layout
+	[title]="'pages.payments.service.amount.title' | translate"
+	[back]="'pages.payments.service.amount.goBack' | translate"
+	(handleBack)="onCancel()"
+>
+	<div actions>
+		<mcy-contextual-button
+			[id]="'service-payment-amount__go-to-landing'"
+			sufixIcon="fechar"
+			(handleClick)="onCancel()"
+		>
+			{{'pages.payments.service.amount.cancel' | translate}}
+		</mcy-contextual-button>
+	</div>
+	<div class="service-payment-amount__primary-panel" body>
+		<form [formGroup]="amountForm">
+			<mcy-primary-panel-layout>
+				<div class="service-payment-amount__body" body>
+					<mcy-stepper-guidelines
+						[selected]="amountForm.valid"
+						[nextGuideline]="true"
+						[previousGuideline]="true"
+						[icon]="'consorcio_outline'"
+					>
+					</mcy-stepper-guidelines>
+					<div class="service-payment-amount__content">
+						<h3 class="service-payment-amount__subtitle">
+							{{ 'pages.payments.service.amount.subtitle' | translate }}
+						</h3>
+						<div class="service-payment-amount__description-header">
+							<div class="service-payment-amount__column" *ngIf="!debt.otherAmount">
+								<span class="service-payment-amount__header-text">{{debt.description}}</span>
+								<span class="service-payment-amount__header-title">{{debt.banelcoClientId}}</span>
+							</div>
+						</div>
+						<div class="service-payment-amount__header">
+							<div class="service-payment-amount__column">
+								<span class="service-payment-amount__header-text">{{ 'pages.payments.service.amount.expirationDate' | translate }}</span>
+								<span class="service-payment-amount__header-title">{{formatDate(debt.expirationDate)}}</span>
+							</div>
+							<div class="service-payment-amount__column">
+								<span class="service-payment-amount__header-text">{{ 'pages.payments.service.amount.debtAmount' | translate }}</span>
+								<span class="service-payment-amount__header-title">{{debt.currency.symbol}} {{debt.amount | mcyAmount}}</span>
+							</div>
+						</div>
+						<div class="service-payment-amount__box-moment-execution" *ngIf="debt.otherAmount">
+							<voxel-radio-button-group
+								class="service-payment-amount__radio"
+								formControlName="amountType"
+								[id]="'service-payment-amount__moment-execution'"
+							>
+								<voxel-radio-button
+									[value]="'TOTAL'"
+									[disabled]="disabledAmountRadio"
+									(radioButtonChange)="amountRadio()"
+									[checked]="isTotalAmount"
+									[radioId]="'service-payment-amount__type-amount'">
+									{{ 'pages.payments.service.amount.amount' | translate }}
+								</voxel-radio-button>
+								<voxel-radio-button
+									[value]="'PARTIAL'"
+									(radioButtonChange)="otherAmountRadio()"
+									class="service-payment-amount__spacing"
+									[checked]="isPartialAmount"
+									[radioId]="'service-payment-amount__type-other-amount'"
+								>
+									{{ 'pages.payments.service.amount.otherAmount' | translate }}
+								</voxel-radio-button>
+							</voxel-radio-button-group>
+						</div>
+						<div class="service-payment-amount__amount-container" *ngIf="debt.otherAmount">
+							<div class="service-payment-amount__currency-select">
+								<mcy-select
+									[id]="'service-payment-amount__currency-select'"
+									[data]="currenciesListOption"
+									formControlName="currencyCode"
+								>
+								</mcy-select>
+							</div>
+							<div class="service-payment-amount__amount-input">
+								<mcy-amount-input
+									[id]="'service-payment-amount__amount-input'"
+									[required]="true"
+									[label]="'pages.payments.service.amount.amountLabel' | translate"
+									formControlName="amount"
+									[validators]="amountValidators"
+									[validatorMessage]="{ 
+										invalidAmount: 'pages.payments.service.amount.invalidAmountErrorMessage' | translate,
+										min: 'pages.payments.service.amount.minAmountErrorMessage' | translate
+									}"
+								>
+								</mcy-amount-input>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div description class="service-payment-amount__description">
+					<p
+						*ngIf="amountForm.valid"
+						class="service-payment-amount__description-element"
+					>
+						{{ 'pages.payments.service.amount.complete' | translate }}
+					</p>
+					<div class="service-payment-amount__required-container">
+						<span class="service-payment-amount__required-symbol">*</span>
+						<span class="service-payment-amount__required-text">
+							{{ 'pages.payments.service.amount.requiredFields' | translate }}
+						</span>
+					</div>
+				</div>
+				<div footer class="service-payment-amount__footer">
+					<div>
+						<div class="service-payment-amount__usd-text" *ngIf="debt.usdPayment">
+							<mcy-icon class="service-payment-amount__icon">informacao_outline</mcy-icon>
+							<div class="service-payment-amount__usd-text-column">
+								<span class="service-payment-amount__usd-description">{{ 'pages.payments.service.amount.usdText' | translate }}</span>
+								<span>{{ 'pages.payments.service.amount.usdDescription' | translate }}</span>
+							</div>
+						</div>
+					</div>
+					<div>
+						<mcy-button
+						class="service-payment-amount__button"
+						[id]="'service-payment-amount__go-back-button'"
+						[color]="'tertiary'"
+						(handleClick)="onBack()"
+						>
+							{{ 'pages.payments.service.amount.back' | translate }}
+						</mcy-button>
+						<mcy-button
+							class="service-payment-amount__button"
+							[disabled]="!amountForm.valid"
+							[id]="'service-payment-amount__continue-button'"
+							(handleClick)="onContinue()"
+						>
+							{{ 'pages.payments.service.amount.next' | translate }}
+						</mcy-button>
+					</div>
+				</div>
+			</mcy-primary-panel-layout>
+		</form>
+	</div>
+</mcy-primary-page-layout>

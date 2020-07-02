@@ -1,0 +1,49 @@
+<div class="payment-receipt">
+	<div class="payment-receipt__body">
+		<mcy-status-icon size="large" status="{{requestServicePayment.state}}"></mcy-status-icon>
+		<div class="payment-receipt__content">
+			<div class="payment-receipt__receipt">
+				<span class="payment-receipt__receipt-label">
+					{{ 'pages.payments.servicePayment.success.descriptionReciept' | translate }}
+				</span>
+				<span class="payment-receipt__receipt-value" >
+					{{requestServicePayment.id}}
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="payment-receipt__detail-row">
+		<div class="payment-receipt__detail">
+			<span class="payment-receipt__concept">{{ 'pages.payments.servicePayment.success.receiptConceptLabel' | translate }} </span>
+			<span class="payment-receipt__description">{{requestServicePayment.detail}}</span>
+		</div>
+		<div class="payment-receipt__detail">
+			<span class="payment-receipt__detail-label"> {{ 'pages.payments.servicePayment.success.amountLabel' | translate }}</span>
+			<span class="payment-receipt__detail-value">{{ requestServicePayment.currency.symbol }} {{requestServicePayment.amount}}</span>
+		</div>
+	</div>
+
+	<div class="payment-receipt__actions">
+		<div class="payment-receipt__action">
+			<mcy-contextual-button
+				[id]="'payment-receipt__action--detail'"
+				[prefixIcon]="'comprovante_outline'"
+				(handleClick)="requestServicePayment?.state === 'SUCCESS'? downloadReceipt(): detailRequest()"
+				>
+				{{ textButtonSecondary }}
+			</mcy-contextual-button>
+		</div>
+	</div>
+
+	<div class="payment-receipt__footer">
+		<mcy-button
+			[id]="'payment-receipt__action--end-pay'"
+			class="payment-receipt__action-button"
+			color="primary"
+			(handleClick)="goToLandingServicePayment()"
+		>
+		{{ 'pages.payments.servicePayment.success.primaryAction' | translate }}
+		</mcy-button>
+	</div>
+
+</div>

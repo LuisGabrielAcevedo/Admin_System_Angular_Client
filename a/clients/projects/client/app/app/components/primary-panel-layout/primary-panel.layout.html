@@ -1,0 +1,37 @@
+<section class="primary-panel-layout">
+	<div class="primary-panel-layout__content">
+		<div class="primary-panel-layout__spinner" *ngIf="isLoading">
+			<voxel-loading-circle [showLoading]="true" size="large"></voxel-loading-circle>
+		</div>
+		<div class="primary-panel-layout__error" *ngIf="hasError && !isLoading">
+			<mcy-badge-icon [type]="'warning'">fechar</mcy-badge-icon>
+			<div class="primary-panel-layout__error-text">
+				<span class="primary-panel-layout__error-title">
+					{{error ? error : 'components.panelLoadingDataError.error' | translate}}
+				</span>
+			</div>
+			<div class="primary-panel-layout__error-text">
+				<span class="primary-panel-layout__error-message">
+					{{errorMessage ? errorMessage : 'components.panelLoadingDataError.errorMessage' | translate}}
+				</span>
+			</div>
+		</div>
+		<div class="primary-panel-layout__body" *ngIf="!isLoading && !hasError">
+			<ng-content select="[body]"></ng-content>
+		</div>
+		<div class="primary-panel-layout__description" *ngIf="!isLoading && !hasError">
+			<ng-content select="[description]"></ng-content>
+		</div>
+	</div>
+	<div class="primary-panel-layout__footer">
+		<ng-content select="[footer]" *ngIf="!hasError"></ng-content>
+		<mcy-button
+			*ngIf="hasError"
+			(handleClick)="onRetry()"
+			[disabled]="isLoading"
+			[id]="'primary-panel-layout__retry-button'"
+			class="primary-panel-layout__retry-button">
+			{{'components.panelLoadingDataError.retry' | translate}}
+		</mcy-button>
+	</div>
+</section>

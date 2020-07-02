@@ -1,0 +1,146 @@
+// Archivo que contiene estilos que reemplazan
+// los estilos originales de material posiblemente se separe en un archivo por elemento modificado.
+@import 'variables.scss';
+@import 'mixins.scss';
+
+// TABLE
+.mat-table {
+	width: 100%;
+	border-spacing: 0px $spacing-S !important;
+	box-shadow: none !important;
+	background-color: transparent !important;
+	position: relative;
+	border-collapse: unset;
+	.mat-header-cell, .mat-cell {
+		padding: 0 $spacing-S;
+	}
+	.mat-header-cell {
+		@include font-primary-regular();
+		border: none !important;
+	}
+	.mat-cell {
+		@include font-primary-regular();
+		border-bottom: none !important;
+		border-top: none !important;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		vertical-align: middle;
+	}
+	.mat-cell:first-child {
+		border-top-left-radius: $radius-XS;
+		border-bottom-left-radius: $radius-XS;
+	}
+	.mat-cell:last-child {
+		border-top-right-radius: $radius-XS;
+		border-bottom-right-radius: $radius-XS;
+	}
+	.mat-header-row {
+		height: initial;
+		background-color: $background-color-primary !important;
+		.mat-column-name {
+			@include font-primary-regular();
+			font-size: $font-size-M;
+		}
+	}
+	.mat-row {
+		height: 64px !important;
+		background-color: $background-color-quinary !important;
+		border-radius: $radius-XS !important;
+		box-shadow: $box-shadow-primary;
+		vertical-align: middle;
+		&:hover {
+			transform: scale(1.015, 1) !important;
+			box-shadow: $box-shadow-hover;
+		}
+		&:active {
+			box-shadow: $box-shadow-active;
+			border: 1px solid $border-color-quaternary;
+		}
+	}
+}
+
+// Menu
+.mat-list-base .mat-list-item .mat-list-item-content, .mat-list-base .mat-list-option .mat-list-item-content {
+	padding: 0 !important;
+    height: 100% !important;
+}
+
+.mat-nav-list .mat-list-item:hover {
+	background: transparent !important;
+}
+
+//DATE PICKER
+.icon-calendar{
+    font-size: 24px;
+	color: $icon-color-tertiary;
+}
+
+// ITEMS IN .mat-form-field
+.mat-form-field-appearance-outline .mat-form-field-flex {
+    align-items: center;
+}
+
+.ng-sidebar--right {
+	background-color: $background-color-quinary !important;
+}
+
+// Datepicker
+.mat-calendar-body-selected {
+	background-color: $background-color-quaternary !important;
+}
+
+.mat-calendar-body-today:not(.mat-calendar-body-selected) {
+	border-color: $border-color-nonary !important;
+}
+
+// Select
+.mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+	color: $border-color-nonary !important;
+}
+
+
+// Radio buttons
+.mat-radio-outer-circle {
+	border-color: $border-color-12 !important;
+	border-width: 1px !important;
+}
+
+.mat-radio-checked .mat-radio-outer-circle {
+	border-color: $border-color-nonary !important;
+}
+
+.mat-radio-checked .mat-radio-inner-circle {
+	transform: scale(1) !important;
+	background-color: $background-color-quaternary !important;
+}
+
+.mat-radio-ripple .mat-ripple-element {
+	background-color: $background-color-quaternary !important;
+}
+
+// Paginator
+.mat-paginator {
+	background-color: transparent;
+}
+.mat-paginator-container {
+	min-height: 0 !important;
+	color: $text-color-septenary !important;
+}
+.mat-paginator-page-size {
+	display: none !important;
+}
+.mat-paginator-range-label {
+	margin-top: $spacing-XS !important;
+	font-size: $font-size-M !important;
+}
+
+.mat-primary .mat-pseudo-checkbox-checked,
+.mat-primary .mat-pseudo-checkbox-indeterminate {
+    background: $text-color-quinary;
+}
+
+.mat-primary
+.mat-option.mat-selected:not(.mat-option-disabled) {
+    color: $text-color-primary !important;
+}

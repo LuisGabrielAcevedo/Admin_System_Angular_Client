@@ -1,0 +1,204 @@
+<div class="provider-landing">
+	<div class="provider-landing__header-buttons">
+		<mcy-button
+			*ngIf="hasWritePermission"
+			[id]="'provider-landing__button-pay-new-provider'"
+			class="provider-landing__button"
+			(handleClick)="goToNewProviderPayment()"
+			color="primary">
+			{{ 'pages.payments.providers.landing.payNewProviderButton' | translate }}
+		</mcy-button>
+	</div>
+
+	<div class="provider-landing__request">
+		<div *ngIf="!requestState.loading && !requestState.hasRequestError">
+			<div class="provider-landing__table-content">
+				<div class="provider-landing__table-content-title">
+					<span class="provider-landing__table-content-length">
+						{{ filteredRequest.length }}
+					</span>
+					<span class="provider-landing__table-content-title-label">
+						{{ 'pages.payments.providers.landing.paymentsRequestLabel' | translate }}
+					</span>
+				</div>
+				<span class="provider-landing__table-content-label">
+					{{ 'pages.payments.providers.landing.paymentsRequestDescription' | translate }}
+				</span>
+			</div>
+			<mcy-no-data-message
+				class="provider-landing__table-content"
+				*ngIf="!requestState.loading && getRequestPerPage().length === 0"
+				[message]="'pages.payments.providers.landing.emptyRequestList' | translate">
+			</mcy-no-data-message>
+			<div *ngIf="requestState.loading || getRequestPerPage().length > 0">
+				<mcy-requests-list
+					[selectedRequests]="selectedRequests"
+					(resetSelection)="resetSelection()"
+					(selectRequest)="select($event)"
+					[requests]="getRequestPerPage()"
+					(actionRedirect)="goTo($event)">
+				</mcy-requests-list>
+				<div class="provider-landing__show-more">
+					<mcy-contextual-button
+						*ngIf="filteredRequest.length > 5"
+						sufixIcon="seta_direita"
+						[id]="'provider-landing__requests-redirect'"
+						(handleClick)="goToRequestsLanging()">
+						{{ 'pages.payments.providers.landing.all' | translate }}
+					</mcy-contextual-button>
+				</div>
+			</div>
+		</div>
+		<div class="provider-landing__spinner-container"
+			*ngIf="requestState.loading">
+			<voxel-loading-circle
+				[showLoading]="true"
+				size="large">
+			</voxel-loading-circle>
+		</div>
+		<mcy-loading-data-error
+			*ngIf="requestState.hasRequestError && !requestState.loading"
+			[displayRetry]="true"
+			(handleOnRetry)="onSubmitRequest()"
+		></mcy-loading-data-error>
+	</div>
+
+	<div class="provider-landing__provider-payment">
+		<div class="provider-landing__table-content"
+			*ngIf="!providerPaymentState.hasProviderPaymentErrors && !providerPaymentState.loading">
+			<div class="provider-landing__table-content-title">
+				<span class="provider-landing__table-content-length">
+					{{ providerTransfers.length }}
+				</span>
+				<span class="provider-landing__table-content-title-label">
+					{{ 'pages.payments.providers.landing.paymentsCompletedLabel' | translate }}
+				</span>
+			</div>
+			<span class="provider-landing__table-content-label">
+				{{ 'pages.payments.providers.landing.paymentsCompletedDescription' | translate }}
+			</span>
+			<mcy-no-data-message
+				*ngIf="!paymentsListTableSource.data.length && !providerPaymentState.hasProviderPaymentErrors && !providerPaymentState.loading"
+				[message]="'pages.payments.providers.landing.emptyMessage' | translate">
+			</mcy-no-data-message>
+			<table mat-table
+				*ngIf="paymentsListTableSource.data.length && !providerPaymentState.hasProviderPaymentErrors && !providerPaymentState.loading"
+				class="provider-landing__table"
+				id="provider-landing__compleate-payments-table"
+				[dataSource]="paymentsListTableSource">
+				<ng-container matColumnDef="name">
+					<th mat-header-cell *matHeaderCellDef>
+						{{ 'pages.payments.providers.landing.paymentCompletedtable.name' | translate }}
+					</th>
+					<td mat-cell *matCellDef="let payment">
+						{{ payment.destinationHolder }}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="amount">
+					<th mat-header-cell *matHeaderCellDef>
+						{{ 'pages.payments.providers.landing.paymentCompletedtable.amount' | translate }}
+					</th>
+					<td mat-cell *matCellDef="let payment">
+						{{ payment.currency.symbol }} {{ payment.amount | mcyAmount }}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="date">
+					<th mat-header-cell *matHeaderCellDef>
+						{{ 'pages.payments.providers.landing.paymentCompletedtable.date' | translate }}
+					</th>
+					<td mat-cell *matCellDef="let payment">
+						{{ formatDate(payment.date) }}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="operationNumber">
+					<th mat-header-cell *matHeaderCellDef>
+						{{ 'pages.payments.providers.landing.paymentCompletedtable.operationNumber' | translate }}
+					</th>
+					<td mat-cell *matCellDef="let payment">
+						{{ payment.id }}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="state">
+					<th mat-header-cell *matHeaderCellDef>
+						{{ 'pages.payments.providers.landing.paymentCompletedtable.state' | translate }}
+					</th>
+					<td mat-cell *matCellDef="let payment">
+						<span
+							*ngIf="payment.state === 'APPROVED'"
+							class="provider-landing__status-successful">
+							{{ 'pages.payments.providers.landing.paymentCompletedtable.successful' | translate }}
+						</span>
+						<span
+							*ngIf="payment.state === 'INPROGRESS'"
+							class="provider-landing__status-processing">
+							{{ 'pages.payments.providers.landing.paymentCompletedtable.processing' | translate }}
+						</span>
+						<span
+							*ngIf="payment.state === 'DENIED'"
+							class="provider-landing__status-rejected">
+							{{ 'pages.payments.providers.landing.paymentCompletedtable.rejected' | translate }}
+						</span>
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="actions">
+					<th mat-header-cell *matHeaderCellDef></th>
+					<td mat-cell *matCellDef="let payment;let cellIndex = index">
+						<div class="provider-landing__icons-section">
+							<mcy-icon-button
+								[id]="'provider-landing__download-button-' + cellIndex"
+								class="provider-landing__icon-actions"
+								(handleClick)="downloadReceipt(payment)"
+								[ngClass]="{
+									'provider-landing__icon-actions--disabled': payment.state !== 'APPROVED'
+								}">
+								download_outline
+							</mcy-icon-button>
+							<mcy-icon-button
+								[id]="'provider-landing__show-details-button-' + cellIndex"
+								(handleClick)="showDetails(payment)"
+								class="provider-landing__icon-actions">
+								comprovante_outline
+							</mcy-icon-button>
+						</div>
+					</td>
+				</ng-container>
+
+				<tr
+					mat-header-row
+					*matHeaderRowDef="displayedColumns"
+				>
+				<tr
+					mat-row
+					*matRowDef="let row; columns: displayedColumns;"
+				>
+				</tr>
+			</table>
+			<mcy-contextual-button
+				[id]="'provider-landing__show-more-button'"
+				class="provider-landing__show-more"
+				*ngIf="providerTransfers.length > paymentsListTableSource.data.length"
+				(handleClick)="incrementPagination()"
+				[sufixIcon]="'seta_baixo'"
+			>
+				<span class="provider-landing__show-more-label">
+					{{ 'pages.transfers.landing.more' | translate }}
+				</span>
+			</mcy-contextual-button>
+		</div>
+		<mcy-loading-data-error
+			(handleOnRetry)="onRetryProviderPayments()"
+			[displayRetry]="true"
+			*ngIf="providerPaymentState.hasProviderPaymentErrors && !providerPaymentState.loading"
+		></mcy-loading-data-error>
+		<div class="provider-landing__spinner-container" *ngIf="providerPaymentState.loading">
+			<voxel-loading-circle [showLoading]="true" size="large"></voxel-loading-circle>
+		</div>
+	</div>
+
+</div>
+

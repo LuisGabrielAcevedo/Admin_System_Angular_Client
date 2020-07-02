@@ -1,0 +1,92 @@
+<div class="contact-delete">
+	<div>
+		<div class="contact-delete__subtitle-container">
+			<h2 class="contact-delete__subtitle">{{ 'pages.contacts.delete.message' | translate }}</h2>	
+		</div>
+		<div>
+			<div class="contact-delete__profile-image">
+				<mcy-profile-image 
+					[size]="'medium'" 
+					[name]="data.contactData.reference"
+					[category]="data.contactData.category"
+				></mcy-profile-image>
+			</div>
+			<div class="contact-delete__fields-container">
+				<h5 class="contact-delete__title-field">
+					{{ 'pages.contacts.delete.reference' | translate }}
+				</h5>
+				<span class="contact-delete__name-description">
+					{{ data.contactData.reference }}
+				</span>
+			</div>
+		</div>
+
+		<div class="contact-delete__fields-container">
+			<h5 class="contact-delete__title-field">
+				{{ 'pages.contacts.delete.name' | translate }}
+			</h5>
+			<span class="contact-delete__title-description">
+				{{ data.contactData.name }}
+			</span>
+		</div>
+
+		<div class="contact-delete__content-container">
+			<div class="contact-delete__content-item">
+				<div class="contact-delete__fields-container">
+					<h5 class="contact-delete__title-field">
+						{{ 'pages.contacts.delete.cuilt' | translate }}
+					</h5>
+					<span class="contact-delete__title-description">
+						{{ data.contactData.cuilt }}
+					</span>
+				</div>
+			</div>
+			<div class="contact-delete__content-item">
+				<div class="contact-delete__fields-container">
+					<h5 class="contact-delete__title-field">
+						{{ 'pages.contacts.delete.cbvu' | translate }}
+					</h5>
+					<span class="contact-delete__title-description">
+						{{ data.contactData.cbvu }}
+					</span>
+				</div>
+			</div>
+			<div class="contact-delete__content-item">
+				<div class="contact-delete__fields-container">
+					<h5 class="contact-delete__title-field">
+						{{ 'pages.contacts.delete.email' | translate }}
+					</h5>
+					<span class="contact-delete__title-description">
+						{{ data.contactData.email }}
+					</span>
+				</div>
+			</div>
+			<div class="contact-delete__content-item">
+				<div class="contact-delete__fields-container">
+					<h5 class="contact-delete__title-field">
+						{{ 'pages.contacts.delete.category' | translate }}
+					</h5>
+					<span class="contact-delete__title-description">
+						{{'pages.contacts.categories.' + data.contactData.category | translate}}
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="contact-delete__buttons-section">
+		<mcy-button 
+			(handleClick)="back()" 
+			[color]="'tertiary'"
+			[id]="'contact-delete__back-button'">
+			{{ 'pages.contacts.delete.back' | translate }}
+		</mcy-button>
+
+		<mcy-button 
+			[color]="'primary'" 
+			(handleClick)="removeContact()"
+			[id]="'contact-delete__confirmation-button'">
+			{{ 'pages.contacts.delete.confirmation' | translate }}
+		</mcy-button>
+	</div>
+</div>

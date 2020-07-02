@@ -1,0 +1,88 @@
+<div class="balance-detail">
+	<div class="balance-detail__header">
+		<div class="balance-detail__header__column">
+			<span>Cuenta corriente (ARS)</span>
+			<span class="balance-detail__special">023-738721/7</span>
+		</div>
+		<div class="balance-detail__header__column">
+			<span>CBU</span>
+			<span class="balance-detail__special">01234567564345690876321</span>
+		</div>
+	</div>
+	<div class="balance-detail__updated-message">
+		<mcy-icon class="balance-detail__icon">
+			informacao_outline
+		</mcy-icon>
+		<span class="balance-detail__updated-message__title">{{
+			'pages.accounts.balanceDetail.updatedAt' | translate
+		}}</span>
+		<span>14 FEB 2020 10:51</span>
+	</div>
+	<div class="balance-detail__data">
+		<div class="balance-detail__data__row">
+			<span>{{
+				'pages.accounts.balanceDetail.countableBalance' | translate
+			}}</span>
+			<span>79,08</span>
+		</div>
+		<div class="balance-detail__data__row">
+			<span>{{
+				'pages.accounts.balanceDetail.blockedForDebit' | translate
+			}}</span>
+			<span>20,00</span>
+		</div>
+		<div class="balance-detail__data__row">
+			<span class="balance-detail__special">{{
+				'pages.accounts.balanceDetail.movementsForTheDay' | translate
+			}}</span>
+			<span class="balance-detail__special">0,00</span>
+		</div>
+		<div class="balance-detail__data__row">
+			<span class="balance-detail__special">{{
+				'pages.accounts.balanceDetail.creditLimit' | translate
+			}}</span>
+			<span class="balance-detail__special">0,00</span>
+		</div>
+		<div class="balance-detail__data__row">
+			<span>{{ 'pages.accounts.balanceDetail.applications' | translate }}</span>
+			<span>0,00</span>
+		</div>
+		<div class="balance-detail__data__row">
+			<span class="balance-detail__special">{{
+				'pages.accounts.balanceDetail.availableBalance' | translate
+			}}</span>
+			<span class="balance-detail__special">59,08</span>
+		</div>
+		<div class="balance-detail__data__row">
+			<span>{{
+				'pages.accounts.balanceDetail.creditsOfTheDay' | translate
+			}}</span>
+			<span>0,00</span>
+		</div>
+		<div class="balance-detail__data__row">
+			<span>{{
+				'pages.accounts.balanceDetail.depositsToCompensate' | translate
+			}}</span>
+			<span>0,00</span>
+		</div>
+		<div class="balance-detail__data__row">
+			<span>{{
+				'pages.accounts.balanceDetail.operatingBalance' | translate
+			}}</span>
+			<span>79,08</span>
+		</div>
+	</div>
+	<mcy-sidenav-footer>
+		<div class="balance-detail__footer">
+			<mcy-button color="tertiary" class="balance-detail__button">{{
+				'pages.accounts.balanceDetail.downloadDetail' | translate
+			}}</mcy-button>
+			<mcy-button
+				color="primary"
+				class="balance-detail__button"
+				(click)="end()"
+				>{{ 'pages.accounts.balanceDetail.end' | translate }}</mcy-button
+			>
+		</div>
+	</mcy-sidenav-footer>
+</div>

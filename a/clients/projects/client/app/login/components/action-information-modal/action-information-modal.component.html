@@ -1,0 +1,32 @@
+<div class="action-information-modal">
+	<div class="action-information-modal__body">
+		<div class="action-information-modal__element">
+			<div class="action-information-modal__icon-container">
+				<mcy-icon class="action-information-modal__icon">{{icon}}</mcy-icon>
+			</div>
+		</div>
+		<div class="action-information-modal__element">
+			<span class="action-information-modal__element-title">{{title}}</span>
+		</div>
+		<div class="action-information-modal__element">
+			<div class="action-information-modal__element-text">{{message}}</div>
+		</div>
+	</div>
+	<div class="action-information-modal__footer">
+		<mcy-button
+			(handleClick)="onGoBackButton()"
+			[id]="'action-information-modal__go-back-button'"
+			*ngIf="goBackLabel"
+			[color]="'tertiary'"
+			class="action-information-modal__go-back-button"
+		>
+		{{ goBackLabel }}
+		</mcy-button>
+		<mcy-button
+			(handleClick)="onActionButton()"
+			[id]="'action-information-modal__action-button'"
+		>
+		{{ mainActionLabel }}
+		</mcy-button>
+	</div>
+</div>

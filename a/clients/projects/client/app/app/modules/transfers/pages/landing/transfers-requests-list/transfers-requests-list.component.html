@@ -1,0 +1,39 @@
+<div class="transfers-request-list">
+	<div class="transfers-request-list__title-container">
+		<span class="transfers-request-list__length">
+			{{ totalRequest }}
+		</span>
+		<span class="transfers-request-list__title">
+			{{ 'pages.transfers.landing.requests' | translate }}
+		</span>
+	</div>
+	<span class="transfers-request-list__subtitle">
+		{{ 'pages.transfers.landing.transferSignaturePending' | translate }}
+	</span>
+	<div
+		class="transfers-request-list__no-message"
+		*ngIf="!totalRequest">
+		<mcy-no-data-message
+			[message]="'pages.transfers.landing.emptyRequestsMessage' | translate">
+		</mcy-no-data-message>
+	</div>
+	<div *ngIf="totalRequest">
+		<mcy-requests-list
+			[selectedRequests]="selectedRequests"
+			(resetSelection)="resetSelection()"
+			(selectRequest)="select($event)"
+			[requests]="filteredRequestBySizePage"
+			(actionRedirect)="goTo($event)"
+			[loading]="loading"></mcy-requests-list>
+		<div class="transfers-request-list__show-more">
+			<mcy-contextual-button
+				*ngIf="totalRequest"
+				sufixIcon="seta_direita"
+				[sufixIconSize]="'16px'"
+				[id]="'transfers-request-list__requests-redirect'"
+				(handleClick)="goToRequestsLanging()">
+				{{ 'pages.transfers.landing.all' | translate }}
+			</mcy-contextual-button>
+		</div>
+	</div>
+</div>

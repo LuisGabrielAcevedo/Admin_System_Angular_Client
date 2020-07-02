@@ -1,0 +1,14 @@
+@import 'variables';
+@import 'mixins';
+
+.contact-search-form {
+	
+	&__form {
+		display: flex;
+	}
+
+	&__keyword-input {
+		width: 100%;
+		padding: 0 $spacing-M 0 0;
+	}
+}

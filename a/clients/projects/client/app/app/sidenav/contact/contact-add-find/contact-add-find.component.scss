@@ -1,0 +1,35 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.contact-add-find {
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	justify-content: space-between;
+
+	&__main-section {
+		display: block;
+		margin-top: $spacing-M;
+	}
+
+	&__header {
+		border-bottom: 1px solid $border-color-primary;
+		width: 100%;
+		padding-bottom: $spacing-L;
+	}
+
+	&__header-title {
+		@include font-primary-semibold();
+	}
+
+	&__header-icon {
+		@include font-primary-semibold();
+		position: relative;
+		top: 1px;
+	}
+
+	&__buttons-section {
+		display: flex;
+		justify-content: flex-end;
+	}
+}

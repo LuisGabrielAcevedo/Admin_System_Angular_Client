@@ -1,0 +1,107 @@
+<div class="bind-user-form">
+	<div class="bind-user-form__content">
+		<div class="bind-user-form__header">
+			<span class="bind-user-form__header-title">{{ 'sidenav.bindUser.form.title' | translate}}</span>
+		</div>
+		<form [formGroup]="bindUserForm">
+			<div class="bind-user-form__row">
+				<div class="bind-user-form__document-type-select-container">
+					<mcy-select
+						[label]="'sidenav.bindUser.form.docType' | translate"
+						[data]="documentTypesOptions"
+						[id]="'bind-user-form__document-type-select'"
+						formControlName="documentType"
+					></mcy-select>
+				</div>
+				<div class="bind-user-form__document-number-input-container">
+					<mcy-input
+						[label]="'sidenav.bindUser.form.documentNumberLabel' | translate"
+						[id]="'bind-user-form__document-number-input'"
+						[validators]="documentNumberValidators"
+						class="bind-user-form__document-number-input"
+						formControlName="documentNumber"
+						[required]="true"
+					></mcy-input>
+				</div>
+			</div>
+			<div class="bind-user-form__row">
+				<mcy-input
+					class="bind-user-form__form-input bind-user-form__form-input-name"
+					[id]="'bind-user-form__signup-form-input-name'"
+					formControlName="name"
+					[label]="'sidenav.bindUser.form.nameInput' | translate"
+					[validators]="nameValidators"
+					[required]="true"
+				></mcy-input>
+				<mcy-input
+					class="bind-user-form__form-input"
+					[id]="'bind-user-form__signup-form-input-lastname'"
+					formControlName="lastName"
+					[label]="'sidenav.bindUser.form.lastNameInput' | translate"
+					[validators]="lastNameValidators"
+					[required]="true"
+				></mcy-input>
+			</div>
+			<div class="bind-user-form__row">
+				<mcy-input
+						class="bind-user-form__form-input"
+						formControlName="email"
+						[id]="'bind-user-form__signup-form-input-email'"
+						[label]="'sidenav.bindUser.form.emailInput' | translate"
+						[validators]="emailValidators"
+						[required]="true"
+					></mcy-input>
+			</div>
+			<div class="bind-user-form__row">
+				<label id="bind-user-form__radium-label" class="bind-user-form__header-title">
+					{{ 'sidenav.bindUser.form.radioButtonTitle' | translate}} <span class="bind-user-form__required-icon"> * </span>
+				</label>
+			</div>
+			<div class="bind-user-form__row">
+					<voxel-radio-button-group
+  					aria-labelledby="bind-user-form__radium-label"
+					 	class="bind-user-form__radio-group"
+					 	formControlName="roleType"
+					 	required="true"
+  				>
+						<voxel-radio-button [value]="roles.ADMIN" [radioId]="'bind-user__radio-admin'" *ngIf="hasAdminPermissions">
+							{{'sidenav.bindUser.form.radioAdminRol' | translate}}
+						</voxel-radio-button>
+						<voxel-radio-button [value]="roles.OPERATOR" [radioId]="'bind-user__radio-operator'">
+							{{'sidenav.bindUser.form.radioOperatorRol' | translate}}
+						</voxel-radio-button>
+						<voxel-radio-button [value]="roles.CONSULTANT" [radioId]="'bind-user__radio-consultant'">
+							{{'sidenav.bindUser.form.radioConsultantRol' | translate}}
+						</voxel-radio-button>
+					</voxel-radio-button-group>
+			</div>
+		</form>
+	</div>
+	<div class="bind-user-form__required-message">
+		<span class="bind-user-form__required-message-text">
+			<span class="bind-user-form__required-icon">*</span>
+			{{'sidenav.bindUser.form.inputRequiredText' | translate}}
+		</span>
+		<div
+			class="bind-user-form__divider"
+		></div>
+	</div>
+	<div class="bind-user-form__button-container">
+		<mcy-button
+				class="bind-user-form__button-return"
+				[color]="'tertiary'"
+				(handleClick)="cancel()"
+				[id]="'bind-user-form__cancel-button'">
+				{{'sidenav.bindUser.form.formReturnButton' | translate}}
+		</mcy-button>
+		<mcy-button
+				class="bind-user-form__button"
+				[color]="'primary'"
+				[id]="'bind-user-form__continue-button'"
+				[disabled]="!bindUserForm.valid"
+				(handleClick)="startContinueProcess()">
+				{{'sidenav.bindUser.form.continueButton' | translate}}
+		</mcy-button>
+	</div>
+</div>
+

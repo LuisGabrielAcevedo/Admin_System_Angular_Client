@@ -1,0 +1,19 @@
+@import 'variables';
+
+.accounts-movements-list {
+	padding: $spacing-XL 0;
+	
+    &__loading {
+        display: flex;
+        justify-content: center;
+	}
+	
+    &__icon{
+        color: $icon-color-septenary;
+        font-size: 24px;
+	}
+	
+	&__icon-column {
+		width: 40px;
+	}
+}

@@ -1,0 +1,47 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.context-button {
+	display: flex;
+	padding: 0;
+	align-items: center;
+	font-size: $font-size-M;
+	color: $text-color-link-light;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	cursor: pointer;
+
+	&--bold {
+		@include font-primary-bold();
+	}
+
+	&--extrabold {
+		@include font-primary-extrabold();
+	}
+
+	&:hover {
+		background-color: transparent;
+		color: $text-color-link-hover;
+	}
+
+	&__prefix-icon {
+		position: relative;
+		padding: 0 $spacing-XXS 0 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__sufix-icon {
+		position: relative;
+		padding: 0 0 0 $spacing-XXS;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&[disabled] {
+		color: $text-color-disabled;
+	}
+}

@@ -1,0 +1,61 @@
+<div class="positive-validation">
+	<div [hidden]="isLoading" class="positive-validation__main">
+		<div class="positive-validation__spinner-container" *ngIf="isLoading">
+			<voxel-loading-circle [showLoading]="true" size="large"></voxel-loading-circle>
+		</div>
+		<div class="positive-validation__main-content" [hidden]="isLoading">
+			<span 
+				[innerHTML]="'sidenav.positiveValidation.description' | translate" 
+				class="positive-validation__description"
+			></span>
+			<div class="positive-validation__open-wpp-container">
+				<mcy-button
+					[color]="'primary2'"
+					[id]="'positive-validation__open-wpp-button'"
+					(handleClick)="openNewMessage()"
+				>
+					{{ 'sidenav.positiveValidation.openWhatsapp' | translate }}
+				</mcy-button>
+			</div>
+			<form [formGroup]="positiveValidationForm" class="positive-validation__form">
+				<p class="positive-validation__code-description">
+					{{ 'sidenav.positiveValidation.enterCode' | translate }}
+				</p>
+				<div class="positive-validation__code-container">
+					<mcy-input
+						formControlName="code"
+						[label]="'sidenav.positiveValidation.code' | translate"
+						[validators]="codeValidators"
+						[id]="'positive-validation__code-input'"
+						[required]="true"
+					>
+					</mcy-input>
+				</div>
+			</form>
+		</div>
+			<div class="positive-validation__form-actions">
+				<span class="positive-validation__form-required">
+					<span class="positive-validation__form-required-icon">* </span>
+					{{ 'sidenav.positiveValidation.requiredFields' | translate }}
+				</span>
+				<div class="positive-validation__form-actions-row">
+					<mcy-button
+						[id]="'positive-validation__form-actions-back'"
+						[color]="'tertiary'"
+						[disabled]="isLoading"
+						(handleClick)="onPreviousStepClick()"
+					>
+						{{ 'sidenav.positiveValidation.back' | translate }}
+					</mcy-button>
+					<mcy-button
+						[id]="'positive-validation__form-actions-continue'"
+						[color]="'primary'"
+						[disabled]="!positiveValidationForm.valid || isLoading"
+						(handleClick)="onConfirm()"
+					>
+						{{ 'sidenav.positiveValidation.continue' | translate }}
+					</mcy-button>
+				</div>
+			</div>
+	</div>
+</div>

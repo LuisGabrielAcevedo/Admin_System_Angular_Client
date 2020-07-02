@@ -1,0 +1,43 @@
+@import 'variables';
+@import 'mixins';
+
+.requests-landing {
+	&__content {
+		padding-bottom: $spacing-L;
+	}
+	&__more-button-container {
+		display: flex;
+		justify-content: center;
+	}
+
+	&__box-title {
+		padding: $spacing-M $spacing-XL;
+		margin-top: $spacing-M;
+		margin-bottom: $spacing-M;
+	}
+	&__box-sub-title {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__title {
+		@include font-primary-regular();
+		color: $text-color-disabled;
+		font-size: $font-size-L;
+	}
+
+	&__sub-title {
+		@include font-primary-regular();
+		font-size: $font-size-M;
+		display: flex;
+		color: $text-color-ninth;
+	}
+
+	&__total-services-soon-expired {
+		@include font-primary-semibold();
+		color: $text-color-octanary;
+		font-size: $font-size-XL;
+		margin-right: $spacing-S;
+	}
+}

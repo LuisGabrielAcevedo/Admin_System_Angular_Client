@@ -1,0 +1,229 @@
+<mat-vertical-stepper
+	#stepper
+	linear="true"
+	disableRipple="false"
+	class="vertical-stepper">
+	<ng-template matStepperIcon="edit">
+		<mcy-icon>check</mcy-icon>
+	</ng-template>
+	<mat-step
+		#step1
+		[stepControl]="serviceStepForm"
+		class="step1"
+		editable="false">
+		<ng-template matStepLabel>
+			<div
+				class="vertical-stepper__label"
+				fxLayout="row"
+				fxLayoutAlign="center center">
+				<div>
+					<p>Buscar servicio a pagar :</p>
+					<p *ngIf="isStep1CompletedLabel()">
+						Nombre de la empresa:
+						<span>{{ serviceStepForm.get('service')?.value.description }}</span>
+					</p>
+				</div>
+				<button
+					mcy-icon-button
+					*ngIf="isStep1Edit()"
+					(click)="step1.editable = true; stepper.selectedIndex = 0">
+					<mcy-icon>editar_outline</mcy-icon>
+				</button>
+			</div>
+		</ng-template>
+		<form [formGroup]="serviceStepForm" fxLayout="column">
+			<mat-form-field appearance="outline" floatLabel="always" color="accent">
+				<mat-label>Rubro</mat-label>
+				<mat-select
+					formControlName="category"
+					[compareWith]="compareCategories">
+					<mat-option
+						*ngFor="let option of categories"
+						[value]="option"
+						>{{ option.description }}</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field appearance="outline" floatLabel="always" color="accent">
+				<mat-label>Nombre de la empresa</mat-label>
+				<input
+					#companyAutocomplete
+					type="text"
+					matInput
+					formControlName="service"
+					[matAutocomplete]="auto"/>
+				<mat-hint>{{ displayServiceHint() }}</mat-hint>
+				<mat-autocomplete
+					#auto="matAutocomplete"
+					[displayWith]="displayServiceDescription">
+					<mat-option
+						*ngFor="let option of filteredServices | async"
+						[value]="option">
+						{{ option.description }}
+					</mat-option>
+				</mat-autocomplete>
+			</mat-form-field>
+		</form>
+		<div>
+			<button
+				class="vertical-stepper__button"
+				mat-raised-button
+				color="primary"
+				[disabled]="!serviceStepForm.valid"
+				(click)="step1.editable = false; stepper.next()">
+				Continuar
+			</button>
+		</div>
+	</mat-step>
+	<mat-step
+		#step2
+		[stepControl]="debtId"
+		class="step2"
+		editable="false">
+		<ng-template matStepLabel>
+			<div
+				class="vertical-stepper__label"
+				fxLayout="row"
+				fxLayoutAlign="center center">
+				<div>
+					<p>Ingresar número de referencia de pago</p>
+					<p
+						*ngIf="isStep2CompletedLabel()">
+						Número de pago electrónico: <span>{{ debtId.value }}</span>
+					</p>
+				</div>
+				<button
+					mcy-icon-button
+					*ngIf="isStep2Edit()"
+					(click)="step2.editable = true; stepper.selectedIndex = 1">
+					<mcy-icon>editar_outline</mcy-icon>
+				</button>
+			</div>
+		</ng-template>
+		<div fxLayout="column">
+			<mat-form-field appearance="outline" floatLabel="always">
+				<mat-label>Número de pago electrónico</mat-label>
+				<input
+					id="payment-number"
+					matInput
+					maxlength="30"
+					mcyOnlyNumbers
+					type="text"
+					[formControl]="debtId" />
+				<mat-hint>{{displayDebtHint()}}</mat-hint>
+				<mat-error *ngIf="!debtId.valid">{{displayDebtIdErrors()}}</mat-error>
+			</mat-form-field>
+		</div>
+		<div>
+			<button
+				class="vertical-stepper__button"
+				mat-raised-button
+				color="primary"
+				(click)="step2.editable = false; stepper.next()"
+				[disabled]="!debtId.valid || !debt">
+				Continuar
+			</button>
+			<button
+				class="vertical-stepper__button"
+				mat-stroked-button
+				color="primary"
+				(click)="step1.editable = true; stepper.previous()">
+				Volver
+			</button>
+		</div>
+	</mat-step>
+	<mat-step [stepControl]="paymentStepForm">
+		<ng-template matStepLabel
+			><p class="vertical-stepper__label">
+				Confirmar monto y elegir cuenta para pagar
+			</p>
+		</ng-template>
+		<div class="payment-step">
+			<div *ngIf="unCoverAmountDialog" fxLayout="column" class="payment-step__un-cover-amount">
+				<mcy-sidenav-feedback
+			   		[message]="messages.unCoverAmountPay"
+				></mcy-sidenav-feedback>
+				<button
+					class="payment-step__button"
+					mat-raised-button color="primary"
+					(click)="nextStep()">
+					Aceptar
+				</button>
+				<button
+					class="payment-step__button"
+					mat-stroked-button
+					(click)="cancel()">
+					Cancelar
+				</button>
+			</div>
+			<form [formGroup]="paymentStepForm" fxLayout="column">
+				<div fxLayout="row">
+					<mat-form-field
+						class="vertical-stepper__service-description"
+						fxFlex="50"
+						appearance="outline"
+						floatLabel="always">
+							<mat-label>Servicio</mat-label>
+							<input matInput formControlName="description" type="text" />
+					</mat-form-field>
+					<mat-form-field fxFlex="50" appearance="outline" floatLabel="always">
+						<mat-label>Fecha del próximo vencimiento</mat-label>
+						<input matInput formControlName="expirationDate" type="text" />
+					</mat-form-field>
+				</div>
+				<p class="payment-step__label">Monto a pagar</p>
+				<voxel-radio-button-group
+					formControlName="amountType"
+					class="payment-step__amount-type">
+					<div fxLayout="row">
+						<voxel-radio-button [disabled]="debt && debt.usdPayment" fxFlex="20" value="TOTAL">
+							Total
+						</voxel-radio-button>
+						<voxel-radio-button fxFlex="30" value="PARTIAL">
+							Otro importe
+						</voxel-radio-button>
+					</div>
+				</voxel-radio-button-group>
+				<mcy-amount-input
+					[label]="'sidenav.payments.totalAmount' | translate"
+					formControlName="amount"
+					[currency]="debt?.currency.symbol"
+				></mcy-amount-input>
+				<p *ngIf="debt?.usdPayment" class="payment-step__label">
+					Por este medio solo podés cancelar tu deuda con tu cuenta en pesos.
+					Para saber la cotización podés llamar al 0810-345-4000 o tu oficial de cuenta
+				</p>
+				<mcy-amount-input
+					[label]="'sidenav.payments.payableAmount' | translate"
+					formControlName="otherAmount"
+					*ngIf="isOtherAmount()"
+					[validators]="otherAmountValidators"
+					[currency]="currencySimbol"
+				></mcy-amount-input>
+				<mcy-account-select
+					[label]="'common.originAccount' | translate"
+					formControlName="account"
+					required="true"
+					[accounts]="accounts"
+				></mcy-account-select>
+			</form>
+			<div>
+				<button
+					class="vertical-stepper__button"
+					mat-raised-button
+					color="primary"
+					[disabled]="!paymentStepForm.valid"
+					(click)="continue()">
+					Continuar
+				</button>
+				<button
+					*ngIf="!data?.edit"
+					class="vertical-stepper__button"
+					mat-stroked-button
+					color="primary"
+					(click)="step2.editable = true; stepper.previous()">
+					Volver
+				</button>
+			</div>
+		</div>
+	</mat-step>
+</mat-vertical-stepper>

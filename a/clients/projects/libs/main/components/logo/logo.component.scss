@@ -1,0 +1,16 @@
+@import 'variables';
+@import 'mixins';
+
+.logo {
+	display: flex;
+	align-items: flex-end;
+
+	&__logo-image {
+		width: 51px;
+	}
+
+	&__company-logo {
+		padding: 0 0 $spacing-XS $spacing-L;
+	}
+
+}

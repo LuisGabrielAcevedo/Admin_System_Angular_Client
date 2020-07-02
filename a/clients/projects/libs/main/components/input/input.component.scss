@@ -1,0 +1,44 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.general-input {
+	display: flex;
+	flex-direction: column;
+
+	&__hint {
+		color: $text-color-secondary;
+		font-size: $font-size-XXS;
+		padding: $spacing-XXXS $spacing-XS;
+	}
+
+	&__required {
+		color: $icon-color-brand;
+	}
+
+	&__error-label {
+		font-size: $font-size-XXS;
+		color: $text-color-error;
+		margin-left: $spacing-XS;
+		@include font-primary-regular();
+	}
+
+	&__icon {
+		font-size: 24px;
+		color: $icon-color-brand;
+	}
+
+	&__prefix-icon {
+		display: flex;
+		font-size: 24px;
+		color: $icon-color-brand;
+		margin: 0 16px 0 0;
+	}
+
+	&__password-icon {
+		font-size: 24px;
+		cursor: pointer;
+		user-select: none;
+		display: block;
+		max-height: 24px;
+	}
+}

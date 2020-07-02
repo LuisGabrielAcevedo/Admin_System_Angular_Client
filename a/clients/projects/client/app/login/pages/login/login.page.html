@@ -1,0 +1,69 @@
+<mcy-landing-layout>
+	<section class="login-page">
+		<div *ngIf="isLoading" class="login-page__loading-container">
+			<voxel-loading-circle
+				[showLoading]="true" 
+				size="large"
+			></voxel-loading-circle>
+		</div>
+		<div class="login-page__form" [hidden]="isLoading">
+				<header>
+					<h1 class="login-page__title">{{ 'pages.login.title' | translate }}</h1>
+				</header>
+				<form [formGroup]="loginForm" id="login-page__form">
+					<div class="login-page__user-input">
+						<mcy-input
+							formControlName="user"
+							label="{{'pages.login.form.user' | translate}}"
+							[validators]="userValidators"
+							[id]="'login-page__user-input'"
+						>
+						</mcy-input>
+					</div>
+					<div class="login-page__password-input">
+						<mcy-input
+							[type]="'password'"
+							formControlName="password"
+							label="{{ 'pages.login.form.password' | translate }}"
+							[validators]="passwordValidators"
+							[id]="'login-page__password-input'"
+						>
+						</mcy-input>
+					</div>
+					<div class="login-page__form-actions">
+						<mcy-button
+							[disabled]="!loginForm.valid"
+							[color]="'primary2'"
+							[submit]="true"
+							[size]="'big'"
+							(handleClick)="submitForm()"
+							[id]="'login-page__submit-button'"
+						>
+							{{ 'pages.login.form.signIn' | translate }}
+						</mcy-button>
+						<mcy-contextual-button 
+							(handleClick)="onForgotCredentialsClick()"
+							[id]="'login-page__credentials-recover-button'" >
+								{{ 'pages.login.form.forgotCredentials' | translate }}
+						</mcy-contextual-button>
+					</div>
+				</form>
+				<mcy-login-error-message
+					*ngIf="error"
+					[title]="'pages.login.error.title' | translate"
+					[message]="error.description"
+					(handleCloseClick)="onErrorCloseClick()"
+				></mcy-login-error-message>
+		</div>
+		<div class="login-page__register" [hidden]="isLoading">
+			<h5 class="login-page__register-title">{{ 'pages.login.register.title' | translate }}</h5>
+			<span class="login-page__register-description">{{ 'pages.login.register.description' | translate }}</span>
+			<mcy-button
+				(handleClick)="onRegisterClick()"
+				[id]="'login-page__register-button'"
+			>
+				{{ 'pages.login.register.action' | translate }}
+			</mcy-button>
+		</div>
+	</section>
+</mcy-landing-layout>

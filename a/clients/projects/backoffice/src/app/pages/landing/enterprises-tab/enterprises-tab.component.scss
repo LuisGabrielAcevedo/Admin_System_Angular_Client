@@ -1,0 +1,35 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.enterprises-tab {
+
+	&__header {
+		margin: $spacing-M 0 $spacing-L 0;
+	}
+
+	&__search-form {
+		display: flex;
+		align-items: center;
+		width: 100%;
+	}
+
+	&__search-form-input {
+		padding: $spacing-XXS 0 0 0;
+		width: 100%;
+	}
+
+	&__search-form-button {
+		padding: 0 0 0 $spacing-XS;
+	}
+
+	&__empty-search-label {
+		@include font-primary-regular;
+		font-size: $font-size-S;
+	}
+
+	&__spinner-container {
+		display: flex;
+		justify-content: center;
+		margin: $spacing-M;
+	}
+}

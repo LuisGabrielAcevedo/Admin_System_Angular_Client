@@ -1,0 +1,23 @@
+@import 'variables';
+@import 'mixins';
+
+.welcome-panel {
+
+	&__image-description {
+		flex: 2;
+		margin: 0 0 0 100px;
+	}
+
+	&__image-description-title {
+		@include font-primary-bold();
+		color: $text-color-octanary;
+		margin: 0 0 $spacing-M 0;
+		font-size: $font-size-XXL;
+	}
+
+	&__image-description-content {
+		@include font-primary-regular();
+		color: $text-color-octanary;
+		font-size: $font-size-XL;
+	}
+}

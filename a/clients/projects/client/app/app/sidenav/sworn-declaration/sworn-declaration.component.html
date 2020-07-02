@@ -1,0 +1,26 @@
+<div class="sworn-declaration">
+	<div class="sworn-declaration__text-container">
+		<p class="sworn-declaration__text">
+			{{ swornDeclaration  }}
+		</p>
+	</div>
+
+	<div class="sworn-declaration__buttons-container">
+		<mcy-button
+			(handleClick)="back()"
+			[id]="'sworn-declaration__back-button'"
+			class="sworn-declaration__button"
+			[color]="'tertiary'">
+			{{ 'pages.transfers.thirdParty.amount.swornDeclarationBack' | translate }}
+		</mcy-button>
+
+		<mcy-button
+			[color]="'primary'"
+			[id]="'sworn-declaration__confirm-button'"
+			class="sworn-declaration__button"
+			(handleClick)="confirmSwornDeclaration()">
+			{{ 'pages.transfers.thirdParty.amount.swornDeclarationConfirm' | translate }}
+		</mcy-button>
+	</div>
+</div>
+

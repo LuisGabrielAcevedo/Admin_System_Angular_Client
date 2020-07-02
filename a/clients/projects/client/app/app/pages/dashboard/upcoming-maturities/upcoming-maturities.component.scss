@@ -1,0 +1,56 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.upcoming-maturities {
+	&__title {
+		@include font-primary-extrabold();
+		font-size: $font-size-XL;
+		margin: $spacing-S 0 $spacing-XL;
+	}
+
+	&__note {
+		@include font-primary-regular();
+		color: $text-color-processing;
+	}
+
+	&__show-more {
+		display: flex;
+		color: $text-color-link;
+		justify-content: center;
+		width: 100%;
+		margin-top: $spacing-XL;
+	}
+
+	&__show-more-label {
+		@include font-primary-extrabold();
+	}
+
+	&__total-label {
+		@include font-primary-regular();
+		color: $text-color-secondary;
+		font-size: $font-size-S;
+		margin-right: $spacing-XXXS;
+	}
+
+	&__total-value {
+		@include font-primary-regular();
+		color: $text-color-partial;
+		font-size: $font-size-L;
+		margin-right: $spacing-L;
+	}
+
+	&__cards {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	&__card {
+		flex-basis: 33%;
+	}
+
+	&__empty {
+		display: flex;
+		margin-top: $spacing-XXL;
+	}
+}

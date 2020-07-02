@@ -1,0 +1,74 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.notification-details {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+
+	&__header {
+		display: flex;
+		margin: $spacing-XS 0px $spacing-XS 0px;
+		justify-content: space-between;
+	}
+
+	&__mark-as-read-link {	
+		@include font-primary-bold();
+		font-size: $font-size-S;	
+		line-height: 1.5;	
+
+		&--active {
+			color: $text-color-link-hover;
+			cursor: pointer;
+		}
+
+		&--disabled {
+			color: $text-color-secondary;
+			pointer-events: none;
+		}
+	}
+
+	&__body {
+		margin-top: $spacing-XS;
+	}
+
+	&__header-notification-number {
+		width: 18px;
+		height: 18px;
+		border-radius: $radius-circle;
+		background-color: $background-color-partially;  
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: $text-color-high-contrast;
+		font-size: $font-size-XXXS;
+	}
+
+	&__header-notification-indicator {
+		display: flex;
+		align-items: center;
+	}
+
+	&__header-notification-title {
+		@include font-primary-bold();
+		font-size: $font-size-S;
+		margin-left: $spacing-XXS;
+	}
+
+	&__body-date {
+		@include font-primary-semibold();
+		font-size: $font-size-S;
+		color: $text-color-secondary;		
+	}
+
+	&__footer {
+		display: flex;
+		justify-content: center;
+		margin-top: $spacing-XS;
+	}
+
+	&__footer-view-more {
+		display: flex;
+		justify-content: center;
+	}
+}

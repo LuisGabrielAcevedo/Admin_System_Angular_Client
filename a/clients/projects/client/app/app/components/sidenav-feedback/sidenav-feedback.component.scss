@@ -1,0 +1,10 @@
+@import 'variables';
+
+.sidenav-feedback {
+	text-align: center;
+	margin-top: $spacing-XL;
+	&__icon {
+		transform: scale(4);
+        margin: $spacing-XL;
+	}
+}

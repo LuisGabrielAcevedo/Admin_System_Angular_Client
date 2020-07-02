@@ -1,0 +1,78 @@
+@import "variables";
+@import "mixins";
+
+.accounts-summaries {
+	margin-bottom: 140px;
+	@include font-primary-regular();
+	font-size: $font-size-M;
+
+	&__text-detatil-account {
+		font-size: $font-size-L;
+	}
+
+	&__text-description-movement {
+		font-size: $font-size-XL;
+	}
+
+	&__special {
+		@include font-primary-bold();
+		font-size: $font-size-L;
+	}
+	&__header {
+		color: $text-color-disabled;
+		display: flex;
+		margin: $spacing-XL 0;
+
+	}
+
+	&__column {
+		flex: 5;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__icon {
+		font-size: 24px;
+		margin-right: $spacing-M;
+	}
+
+	&__data {
+		padding: $spacing-XS 0;
+	}
+
+	&__row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: $spacing-L 0;
+		padding-bottom: $spacing-L;
+		border-bottom: 1px solid $border-color-primary;
+	}
+	&__item {
+		display: flex;
+		align-items: center;
+	}
+
+	&__icon-content {
+		border-radius: $radius-circle;
+		border: 1px solid $border-color-quaternary;
+		height: 48px;
+		width: 48px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-right: $spacing-XL;
+	}
+
+	&__icon-document {
+		font-size: 24px;
+		color: $icon-color-quaternary;
+	}
+	&__footer {
+		display: flex;
+		justify-content: flex-end;
+	}
+	&__button {
+		margin-left: $spacing-L;
+	}
+}

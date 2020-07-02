@@ -1,0 +1,41 @@
+@import 'variables';
+
+.salary-payments-list {
+	padding: $spacing-M $spacing-XL;
+
+	&__loading {
+		display: flex;
+		justify-content: center;
+	}
+
+	&__icon {
+		color: $icon-color-tertiary;
+		font-size: 24px;
+	}
+
+	&__options-icon{
+		color: $icon-color-septenary;
+		font-size: 24px;
+
+		&--disabled {
+			color: $icon-color-disabled;
+			cursor: default;
+		}
+	}
+
+	&__status-successful {
+		color: $text-color-nonary;
+		font-weight: $font-weight-L;
+		font-size: $font-size-M;
+	}
+
+	&__status-rejected {
+		color: $text-color-denary;
+		font-weight: $font-weight-L;
+		font-size: $font-size-M;
+	}
+
+	&__icon-column {
+		width: 40px;
+	}
+}

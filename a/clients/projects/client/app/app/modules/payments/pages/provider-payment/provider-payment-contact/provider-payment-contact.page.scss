@@ -1,0 +1,77 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.provider-payment-contact {
+	
+	&__subtitle {
+		@include font-primary-bold();
+		font-size: $font-size-L;
+	}
+
+	&__primary-panel {
+		padding: 0 $spacing-XL;
+	}
+
+	&__contact-list {
+		width: 100%;
+		padding: $spacing-XL;
+	}
+
+	&__body {
+		display: flex;
+		padding: $spacing-M $spacing-L 0 $spacing-L;
+		height: 100%;
+	}
+
+	&__content {
+		width: 100%;
+		padding: 0 0 0 $spacing-L;
+	}
+
+	&__tab-content {
+		margin: $spacing-XL 0 0 0;
+	}
+
+	&__description {
+		padding: $spacing-L;
+	}
+
+	&__description-element {
+		@include font-primary-regular();
+		font-size: $font-size-M;
+		color: $text-color-primary;
+		line-height: 24px;
+	}
+
+	&__required-container {
+		margin-top: 100px;
+	}
+
+	&__required-text {
+		@include font-primary-regular();
+		color: $text-color-primary;
+		font-size: $font-size-XS;
+	}
+
+	&__required-symbol {
+		color: $icon-color-brand;
+	}
+
+	&__button {
+		padding-left: $spacing-L;
+	}
+
+	// CUSTOM MATERIAL REPLACE
+
+	.mat-tab-label.mat-ripple {
+		width: 50% !important;
+	}
+
+	.mat-ink-bar {
+		width: 50% !important;
+	}
+
+	.mat-tab-header-pagination {
+		display: none;
+	}
+}

@@ -1,0 +1,128 @@
+<div class="services-payment-confirm">
+	<mcy-primary-page-layout
+		(handleBack)="onCancel()"
+		[title]="'pages.payments.services.confirm.title' | translate"
+		[back]="'pages.payments.services.confirm.goBack' | translate">
+		<div actions>
+			<mcy-contextual-button sufixIcon="fechar" (click)="onCancel()">
+				{{'pages.payments.services.confirm.cancel' | translate}}
+			</mcy-contextual-button>
+		</div>
+		<div class="services-payment-confirm__panel" body>
+			<mcy-primary-panel-layout
+				[hasError]="servicePaymentState.hasServicePaymentErrors && !isSidenavOpen"
+				[isLoading]="servicePaymentState.loading && !isSidenavOpen"
+				(handleOnRetry)="onServicePaymentClick()"
+			>
+				<div class="services-payment-confirm__body" body>
+					<div class="services-payment-confirm__item-section">
+						<mcy-stepper-guidelines
+							class="services-payment-confirm__stepper-guidelines"
+							[nextGuideline]="true"
+							[selected]="true">
+						</mcy-stepper-guidelines>
+						<div class="services-payment-confirm__destination-container">
+							<h3 class="services-payment-confirm__section-title">
+								{{ 'pages.payments.services.confirm.destinationTitle' | translate }}
+							</h3>
+							<div class="services-payment-confirm__category-info">
+								<span class="services-payment-confirm__category-title">
+									{{lastServicePayment.category.description}}
+								</span>
+								<span class="services-payment-confirm__service">
+									{{ lastServicePayment.service.description }}
+								</span>
+								<span class="services-payment-confirm__service-id">
+									{{ lastServicePayment.debt.invoiceId }}
+								</span>
+							</div>
+								<mcy-icon
+									*ngIf="!servicePaymentState.newServicePaymentFormValue.fromDebts"
+									[id]="'services-payment-confirm__edit-service-icon'"
+									(click)="backToEditService()"
+									class="services-payment-confirm__edit-icon">
+									editar_outline
+								</mcy-icon>
+							</div>
+					</div>
+
+					<div class="services-payment-confirm__item-section">
+						<mcy-stepper-guidelines
+							class="services-payment-confirm__stepper-guidelines"
+							[previousGuideline]="true"
+							[nextGuideline]="true"
+							[selected]="true">
+						</mcy-stepper-guidelines>
+						<div class="services-payment-confirm__balance-container">
+							<h3 class="services-payment-confirm__section-title">
+								{{ 'pages.payments.services.confirm.balanceTitle' | translate }}
+							</h3>
+							<div class="services-payment-confirm__balance-info">
+								<span class="services-payment-confirm__description--bold">
+									{{lastServicePayment.debt.currency.symbol }} {{ lastServicePayment.amount | mcyAmount }}
+								</span>
+							</div>
+							<mcy-icon
+								[id]="'services-payment-confirm__edit-amount-icon'"
+								(click)="backToEditAmount()"
+								class="services-payment-confirm__edit-icon">
+								editar_outline
+							</mcy-icon>
+						</div>
+					</div>
+
+					<div class="services-payment-confirm__item-section">
+						<mcy-stepper-guidelines
+							class="services-payment-confirm__stepper-guidelines"
+							[previousGuideline]="true"
+							[selected]="true">
+						</mcy-stepper-guidelines>
+						<div class="services-payment-confirm__balance-container">
+							<h3 class="services-payment-confirm__section-title">
+								{{ 'pages.payments.services.confirm.sourceTitle' | translate }}
+							</h3>
+							<div class="services-payment-confirm__balance-info">
+								<span class="services-payment-confirm__account-number">
+									{{ formattedAccountType(lastServicePayment.account?.type) }} 
+									{{lastServicePayment.account?.number | mcyAccountNumber }}
+								</span>
+							</div>
+							<mcy-icon
+								[id]="'services-payment-confirm__edit-account-icon'"
+								(click)="backToEditAccount()"
+								class="services-payment-confirm__edit-icon">
+								editar_outline
+							</mcy-icon>
+						</div>
+					</div>
+				</div>
+
+				<div footer class="services-payment-confirm__buttons-section">
+					<mcy-button
+						class="services-payment-confirm__button"
+						[id]="'services-payment-confirm__back-button'"
+						(handleClick)="backToEditAccount()"
+						[color]="'tertiary'">
+						{{ 'pages.payments.services.confirm.back' | translate }}
+					</mcy-button>
+					<mcy-button
+						class="services-payment-confirm__button"
+						[id]="'services-payment-confirm__next-button'"
+						(handleClick)="onServicePaymentClick()"
+						[color]="'primary'">
+						{{ 'pages.payments.services.confirm.next' | translate }}
+					</mcy-button>
+				</div>
+
+				<div description class="services-payment-confirm__description-section">
+					<span class="services-payment-confirm__description--bold">
+						{{ 'pages.payments.services.confirm.descriptionTitle' | translate }}
+					</span>
+					<span class="services-payment-confirm__description">
+						 {{ 'pages.payments.services.confirm.description' | translate }}
+					</span>
+				</div>
+			</mcy-primary-panel-layout>
+		</div>
+	</mcy-primary-page-layout>
+</div>

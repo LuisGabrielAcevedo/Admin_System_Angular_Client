@@ -1,0 +1,18 @@
+@import 'variables';
+
+.icon-button {
+	display: inline-block;
+
+	&__button {
+		padding: 0;
+		cursor: pointer;
+		border: none;
+		outline: none;
+		background-color: inherit;
+		color: inherit;
+
+		&--readonly {
+			cursor: default;
+		}
+	}
+}

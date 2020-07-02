@@ -1,0 +1,70 @@
+<div class="credit-movement-detail">
+	<div class="credit-movement-detail__header">
+		<div class="credit-movement-detail__column" *ngIf="data.account.number">
+			<span>{{getAccountTypeTranslate()}} ({{data.account.currency.symbol}})</span>
+			<span class="credit-movement-detail__special">{{data.account.number | mcyAccountNumber}}</span>
+		</div>
+		<div class="credit-movement-detail__column" *ngIf="data.account.cbvu">
+			<span>{{'pages.accounts.accountMovementDetail.cbvu' | translate}}</span>
+			<span class="credit-movement-detail__special">{{data.account.cbvu}}</span>
+		</div>
+	</div>
+	<div class="credit-movement-detail__info">
+		<div class="credit-movement-detail__info-item" *ngIf="data.movement.accountingDate">
+			<span class="credit-movement-detail__label">{{ 'pages.accounts.accountMovementDetail.accountingDate' | translate }}</span>
+			<span class="credit-movement-detail__value">{{formatDate(data.movement.accountingDate)}}</span>
+		</div>
+		<div class="credit-movement-detail__info-item" *ngIf="data.movement.valueDate">
+			<span class="credit-movement-detail__label">{{ 'pages.accounts.accountMovementDetail.valueDate' | translate }}</span>
+			<span class="credit-movement-detail__value">{{formatDate(data.movement.valueDate)}}</span>
+		</div>
+		<div class="credit-movement-detail__info-item" *ngIf="data.movement.description">
+			<span class="credit-movement-detail__label">{{ 'pages.accounts.accountMovementDetail.description' | translate }}</span>
+			<span class="credit-movement-detail__value">{{data.movement.description}}</span>
+		</div>
+		<div class="credit-movement-detail__info-item" *ngIf="data.movement.referenceNumber">
+			<span class="credit-movement-detail__label">{{ 'pages.accounts.accountMovementDetail.referenceNumber' | translate }}</span>
+			<span class="credit-movement-detail__value">{{data.movement.referenceNumber}}</span>
+		</div>
+		<div class="credit-movement-detail__info-item" *ngIf="data.movement.originAccountHolder">
+			<span class="credit-movement-detail__label">{{ 'pages.accounts.accountMovementDetail.originAccountName' | translate }}</span>
+			<span class="credit-movement-detail__value">{{data.movement.originAccountHolder}}</span>
+		</div>
+		<div class="credit-movement-detail__info-item" *ngIf="data.movement.originAccountDocumentNumber">
+			<span class="credit-movement-detail__label">{{ 'pages.accounts.accountMovementDetail.originDocumentNumber' | translate }}</span>
+			<span class="credit-movement-detail__value">{{data.movement.originAccountDocumentNumber}}</span>
+		</div>
+		<div class="credit-movement-detail__info-item" *ngIf="data.movement.currency.symbol && data.movement.amount">
+			<span class="credit-movement-detail__label">{{ 'pages.accounts.accountMovementDetail.amount' | translate }}</span>
+			<span class="credit-movement-detail__value">{{data.movement.currency.symbol}} {{data.movement.amount | mcyAmount}}</span>
+		</div>
+		<div class="credit-movement-detail__info-item" *ngIf="data.movement.accountBranch.length">
+			<span class="credit-movement-detail__label">{{ 'pages.accounts.accountMovementDetail.branch' | translate }}</span>
+			<span class="credit-movement-detail__value">{{data.movement.accountBranch}}</span>
+		</div>
+		<div class="credit-movement-detail__info-item" *ngIf="data.movement.accountBranchAddress.length">
+			<span class="credit-movement-detail__label">{{ 'pages.accounts.accountMovementDetail.branchAddress' | translate }}</span>
+			<span class="credit-movement-detail__value">{{data.movement.accountBranchAddress}}</span>
+		</div>
+		<div class="credit-movement-detail__info-item" *ngIf="data.movement.conceptCode">
+			<span class="credit-movement-detail__label">{{ 'pages.accounts.accountMovementDetail.concept' | translate }}</span>
+			<span class="credit-movement-detail__value">{{ data.movement.conceptCode }}</span>
+		</div>
+		<div class="credit-movement-detail__info-item" *ngIf="data.movement.conceptCode">
+			<span class="credit-movement-detail__label">{{ 'pages.accounts.accountMovementDetail.conceptDescription' | translate }}</span>
+			<span class="credit-movement-detail__value">{{ getConceptName(data.movement.conceptCode) }}</span>
+		</div>
+		<div class="credit-movement-detail__info-item" *ngIf="data.movement.currency.symbol && data.movement.price">
+			<span class="credit-movement-detail__label">{{ 'pages.accounts.accountMovementDetail.quotation' | translate }}</span>
+			<span class="credit-movement-detail__value">{{data.movement.currency.symbol}} {{data.movement.price | mcyAmount}}</span>
+		</div>
+	</div>
+	<mcy-sidenav-footer>
+		<div class="credit-movement-detail__footer">
+			<mcy-button
+				color="primary"
+				(click)="close()"
+				>{{ 'pages.accounts.accountMovementDetail.end' | translate }}</mcy-button>
+		</div>
+	</mcy-sidenav-footer>
+</div>

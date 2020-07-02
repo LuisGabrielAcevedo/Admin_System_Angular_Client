@@ -1,0 +1,109 @@
+@import 'variables';
+@import 'mixins';
+
+.profile-image {
+	position: relative;
+	width: fit-content;
+
+	&__circle {
+		background-color: $background-color-quaternary;
+		border-radius: $radius-circle;
+		display: flex;
+		justify-content: center;
+		&--selected {
+			background-color: $background-color-tertiary;
+		}
+
+		&--small {
+			height: 40px;
+			width: 40px;
+		}
+
+		&--medium {
+			height: 72px;
+			width: 72px;
+		}
+
+		&--large {
+			height: 90px;
+			width: 90px;
+		}
+	}
+
+	&__contact-initials {
+		align-items: center;
+		color: $text-color-tertiary;
+		display: flex;
+		font-size: $font-size-XXL;
+		text-transform: uppercase;
+	}
+
+	&__contact-initials--small {
+		font-size: $font-size-L;
+	}
+
+	&__icon {
+		height: 100%;
+	}
+
+	&__icon--small {
+		font-size: $font-size-L;
+	}
+
+	&__fav-circle {
+		@include box-shadow;
+		background-color: $icon-color-secondary;
+		display: flex;
+		justify-content: center;
+		position: absolute;
+		border-radius: 50%;
+		width: 30px;
+		height: 30px;
+		align-items: center;
+		bottom: -4px;
+		right: -4px;
+		font-size: 20px;
+	}
+
+	&__fav-circle--small {
+		position: absolute;
+		width: 14px;
+		height: 14px;
+		font-size: 12px;
+		bottom: 2px;
+		right: 2px;
+	}
+
+	&__fav-circle--small:not(&__fav-circle--favorite) {
+		display: none;
+	}
+
+	&__circle--selected {
+		background-color: $background-color-quaternary !important;
+		border: solid 2px $border-color-octonary;
+	}
+
+	&__circle--service {
+		background-color: $contact-service-category-color;
+	}
+
+	&__circle--provider {
+		background-color: $contact-provider-category-color;
+	}
+
+	&__circle--client {
+		background-color: $contact-client-category-color;
+	}
+
+	&__circle--employee {
+		background-color: $contact-employee-category-color;
+	}
+
+	&__circle--others {
+		background-color: $contact-others-category-color;
+	}
+
+	&__circle--unknown {
+		background-color: $contact-unknown-category-color;
+	}
+}

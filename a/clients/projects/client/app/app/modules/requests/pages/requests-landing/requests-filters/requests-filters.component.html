@@ -1,0 +1,54 @@
+<div class="requests-filters">
+	<form [formGroup]="filterForm">
+		<div class="requests-filters__row">
+			<div class="requests-filters__search">
+				<mcy-input
+					[id]="'filter-form__search'"
+					type="text"
+					(handleChange)="filtersEmit()"
+					[label]="'pages.requests.filters.labelSearchField' | translate"
+					[maxLength]="searchFieldLength"
+					icon="busca_outline"
+					formControlName="searchField">
+				</mcy-input>
+			</div>
+			<div class="requests-filters__types">
+				<mcy-select
+					[id]="'filter-form__types'"
+					[data]="typeOptions"
+					(handleChange)="filtersEmit()"
+					[label]="'pages.requests.filters.labelTypesField' | translate"
+					formControlName="typeField">
+				</mcy-select>
+			</div>
+			<div class="requests-filters__states">
+				<mcy-select
+					[id]="'filter-form__states'"
+					[data]="statesOptions"
+					(handleChange)="filtersEmit()"
+					multiple= "true"
+					[label]="'pages.requests.filters.stateFieldLabel' | translate"
+					formControlName="stateField">
+				</mcy-select>
+			</div>
+			<div class="requests-filters__start-date">
+				<mcy-date
+					[id]="'filter-form__start-date'"
+					[label]="'pages.requests.filters.startFieldLabel' | translate"
+					icon="calendario_outline"
+					(handleChange)="filtersEmit()"
+					formControlName="startDate"
+				></mcy-date>
+			</div>
+			<div class="requests-filters__end-date">
+				<mcy-date
+					[id]="'filter-form__end-date'"
+					[label]="'pages.requests.filters.endFieldLabel' | translate"
+					icon="calendario_outline"
+					(handleChange)="filtersEmit()"
+					formControlName="endDate"
+				></mcy-date>
+			</div>
+		</div>
+	</form>
+</div>

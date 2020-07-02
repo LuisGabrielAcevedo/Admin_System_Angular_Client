@@ -1,0 +1,150 @@
+<div class="transfers-landing">
+	<mcy-primary-page-layout [title]="'pages.transfers.landing.title' | translate" [isLoading]="isLoading">
+		<div body class="transfers-landing__body">
+			<div class="transfers-landing__total-balance-header">
+				<mcy-total-balance
+					[totalBalanceByCurrency]="totalBalanceByCurrency"
+				></mcy-total-balance>
+				<mcy-button
+					*ngIf="hasWritePermission"
+					[id]="'transfers-landing__new-transfer-button'"
+					[disabled]="isLoadingAccounts || accountState.hasErrorAccounts"
+					(handleClick)="onNewTransferClick()">
+					{{ 'pages.transfers.landing.addTransfer' | translate }}
+				</mcy-button>
+			</div>
+
+			<mcy-transfers-requests-list></mcy-transfers-requests-list>
+
+			<div class="transfers-landing__transfers-completed">
+				<div class="transfers-landing__transfers-completed-title">
+					<span class="transfers-landing__transfers-completed-length">
+						{{ transferState.transfers.length }}
+					</span>
+					<span class="transfers-landing__transfers-completed-title-label">
+						{{ 'pages.transfers.landing.transfersCompleted' | translate }}
+					</span>
+				</div>
+				<span class="transfers-landing__transfers-completed-label">
+					{{ 'pages.transfers.landing.transfersCompletedDescription' | translate }}
+				</span>
+				<mcy-loading-data-error
+					(handleOnRetry)="onRetryTranfers()"
+					[displayRetry]="true"
+					*ngIf="transferState.hasTranferErrors"
+				></mcy-loading-data-error>
+				<mcy-no-data-message
+					*ngIf="!transfersListTableSource.data.length && !transferState.hasTranferErrors"
+					[message]="'pages.transfers.landing.emptyMessage' | translate">
+				</mcy-no-data-message>
+				<table mat-table
+					*ngIf="transfersListTableSource.data.length && !transferState.hasTranferErrors"
+					class="transfers-landing__table"
+					id="transfers-landing__table"
+					[dataSource]="transfersListTableSource">
+					<ng-container matColumnDef="name">
+						<th mat-header-cell *matHeaderCellDef>
+							{{ 'pages.transfers.landing.name' | translate }}
+						</th>
+						<td mat-cell *matCellDef="let transfer">
+							{{ transfer.destinationHolder }}
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="amount">
+						<th mat-header-cell *matHeaderCellDef>
+							{{ 'pages.transfers.landing.amount' | translate }}
+						</th>
+						<td mat-cell *matCellDef="let transfer">
+							{{ transfer.currency.symbol }} {{ transfer.amount | mcyAmount }}
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="date">
+						<th mat-header-cell *matHeaderCellDef>
+							{{ 'pages.transfers.landing.date' | translate }}
+						</th>
+						<td mat-cell *matCellDef="let transfer">
+							{{ formatDate(transfer.date) }}
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="operationNumber">
+						<th mat-header-cell *matHeaderCellDef>
+							{{ 'pages.transfers.landing.operationNumber' | translate }}
+						</th>
+						<td mat-cell *matCellDef="let transfer">
+							{{ transfer.id }}
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="state">
+						<th mat-header-cell *matHeaderCellDef>
+							{{ 'pages.transfers.landing.state' | translate }}
+						</th>
+						<td mat-cell *matCellDef="let transfer">
+							<span
+								*ngIf="transfer.state === 'APPROVED'"
+								class="transfers-landing__status-successful">
+								{{ 'pages.transfers.landing.successful' | translate }}
+							</span>
+							<span
+								*ngIf="transfer.state === 'INPROGRESS'"
+								class="transfers-landing__status-processing">
+								{{ 'pages.transfers.landing.processing' | translate }}
+							</span>
+							<span
+								*ngIf="transfer.state === 'DENIED'"
+								class="transfers-landing__status-rejected">
+								{{ 'pages.transfers.landing.rejected' | translate }}
+							</span>
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="actions">
+						<th mat-header-cell *matHeaderCellDef></th>
+						<td mat-cell *matCellDef="let transfer;let cellIndex = index">
+							<div class="transfers-landing__icons-section">
+								<mcy-icon-button
+									[id]="'transfers-landing__download-button-' + cellIndex"
+									class="transfers-landing__icon-actions"
+									(handleClick)="downloadReceipt(transfer)"
+									[ngClass]="{
+										'transfers-landing__icon-actions--disabled': transfer.state !== 'APPROVED'
+									}">
+									download_outline
+								</mcy-icon-button>
+								<mcy-icon-button
+									[id]="'transfers-landing__show-details-button-' + cellIndex"
+									(handleClick)="showDetails(transfer)"
+									class="transfers-landing__icon-actions">
+									comprovante_outline
+								</mcy-icon-button>
+							</div>
+						</td>
+					</ng-container>
+
+					<tr
+						mat-header-row
+						*matHeaderRowDef="displayedColumns"
+					>
+					<tr
+						mat-row
+						*matRowDef="let row; columns: displayedColumns;"
+					>
+					</tr>
+				</table>
+				<mcy-contextual-button
+					[id]="'transfers-landing__show-more-button'"
+					class="transfers-landing__show-more"
+					*ngIf="transferState.transfers.length > itemsPerPage"
+					(handleClick)="showMoreTransfersProcessed()"
+					[sufixIcon]="'seta_direita'"
+					[sufixIconSize]="'16px'"
+				>
+				{{ 'pages.transfers.landing.all' | translate }}
+				</mcy-contextual-button>
+			</div>
+		</div>
+	</mcy-primary-page-layout>
+</div>

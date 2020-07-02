@@ -1,0 +1,65 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.mat-button-toggle.mat-button-toggle-appearance-standard:first-child {
+    border: solid 1px $button-toggle-disabled-border-color !important;
+    border-top-left-radius: $radius-XXS !important;
+    border-bottom-left-radius: $radius-XXS !important;
+}
+
+.mat-button-toggle-group{
+    opacity: 1;
+    &[disabled=true] {
+        opacity: 0.3 !important;
+    }
+
+    &[aria-disabled=true] {
+        opacity: 0.3 !important;
+    }
+}
+
+.mat-button-toggle.mat-button-toggle-appearance-standard:last-child {
+    border-top-right-radius: $radius-XXS !important;
+    border-bottom-right-radius: $radius-XXS !important;
+}
+
+.mat-button-toggle.mat-button-toggle-appearance-standard {
+    border: solid 1px $button-toggle-disabled-border-color !important;
+    border-left: none !important;
+}
+
+.mat-button-toggle.mat-button-toggle-appearance-standard.mat-button-toggle-checked:first-child {
+    background-color: $button-toggle-background-color !important;
+    border: solid 1px $button-toggle-border-color !important;
+    border-top-left-radius: $radius-XXS !important;
+    border-bottom-left-radius: $radius-XXS !important;
+}
+
+.mat-button-toggle.mat-button-toggle-appearance-standard.mat-button-toggle-checked:last-child {
+    border-top-right-radius: $radius-XXS !important;
+    border-bottom-right-radius: $radius-XXS !important;
+}
+
+.mat-button-toggle.mat-button-toggle-appearance-standard.mat-button-toggle-checked {
+    background-color: $button-toggle-background-color !important;
+    border: solid 1px $button-toggle-border-color !important;
+    border-left: none !important;
+}
+
+.mat-button-toggle-label-content {
+    padding: 0 $spacing-M !important;
+    font-size: $font-size-S !important;
+    @include font-primary-bold();
+}
+
+.mat-button-toggle.mat-button-toggle-appearance-standard .mat-button-toggle-label-content { 
+    color: $text-color-secondary !important;
+}
+
+.mat-button-toggle.mat-button-toggle-appearance-standard.mat-button-toggle-checked .mat-button-toggle-label-content {
+    color: $text-color-high-contrast !important;
+}
+
+.mat-button-toggle-group-appearance-standard, .mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+    border: none !important;
+}

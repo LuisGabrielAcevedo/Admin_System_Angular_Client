@@ -1,0 +1,94 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.checks-list {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	&__main-info {
+		margin-bottom: $spacing-M;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	&__title {
+		@include font-primary-extrabold();
+		font-size: $font-size-XL;
+		margin: $spacing-S 0 $spacing-XL;
+	}
+
+	&__title-note {
+		@include font-primary-regular();
+		color: $text-color-processing;
+	}
+
+	&__subtitle {
+		@include font-primary-regular();
+		font-size: $font-size-S;
+		color: $text-color-tertiary;
+		margin: 0;
+	}
+
+	&__show-more {
+		display: flex;
+		color: $text-color-link;
+		justify-content: center;
+		padding-top: $spacing-S;
+		margin-top: $spacing-S;
+		border-top: 1px solid $border-color-secondary;
+		width: 100%;
+	}
+
+	&__show-more-label {
+		@include font-primary-extrabold();
+	}
+
+	&__amount {
+		@include font-primary-light();
+		color: $text-color-hyperlink;
+		font-size: $font-size-XXL;
+		line-height: 1.5;
+	}
+
+	&__list {
+		width: 100%;
+	}
+
+	&__table-header {
+		display: flex;
+		margin-bottom: $spacing-S;
+	}
+
+	&__table-title {
+		@include font-primary-regular();
+		color: $text-color-secondary;
+		font-size: $font-size-XS;
+		flex: 1;
+	}
+
+	&__table-cell {
+		@include font-primary-regular();
+		font-size: $font-size-S;
+		flex: 1;
+	}
+
+	&__bold {
+		@include font-primary-bold();
+	}
+
+	&__table-row {
+		display: flex;
+		margin-bottom: $spacing-L;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&__empty {
+		width: 100%;
+		margin: $spacing-M 0 $spacing-L;
+	}
+}

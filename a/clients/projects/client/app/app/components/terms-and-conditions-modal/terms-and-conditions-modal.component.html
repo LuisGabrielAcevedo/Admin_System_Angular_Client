@@ -1,0 +1,34 @@
+<div class="terms-and-conditions-modal">
+	<div class="terms-and-conditions-modal__header-container">
+		<h2 class="terms-and-conditions-modal__title">
+			{{ 'components.termsAndConditionsModal.title' | translate }}
+		</h2>
+		<p class="terms-and-conditions-modal__subtitle">
+			{{ 'components.termsAndConditionsModal.subtitle' | translate }}
+		</p>
+	</div>
+		<div class="terms-and-conditions-modal__block-content-container" id="terms-and-conditions-modal__content">
+			<mcy-dynamic-inner-html
+			[content]="data.tycDescription"
+			[id]="'terms-and-conditions-modal__html-content'"
+			(init)="onHtmlRender()"
+			></mcy-dynamic-inner-html>
+		</div>
+	<div class="terms-and-conditions-modal__footer">
+		<mcy-button
+			[id]="'terms-and-conditions-modal__cancel-button'"
+			[color]="'tertiary'"
+			(handleClick)="onCancel()"
+		>
+			{{ 'components.termsAndConditionsModal.cancel' | translate }}
+		</mcy-button>
+		<mcy-button
+			[id]="'terms-and-conditions-modal__confirm-button'"
+			(handleClick)="onConfirm()"
+		>
+			{{ 'components.termsAndConditionsModal.continue' | translate }}
+		</mcy-button>
+	</div>
+</div>
+
+

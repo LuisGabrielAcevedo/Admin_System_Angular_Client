@@ -1,0 +1,10 @@
+<div class="icon-button">
+	<button
+		id="{{id}}"
+		(click)="handleOnClick($event)"
+		[ngClass]="{ 'icon-button__button--readonly': readOnly }"
+		class="icon-button__button">
+		<mcy-icon> <ng-content></ng-content> </mcy-icon>
+	</button>
+</div>
+

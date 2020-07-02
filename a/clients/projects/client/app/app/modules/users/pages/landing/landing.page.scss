@@ -1,0 +1,68 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.users-landing {
+
+	&__actions {
+		display: flex;
+		align-items: center;
+	}
+
+	&__table-header-title {
+		@include font-primary-semibold();
+		font-size: $font-size-XS;
+	}
+
+	&__table-container {
+		margin-top: $spacing-S;
+	}
+
+	&__button-icon {
+		font-size: 24px;
+		margin-right: $spacing-XXS;
+	}
+
+	&__body {
+		padding: 0 $spacing-XL;
+	}
+
+	&__icon-actions {
+		font-size: 24px;
+		padding: $spacing-XXS;
+		color: $text-color-link;
+	}
+
+	&__status {
+		font-size: $font-size-S;
+		@include font-primary-bold();
+
+		&--linked {
+			color: $text-color-succeed;
+		}
+		&--pending {
+			color: $text-color-processing;
+		}
+		&--unlinked {
+			color: $text-color-secondary;
+		}
+	}
+	
+	&__show-more {
+		display: flex;
+		justify-content: center;
+		color: $text-color-link;
+		padding-top: $spacing-M;
+	}
+
+	&__show-more-label {
+		@include font-primary-extrabold();
+	}
+
+	&__info-icon {
+		font-size: 24px;
+		color: $text-color-link;
+		padding-left: $spacing-XXS;
+		position: absolute;
+    	top: 5px;
+	}
+}

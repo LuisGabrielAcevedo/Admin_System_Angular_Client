@@ -1,0 +1,82 @@
+<div class="validate-contact">
+	<div class="validate-contact__spinner-container" *ngIf="isLoading">
+		<voxel-loading-circle [showLoading]="true" size="large"></voxel-loading-circle>
+	</div>
+	<div class="validate-contact__content" *ngIf="!isLoading">
+		<div class="validate-contact__subtitle-container ">
+			<span class="validate-contact__subtitle">{{ 'sidenav.validateContact.note' | translate }}:</span>
+		</div>
+		<div class="validate-contact__contact-header" *ngIf="validatedContact.reference">
+			<mcy-profile-image
+				[category]="validatedContact.category"
+				[size]="'medium'"
+				[name]="validatedContact.name"
+				[favorite]="validatedContact.favorite"
+				[category]="validatedContact.category"
+				class="validate-contact__contact-image"
+			></mcy-profile-image>
+			<div class="validate-contact__contact-header-details">
+				<span class="validate-contact__contact-header-name">
+					{{ validatedContact.reference }}
+				</span>
+				<span class="validate-contact__contact-header-category">
+					{{ 'pages.contacts.categories.' + validatedContact.category | translate }}
+				</span>
+				<span class="validate-contact__contact-header-email">
+					{{ validatedContact.email }}
+				</span>
+			</div>
+		</div>
+		<div class="validate-contact__contact-detail-row">
+			<div class="validate-contact__contact-detail">
+				<span class="validate-contact__contact-detail-label">
+					{{ 'sidenav.validateContact.contactNameLabel' | translate }}
+				</span>
+				<span class="validate-contact__contact-detail-value">
+					{{ validatedContact.name }}
+				</span>
+			</div>
+			<div class="validate-contact__contact-detail">
+				<span class="validate-contact__contact-detail-label">
+					{{ 'sidenav.validateContact.cuiltLabel' | translate }}
+				</span>
+				<span class="validate-contact__contact-detail-value">
+					{{ validatedContact.cuilt }}
+				</span>
+			</div>
+		</div>
+
+		<div class="validate-contact__contact-detail-row">
+			<div class="validate-contact__contact-detail">
+				<span class="validate-contact__contact-detail-label">
+					{{ 'sidenav.validateContact.bank' | translate }}
+				</span>
+				<span class="validate-contact__contact-detail-value">
+					{{ validatedContact.bank.name }}
+				</span>
+			</div>
+			<div class="validate-contact__contact-detail">
+				<span class="validate-contact__contact-detail-label">
+					{{ 'sidenav.validateContact.cbvuLabel' | translate }}
+				</span>
+				<span class="validate-contact__contact-detail-value">
+					{{ validatedContact.cbvu }}
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="validate-contact__actions" *ngIf="!isLoading">
+		<mcy-button
+			(handleClick)="cancel()"
+			color="tertiary"
+			class="validate-contact__button">
+			{{ 'sidenav.validateContact.cancel' | translate }}
+		</mcy-button>
+		<mcy-button
+			(handleClick)="confirm()"
+			color="primary"
+			class="validate-contact__button">
+			{{ 'sidenav.validateContact.confirm' | translate }}
+		</mcy-button>
+	</div>
+</div>

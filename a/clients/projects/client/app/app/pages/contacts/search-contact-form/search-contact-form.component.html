@@ -1,0 +1,15 @@
+<div class="search-contact-form" >
+	<form [formGroup]="form" class="search-contact-form__form">
+		<mcy-secondary-input
+			class="search-contact-form__input"
+			formControlName="keyword"
+			[icon]="'busca_outline'"
+			[clearButton]="true"
+			[placeholder]="placeholder"
+			[validators]="keywordValidators"
+			(handleChange)="onSearch()"
+			(handleClear)="onCancel()"
+			[id]="'search-contact-form__input'"
+		></mcy-secondary-input>
+	</form>
+</div>

@@ -1,0 +1,49 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.checks-details {
+	&__main-panel {
+		background-color: $background-color-secondary;
+		margin-top: $spacing-XL;
+		padding: $spacing-XXL 70px;
+	}
+
+	&__main-icon {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		top: -82px;
+		width: 100%;
+		height: 0;
+	}
+
+	&__badge-icon {
+		border-radius: 100%;
+		border: solid $background-color-primary 12px;
+		height: 110px;
+	}
+
+	&__main-section {
+		margin-bottom: $spacing-XXL;
+		display: flex;
+	}
+
+	&__column {
+		flex: 1;
+
+		&:first-child {
+			margin-right: 120px;
+		}
+	}
+
+	&__footnote {
+		@include font-primary-regular();
+		font-size: $font-size-XXS;
+		color: $text-color-tertiary;
+	}
+
+	&__spinner {
+		display: flex;
+		justify-content: center;
+	}
+}

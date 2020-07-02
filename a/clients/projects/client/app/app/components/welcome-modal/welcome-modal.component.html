@@ -1,0 +1,41 @@
+<div class="welcome-modal">
+	<div class="welcome-modal__content-container" *ngIf="!isOnboarding">
+		<div class="welcome-modal__content">
+			<h1 class="welcome-modal__title">
+				{{ 'components.welcomeModal.title' | translate:{ name: getfullName } }}
+			</h1>
+			<h2 class="welcome-modal__subtitle">
+				{{ 'components.welcomeModal.subtitle' | translate }}
+			</h2>
+			<div class="welcome-modal__description-container">
+				<p class="welcome-modal__description">
+					{{ 'components.welcomeModal.description' | translate }}
+				</p>
+			</div>
+			<div class="welcome-modal__button-container">
+				<mcy-button
+					[id]="'welcome-modal__continue-button'"
+					(handleClick)="onConfirm()"
+					[color]="'secondary'"
+					class="welcome-modal__button"
+				>
+					{{ 'components.welcomeModal.skipOnbordingButton' | translate }}
+				</mcy-button>
+				<mcy-button
+					[id]="'welcome-modal__continue-button'"
+					(handleClick)="isOnboarding = true"
+				>
+					{{ 'components.welcomeModal.goToOnbordingButton' | translate }}
+				</mcy-button>
+			</div>
+		</div>
+	</div>
+	<div class="welcome-modal__image-container" *ngIf="!isOnboarding">
+		<img class="welcome-modal__image"
+			[alt]="'components.welcomeModal.image' | translate"
+			src="client/assets/images/welcome.png">
+	</div>
+	<div *ngIf="isOnboarding">
+		<mcy-onboarding-carousel (exitFlow)="onExitFlow()"></mcy-onboarding-carousel>
+	</div>
+</div>

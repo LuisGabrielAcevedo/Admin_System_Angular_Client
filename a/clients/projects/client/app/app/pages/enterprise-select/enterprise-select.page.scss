@@ -1,0 +1,70 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.enterprise-select {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	background-color: $background-color-secondary;
+
+	&__header {
+		padding: $spacing-XS $spacing-XXL;
+		display: flex;
+		justify-content: space-between;
+		border-bottom: 1px solid $border-color-secondary;
+	}
+
+	&__logo-container {
+		display: flex;
+		align-items: center;
+	}
+
+	&__exit {
+		display: flex;
+		align-items: center;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: row;
+		height: 100%;
+	}
+
+	&__left-panel {
+		flex: 1;
+		width: 100%;
+	}
+
+	&__main-panel {
+		margin: $spacing-XL 80px;
+		height: 100%;
+	}
+
+	&__right-panel {
+		flex: 1;
+		background-color: $background-color-tertiary;
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+
+	&__image {
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		background-position: center;
+		background-image: url('client/assets/images/login01.jpg');
+	}
+
+	&__title {
+		@include font-primary-bold();
+		font-size: $font-size-XL;
+	}
+
+	&__loading-container {
+		display: flex;
+		height: 100%;
+		justify-content: center;
+		align-items: center;
+	}
+}

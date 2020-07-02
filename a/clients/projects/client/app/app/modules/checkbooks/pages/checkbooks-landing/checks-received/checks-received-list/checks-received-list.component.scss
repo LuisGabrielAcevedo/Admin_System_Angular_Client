@@ -1,0 +1,47 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.checks-received-list {
+	padding: $spacing-M $spacing-XL;
+
+	&__loading {
+		display: flex;
+		justify-content: center;
+	}
+
+	&__icon {
+		color: $icon-color-brand;
+		font-size: $font-size-XXL;
+	}
+
+	&__options-icon {
+		color: $icon-color-spinner;
+		font-size: $font-size-XXL;
+	}
+
+	&__details-icon {
+		color: $icon-color-spinner;
+		font-size: $font-size-XXL;
+	}
+
+	&__state {
+		@include font-primary-extrabold;
+		font-size: $font-size-S;
+
+		&--pending-accreditation {
+			color: $text-color-link;
+		}
+
+		&--accredited {
+			color: $text-color-succeed;
+		}
+
+		&--rejected, &--discounted {
+			color: $text-color-denary;
+		}
+	}
+
+	&__icon-column {
+		width: 40px;
+	}
+}

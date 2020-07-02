@@ -1,0 +1,62 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.cdk-overlay-pane {
+	display: block;
+}
+
+.default {
+	background-color: $background-color-tooltip;
+	margin: 80px !important;
+	width: 100%;
+	max-width: 100% !important;
+}
+
+.right {
+	position: relative;
+	right: 115px;
+}
+
+.snackbar-status {
+	background-color: $background-color-tooltip-success;
+	margin: $spacing-XXL !important;
+	width: 100%;
+	display: flex !important;
+
+	&::before {
+		margin-right: $spacing-XS;
+		display: flex;
+		align-items: center;
+	}
+
+	&::after {
+		@include font-icons();
+		content: "\E956";
+		line-height: 1.5;
+		height: 16px;
+		font-size: 16px;
+	}
+
+	& .mat-simple-snackbar {
+		width: 100%;
+	}
+}
+
+.snackbar-success {
+	background-color: $background-color-tooltip-success;
+
+	&::before {
+		@include font-icons();
+		content: "\E927";
+		font-size: 24px !important;
+	}
+}
+
+.snackbar-error {
+	background-color: $background-color-tooltip-error;
+
+	&::before {
+		@include font-icons();
+		content: "\E94F";
+	}
+}

@@ -1,0 +1,80 @@
+<div class="provider-payment-account">
+	<mcy-primary-page-layout
+		[title]="'pages.payments.providers.accounts.title' | translate"
+		[back]="'pages.payments.providers.accounts.goBack' | translate"
+		(handleBack)="onCancel()"
+	>
+		<div actions>
+			<mcy-contextual-button
+				sufixIcon="fechar"
+				sufixIconSize="16px"
+				(handleClick)="onCancel()"
+				class="provider-payment-account__cancel-button"
+				[id]="'provider-payment-account__cancel-button'"
+			>
+				{{'pages.payments.providers.accounts.cancel' | translate}}
+			</mcy-contextual-button>
+		</div>
+		<div body class="provider-payment-account__container">
+			<mcy-primary-panel-layout
+				[isLoading]="accountState.loading"
+				[hasError]="accountState.hasErrorAccounts"
+				(handleOnRetry)="retryGetAccounts()">
+				<div body class="provider-payment-account__body-section">
+
+					<mcy-stepper-guidelines
+						[previousGuideline]="true"
+						[icon]="'trconta_corrente_outline'"
+						[selected]="sourceAccountsForm.valid"
+					></mcy-stepper-guidelines>
+
+					<div class="provider-payment-account__content">
+						<h3 class="provider-payment-account__title">
+							{{ 'pages.payments.providers.accounts.subtitle' | translate }}
+						</h3>
+
+						<form [formGroup]="sourceAccountsForm" class="provider-payment-account__form">
+							<div class="provider-payment-account__input">
+								<mcy-account-select
+									formControlName="sourceAccount"
+									[id]="'provider-payment-account__account-select'"
+									[required]="true"
+									[balanceText]="'pages.payments.providers.accounts.balance' | translate"
+									[label]="'pages.payments.providers.accounts.placeholders.originAccount' | translate"
+									[accounts]="sourceAccounts"
+								></mcy-account-select>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div description class="provider-payment-account__description-section">
+					<span *ngIf="!sourceAccountsForm.valid">{{ 'pages.payments.providers.accounts.description' | translate }}</span>
+					<span *ngIf="sourceAccountsForm.valid">{{ 'pages.payments.providers.accounts.complete' | translate }}</span>
+					<div>
+						<span class="provider-payment-account__required">* </span>
+						<span class="provider-payment-account__required-text">{{ 'pages.payments.providers.accounts.required' | translate }}</span>
+					</div>
+				</div>
+
+				<div footer>
+					<mcy-button
+						[id]="'provider-payment-account__back-button'"
+						(handleClick)="back()"
+						[color]="'tertiary'"
+						class="provider-payment-account__button">
+						{{ 'pages.payments.providers.accounts.back' | translate }}
+					</mcy-button>
+					<mcy-button
+						[id]="'provider-payment-account__next-button'"
+						(handleClick)="next()"
+						[disabled]="!sourceAccountsForm.valid"
+						[color]="'primary'"
+						class="provider-payment-account__button">
+						{{ 'pages.payments.providers.accounts.next' | translate }}
+					</mcy-button>
+				</div>
+			</mcy-primary-panel-layout>
+		</div>
+	</mcy-primary-page-layout>
+</div>

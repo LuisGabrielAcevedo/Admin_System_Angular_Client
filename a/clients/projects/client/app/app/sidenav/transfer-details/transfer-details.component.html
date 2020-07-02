@@ -1,0 +1,150 @@
+<div class="transfer-details">
+	<div class="transfer-details__content">
+		<div>
+			<div *ngIf="data.transfer.destinationHolder">
+				<div class="transfer-details__profile-image">
+					<mcy-profile-image
+						[name]="data.transfer.destinationHolder"
+						[category]="'UNKNOWN'"
+					></mcy-profile-image>
+				</div>
+				<div class="transfer-details__fields-container">
+					<h5 class="transfer-details__title-field">
+						{{ 'sidenav.transferDetails.name' | translate}}
+					</h5>
+					<span class="transfer-details__name-description">
+						{{ data.transfer.destinationHolder }}
+					</span>
+				</div>
+			</div>
+			<div class="transfer-details__content-container">
+				<div class="transfer-details__content-item" *ngIf="data.transfer.currency.symbol && data.transfer.amount">
+					<div class="transfer-details__fields-container">
+						<h5 class="transfer-details__title-field">
+							{{ 'sidenav.transferDetails.payedAmount' | translate }}
+						</h5>
+						<span class="transfer-details__title-description">
+							{{ data.transfer.currency.symbol }} ${{ formatAmount(data.transfer.amount) }}
+						</span>
+					</div>
+				</div>
+
+				<div class="transfer-details__content-item" *ngIf="data.transfer.operationNumber">
+					<div class="transfer-details__fields-container">
+						<h5 class="transfer-details__title-field">
+							{{ 'sidenav.transferDetails.operationNumber' | translate }}
+						</h5>
+						<span class="transfer-details__title-description">
+							{{ data.transfer.operationNumber }}
+						</span>
+					</div>
+				</div>
+
+				<div class="transfer-details__content-item" *ngIf="data.transfer.conceptCode">
+					<div class="transfer-details__fields-container">
+						<h5 class="transfer-details__title-field">
+							{{ 'sidenav.transferDetails.concept' | translate }}
+						</h5>
+						<span class="transfer-details__title-description">
+							{{ getConceptName(data.transfer.conceptCode) }}
+						</span>
+					</div>
+				</div>
+
+				<div class="transfer-details__content-item" *ngIf="data.transfer.originAccount">
+					<div class="transfer-details__fields-container">
+						<h5 class="transfer-details__title-field">
+							{{ 'sidenav.transferDetails.originAccount' | translate }}
+						</h5>
+						<span class="transfer-details__title-description">
+							{{ originAccount }}
+						</span>
+					</div>
+				</div>
+
+				<div class="transfer-details__content-item" *ngIf="data.transfer.destinationCuilt">
+					<div class="transfer-details__fields-container">
+						<h5 class="transfer-details__title-field">
+							{{ 'sidenav.transferDetails.cuit' | translate }}
+						</h5>
+						<span class="transfer-details__title-description">
+							{{ data.transfer.destinationCuilt }}
+						</span>
+					</div>
+				</div>
+
+				<div class="transfer-details__content-item" *ngIf="data.transfer.destinationCbvu">
+					<div class="transfer-details__fields-container">
+						<h5 class="transfer-details__title-field">
+							{{ 'sidenav.transferDetails.destinationCbu' | translate }}
+						</h5>
+						<span class="transfer-details__title-description">
+							{{ data.transfer.destinationCbvu }}
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div
+			*ngIf="data.transfer.state === 'APPROVED'"
+			class="transfer-details__button-group"
+		>
+			<div class="transfer-details__action">
+				<mcy-button
+					(handleClick)="downloadReceipt()"
+					class="service__button"
+					color="primary">
+					<mcy-icon class="transfer-details__icon-download">download_outline</mcy-icon>
+					{{ 'pages.payments.salary.downloadReceipt' | translate }}
+			</mcy-button>
+			</div>
+		</div>
+	</div>
+
+	<div class="transfer-details__footer">
+		<div
+			*ngIf="data.transfer.state === 'APPROVED'"
+			class="transfer-details__status-successful"
+		>
+			<mcy-icon class="transfer-details__status-icon transfer-details__status-icon--success">check</mcy-icon>
+			<div class="transfer-details__status-content-container">
+				<span class="transfer-details__status-content transfer-details__status-content--success">
+					{{ 'pages.transfers.landing.successful' | translate }}
+				</span>
+				<span class="transfer-details__status-content">
+					{{formatDate(data.transfer.date)}}
+				</span>
+			</div>
+		</div>
+
+		<div
+			*ngIf="data.transfer.state === 'INPROGRESS'"
+			class="transfer-details__status-processing"
+		>
+			<div class="transfer-details__status-content-container">
+				<span class="transfer-details__status-content transfer-details__status-content--pending">
+					{{ 'pages.transfers.landing.processing' | translate }}
+				</span>
+				<span class="transfer-details__status-content">
+					{{formatDate(data.transfer.date)}}
+				</span>
+			</div>
+		</div>
+
+		<div
+			*ngIf="data.transfer.state === 'DENIED'"
+			class="transfer-details__status-rejected"
+		>
+			<mcy-icon class="transfer-details__status-icon transfer-details__status-icon--error">fechar</mcy-icon>
+			<div class="transfer-details__status-content-container">
+				<span class="transfer-details__status-content transfer-details__status-content--error">
+					{{ 'pages.transfers.landing.rejected' | translate }}
+				</span>
+				<span class="transfer-details__status-content">
+					{{formatDate(data.transfer.date)}}
+				</span>
+			</div>
+		</div>
+
+	</div>
+</div>

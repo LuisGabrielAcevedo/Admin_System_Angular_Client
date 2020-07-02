@@ -1,0 +1,11 @@
+@import 'variables';
+
+.salary-payment-error {
+    &__content{
+        margin-bottom: $spacing-XL;
+    }
+    &__button {
+        display: flex;
+        margin: $spacing-S 0;
+    }
+}

@@ -1,0 +1,41 @@
+@import 'variables';
+
+.mcy-account {
+	padding-left: $spacing-L;
+	padding-bottom: $spacing-S;
+	border-radius: $radius-XS;
+	background-color: $background-color-quinary;
+	border: solid 1px $background-color-septenary;
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		padding-top: $spacing-M;
+	}
+
+	&__number {
+		font-size: $font-size-M;
+		color: $text-color-octanary;
+	}
+
+	&__amount {
+		font-size: $font-size-L;
+		color: $text-color-ninth;
+	}
+
+	&__alias {
+		display: flex;
+		flex-direction: column;
+		margin-top: $spacing-XL;
+	}
+
+	&__alias-label {
+		font-size: $font-size-S;
+		color: $text-color-octanary;
+	}
+
+	&__alias-value {
+		font-size: $font-size-S;
+		color: $text-color-ninth;
+	}
+}

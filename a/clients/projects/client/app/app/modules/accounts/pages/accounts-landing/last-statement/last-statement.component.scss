@@ -1,0 +1,50 @@
+@import 'variablesNew';
+
+.last-account-summary {
+	background-color: $background-color-secondary;
+	padding: $spacing-S $spacing-XS;
+	margin-bottom: $spacing-XXL;
+	&__row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: $spacing-L 0;
+		&__item {
+			display: flex;
+			align-items: center;
+		}
+	}
+	&__icon-content {
+		border-radius: $radius-circle;
+		border: 1px solid $text-color-partial;
+		height: 48px;
+		width: 48px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-right: $spacing-XXL;
+	}
+
+	&__icon {
+		font-size: 24px;
+		color: $icon-color-normal;
+	}
+
+	&__footer {
+		border-top: 1px solid $text-color-disabled-button;
+		padding-top: $spacing-S;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__spinner {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		margin-top: $spacing-L;
+		margin-bottom: $spacing-L
+	}
+}

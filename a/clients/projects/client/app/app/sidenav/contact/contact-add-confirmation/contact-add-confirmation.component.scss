@@ -1,0 +1,77 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.contact-add-confirmation {
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	justify-content: space-between;
+
+	&__main-section {
+		margin-top: $spacing-XS;
+	}
+
+	&__buttons-section {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__description-container {
+		margin-left: $spacing-XS;
+		padding: $spacing-XXL 0 $spacing-L;
+		position: relative;
+		width: 100%;
+	}
+
+	&__border {
+		border-bottom: 1px solid $border-color-secondary;
+	}
+
+	&__description-section {
+		display: flex;
+	}
+
+	&__stepper-guidelines {
+		position: relative;
+		top: $font-size-XXL;
+	}
+
+	&__description-info {
+		@include font-primary-regular();
+		color: $text-color-primary;
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		line-height: 20px;
+		padding-top: $spacing-XXL;
+	}
+
+	&__description-title {
+		@include font-primary-bold();
+		font-size: $font-size-L;
+		margin: 0;
+	}
+
+	&__description-text {
+		font-size: $font-size-M;
+
+		&--bold {
+			@include font-primary-bold();
+			font-size: $font-size-M;
+		}
+	}
+
+	&__edit-icon {
+		cursor: pointer;
+		color: $text-color-link-light;
+		font-size: 24px;
+		position: relative;
+		top: $spacing-S;
+	}
+
+	&__icon-container {
+		position: absolute;
+		right: 0;
+		top: $spacing-S;
+	}
+}

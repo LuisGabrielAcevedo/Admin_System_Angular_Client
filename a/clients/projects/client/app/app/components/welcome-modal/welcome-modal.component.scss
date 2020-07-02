@@ -1,0 +1,80 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.welcome-modal {
+	max-width: 1200px;
+	min-height: 500px;
+	position: relative;
+	display: flex;
+
+	&__content-container {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		padding: 0 $spacing-XXL;
+	}
+
+	&__title {
+		margin: 0;
+		line-height: 1.5;
+		font-size: $font-size-XXXL;
+		@include font-primary-extrabold();
+		color: $text-color-primary;
+	}
+
+	&__description-container {
+		width: 70%;
+		margin: $spacing-XXL 0;
+	}
+
+	&__description {
+		font-size: $font-size-M;
+		@include font-primary-regular();
+		color: $text-color-primary;
+		line-height: 1.5;
+		margin: 0;
+	}
+
+	&__subtitle {
+		margin: 0;
+		line-height: 48px;
+		font-size: $font-size-XXXL;
+		@include font-primary-extrabold();
+		color: $text-color-primary;
+	}
+
+	&__image-container {
+		flex: 1;
+		background-color: #c5c5c5; // Placeholder hasta que se reemplaze por imagen
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__image-placeholder {
+		margin: 0;
+		opacity: 0.15;
+		font-size: $font-size-XXXL;
+		@include font-primary-extrabold();
+		color: $text-color-primary;
+	}
+
+	&__image {
+		width: 100%;
+	}
+
+	&__button-container {
+		margin-top: $spacing-M;
+		box-sizing: border-box;
+	}
+
+	&__button {
+		margin-right: $spacing-M;
+	}
+}

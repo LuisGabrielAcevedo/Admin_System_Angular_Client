@@ -1,0 +1,24 @@
+<div class="onboarding-carousel">
+	<div class="onboarding-carousel__carousel-container">
+		<mcy-carousel
+			[list]="imageList"
+			[component]="component"
+			(pointChange)="sliderChange($event)"
+			[configuration]="configurationCarousel"
+			[selection]="false">
+		</mcy-carousel>
+	</div>
+	<div class="onboarding-carousel__information-container">
+		<div class="onboarding-carousel__text-container">
+			<span class="onboarding-carousel__title">{{ selectedSlideTitle }}</span>
+			<p class="onboarding-carousel__description">{{ selectedSlideDescription }}</p>
+		</div>
+		<mcy-button
+				[id]="'onboarding-carousel__continue-button'"
+				(handleClick)="onExitFlow()"
+				[color]="'secondary'"
+			>
+				{{ 'components.welcomeModal.onboardingCarousel.exitButton' | translate }}
+			</mcy-button>
+	</div>
+</div>

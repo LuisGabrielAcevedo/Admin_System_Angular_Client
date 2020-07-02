@@ -1,0 +1,13 @@
+@import 'mixins';
+
+.mat-button-wrapper {
+	@include font-primary-bold();
+}
+
+.mat-button-focus-overlay {
+	background-color: transparent;
+}
+
+.mat-raised-button {
+	box-shadow: none !important;
+}

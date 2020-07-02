@@ -1,0 +1,13 @@
+{
+	"extends": "../tsconfig.app.json",
+	"compilerOptions": {
+		"types": ["node"]
+	},
+	"exclude": ["../projects/**/*.spec.ts"],
+	"include": ["../projects/**/*"],
+	"files": [
+		"./typings.d.ts",
+		"../projects/polyfills.ts",
+		"../projects/libs/main/polyfills/utils.d.ts"
+	]
+}

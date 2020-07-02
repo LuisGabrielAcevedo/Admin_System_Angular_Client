@@ -1,0 +1,117 @@
+@import 'variables';
+@import 'mixins';
+
+.transfer-details {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	&__content {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		margin-top: $spacing-L;
+		padding-bottom: $spacing-L;
+	}
+
+	&__footer {
+		border-top: 1px solid $border-color-septenary;
+		padding-top: $spacing-L;
+		padding-bottom: $spacing-L;
+	}
+
+	&__button-group {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	&__icon-download {
+		font-size: 24px;
+		margin-right: $spacing-XS;
+	}
+
+	&__status-icon {
+		font-size: 24px;
+		vertical-align: middle;
+		margin-right: $spacing-XS;
+		&--success {
+			color: $icon-color-quinary;
+		}
+		&--error {
+			color: $icon-color-octonary;
+		}
+	}
+
+	&__status-content-container {
+		display: inline-flex;
+		flex-direction: column;
+	}
+
+	&__status-content {
+		@include font-primary-bold();
+		font-size: $font-size-L;
+		margin-bottom: $spacing-XS;
+		&--success {
+			color: $icon-color-quinary;
+		}
+		&--error {
+			color: $text-color-denary;
+		}
+		&--pending {
+			color: $text-color-quinary;
+		}
+	}
+
+	&__profile-image {
+		display: inline-block;
+		margin-right: $spacing-L;
+	}
+
+	&__fields-container {
+		display: inline-block;
+	}
+
+	&__name-description {
+		font-size: $font-size-L;
+		color: $text-color-ninth;
+		@include font-primary-regular();
+	}
+
+	&__title-field {
+		font-size: $font-size-M;
+		color: $text-color-senary;
+		margin: 0;
+		margin-bottom: $spacing-XS;
+		@include font-primary-regular();
+	}
+
+	&__title-description {
+		font-size: $font-size-M;
+		color: $text-color-ninth;
+		@include font-primary-regular();
+	}
+
+	&__content-container {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		margin-top: $spacing-L;
+	}
+
+	&__content-item {
+		flex-basis: 50%;
+		margin-bottom: $spacing-M;
+	}
+
+	&__icon-share {
+		font-size: 24px;
+		vertical-align: middle;
+		margin-right: $spacing-XS;
+	}
+
+	&__action-label {
+		font-size: $font-size-M;
+	}
+}

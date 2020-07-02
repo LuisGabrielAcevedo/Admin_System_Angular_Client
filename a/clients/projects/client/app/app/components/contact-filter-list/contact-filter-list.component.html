@@ -1,0 +1,12 @@
+<mcy-contact-search-form
+	[selectedCategory]="searchCategory"
+	(handleChange)="onSearchFormChange($event)"
+></mcy-contact-search-form>
+<mcy-contact-list
+	class="provider-payment-contact__contact-list"
+	[contacts]="contactList"
+	[selectedContact]="selectedContact.id"
+	[isSearching]="searchKeyword"
+	[emptyDescription]="emptyDescription"
+	(contactSelect)="onContactSelect($event)"
+></mcy-contact-list>

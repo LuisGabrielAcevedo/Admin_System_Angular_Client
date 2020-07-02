@@ -1,0 +1,75 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.contact-add-success {
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	justify-content: space-between;
+
+	&__main-section {
+		margin-top: $spacing-XL;
+		justify-content: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	&__data-section {
+		margin-top: $spacing-XL;
+		width: 60%;
+	}
+
+	&__title-section {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	&__text-container {
+		margin-top: $spacing-L;
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
+	&__title {
+		@include font-primary-regular();
+		font-size: $font-size-XL;
+		line-height: 1.5;
+	}
+
+	&__label {
+		@include font-primary-regular();
+		color: $text-color-disabled;
+		font-size: $font-size-XS;
+		margin: 0;
+		line-height: 1.54;
+	}
+
+	&__text {
+		@include font-primary-regular();
+		line-height: 1.56;
+		font-size: $font-size-L;
+	}
+
+	&__reference {
+		@include font-primary-bold();
+		color: $text-color-primary;
+		font-size: $font-size-XXL;
+	}
+
+	&__buttons-section {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	&__button {
+		margin-left: $spacing-M;
+
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+}

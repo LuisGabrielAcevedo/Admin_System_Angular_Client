@@ -1,0 +1,81 @@
+<form [formGroup]="contactForm" class="contact-edit" *ngIf="contactData.id">
+	<div class="contact-edit__main-section">
+		<div class="contact-edit__profile-image">
+			<mcy-profile-image
+				[category]="contactForm.value.category"
+				[favorite]="contactForm.value.favorite"
+				[name]="contactForm.value.reference"
+				[showFavoriteTooltip]="true"
+				(handleFavorite)="onFavoriteClick()"
+			></mcy-profile-image>
+		</div>
+		<div class="contact-edit__reference-input">
+			<mcy-input
+				[label]="'pages.contacts.edit.reference' | translate"
+				[maxlength]="referenceMaxlength"
+				[validators]="referenceValidators"
+				formControlName="reference"
+				[id]="'contact-edit_reference-input'"
+			></mcy-input>
+		</div>
+		
+		<div class="contact-edit__details-container">
+			<div class="contact-edit__row">
+				<div class="contact-edit__detail-container">
+					<span class="contact-edit__label">{{ 'pages.contacts.edit.name' | translate }}</span>
+					<span class="contact-edit__value">{{ contactData.name }}</span>
+				</div>
+			</div>
+
+			<div class="contact-edit__row">
+				<div class="contact-edit__detail-container">
+					<span class="contact-edit__label">{{ 'pages.contacts.edit.cuilt' | translate }}</span>
+					<span class="contact-edit__value">{{ contactData.cuilt }}</span>
+				</div>
+
+				<div class="contact-edit__detail-container">
+					<span class="contact-edit__label">{{ 'pages.contacts.edit.cbvu' | translate }}</span>
+					<span class="contact-edit__value">{{ contactData.cbvu }}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="contact-edit__row">
+			<div class="contact-edit__email-input">
+				<mcy-input
+					[label]="'pages.contacts.edit.email' | translate"
+					[maxlength]="emailMaxlength"
+					[validators]="emailValidators"
+					class="contact-edit__input"
+					formControlName="email"
+					[id]="'contact-edit__email-input'"
+				></mcy-input>
+			</div>
+			<div class="contact-edit__category-input">
+				<mcy-select
+					[data]="categoryOptions"
+					[label]="'pages.contacts.edit.category' | translate"
+					class="contact-edit__input"
+					formControlName="category"
+					[id]="'contact-edit__category-input'"
+				></mcy-select>
+			</div>
+		</div>
+	</div>
+	<div class="contact-edit__buttons-section">
+		<mcy-button
+			(handleClick)="deleteStep()"
+			[color]="'tertiary'"
+			[id]="'contact-edit__back-buttons'">
+			{{ 'pages.contacts.edit.delete' | translate }}
+		</mcy-button>
+
+		<mcy-button
+			[disabled]="!contactForm.valid"
+			[color]="'primary'"
+			(handleClick)="submitContactData()"
+			[id]="'contact-edit__confirmation-buttons'">
+			{{ 'pages.contacts.edit.saveChanges' | translate }}
+		</mcy-button>
+	</div>
+</form>

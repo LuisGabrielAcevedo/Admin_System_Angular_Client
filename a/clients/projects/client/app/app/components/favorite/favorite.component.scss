@@ -1,0 +1,18 @@
+@import 'variables';
+
+.favorite {
+	user-select: none;
+	
+	&__icon {
+		cursor: pointer;
+
+		&--active {
+			color: $squash-yellow;
+			fill: $squash-yellow;
+		}
+
+		&--readonly {
+			cursor: default;
+		}
+	}
+}

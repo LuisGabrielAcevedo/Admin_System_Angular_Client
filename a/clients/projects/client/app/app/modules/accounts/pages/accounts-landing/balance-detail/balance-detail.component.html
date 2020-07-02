@@ -1,0 +1,30 @@
+<div class="balance-detail">
+	<voxel-loading-circle
+		*ngIf="balanceDetailState.loadingBalance"
+		class="balance-detail__spinner"
+		[showLoading]="true"
+		size="large">
+	</voxel-loading-circle>
+	<div class="balance-detail__error"
+		*ngIf="balanceDetailState.hasErrorBalance && !balanceDetailState.loadingBalance">
+		<mcy-loading-data-error
+			[displayRetry]="true"
+			(handleOnRetry)="onSubmitBalanceDetail()"
+		></mcy-loading-data-error>
+	</div>
+	<div class="balance-detail__row"
+		*ngIf="!balanceDetailState.hasErrorBalance && !balanceDetailState.loadingBalance">
+		<span class="balance-detail__row__item">{{
+			'pages.accounts.balanceDetail.availableBalance' | translate
+		}}</span>
+		<span class="balance-detail__row__item">
+			{{account.currency.symbol}} {{ balanceDetail?.availableBalance | mcyAmount}}</span>
+	</div>
+	<div class="balance-detail__row"
+		*ngIf="!balanceDetailState.hasErrorBalance && !balanceDetailState.loadingBalance">
+		<span class="balance-detail__row__small-title">{{
+			'pages.accounts.balanceDetail.overdraftAgreement' | translate
+		}}</span>
+		<span class="balance-detail__row__small">{{account.currency.symbol}} {{balanceDetail?.overdraftAgreement | mcyAmount}}</span>
+	</div>
+</div>

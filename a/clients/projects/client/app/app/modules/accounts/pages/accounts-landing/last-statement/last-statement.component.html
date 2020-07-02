@@ -1,0 +1,43 @@
+<div class="last-account-summary">
+	<voxel-loading-circle
+		*ngIf="statementsState.loading"
+		class="last-account-summary__spinner"
+		[showLoading]="true"
+		size="large">
+	</voxel-loading-circle>
+	<div class="last-account-summary__error"
+		*ngIf="statementsState.hasErrorStatements && !statementsState.loading">
+		<mcy-loading-data-error
+			[displayRetry]="true"
+			(handleOnRetry)="onSubmitStatements()"
+		></mcy-loading-data-error>
+	</div>
+	<div *ngIf="!statementsState.hasErrorStatements && !statementsState.loading">
+		<span>{{
+			'pages.accounts.accountSumamry.lastAccountSummary' | translate
+		}}</span>
+		<div class="last-account-summary__row">
+			<div class="last-account-summary__row__item">
+				<div class="last-account-summary__icon-content">
+					<mcy-icon class="last-account-summary__icon"
+						>documento_outline</mcy-icon
+					>
+				</div>
+				<span>{{formatDate()}}</span>
+			</div>
+			<mcy-contextual-button
+				[id]="'last-account-summary__download'"
+				prefixIcon="download_outline"
+				(handleClick)="download()">
+				{{ 'pages.accounts.accountSumamry.download' | translate }}
+			</mcy-contextual-button>
+		</div>
+		<div class="last-account-summary__footer">
+			<mcy-contextual-button
+				[id]="'last-account-summary__see-all'"
+				(handleClick)="openAccountsSummariesAll()">
+				{{ 'pages.accounts.accountSumamry.seeAll' | translate }}
+			</mcy-contextual-button>
+		</div>
+	</div>
+</div>

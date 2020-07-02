@@ -1,0 +1,11 @@
+<div class="login-error-message">
+	<div class="login-error-message__header">
+		<h5 class="login-error-message__title">{{ title }}</h5>
+		<mcy-icon-button
+			(handleClick)="onCloseClick()"
+			class="login-error-message__close-icon"
+			[id]="'login-error-massage__close-icon-button'"
+		>fechar</mcy-icon-button>
+	</div>
+	<span class="login-error-message__message">{{ message }}</span>
+</div>

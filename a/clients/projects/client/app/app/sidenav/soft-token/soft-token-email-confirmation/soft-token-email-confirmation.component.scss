@@ -1,0 +1,48 @@
+@import "variablesNew";
+@import "mixins";
+
+.soft-token-email-confirmation {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	&__token-activation {
+		display: flex;
+		padding: 72px 0 $spacing-XXL 0;
+	}
+
+	&__token-activation-description {
+		@include font-primary-bold;
+		font-size: $font-size-L;
+		margin: $spacing-XXS 0;
+		color: $text-color-primary;
+	}
+
+	&__token-activation-details {
+		padding: 0 0 0 $spacing-M;
+	}
+
+	&__token-activation-description-note {
+		@include font-primary-regular;
+		line-height: 1.4;
+		color: $text-color-tertiary;
+		font-size: $font-size-M;
+	}
+
+	&__subtitle {
+		@include font-primary-bold;
+		font-size: $font-size-L;
+		color: $text-color-tertiary;
+	}
+
+	&__information-icon {
+		color: $icon-color-normal;
+		font-size: 16px;
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: flex-end;
+	}
+}

@@ -1,0 +1,148 @@
+
+<mcy-page-layout
+	[back]="'pages.userDetails.title' | translate"
+	[title]="fullName"
+	(handleBack)="goToHome()"
+	>
+	<div body
+		class="user-details"
+		*ngIf="!userState.hasUserErrorsDetails && !userState.loadingUserDetails">
+		<div class="user-details__user-details">
+			<div class="user-details__user-detail">
+				<span class="user-details__label">
+					{{ 'pages.userDetails.document' | translate }}
+				</span>
+				<span class="user-details__value">
+					{{ userState.userSelected.documentNumber }}
+				</span>
+			</div>
+			<div class="user-details__user-detail">
+				<span class="user-details__label">
+					{{ 'pages.userDetails.phone' | translate }}
+				</span>
+				<span class="user-details__value">
+					{{ userState.userSelected.cellPhone }}
+				</span>
+			</div>
+			<div class="user-details__user-detail">
+				<span class="user-details__label">
+					{{ 'pages.userDetails.email' | translate }}
+				</span>
+				<span class="user-details__value">
+					{{ userState.userSelected.email }}
+				</span>
+			</div>
+			<div class="user-details__user-detail">
+				<span class="user-details__label">
+					{{ 'pages.userDetails.secondFactor' | translate }}
+				</span>
+				<span class="user-details__value">
+					{{ 'pages.userDetails.softTokenState.' + userState.userSelected.softTokenState | translate }}
+				</span>
+			</div>
+		</div>
+
+		<div class="user-details__enterprises-details">
+			<span class="user-details__enterprises-number">
+				{{ enterprisesShowed }}
+			</span>
+			<span class="user-details__enterprises-label">
+				{{ 'pages.userDetails.bindEnterprises' | translate }}
+			</span>
+		</div>
+
+		<table mat-table
+			class="user-details__table"
+			id="user-details__table"
+			[dataSource]="enterpriseListTableSource">
+			<ng-container matColumnDef="favorite">
+				<th mat-header-cell *matHeaderCellDef></th>
+				<td mat-cell *matCellDef="let enterprise">
+					<div class="user-details__icons-section" >
+						<mcy-icon
+							class="user-details__icon"
+							*ngIf="userState.userSelected.favoriteEnterpriseId === enterprise.id">
+							empresas
+						</mcy-icon>
+						<mcy-icon
+							class="user-details__icon-disabled"
+							*ngIf="userState.userSelected.favoriteEnterpriseId !== enterprise.id">
+							empresas_outline
+						</mcy-icon>
+					</div>
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="name">
+				<th mat-header-cell *matHeaderCellDef>
+					{{ 'pages.userDetails.enterprise' | translate }}
+				</th>
+				<td mat-cell *matCellDef="let enterprise">
+					<span class="user-details__text">
+						{{ enterprise.name }}
+					</span>
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="cuilt">
+				<th mat-header-cell *matHeaderCellDef>
+					{{ 'pages.userDetails.cuit' | translate }}
+				</th>
+				<td mat-cell *matCellDef="let enterprise">
+					<span class="user-details__text">
+						{{ enterprise.cuilt }}
+					</span>
+				</td>
+			</ng-container>
+
+			<ng-container matColumnDef="role">
+				<th mat-header-cell *matHeaderCellDef>
+					{{ 'pages.userDetails.role' | translate }}
+				</th>
+				<td mat-cell *matCellDef="let enterprise">
+					<span class="user-details__text">
+						{{ 'pages.userDetails.roleType.' + enterprise.role | translate }}
+					</span>
+				</td>
+			</ng-container>
+
+			<tr
+				mat-header-row
+				*matHeaderRowDef="displayedColumns">
+			</tr>
+			<tr mat-row
+				*matRowDef="let row; columns: displayedColumns; let cellindex = index"
+				class="user-details__row"
+				id="user-details__row-{{cellindex}}">
+			</tr>
+		</table>
+
+		<div class="user-details__show-more"
+			*ngIf="totalEnterprisesToDisplay.length > itemsDisplayed"
+			(click)="showMoreEnterprises()">
+			<mcy-contextual-button
+				class="user-details__show-more-label"
+				(handleClick)="showMoreEnterprises()"
+				[sufixIcon]="'seta_baixo'"
+				[id]="'user-details__show-more-button'">
+				{{ 'pages.userDetails.more' | translate }}
+			</mcy-contextual-button>
+		</div>
+	</div>
+
+	<div body
+		class="user-details__spinner-container"
+		*ngIf="userState.loadingUserDetails">
+		<voxel-loading-circle
+			[showLoading]="true"
+				size="large">
+		</voxel-loading-circle>
+	</div>
+
+	<mcy-loading-data-error
+		body
+		*ngIf="userState.hasUserErrorsDetails"
+		[displayRetry]="true"
+		(handleOnRetry)="onSubmit()"
+	></mcy-loading-data-error>
+</mcy-page-layout>

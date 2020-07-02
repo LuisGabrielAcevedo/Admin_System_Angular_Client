@@ -1,0 +1,26 @@
+<div class="debt-card">
+	<mcy-badge-icon
+		class="debt-card__badge-icon"
+		[iconSize]="'24px'"
+		[badgeSize]="'small'"
+		[type]="'service'">
+		globo
+	</mcy-badge-icon>
+
+	<span class="debt-card__description">
+		{{ debt.description }}
+	</span>
+
+	<span class="debt-card__amount">
+		{{ debt.currency.symbol }} {{ debt.amount | mcyAmount }}
+	</span>
+
+	<mcy-link
+		*ngIf="hasWritePermission"
+		class="debt-card__pay"
+		[id]="'debt-card__pay'"
+		(handleClick)="pay()"
+	>
+		{{ 'components.debtCard.pay' | translate }}
+	</mcy-link>
+</div>

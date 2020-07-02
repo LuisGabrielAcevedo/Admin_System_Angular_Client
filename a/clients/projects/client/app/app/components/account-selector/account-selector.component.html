@@ -1,0 +1,28 @@
+<div class="account-selector">
+	<div class="account-selector__title">{{title}}</div>
+
+	<div class="account-selector__menu">
+		<mcy-contextual-button
+			[id]="'account-selector__chevron-icon'"
+			[sufixIconSize]="'24px'"
+			sufixIcon="seta_baixo"
+			[matMenuTriggerFor]="accountMenu">
+			<span *ngIf="!isCensored" class="account-selector__account">
+				{{ currentAccount ? currentAccount.type + ' ' + (accountNumber | mcyAccountNumber) : '...' }}
+			</span>
+			<span *ngIf="isCensored" class="account-selector__account">
+				{{ currentAccount ? currentAccount.type + ' ' + (accountNumber | mcyAccountNumber | mcyCensored) : '...' }}
+			</span>
+		</mcy-contextual-button>
+
+		<mat-menu #accountMenu="matMenu">
+			<button mat-menu-item
+				*ngFor="let account of accountList; let i = index"
+				(click)="selectAccount(account)"
+				[id]="'account-selector__item-' + i">
+				<span *ngIf="!isCensored">{{ account.type +' '+ account.number | mcyAccountNumber }}</span>
+				<span *ngIf="isCensored">{{ account.type +' '+ (account.number | mcyAccountNumber | mcyCensored) }}</span>
+				</button>
+		</mat-menu>
+	</div>
+</div>

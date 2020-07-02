@@ -1,0 +1,35 @@
+<ngu-carousel #mcyCarousel class="mcy-carousel"
+	[inputs]="configuration.configuration"
+	[dataSource]="renderList">
+	<ngu-tile *nguCarouselDef="let item"
+	class="mcy-carousel__item-container" >
+		<div class="mcy-carousel__tile"
+			[ngClass]="{'mcy-carousel__item': isItemSelected(item)}"
+			(click)="carouselevent(item)"
+		>
+			<mcy-carousel-dynamic-item
+				[item]="item"
+				(actionEvent)="sendEvent($event)"
+				[component]="component">
+			</mcy-carousel-dynamic-item>
+		</div>
+	</ngu-tile>
+	<ul class="mcy-carousel__points" NguCarouselPoint *ngIf="isShowPoints()">
+		<mcy-icon-button
+			[id]="'mcy-carousel__button-left'"
+			class="mcy-carousel__button"
+			[ngClass]="{'mcy-carousel__button--disabled': isFirst()}"
+			(click)="onMoveToPrevPoint()"
+			NguCarouselPrev >seta_esquerda</mcy-icon-button>
+		<li *ngFor="let point of mcyCarousel.pointNumbers"
+			class="mcy-carousel__points--single"
+			[ngClass]="{'mcy-carousel__point--active': isActivePoint(point)}"
+			(click)="onMoveToPoint(point)"></li>
+		<mcy-icon-button
+			[id]="'mcy-carousel__button-rigth'"
+			class="mcy-carousel__button"
+			[ngClass]="{'mcy-carousel__button--disabled': isLast()}"
+			(click)="onMoveNextPoint()"
+			NguCarouselNext>seta_direita</mcy-icon-button>
+	</ul>
+</ngu-carousel>

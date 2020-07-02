@@ -1,0 +1,70 @@
+<div class="payment-confirmation">
+	<div>
+		<p>Asegúrese que los datos sean válidos antes de confirmar la operación:</p>
+		<div fxLayout="row">
+			<div fxFlex="30">
+				<p class="payment-confirmation__title">
+					Nombre de la empresa
+				</p>
+				<p class="payment-confirmation__text">
+					{{ data.payment.service.description }}
+				</p>
+			</div>
+			<div fxFlex="45">
+				<p class="payment-confirmation__title">
+					N° Referencia de pago
+				</p>
+				<p class="payment-confirmation__text">
+					{{ data.payment.debtId }}
+				</p>
+			</div>
+			<div fxFlex>
+				<p class="payment-confirmation__title">
+					Servicio a pagar
+				</p>
+				<p class="payment-confirmation__text">
+					{{ data.payment.service.description }}
+				</p>
+			</div>
+		</div>
+		<div fxLayout="row">
+			<div fxFlex="30">
+				<p class="payment-confirmation__title">
+					Cuenta de origen
+				</p>
+				<p class="payment-confirmation__text">
+					{{ data.payment.account.number | mcyAccountNumber }}
+				</p>
+			</div>
+			<div fxFlex="45">
+				<p class="payment-confirmation__title">
+					Monto a pagar
+				</p>
+				<p class="payment-confirmation__text">
+					{{ data.payment.account.currency.symbol }}
+					{{ data.payment.otherAmount || data.payment.amount | mcyAmount }}
+				</p>
+			</div>
+		</div>
+	</div>
+	<form fxLayout="row" fxLayoutAlign="center" [formGroup]="softTokenForm">
+		<mcy-soft-token formControlName="softToken"></mcy-soft-token>
+	</form>
+	<mcy-sidenav-footer>
+		<div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+			<button
+				mat-raised-button
+				color="primary"
+				[disabled]="!softTokenForm.valid"
+				(click)="nextStep()">
+				Confirmar pago
+			</button>
+			<button
+				mat-stroked-button
+				color="primary"
+				(click)="sidenavService.prevStep()">
+				Volver
+			</button>
+		</div>
+	</mcy-sidenav-footer>
+</div>

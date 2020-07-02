@@ -1,0 +1,26 @@
+@import 'variables';
+@import 'mixins';
+
+.transfer-filter-form {
+	display: flex;
+
+	&__search-keyword-input {
+		flex: 2;
+		margin: 0 $spacing-XS 0 0;
+	}
+
+	&__transfer-status-input {
+		flex: 1;
+		margin: 0 $spacing-XS;
+	}
+
+	&__transfer-execution-date-from-input {
+		flex: 1;
+		margin: 0 $spacing-XS;
+	}
+
+	&__transfer-execution-date-to-input {
+		flex: 1;
+		margin: 0 0 0 $spacing-XS;
+	}
+}

@@ -1,0 +1,17 @@
+<div class="stepper-guidelines" [ngClass]="{
+		'stepper-guidelines__next-guideline': nextGuideline,
+		'stepper-guidelines__previous-guideline': previousGuideline
+	}">
+	<div class="stepper-guidelines__circle" [ngClass]="{
+		'stepper-guidelines__circle--selected': selected
+	}">
+		<mcy-icon
+			class="stepper-guidelines__icon"
+			*ngIf="!selected">{{ icon }}
+		</mcy-icon>
+		<mcy-icon
+			class="stepper-guidelines__icon stepper-guidelines__icon--selected"
+			*ngIf="selected">check
+		</mcy-icon>
+	</div>
+</div>

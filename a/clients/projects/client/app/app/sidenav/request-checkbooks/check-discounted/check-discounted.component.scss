@@ -1,0 +1,63 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.check-discounted-detail {
+	margin: $spacing-XL 0;
+	&__header {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	&__header-info {
+		display: flex;
+		flex-direction: column;
+		margin-left: $spacing-L;
+	}
+
+	&__label {
+		font-size: $font-size-L;
+		@include font-primary-bold();
+		color: $text-color-tertiary;
+		margin-bottom: $spacing-XXS;
+	}
+
+	&__name-value {
+		font-size: $font-size-XXL;
+		@include font-primary-bold();
+		color: $text-color-tertiary;
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: row;
+		width: 520px;
+		flex-wrap: wrap;
+		margin-top: $font-size-XL;
+	}
+
+	&__info-label {
+		color: $text-color-secondary;
+		font-size: $font-size-XS;
+		margin-bottom: $spacing-XXS;
+	}
+
+	&__text {
+		font-size: $font-size-S;
+	}
+
+	&__info-item {
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+		margin-top: $spacing-M;
+	}
+
+	&__footer {
+		display: flex;
+		justify-content: flex-end;
+	}
+	&__button {
+		margin-left: $spacing-L;
+	}
+}

@@ -1,0 +1,96 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.notification-item {
+	display: flex;
+	flex-direction: row;
+	margin: $spacing-XS $spacing-XS 0px $spacing-XS;
+	align-items: center;
+
+	&--box-shadow{
+		@include box-shadow-notification();
+		padding: $spacing-XXS $spacing-S $spacing-XXS $spacing-S;
+		border-radius: $radius-XS;
+	}
+
+	&__unread-indicator{
+		width: 8px;
+		height: 8px;
+		border-radius: $radius-circle;
+		background-color: $text-color-processing;
+		margin-left: -8px;
+	}
+
+	&__icon-section{
+		display: flex;
+		flex-grow: 1;
+		max-width: 35px
+	}
+
+
+	&__text-section {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 2;
+		margin-left: $spacing-XS;
+		min-width: 140px;
+	}
+	
+	&__date {
+		font-size: $font-size-XXXXS;
+		line-height: 1.6;
+
+		&--readed {
+			color: $text-color-tertiary;
+		}
+
+		&--unread{
+			color: $text-color-primary;
+		}
+	}
+
+	&__title {
+		font-size: $font-size-XS;
+		line-height: 1.4;
+		
+		&--readed {
+			color: $text-color-tertiary;
+			
+		}
+
+		&--unread{
+			@include font-primary-bold();
+			color: $text-color-primary;
+		}
+	}
+
+	&__subtitle {
+		font-size: $font-size-XXXS;
+		line-height: 1.5;
+
+		&--readed {
+			color: $text-color-tertiary;
+			
+		}
+
+		&--unread{
+			color: $text-color-primary;
+		}
+	}
+
+	&__actions-section {
+		display: flex;
+	}
+
+	&__icon-button {
+		font-size: $font-size-M;
+		color: $button-color-notification;
+		margin-left: $spacing-XS;		
+	}
+
+	&__more-details {
+		cursor: pointer;
+		color: $text-color-link-light;
+		font-size: $font-size-XXS;		
+	}
+}

@@ -1,0 +1,45 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.checkbook-list {
+	padding: $spacing-M $spacing-XL;
+
+	&__loading {
+		display: flex;
+		justify-content: center;
+	}
+
+	&__icon {
+		color: $icon-color-brand;
+		font-size: $font-size-XXL;
+	}
+
+	&__options-icon {
+		color: $icon-color-spinner;
+		font-size: $font-size-XXL;
+	}
+
+	&__details-icon {
+		color: $icon-color-spinner;
+		font-size: $font-size-XXL;
+	}
+
+	&__state {
+		font-size: $font-size-S;
+		@include font-primary-bold;
+
+		&--authorized,
+		&--approved {
+			color: $text-color-succeed;
+		}
+		&--rejected,
+		&--denied,
+		&--cancelled {
+			color: $text-color-cancelled;
+		}
+	}
+
+	&__icon-column {
+		width: 40px;
+	}
+}

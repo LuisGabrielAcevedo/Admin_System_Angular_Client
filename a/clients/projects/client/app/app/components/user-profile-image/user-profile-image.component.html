@@ -1,0 +1,22 @@
+<div class="user-profile-image" id="{{ id }}">
+	<div
+		class="user-profile-image__circle"
+		[ngClass]="{
+			'user-profile-image__circle--small': size === 'small',
+			'user-profile-image__circle--medium': size === 'medium',
+			'user-profile-image__circle--large': size === 'large',
+			'user-profile-image__circle--selected': selected,
+			'user-profile-image__circle--hover-enabled': hoverEnabled
+		}"
+	>
+	<span 
+		class="user-profile-image__user-initials"
+		[ngClass]="{
+			'user-profile-image__user-initials--small': size === 'small'
+		}"
+	> 
+		{{ displayName }} 
+	</span>
+
+	</div>
+</div>

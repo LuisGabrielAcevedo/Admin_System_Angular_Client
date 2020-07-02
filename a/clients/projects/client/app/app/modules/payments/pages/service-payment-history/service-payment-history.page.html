@@ -1,0 +1,64 @@
+<mcy-primary-page-layout
+	[title]="'pages.payments.services.serviceHistory' | translate"
+	[back]="'pages.payments.returnServicePayment' | translate"
+	(handleBack)="goToLanding()">
+	<div actions class="service-payment-history__buttons">
+		<mcy-button
+			[id]="'service-payment-history__export-service-list'"
+			class="service-payment-history__button"
+			color="secondary"
+			(click)="exportServiceList()">
+			<mcy-icon class="service-payment-history__icon">documento_outline</mcy-icon>
+			{{ 'common.exportSummary' | translate }}
+		</mcy-button>
+		<mcy-button color="primary" (click)="newPay()">
+			{{ 'pages.payments.payNewService' | translate }}
+		</mcy-button>
+	</div>
+	<div body>
+		<div class="service-payment-history__box-title">
+			<div class="service-payment-history__sub-box-title">
+				<div>
+					<span class="service-payment-history__total-services-soon-expired">
+						{{totalHistoryService}}
+					</span>
+					<span class="service-payment-history__title">
+						{{ 'pages.payments.services.totalHistoryService' | translate
+						}}
+					</span>
+				</div>
+				<mcy-icon
+					class="service-payment-history__icon-search"
+					(click)="showFilters();"
+				>
+					busca
+				</mcy-icon>
+			</div>
+			<div>
+				<span class="service-payment-history__sub-title"
+					>{{ 'pages.payments.services.subTitleServiceHistory' | translate
+					}}</span
+				>
+			</div>
+		</div>
+		<div *ngIf="visibleFilters" class="service-payment-history__box-filters">
+			<mcy-payments-filters
+			typeFilters="service"
+			(sendFilters)="filterData($event)">
+			</mcy-payments-filters>
+		</div>
+		<mcy-service-payments-list
+			[servicePayments]="paginatedHistoryList"
+			[loading]="loading"
+		></mcy-service-payments-list>
+		<div class="service-payment-history__more-button-container">
+			<mcy-contextual-button
+				[id]="'service-payment-history__change-pagination'"
+				sufixIcon="seta_baixo"
+				(handleClick)="changePagination()"
+				*ngIf="filteredServicePayments.length > paginatedHistoryList.length">
+				{{'pages.payments.debtsList.more' | translate}}
+			</mcy-contextual-button>
+		</div>
+	</div>
+</mcy-primary-page-layout>

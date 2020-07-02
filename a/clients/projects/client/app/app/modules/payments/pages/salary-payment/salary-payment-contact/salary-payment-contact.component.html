@@ -1,0 +1,87 @@
+<div class="salary-payment-contact">
+	<mcy-primary-page-layout
+		[title]="'pages.payments.salary.contact.title' | translate"
+		[back]="'pages.payments.salary.contact.goBack' | translate"
+		(handleBack)="goToLanding()">
+		<div actions>
+			<mcy-contextual-button
+				[id]="'salary-payment-contact__go-to-landing'"
+				sufixIcon="fechar"
+				(handleClick)="goToLanding()">
+				{{'pages.payments.salary.contact.cancel' | translate}}
+			</mcy-contextual-button>
+		</div>
+		<div class="salary-payment-contact__primary-panel" body>
+			<mcy-primary-panel-layout>
+				<div class="salary-payment-contact__body" body>
+					<mcy-stepper-guidelines
+						[selected]="isFormValid"
+						[nextGuideline]="true"
+						[icon]="'usuario_outline'">
+					</mcy-stepper-guidelines>
+					<div class="salary-payment-contact__content">
+						<h3 class="salary-payment-contact__subtitle">
+							{{ 'pages.payments.salary.contact.subtitle' | translate }}
+						</h3>
+						<mat-tab-group [(selectedIndex)]="selectedTab">
+							<mat-tab
+								[label]="'pages.payments.salary.contact.contactList'| translate">
+								<div class="salary-payment-contact__tab-content">
+									<mcy-contact-filter-list
+										[contacts]="contacts"
+										[selectedContact]="selectedContact"
+										[preSelectedCategory]="'EMPLOYEE'"
+										(handleContactSelect)="onContactSelect($event)"
+									></mcy-contact-filter-list>
+								</div>
+							</mat-tab>
+							<mat-tab
+								[label]="'pages.payments.salary.contact.newContactFromCBVU'| translate">
+								<div class="salary-payment-contact__tab-content">
+									<mcy-find-contact-form
+										[cbvu]="cbvu"
+										[alias]="alias"
+										[searchBy]="searchBy"
+										(handleChange)="onFindContactFormChange($event)"
+									></mcy-find-contact-form>
+								</div>
+							</mat-tab>
+						  </mat-tab-group>
+					</div>
+				</div>
+				<div description class="salary-payment-contact__description">
+					<p *ngIf="!isFormValid" class="salary-payment-contact__description-element">
+						{{ 'pages.payments.salary.contact.description' | translate }}
+					</p>
+					<p *ngIf="isFormValid" class="salary-payment-contact__description-element">
+						{{ 'pages.payments.salary.contact.complete' | translate }}
+					</p>
+					<div class="salary-payment-contact__required-container">
+						<span class="salary-payment-contact__required-symbol">*</span>
+						<span class="salary-payment-contact__required-text">
+							{{ 'pages.payments.salary.contact.requiredFields' | translate }}
+						</span>
+					</div>
+				</div>
+				<div footer>
+					<mcy-button
+						[id]="'salary-payment-contact__go-to-back'"
+						class="salary-payment-contact__button"
+						[color]="'tertiary'"
+						(handleClick)="goToLanding()"
+					>
+						{{ 'pages.payments.salary.contact.back' | translate }}
+					</mcy-button>
+					<mcy-button
+						[id]="'salary-payment-contact__continue'"
+						class="salary-payment-contact__button"
+						[disabled]="!isFormValid"
+						(handleClick)="onContinue()"
+					>
+						{{ 'pages.payments.salary.contact.next' | translate }}
+					</mcy-button>
+				</div>
+			</mcy-primary-panel-layout>
+		</div>
+	</mcy-primary-page-layout>
+</div>

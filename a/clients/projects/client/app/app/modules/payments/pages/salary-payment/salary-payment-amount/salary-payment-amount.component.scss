@@ -1,0 +1,61 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.salary-payment-amount {
+	&__panel {
+		margin: 0 $spacing-XL;
+	}
+
+	&__body {
+		display: flex;
+		height: 100%;
+		padding: $spacing-M 0 0 $spacing-L;
+	}
+
+	&__content {
+		padding: 0 $spacing-XL;
+		width: 100%;
+	}
+
+	&__title {
+		margin-bottom: $spacing-L;
+	}
+
+	&__description-section {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		justify-content: space-between;
+		padding: $spacing-L;
+	}
+
+	&__required {
+		color: $icon-color-brand;
+	}
+
+	&__required-text {
+		font-size: $font-size-M;
+	}
+
+	&__button {
+		padding-left: $spacing-L;
+	}
+
+	&__input-container {
+		margin-bottom: $spacing-M;
+	}
+
+	&__amount-container {
+		display: flex;
+		margin-bottom: $spacing-M;
+	}
+
+	&__currency-input {
+		width: 110px;
+		margin-right: $spacing-M;
+	}
+
+	&__amount-input {
+		flex: 1;
+	}
+}

@@ -1,0 +1,83 @@
+<div class="signup-stepper">
+	<div class="signup-stepper__section" *ngIf="!isUpdatePasswordFlow">
+		<div 
+			class="signup-stepper__section-step-icon"
+			[ngClass]="{ 
+				'signup-stepper__section-step-icon--selected': isPositiveValidationSelected 
+			}"
+		>
+			<mcy-icon>{{ isPositiveValidationChecked ? 'check' : 'processos_outline' }}</mcy-icon>
+		</div>
+		<span 
+			class="signup-stepper__section-title"
+			(click)="onPositiveValidationClick()"
+			[ngClass]="{ 
+				'signup-stepper__section-title--selected': isPositiveValidationSelected,
+				'signup-stepper__section-title--valid': isPositiveValidationValid
+			}"
+		>{{ 'components.signupStepper.positiveValidationStep' | translate }}</span>
+	</div>
+	<div
+		class="signup-stepper__section"
+		[ngClass]="{ 
+			'signup-stepper__section-step-icon--selected': isAccessDataSelected 
+		}"
+		*ngIf="!isUpdatePasswordFlow"
+	>
+		<div 
+			class="signup-stepper__section-step-icon"
+			[ngClass]="{ 
+				'signup-stepper__section-step-icon--selected': isAccessDataSelected
+			}"
+		>
+			<mcy-icon>{{ isAccessDataChecked ? 'check' : 'resgate'}}</mcy-icon>
+		</div>
+		<span 
+			class="signup-stepper__section-title"
+			(click)="onAccessDataClick()"
+			[ngClass]="{ 
+				'signup-stepper__section-title--selected': isAccessDataSelected,
+				'signup-stepper__section-title--valid': isAccessDataValid
+			}"
+		>{{ 'components.signupStepper.accessDataStep' | translate }}</span>
+	</div>
+	<div class="signup-stepper__section" *ngIf="isUpdatePasswordFlow">
+		<div 
+			class="signup-stepper__section-step-icon"
+			[ngClass]="{ 
+				'signup-stepper__section-step-icon--selected': isUpdatePasswordSelected 
+			}"
+				
+		>
+			<mcy-icon>{{ isUpdatePasswordChecked ? 'check' : 'chave_outline' }}</mcy-icon>
+		</div>
+		<span 
+			class="signup-stepper__section-title"
+			[ngClass]="{ 
+				'signup-stepper__section-title--selected': isUpdatePasswordSelected,
+				'signup-stepper__section-title--valid': isUpdatePasswordValid
+			}"
+		>{{ 'components.signupStepper.updatePassword' | translate }}</span>
+	</div>
+	<div 
+		class="signup-stepper__section"
+		[ngClass]="{ 
+			'signup-stepper__section-step-icon--selected': isSuccessSelected 
+		}"
+	>
+		<div 
+			class="signup-stepper__section-step-icon"
+			[ngClass]="{ 
+				'signup-stepper__section-step-icon--selected': isSuccessSelected
+			}"
+		>
+			<mcy-icon>chat_enviado</mcy-icon>
+		</div>
+		<span 
+			class="signup-stepper__section-title"
+			[ngClass]="{ 
+				'signup-stepper__section-title--selected': isSuccessSelected
+			}"
+		>{{ 'components.signupStepper.doneStep' | translate }}</span>
+	</div>
+</div>

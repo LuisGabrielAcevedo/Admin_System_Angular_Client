@@ -1,0 +1,114 @@
+<mcy-signup-layout>
+	<div header class="access-data__header">
+		<div class="access-data__user-icon">
+			<mcy-icon>usuario_outline</mcy-icon>
+		</div>
+		<span class="access-data__document">
+			{{ documentType }} {{ documentNumber }}
+		</span>
+	</div>
+	<div aside>
+		<mcy-sidebar-title [title]="getSidenavTitleTranslation()">
+			<mcy-signup-stepper
+				[selectedStep]="'accessData'"
+				[isPersonalDataChecked]="true"
+				[isPositiveValidationChecked]="true"
+				[isAccessDataChecked]="signupForm.valid"
+			></mcy-signup-stepper>
+		</mcy-sidebar-title>
+	</div>
+	<div body class="access-data__main">
+		<div class="access-data__main-header">
+			<h1 class="access-data__main-header-title">{{ 'pages.accessData.title' | translate }}</h1>
+			<mcy-contextual-button
+				[id]="'access-data__main-header-cancel'"
+				[sufixIcon]="'fechar'"
+				[sufixIconSize]="'16px'"
+				(handleClick)="onCancel()">
+				{{ 'pages.accessData.actions.cancel' | translate }}
+			</mcy-contextual-button>
+		</div>
+		<span class="access-data__signup-form-description">
+			{{ 'pages.accessData.formDescription' | translate }}
+		</span>
+		<form [formGroup]="signupForm" class="access-data__signup-form" >
+			<div class="access-data__signup-form-row">
+				<mcy-input
+					class="access-data__signup-form-input"
+					[id]="'access-data__signup-form-input-username'"
+					formControlName="username"
+					[maxLength]="usernameMaxLength"
+					[label]="'pages.accessData.form.username.label' | translate"
+					[validators]="usernameValidators"
+					[required]="true"
+				>
+					<div hint *ngIf="remainingUsernameCharacters > 0">
+						{{ 'pages.accessData.form.username.note' | translate: { value: remainingUsernameCharacters } }}
+					</div>
+				</mcy-input>
+				<mcy-user-availability
+				class="access-data__signup-form-user-available"
+					[isAvailable]="true"
+					*ngIf="signupForm.controls.username.valid"
+				></mcy-user-availability>
+				<mcy-user-availability
+					[isAvailable]="false"
+					*ngIf="signupForm.controls.username.errors && signupForm.controls.username.errors.duplicateUsername"
+				></mcy-user-availability>
+			</div>
+			<div class="access-data__signup-form-row">
+				<mcy-input
+					class="access-data__signup-form-input"
+					[id]="'access-data__signup-form-input-password'"
+					formControlName="password"
+					[maxLength]="passwordMaxLength"
+					[label]="'pages.accessData.form.password.label' | translate"
+					[validators]="passwordValidators"
+					[required]="true"
+					[type]="'password'"
+				>
+					<div hint *ngIf="remainingPasswordCharacters > 0">
+						{{ 'pages.accessData.form.password.note' | translate: { value: remainingPasswordCharacters } }}
+					</div>
+				</mcy-input>
+				<mcy-password-security
+					*ngIf="signupForm.controls.password.valid"
+					class="access-data__signup-form-password-security"
+					[password]="signupForm.value.password"
+				></mcy-password-security>
+			</div>
+			<mcy-input
+				class="access-data__signup-form-input"
+				[id]="'access-data__signup-form-input-repeated-password'"
+				formControlName="repeatedPassword"
+				[label]="'pages.accessData.form.repeatedPassword.label' | translate"
+				[validators]="repeatedPasswordValidators"
+				[required]="true"
+				[maxLength]="passwordMaxLength"
+				[type]="'password'"
+			>
+				<div hint
+					 *ngIf="signupForm.value.password === signupForm.value.repeatedPassword
+					 		&& signupForm.controls.password.valid">
+					{{ 'pages.accessData.form.repeatedPassword.passwordMatch' | translate }}
+				</div>
+			</mcy-input>
+			<div class="access-data__signup-form-actions">
+				<span class="access-data__signup-form-required">
+					<span class="access-data__signup-form-required-icon">* </span>
+					{{ 'pages.accessData.requiredFields' | translate }}
+				</span>
+				<div class="access-data__signup-form-actions-row">
+					<mcy-button
+						[id]="'access-data__signup-form-actions-continue'"
+						[color]="'primary'"
+						[disabled]="!signupForm.valid"
+						(handleClick)="onContinue()"
+					>
+						{{ getNextButtonTranslation() }}
+					</mcy-button>
+				</div>
+			</div>
+		</form>
+	</div>
+</mcy-signup-layout>

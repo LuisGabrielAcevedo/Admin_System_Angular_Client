@@ -1,0 +1,37 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.debt-card {
+	@include box-shadow-notification();
+	background-color: $background-color-secondary;
+	padding: $spacing-M;
+	display: flex;
+	flex-direction: column;
+	border-radius: $radius-S;
+	margin: $spacing-M $spacing-M 0 0;
+
+	&__badge-icon {
+		margin-bottom: $spacing-XXS;
+	}
+
+	&__description {
+		@include font-primary-regular();
+		color: $text-color-secondary;
+		font-size: $font-size-S;
+		margin-bottom: $spacing-S;
+	}
+
+	&__amount {
+		@include font-primary-regular();
+		font-size: $font-size-M;
+		margin-bottom: $spacing-XXS;
+	}
+
+	&__pay {
+		@include font-primary-bold();
+		cursor: pointer;
+		color: $text-color-link;
+		padding-top: $spacing-S;
+		border-top: 1px solid $border-color-secondary;
+	}
+}

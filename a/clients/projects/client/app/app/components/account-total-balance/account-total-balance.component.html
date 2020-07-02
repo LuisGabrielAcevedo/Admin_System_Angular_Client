@@ -1,0 +1,15 @@
+<div class="mcy-account-total-balances">
+	<span class="mcy-account-total-balances__label">
+		{{'pages.accounts.accountTotalBalance' | translate}}
+	</span>
+	<div
+		*ngFor="let totalBalance of totalBalanceByCurrency"
+		class="mcy-account-total-balances__balance">
+		<span class="mcy-account-total-balances__currency">
+			{{ totalBalance.currency }}
+		</span>
+		<span class="mcy-account-total-balances__amount">
+			{{ totalBalance.balance | mcyAmount }}
+		</span>
+	</div>
+</div>

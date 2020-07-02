@@ -1,0 +1,46 @@
+<div class="acccount-movements">
+	<div class="acccount-movements__header">
+		<div>
+			<div>
+				<span class="acccount-movements__number">{{totalAccountsMovements}}</span>
+				<span class="acccount-movements__title">{{'pages.accounts.accountMovements.title' | translate}}</span>
+			</div>
+			<span class="acccount-movements__sub-title">{{'pages.accounts.accountMovements.subTitle' | translate}}</span>
+		</div>
+		<div class="acccount-movements__actions">
+			<mcy-button
+				[id]="'acccount-movements__export-button'"
+				class="acccount-movements__export-button"
+				(handleClick)="exportMovements()"
+				color="secondary">
+				<mcy-icon class="acccount-movements__export-icon">documento_outline</mcy-icon>
+				{{'pages.accounts.accountMovements.export' | translate}}
+			</mcy-button>
+
+			<mcy-icon-button
+				[id]="'acccount-movements__search'"
+				(handleClick)="showFilters();"
+				class="acccount-movements__icon-search">
+				busca
+			</mcy-icon-button>
+		</div>
+	</div>
+	<div *ngIf="visibleFilters">
+		<mcy-accounts-filters (sendFilters)="filterData($event)">
+		</mcy-accounts-filters>
+	</div>
+	<mcy-accounts-movements-list
+		*ngIf="movementsState.selectedAccount"
+		[accountMovements]="paginatedAccountMovementsList"
+		[account]="movementsState.selectedAccount">
+	</mcy-accounts-movements-list>
+	<div class="acccount-movements__more-button-container">
+		<mcy-contextual-button
+			[id]="'acccount-movements__more-button'"
+			sufixIcon="seta_baixo"
+			(handleClick)="changePagination()"
+			*ngIf="filteredAccountMovementsList.length > paginatedAccountMovementsList.length">
+			{{'pages.accounts.accountMovementsList.more' | translate}}
+		</mcy-contextual-button>
+	</div>
+</div>

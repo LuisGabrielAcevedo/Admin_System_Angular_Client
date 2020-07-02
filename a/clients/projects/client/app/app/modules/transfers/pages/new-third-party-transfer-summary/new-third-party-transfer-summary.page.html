@@ -1,0 +1,144 @@
+<div class="new-third-party-transfer-summary">
+	<mcy-primary-page-layout
+		(handleBack)="onCancel(true)"
+		[title]="'pages.transfers.thirdParty.summary.title' | translate"
+		[back]="'pages.transfers.thirdParty.summary.goBack' | translate">
+		<div actions>
+			<mcy-contextual-button
+				sufixIcon="fechar"
+				[id]="'new-third-party-transfer-summary__cancel-button'"
+				(handleClick)="onCancel(true)"
+			>
+				{{'pages.transfers.thirdParty.summary.cancel' | translate}}
+			</mcy-contextual-button>
+		</div>
+		<div class="new-third-party-transfer-summary__panel" body>
+			<mcy-primary-panel-layout
+				[hasError]="transferState.hasNewTransferErrors && !isSidenavOpen"
+				[isLoading]="transferState.loadingNewTransfer && !isSidenavOpen"
+				(handleOnRetry)="onTransferClick()"
+				[error] ="'pages.transfers.thirdParty.summary.error' | translate"
+				[errorMessage] ="'pages.transfers.thirdParty.summary.errorMessage' | translate"
+			>
+				<div class="new-third-party-transfer-summary__body" body>
+					<div class="new-third-party-transfer-summary__item-section">
+						<mcy-stepper-guidelines
+							class="new-third-party-transfer-summary__stepper-guidelines"
+							[nextGuideline]="true"
+							[selected]="true">
+						</mcy-stepper-guidelines>
+						<div class="new-third-party-transfer-summary__destination-container">
+							<h3 class="new-third-party-transfer-summary__section-title">
+								{{ 'pages.transfers.thirdParty.summary.destinationTitle' | translate }}
+							</h3>
+							<div class="new-third-party-transfer-summary__account-info">
+								<span class="new-third-party-transfer-summary__account-title">
+									{{ 'pages.transfers.thirdParty.summary.cbu' | translate }}
+								</span>
+								<span class="new-third-party-transfer-summary__cbvu">
+									{{ destinationContact.cbvu }}
+								</span>
+								<span class="new-third-party-transfer-summary__account-name">
+									{{ destinationContact.name}}
+								</span>
+								<mcy-icon-button
+									(handleClick)="backToEditDestinatary()"
+									[id]="'new-third-party-transfer-summary__back-to-destinatary-button'"
+									class="new-third-party-transfer-summary__edit-icon">
+									editar_outline
+								</mcy-icon-button>
+							</div>
+						</div>
+					</div>
+
+					<div class="new-third-party-transfer-summary__item-section">
+						<mcy-stepper-guidelines
+							class="new-third-party-transfer-summary__stepper-guidelines"
+							[previousGuideline]="true"
+							[nextGuideline]="true"
+							[selected]="true">
+						</mcy-stepper-guidelines>
+						<div class="new-third-party-transfer-summary__balance-container">
+							<h3 class="new-third-party-transfer-summary__section-title">
+								{{ 'pages.transfers.thirdParty.summary.balanceTitle' | translate }}
+							</h3>
+							<div class="new-third-party-transfer-summary__balance-info">
+								<span class="new-third-party-transfer-summary__description--bold">
+									{{ sourceAccount.currency.symbol }}
+									{{ transferAmount | mcyAmount }}
+								</span>
+								<span class="new-third-party-transfer-summary__balance-description">
+									{{ transferState.newTransferFormValue.paymentDescription }}
+								</span>
+								<span class="new-third-party-transfer-summary__balance-concept">
+									{{ transferState.newTransferFormValue.concept.description }}
+								</span>
+							</div>
+							<mcy-icon-button
+								(handleClick)="backToEditBalance()"
+								[id]="'new-third-party-transfer-summary__back-to-balance-button'"
+								class="new-third-party-transfer-summary__edit-icon">
+								editar_outline
+							</mcy-icon-button>
+						</div>
+					</div>
+
+					<div class="new-third-party-transfer-summary__item-section">
+						<mcy-stepper-guidelines
+							class="new-third-party-transfer-summary__stepper-guidelines"
+							[previousGuideline]="true"
+							[selected]="true">
+						</mcy-stepper-guidelines>
+						<div class="new-third-party-transfer-summary__balance-container">
+							<h3 class="new-third-party-transfer-summary__section-title">
+								{{ 'pages.transfers.thirdParty.summary.sourceTitle' | translate }}
+							</h3>
+							<div class="new-third-party-transfer-summary__balance-info">
+								<span class="new-third-party-transfer-summary__account-number">
+									{{ sourceAccount.type }} {{ sourceAccount.number | mcyAccountNumber }}
+								</span>
+								<span class="new-third-party-transfer-summary__date">
+									{{ 'pages.transfers.thirdParty.summary.date' | translate }}:
+									{{ transferDate }}
+								</span>
+							</div>
+							<mcy-icon-button
+								(handleClick)="backToEditSource()"
+								[id]="'new-third-party-transfer-summary__back-to-source-button'"
+								class="new-third-party-transfer-summary__edit-icon">
+								editar_outline
+							</mcy-icon-button>
+						</div>
+					</div>
+				</div>
+
+				<div footer class="new-third-party-transfer-summary__buttons-section">
+					<mcy-button
+						class="new-third-party-transfer-summary__button"
+						(handleClick)="back()"
+						[id]="'new-third-party-transfer-summary__back-button'"
+						[color]="'tertiary'">
+						{{ 'pages.transfers.thirdParty.summary.back' | translate }}
+					</mcy-button>
+					<mcy-button
+						class="new-third-party-transfer-summary__button"
+						(handleClick)="onTransferClick()"
+						[id]="'new-third-party-transfer-summary__next-button'"
+						[color]="'primary'"
+						[disabled]="transferState.loadingNewTransfer">
+						{{ 'pages.transfers.thirdParty.summary.next' | translate }}
+					</mcy-button>
+				</div>
+
+				<div description class="new-third-party-transfer-summary__description-section">
+					<span class="new-third-party-transfer-summary__description--bold">
+						{{ 'pages.transfers.thirdParty.summary.descriptionTitle' | translate }}
+					</span>
+					<span class="new-third-party-transfer-summary__description">
+						 {{ 'pages.transfers.thirdParty.summary.description' | translate }}
+					</span>
+				</div>
+			</mcy-primary-panel-layout>
+		</div>
+	</mcy-primary-page-layout>
+</div>

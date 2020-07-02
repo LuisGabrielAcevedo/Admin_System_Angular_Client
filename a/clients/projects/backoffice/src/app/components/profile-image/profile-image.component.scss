@@ -1,0 +1,24 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.profile-image {
+	position: relative;
+	width: fit-content;
+
+	&__circle {
+		background-color: $background-color-user-profile;
+		border-radius: $radius-circle;
+		display: flex;
+		justify-content: center;
+		height: 32px;
+		width: 32px;
+	}
+
+	&__contact-initials {
+		align-items: center;
+		color: $text-color-high-contrast;
+		display: flex;
+		font-size: $font-size-XXS;
+		text-transform: uppercase;
+	}
+}

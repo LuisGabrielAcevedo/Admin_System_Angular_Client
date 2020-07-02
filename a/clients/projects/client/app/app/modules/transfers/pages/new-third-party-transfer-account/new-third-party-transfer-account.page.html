@@ -1,0 +1,90 @@
+<div class="new-third-party-transfer-account">
+	<mcy-primary-page-layout
+		[title]="'pages.transfers.thirdParty.accounts.title' | translate"
+		[back]="'pages.transfers.thirdParty.accounts.backTo' | translate"
+		(handleBack)="onCancel(true)"
+	>
+		<div actions>
+			<mcy-contextual-button
+				sufixIcon="fechar"
+				(handleClick)="onCancel(true)"
+				[id]="'new-third-party-transfer-account__cancel-button'"
+			>
+				{{'pages.transfers.thirdParty.accounts.cancel' | translate}}
+			</mcy-contextual-button>
+		</div>
+		<div body class="new-third-party-transfer-account__container">
+			<mcy-primary-panel-layout>
+				<div body class="new-third-party-transfer-account__body-section">
+
+					<mcy-stepper-guidelines
+						[previousGuideline]="true"
+						[icon]="'trconta_corrente_outline'"
+						[selected]="sourceAccountsForm.valid"
+					></mcy-stepper-guidelines>
+
+					<div class="new-third-party-transfer-account__content">
+						<h3 class="new-third-party-transfer-account__title">
+							{{ 'pages.transfers.thirdParty.accounts.originAccount' | translate }}
+						</h3>
+
+						<form [formGroup]="sourceAccountsForm" class="new-third-party-transfer-account__form">
+							<div class="new-third-party-transfer-account__input">
+								<mcy-account-select
+									formControlName="sourceAccount"
+									[id]="'new-third-party-transfer-account__account-select'"
+									[required]="true"
+									(handleChange)="onChangeSourceAccount()"
+									[balanceText]="'pages.transfers.thirdParty.accounts.balance' | translate"
+									[label]="'pages.transfers.thirdParty.accounts.placeholders.originAccount' | translate"
+									[accounts]="sourceAccounts"
+								></mcy-account-select>
+							</div>
+							<div class="new-third-party-transfer-account__input">
+								<div class="new-third-party-transfer-account__icon-input-container">
+									<mcy-icon
+										class="new-third-party-transfer-account__input-icon"
+									>
+										calendario_outline
+									</mcy-icon>
+									<mcy-input
+										[id]="'new-third-party-transfer-account__execution-date-button'"
+										formControlName="executionDate"
+										[label]="'pages.transfers.thirdParty.accounts.placeholders.executionDate' | translate"
+									></mcy-input>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div description class="new-third-party-transfer-account__description-section">
+					<span *ngIf="!sourceAccountsForm.valid">{{ 'pages.transfers.thirdParty.accounts.description' | translate }}</span>
+					<span *ngIf="sourceAccountsForm.valid">{{ 'pages.transfers.thirdParty.accounts.complete' | translate }}</span>
+					<div>
+						<span class="new-third-party-transfer-account__required">* </span>
+						<span class="new-third-party-transfer-account__required-text">{{ 'pages.transfers.ownAccount.accounts.required' | translate }}</span>
+					</div>
+				</div>
+
+				<div footer>
+					<mcy-button
+						[id]="'new-third-party-transfer-account__back-button'"
+						(handleClick)="back()"
+						[color]="'tertiary'"
+						class="new-third-party-transfer-account__button">
+						{{ 'pages.transfers.thirdParty.accounts.back' | translate }}
+					</mcy-button>
+					<mcy-button
+						[id]="'new-third-party-transfer-account__next-button'"
+						(handleClick)="next()"
+						[disabled]="!sourceAccountsForm.valid"
+						[color]="'primary'"
+						class="new-third-party-transfer-account__button">
+						{{ 'pages.transfers.thirdParty.accounts.next' | translate }}
+					</mcy-button>
+				</div>
+			</mcy-primary-panel-layout>
+		</div>
+	</mcy-primary-page-layout>
+</div>

@@ -1,0 +1,58 @@
+<div class="favorite-contacts">
+	<h4 class="favorite-contacts__title">
+		{{ 'pages.dashboard.favoriteContacts.title' | translate }}
+	</h4>
+
+	<div class="favorite-contacts__contacts-list"
+		*ngIf="favoriteContacts.length">
+		<div class="favorite-contacts__contact"
+		*ngFor="let contact of favoriteContacts; let cellIndex = index">
+			<div class="favorite-contacts__column">
+				<mcy-profile-image
+					[size]="'small'"
+					[name]="contact.reference"
+					[favorite]="true"
+					[selected]="false"
+					[category]="contact.category"
+					class="favorite-contacts__contact-image"
+				></mcy-profile-image>
+				<span class="favorite-contacts__reference">
+					{{ contact.reference }}
+				</span>
+			</div>
+			<div class="favorite-contacts__column">
+				<mcy-link
+					*ngIf="contact.category !== 'EMPLOYEE' && contact.category !== 'PROVIDER' && hasTransfersWritePermission"
+					class="favorite-contacts__button"
+					(handleClick)="transfer(contact)"
+					[id]="'favorite-contacts__tranferToContact-button'">
+					{{ 'pages.dashboard.favoriteContacts.transferToContact' | translate }}
+				</mcy-link>
+
+				<mcy-link
+					*ngIf="contact.category === 'EMPLOYEE' && hasPaySalariesWritePermission"
+					class="favorite-contacts__button"
+					(handleClick)="paySalaries(contact)"
+					[id]="'favorite-contacts__paySalaries-button'">
+					{{ 'pages.dashboard.favoriteContacts.paySalaries' | translate }}
+				</mcy-link>
+			</div>
+		</div>
+	</div>
+	<mcy-empty-data
+		class="favorite-contacts__empty"
+		*ngIf="!favoriteContacts.length"
+		[message]="'pages.dashboard.favoriteContacts.empty' | translate">
+	</mcy-empty-data>
+
+	<div class="favorite-contacts__show-more">
+		<mcy-contextual-button
+			class="favorite-contacts__show-more-label"
+			(handleClick)="showMore()"
+			[sufixIcon]="'seta_direita'"
+			[sufixIconSize]="'16px'"
+			[id]="'favorite-contacts__show-more-button'">
+			{{ 'pages.dashboard.favoriteContacts.more' | translate }}
+		</mcy-contextual-button>
+	</div>
+</div>

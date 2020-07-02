@@ -1,0 +1,38 @@
+<div class="notification-details">
+	<div class="notification-details__header">
+		<div class="notification-details__header-notification-indicator">
+			<div class="notification-details__header-notification-number">{{getUnreadedNotifications()}}</div>
+			<div class="notification-details__header-notification-title">{{ 'sidenav.notificationsDetails.newNotifications' | translate }}</div>  
+		</div>
+		<a [ngClass]="{
+			'notification-details__mark-as-read-link--active' : hasNotificationsUnread(),
+			'notification-details__mark-as-read-link--disabled': !hasNotificationsUnread()
+		}" class="notification-details__mark-as-read-link" (click)="hasNotificationsUnread() && markAllAsRead()" [id]="'notification-details-mark-all-as-read'">
+		{{ 'sidenav.notificationsDetails.markAllAsRead' | translate }}
+		</a>
+	</div>
+	<div *ngFor="let key of objectKeys(notificationsGrupedByDate)" class="notification-details__body">
+		<div class="notification-details__body-date">{{checkDate(key)}}</div> 		
+		<div *ngFor="let notification of notificationsGrupedByDate[key]">
+			<mcy-notification-item 
+				[notificationItem]="notification" 
+				[isDetailNotifitacion]= "true"
+				(handleDeleteAction)="onDelete($event)" 
+				(handleSetAsReadAction)="onSetAsReadAction($event)"
+				(handleGoToSectionAction)="onGoToAction($event)">
+			</mcy-notification-item>
+		</div>
+	</div>
+	<div class="notification-details__footer">
+		<mcy-contextual-button
+			[id]="'notification-details__show-more-button'" 
+			*ngIf="notificationSate.notifications.length > notificationsFiltred.length" 
+			(handleClick)="incrementPagination()"
+			[sufixIcon]="'seta_baixo'"
+		>
+			<span class="provider-landing__show-more-label">
+				{{ 'sidenav.notificationsDetails.viewMore' | translate }}
+			</span>
+		</mcy-contextual-button>
+	</div>
+</div>

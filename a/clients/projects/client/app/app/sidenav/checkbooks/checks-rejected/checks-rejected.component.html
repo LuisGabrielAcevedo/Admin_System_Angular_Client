@@ -1,0 +1,49 @@
+<div class="checks-rejected">
+	<div class="checks-rejected__box-icon-status">
+		<mcy-status-icon size="large" [status]="'REJECTED'"></mcy-status-icon>
+
+		<div class="checks-rejected__header">
+			<div class="checks-rejected__header-title">
+				{{'pages.checkbooks.received.number' | translate}}
+			</div>
+			<div class="checks-rejected__header-check-number">
+				{{data.check.number}}
+			</div>
+		</div>
+	</div>
+
+	<div class="checks-rejected__info">
+		<div class="checks-rejected__info-row">
+			<div class="checks-rejected__info-item">
+				<div class="checks-rejected__label">{{ 'pages.checkbooks.received.code' | translate }}</div>
+				<div class="checks-rejected__value">{{data.check.code}}</div>
+			</div>
+		</div>
+
+		<div class="checks-rejected__info-row">
+			<div class="checks-rejected__info-item" *ngIf="data.check.rejectionDate">
+				<div class="checks-rejected__label">{{ 'pages.checkbooks.received.rejectionDate' | translate }}</div>
+				<div class="checks-rejected__value">{{formatDate(data.check.rejectionDate)}}</div>
+			</div>
+
+			<div class="checks-rejected__info-item">
+				<div class="checks-rejected__label">{{ 'pages.checkbooks.received.amount' | translate }}</div>
+				<div class="checks-rejected__value">{{data.check.currency.symbol}} {{data.check.amount | mcyAmount}}</div>
+			</div>
+		</div>
+
+		<div class="checks-rejected__info-row">
+			<div class="checks-rejected__label-strong">{{ 'pages.checkbooks.received.reason' | translate }}</div>
+		</div>
+
+		<div class="checks-rejected__info-row">
+			<div class="checks-rejected__reason">{{data.check.rejectionReason}}</div>
+		</div>
+	</div>
+
+	<mcy-sidenav-footer>
+		<div class="checks-rejected__footer">
+			<mcy-button (handleClick)="close()">{{ 'pages.checkbooks.received.end' | translate }}</mcy-button>
+		</div>
+	</mcy-sidenav-footer>
+</div>

@@ -1,0 +1,37 @@
+<div class="cancel-requests-status">
+	<mcy-primary-page-layout
+		(handleBack)="goToLanding()"
+		[title]="title()"
+		[back]="'pages.requests.sign.goBack' | translate">
+		<div body class="cancel-requests-status__content">
+			<mcy-primary-panel-layout>
+				<div body class="cancel-requests-status__actions-list">
+					<div class="cancel-requests-status__bar">
+						<div class="cancel-requests-status__bar">
+							<mcy-icon class="cancel-requests-status__list-icon">documento</mcy-icon>
+							<span class="cancel-requests-status__main-title">{{'pages.requests.cancelStatus.actionMessage' | translate}}</span>
+						</div>
+					</div>
+					<div class="cancel-requests-status__list">
+						<mcy-requests-actions-list
+							[showStatus]="true"
+							[errors]="formattedErrors"
+							action="CANCEL"
+							[selectedRequests]="requests()">
+						</mcy-requests-actions-list>
+					</div>
+				</div>
+				<div description class="cancel-requests-status__description">
+					<span>{{description()}}</span>
+				</div>
+				<mcy-button
+					footer
+					(handleClick)="goToLanding()"
+					[id]="'cancel-requests-status__button'"
+					color="primary">
+					{{'pages.requests.cancelStatus.buttonLabel' | translate}}
+				</mcy-button>
+			</mcy-primary-panel-layout>
+		</div>
+	</mcy-primary-page-layout>
+</div>

@@ -1,0 +1,83 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.signup {
+	height: 100%;
+	
+	&__container {		
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	&__loading {
+		height: 90%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__title {
+		margin: 0 0 $spacing-XS 0;
+		font-size: $font-size-L;
+		color: $text-color-primary;
+		@include font-primary-light();
+	}
+
+	&__warning {
+		font-size: $font-size-M;
+		color: $text-color-primary;
+		@include font-primary-light();
+		line-height: 1.44;
+	}
+	
+	&__form-container {
+		width: 400px;
+		display: flex;
+		flex-direction: column;
+		margin: $spacing-XXL 0;
+	}
+
+	&__document-container {
+		margin: $spacing-M 0 $spacing-XS 0;
+		display: flex;
+	}
+
+	&__submit-button {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	&__document-number-input {
+		flex: 1;
+	}
+
+	&__document-type-select-container {
+		width: 95px;
+		margin-right: $spacing-XS;
+	}
+
+	&__login-box {
+		border: 1px solid $border-color-tertiary;
+		border-radius: $radius-S;
+		padding: $spacing-M $spacing-M;
+		width: 480px;
+		margin-bottom: $spacing-XXL;
+	}
+
+	&__login-title {
+		@include font-primary-bold();
+		color: $text-color-partial;
+		margin: 0;
+		font-size: $font-size-XL;
+	}
+	
+	&__login-description {
+		@include font-primary-light();
+		color: $text-color-tertiary;
+		display: block;
+		font-size: $font-size-M;
+		line-height: 1.44;
+		margin: $spacing-XXS 0 $spacing-XS 0;
+	}
+}

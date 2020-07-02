@@ -1,0 +1,44 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.secondary-input {
+	display: block;
+	position: relative;
+	width: 100%;
+
+	
+	&__icon {
+		left: 15px;
+		pointer-events: none;
+		position: absolute;
+		font-size: 24px;
+		top: 5px;
+		color: $icon-color-brand;
+	}
+
+	&__input {
+		@include font-primary-regular();
+		font-size: $font-size-M;
+		border-radius: 6px;
+		border: solid 1px $border-color-secondary;
+		height: 35px;
+		padding: $spacing-XXS 45px $spacing-XXS 55px;
+		width: 100%;
+		&::-ms-clear {  
+			display: none; 
+		}
+	}
+
+	&__input:focus {
+		outline: none;
+	}
+
+	&__cancel {
+		position: absolute;
+		right: 8px;
+		top: 10px;
+		font-size: 16px;
+		cursor: pointer;
+		color: $icon-color-brand;
+	}
+}

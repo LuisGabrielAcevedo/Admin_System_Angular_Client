@@ -1,0 +1,93 @@
+<div class="salary-payment-account">
+	<mcy-primary-page-layout
+		[title]="'pages.payments.salary.account.title' | translate"
+		[back]="'pages.payments.salary.account.goBack' | translate"
+		(handleBack)="goToLanding()"
+	>
+		<div actions>
+			<mcy-contextual-button sufixIcon="fechar" (click)="goToLanding()">
+				{{'pages.payments.salary.account.cancel' | translate}}
+			</mcy-contextual-button>
+		</div>
+		<div body class="salary-payment-account__container">
+			<mcy-primary-panel-layout
+				[isLoading]="accountsState.loading"
+			>
+				<div body class="salary-payment-account__body-section">
+					<mcy-stepper-guidelines
+						[previousGuideline]="true"
+						[icon]="'trconta_corrente_outline'"
+						[selected]="accountForm.valid"
+					></mcy-stepper-guidelines>
+					<div class="salary-payment-account__content">
+						<h3 class="salary-payment-account__title">
+							{{ 'pages.payments.salary.account.originAccount' | translate }}
+						</h3>
+						<form [formGroup]="accountForm" class="salary-payment-account__form">
+							<div class="salary-payment-account__input">
+								<mcy-account-select
+									[label]="'common.originAccount' | translate"
+									[id]="'salary-payment-account__account-input'"
+									formControlName="account"
+									required="true"
+									[accounts]="accounts"
+								></mcy-account-select>
+							</div>
+							<div class="salary-payment-account__box-moment-execution">
+								<voxel-radio-button-group class="salary-payment-account__radio"
+									formControlName="momentExecution"
+									[id]="'salary-payment-account__moment-execution'"
+									>
+									<voxel-radio-button value="INSTANT">
+										{{ 'pages.payments.salary.account.righNow' | translate }}
+									</voxel-radio-button>
+									<voxel-radio-button value="PROGRAMMED" class="salary-payment-account__spacing">
+										{{ 'pages.payments.salary.account.programmed' | translate }}
+									</voxel-radio-button>
+								  </voxel-radio-button-group>
+							</div>
+							<div class="salary-payment-account__input" *ngIf="programmed">
+
+								<mcy-date
+									[id]="'salary-payment-account__date'"
+									[label]="'pages.payments.salary.account.executionDate' | translate"
+									icon="calendario_outline"
+									formControlName="date"
+									[minDate]="minDate"
+									[maxDate]="maxDate"
+								></mcy-date>
+							</div>
+						</form>
+					</div>
+	</div>
+
+				<div description class="salary-payment-account__description-section">
+					<span *ngIf="!accountForm.valid">{{ 'pages.payments.salary.account.description' | translate }}</span>
+					<span *ngIf="accountForm.valid">{{ 'pages.payments.salary.account.complete' | translate }}</span>
+					<div>
+						<span class="salary-payment-account__required">* </span>
+						<span class="salary-payment-account__required-text">{{ 'pages.transfers.ownAccount.accounts.required' | translate }}</span>
+					</div>
+				</div>
+
+				<div footer>
+					<mcy-button
+						(handleClick)="back()"
+						[color]="'tertiary'"
+						[id]="'salary-payment-account__back-button'"
+						class="salary-payment-account__button">
+						{{ 'pages.payments.salary.account.back' | translate }}
+					</mcy-button>
+					<mcy-button
+						(handleClick)="continue()"
+						[disabled]="!accountForm.valid"
+						[color]="'primary'"
+						[id]="'salary-payment-account__next-button'"
+						class="salary-payment-account__button">
+						{{ 'pages.payments.salary.account.next' | translate }}
+					</mcy-button>
+				</div>
+			</mcy-primary-panel-layout>
+		</div>
+	</mcy-primary-page-layout>
+</div>

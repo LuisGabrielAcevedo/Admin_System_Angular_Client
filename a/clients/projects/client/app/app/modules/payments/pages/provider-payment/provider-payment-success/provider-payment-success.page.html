@@ -1,0 +1,108 @@
+<div class="provider-payment-success">
+	<mcy-primary-page-layout
+		[title]="contentDetailTransferSuccess?.title"
+		[back]="'pages.payments.providers.success.backTo' | translate"
+		(handleBack)="onPrimaryButtonClick()"
+	>
+		<div class="provider-payment-success__panel" body>
+			<mcy-primary-panel-layout *ngIf="lastProviderPaymentRequest">
+				<div class="provider-payment-success__body" body>
+					<mcy-icon class="{{contentDetailTransferSuccess?.class}}">{{contentDetailTransferSuccess?.icon}}</mcy-icon>
+					<div class="provider-payment-success__content">
+						<div class="provider-payment-success__receipt">
+							<span class="provider-payment-success__receipt-label">
+								{{contentDetailTransferSuccess.descriptionReciept}}
+							</span>
+							<span class="provider-payment-success__receipt-value" >
+								{{ operationNumber }}
+							</span>
+						</div>
+
+						<div class="provider-payment-success__detail-row">
+							<div class="provider-payment-success__detail">
+								<span class="provider-payment-success__detail-label">
+									{{ 'pages.payments.providers.success.destinatary' | translate }}
+								</span>
+								<span class="provider-payment-success__detail-value" *ngIf="lastProviderPaymentRequest">
+									{{ destinationHolder }}
+								</span>
+							</div>
+							<div class="provider-payment-success__detail">
+								<span class="provider-payment-success__detail-label">
+									{{ 'pages.payments.providers.success.cbu' | translate }}
+								</span>
+								<span class="provider-payment-success__detail-value" *ngIf="lastProviderPaymentRequest">
+									{{ destinationCbvu }}
+								</span>
+							</div>
+						</div>
+
+						<div class="provider-payment-success__detail-row">
+							<div class="provider-payment-success__detail">
+								<span class="provider-payment-success__detail-label">
+									{{ 'pages.payments.providers.success.amount' | translate }}
+								</span>
+								<span class="provider-payment-success__detail-value" *ngIf="lastProviderPaymentRequest">
+									{{ lastProviderPaymentRequest.currency.symbol }} {{ lastProviderPaymentRequest.amount | mcyAmount }}
+								</span>
+							</div>
+							<div class="provider-payment-success__detail">
+								<span class="provider-payment-success__detail-label">
+									{{ 'pages.payments.providers.success.paymentDescription' | translate }}
+								</span>
+								<span class="provider-payment-success__concept">
+									{{ 'pages.payments.providers.success.concept' | translate }}
+								</span>
+								<span class="provider-payment-success__description">
+									{{ providerPaymentState.newProviderPaymentFormValue.paymentDescription }}
+								</span>
+							</div>
+						</div>
+
+						<div class="provider-payment-success__actions">
+							<div class="provider-payment-success__action">
+								<mcy-contextual-button
+									*ngIf="contentDetailTransferSuccess?.state !== 'AUTHORIZED'"
+									[id]="'provider-payment-success__action-detail'"
+									[prefixIcon]="contentDetailTransferSuccess?.iconButtonSecundary"
+									(handleClick)="detailRequest()">
+									{{ 'pages.payments.providers.success.detailRequest' | translate }}
+								</mcy-contextual-button>
+								<mcy-contextual-button
+									*ngIf="contentDetailTransferSuccess.allowDownload"
+									[id]="'provider-payment-success__action-detail'"
+									[prefixIcon]="contentDetailTransferSuccess?.iconButtonSecundary"
+									(handleClick)="downloadReceipt()">
+									{{ 'pages.payments.providers.success.downloadReceipt' | translate }}
+								</mcy-contextual-button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div footer>
+					<mcy-button
+						[id]="'provider-payment-success__action-other-transfer'"
+						class="provider-payment-success__action-button"
+						color="secondary"
+						(handleClick)="onSecondaryButtonClick()">
+						{{ 'pages.payments.providers.success.secondaryAction' | translate }}
+					</mcy-button>
+					<mcy-button
+						[id]="'provider-payment-success__action-end-transfer'"
+						class="provider-payment-success__action-button"
+						color="primary"
+						(handleClick)="onPrimaryButtonClick()">
+						{{ 'pages.payments.providers.success.primaryAction' | translate }}
+					</mcy-button>
+				</div>
+				<div class="provider-payment-success__side-box" description>
+					<mcy-new-contact-box
+						*ngIf="(isContactInContactList(destinationContact) | async) === false"
+						[name]="destinationContact.name"
+						(handleClick)="openAddContact()">
+					</mcy-new-contact-box>
+				</div>
+			</mcy-primary-panel-layout>
+		</div>
+	</mcy-primary-page-layout>
+</div>

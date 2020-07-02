@@ -1,0 +1,98 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.provider-landing {
+	&__header-buttons {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		height: 80px;
+		background-color: $background-color-secondary;
+	}
+	&__button {
+		padding-right: $spacing-L;
+	}
+
+	
+	&__table-content {
+		display: block;
+		margin: $spacing-S $spacing-XXL 0;
+	}
+
+	&__table-content-length {
+		@include font-primary-semibold();
+		color: $text-color-tertiary;
+		font-size: $font-size-XL;
+	}
+
+	&__table-content-title-label {
+		@include font-primary-regular();
+		color: $text-color-disabled-button;
+		font-size: $font-size-L;
+	}
+
+	&__table-content-label {
+		@include font-primary-regular();
+		font-size: $font-size-M;
+	}
+
+	&__table {
+		margin: $spacing-L 0;
+	}
+
+	&__show-more {
+		font-size: $font-size-M;
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		color: $text-color-link-light;
+	}
+
+	&__show-more-label {
+		@include font-primary-bold();
+		font-size: $font-size-M;
+		padding: 0 $spacing-S 0 0;
+	}
+
+	&__status-successful {
+		@include font-primary-bold();
+		color: $text-color-succeed;
+	}
+
+	&__status-processing {
+		@include font-primary-bold();
+		color: $text-color-processing;
+	}
+
+	&__status-rejected {
+		@include font-primary-bold();
+		color: $text-color-denary;
+	}
+
+	&__icon-actions {
+		font-size: 24px;
+		padding-left: $spacing-M;
+		color: $icon-color-spinner;
+
+		&:first-child {
+			padding-left: 0;
+		}
+
+		&--disabled {
+			color: $icon-color-disabled;
+			cursor: default;
+		}
+	}
+
+	&__icons-section {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	&__spinner-container{
+		display: flex;
+		width: 100%;
+		justify-content: center;
+		margin-top: $spacing-XXL;
+	}
+}

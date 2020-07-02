@@ -1,0 +1,129 @@
+@import 'variables';
+@import 'mixins';
+
+.salary-payment-detail {
+	&__content {
+		margin-top: $spacing-XL;
+	}
+
+	&__header {
+		display: flex;
+		flex-direction: row;
+	}
+
+	&__header-info {
+		display: flex;
+		flex-direction: column;
+		margin-left: $spacing-L;
+		margin-top: $spacing-L;
+	}
+
+	&__label {
+		font-size: $font-size-M;
+		color: $text-color-senary;
+	}
+
+	&__name-value {
+		font-size: $font-size-L;
+		color: $text-color-primary;
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: row;
+		width: 520px;
+		flex-wrap: wrap;
+		margin-top: $spacing-XL;
+
+	}
+
+	&__info-item {
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+		margin-top: $spacing-M;
+	}
+
+	&__value {
+		font-size: $font-size-M;
+		color: $text-color-primary;//$black;
+		margin-top: $spacing-XS;
+	}
+
+	&__actions {
+		display: flex;
+		margin-top: $spacing-XL;
+	}
+
+	&__action {
+		align-items: center;
+		display: flex;
+		flex: 1;
+	}
+
+	&__action-label {
+		@include font-primary-bold();
+		font-size: $font-size-M;
+		color: $text-color-link;
+	}
+
+	&__action-share {
+		color: $text-color-link;
+		margin: 0 $spacing-S 0 0;
+		font-size: 24px;
+	}
+
+	&__action-download {
+		color: $text-color-tertiary;
+		margin: 0 $spacing-S 0 0;
+		font-size: 24px;
+	}
+
+	&__action-button {
+		margin: 0 0 0 $spacing-XL;
+		color: $text-color-tertiary;
+	}
+
+	&__status {
+		margin-top: $spacing-XL;
+		border-top: 1px solid $border-color-septenary;
+	}
+
+	&__status-successful {
+		margin-top: $spacing-XL;
+		display: flex;
+		flex-direction: row;
+		color: $text-color-nonary;
+		font-size: $font-size-L;
+		font-weight: $font-weight-XL;
+	}
+
+	&__status-rejected {
+		margin-top: $spacing-XL;
+		display: flex;
+		flex-direction: row;
+		color: $text-color-denary;
+		font-size: $font-size-L;
+		font-weight: $font-weight-XL;
+	}
+
+	&__status-info {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__status-icon {
+		display: flex;
+		font-size: 26px;
+		height: 48px;
+		justify-content: center;
+		margin: 0 $spacing-M 0 0;
+		width: 48px;
+	}
+
+	&__status-date {
+		font-size: $font-size-L;
+		font-weight: $font-weight-XL;
+		color: $text-color-primary;
+	}
+}

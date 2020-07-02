@@ -1,0 +1,91 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.soft-token-confirm {
+	padding-top: $spacing-M;
+	position: relative;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	&__content {
+		margin-bottom: $spacing-XS;
+	}
+
+	&__button-group {
+		border-top: 2px solid $border-color-primary;
+		margin: $spacing-L 0 0 0;
+		padding: $spacing-L 0 0 0;
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	&__error-mesage {
+		@include font-primary-regular();
+		margin: 0;
+		color: $text-color-error;
+		font-size: $font-size-XXS;
+	}
+
+	&__button {
+		margin: 0;
+	}
+
+	&__spinner-container{
+		display: flex;
+		width: 100%;
+		height: 100%;
+		justify-content: center;
+		align-items: center;
+		padding-bottom: 100px;
+	}
+
+	&__invalid-token-notification {
+		background-color: $background-color-info-box;
+		padding: $spacing-XXS $spacing-XS;
+		font-style: italic;
+		border-radius: $radius-XXS;
+		display: flex;
+		align-items: center;
+		margin: $spacing-M 0 0 0;
+	}
+
+	&__invalid-token-notification-icon {
+		font-size: 24px;
+		color: $text-color-tertiary;
+	}
+
+	&__invalid-token-notification-label {
+		@include font-primary-regular;
+		padding: 0 0 0 $spacing-XS;
+		color: $text-color-tertiary;
+		font-size: $font-size-M;
+		line-height: 1.5;
+		font-style: italic;
+	}
+
+	&__need-help-content {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__need-help-title {
+		@include font-primary-light;
+		font-size: $font-size-XL;
+		margin: $spacing-M 0;
+	}
+
+	&__need-help-text {
+		@include font-primary-regular;
+		font-size: $font-size-M;
+		line-height: normal;
+	}
+
+	&__need-help-more-information-text {
+		@include font-primary-regular;
+		font-size: $font-size-M;
+		color: $text-color-link-light;
+		cursor: pointer;
+	}
+}

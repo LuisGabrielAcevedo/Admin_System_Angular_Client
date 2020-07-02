@@ -1,0 +1,16 @@
+<div class="signup-layout">
+	<header class="signup-layout__header">
+		<mcy-logo></mcy-logo>
+		<div>
+			<ng-content select="[header]"></ng-content>
+		</div>
+	</header>
+	<div class="signup-layout__body">
+		<aside class="signup-layout__side-panel">
+			<ng-content select="[aside]"></ng-content>
+		</aside>
+		<section class="signup-layout__content">
+			<ng-content select="[body]"></ng-content>
+		</section>
+	</div>
+</div>

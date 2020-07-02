@@ -1,0 +1,1775 @@
+{
+	"components": {
+		"menu": {
+			"start": "Inicio",
+			"requests": "Autorizaciones",
+			"myAccounts": "Mis Cuentas",
+			"payments": "Pagos",
+			"transfers": "Transferencias",
+			"checks": "Cheques",
+			"contacts": "Agenda",
+			"frequentlyAskedQuestions": "Preguntas Frecuentes"
+		},
+		"inputField": {
+			"errors": {
+				"positiveValidation": "No pudimos validar tu código"
+			}
+		},
+		"header": {
+			"users": "Gestión de Usuarios",
+			"menu": {
+				"details": "Detalles",
+				"lastEntry": "Último ingreso",
+				"managePassword": "Gestionar usuario y clave",
+				"manageToken": "Gestionar token",
+				"logout": "Cerrar sesión",
+				"goToTour": "Realizar tour guiado"
+			},
+			"notifications": {
+				"title": "Notificaciones",
+				"markAllAsRead": "Marcar todas leidas",
+				"viewAllNotifications": "Ver todas las Notificaciones",
+				"deleteMessage": "Notificación eliminada de la lista",
+				"setAllAsReadMessage": "Marcaste todas las notificaciones como leídas",
+				"setItemAsRead": "Marcaste la notificación como leída",
+				"today": "Hoy",
+				"yesterday": "Ayer",
+				"moreDetail": "Mas Detalles",
+				"tooltipDelete": "Eliminar",
+				"tooltipSetAsRead": "Marcar como leida"
+			}
+		},
+		"welcomeModal": {
+			"title": "¡Hola {{ name }}!",
+			"subtitle": "Te damos la bienvenida a nuestro nuevo portal",
+			"goToOnbordingButton": "Comenzar tour guiado",
+			"skipOnbordingButton": "Saltear",
+			"description": "Conocé todo lo que podés hacer.",
+			"image": "Imagen de Bienvenida",
+			"onboardingCarousel": {
+				"exitButton": "Saltar intro",
+				"0": {
+					"title": "La información de tus cuentas a tu alcance",
+					"description": "Todas tus operaciones disponibles para una rápida gestión."
+				},
+				"1": {
+					"title": "Con rápidos accesos",
+					"description": "Para gestionar tus productos y operaciones."
+				},
+				"2": {
+					"title": "Nuevo menú expandible",
+					"description": "Accedé a tus productos y operaciones de forma más simple."
+				},
+				"3": {
+					"title": "Información más organizada",
+					"description": "Dentro de cada sección encontrá agrupado y de manera más fácil todo lo que buscás."
+				},
+				"4": {
+					"title": "Operaciones programadas",
+					"description": "Que podés ver al principio de cada sección y que se ejecutarán automáticamente."
+				},
+				"5": {
+					"title": "Estado de tus operaciones",
+					"description": "En cada sección vas a encontrar toda la info de tus operaciones pendientes de firma, como así también las que ya fueron procesadas."
+				},
+				"6": {
+					"title": "Actualización en tiempo real",
+					"description": "Recibirás avisos  de cada acción u operación en tu cuenta."
+				},
+				"7": {
+					"title": "Nueva sección Autorizaciones",
+					"description": "Donde podrás ver operaciones pendiente de firma, el historial y seleccionar varias para firmarlas todas juntas."
+				}
+			}
+		},
+		"updatePasswordModal": {
+			"title": "Tu clave está vencida",
+			"text": "Hace mucho que no cambias tu clave de acceso. Por razones de seguridad necesitamos que generes una nueva.",
+			"buttonText": "Cambiar contraseña"
+		},
+		"multiSessionModal": {
+			"title": "Tenés otra sesión iniciada",
+			"text": "Solo podés operar en un dispositivo a la vez. ¿Querés cerrar la otra sesión e ingresar acá?",
+			"mainActionLabel": "Cerrar la otra sesión",
+			"goBack": "Volver"
+		},
+		"termsAndConditionsModal": {
+			"title": "Términos y Condiciones",
+			"subtitle": "Para continuar, por favor leé atentamente y aceptá nuestros Términos y Condiciones de uso:",
+			"cancel": "Rechazar",
+			"continue": "Aceptar y continuar"
+		},
+		"sidenavError": {
+			"title": "Error inesperado",
+			"subtitle": "No pudimos completar la operación",
+			"description": "Por favor intentalo de nuevo",
+			"confirmAction": "Intentar nuevamente"
+		},
+		"sidenavSoftTokenError": {
+			"subtitle": "No pudimos completar la operación",
+			"description": "Por favor intentalo de nuevo",
+			"actionTitle": "¿Necesitás ayuda?",
+			"actionDescription": "Podés consultar como funciona el token y cómo generarlo en la sección de ",
+			"actionLink": "preguntas frecuentes.",
+			"actionSecondary": "Volver",
+			"titles": {
+				"expired": "SoftToken Vencido",
+				"unregistered": "SoftToken Sin registro",
+				"inprocess": "Soft Token En Proceso",
+				"blocked": "SoftToken Bloqueado"
+			}
+		},
+		"sidenavCancel": {
+			"discard": "Descartar",
+			"cancel": "Cancelar",
+			"message": "¿Desea descartar los cambios realizados?",
+			"discardIconAltText": "Imagen descartar cambios"
+		},
+		"contactList": {
+			"showMore": "Mostrar más",
+			"emptyDescription": "Aún no has agendado ningún destinatario. Intentalo agregando un nuevo CBU/CVU o alias",
+			"emptySearchDescription": "No se encontraron resultados para esta búsqueda. Intente nuevamente"
+		},
+		"contactSearchForm": {
+			"allOptions": "Todas las categorias",
+			"categoriesLabel": "Categorías"
+		},
+		"findContactForm": {
+			"arialabelRadioGroup": "Parametro de busqueda",
+			"searchParameters": {
+				"cbvuOption": "CBU / CVU",
+				"aliasOption": "Alias"
+			},
+			"cbvuLabel": "Ingresá el CBU / CVU",
+			"aliasLabel": "Ingresá el Alias",
+			"cbvuError": "El CBU introducido no es válido"
+		},
+		"totalBalance": {
+			"title": "Saldo Consolidado"
+		},
+		"enterpriseButton": {
+			"primarySubtitle": "Empresa seleccionada",
+			"secundarySubtitle": "Otras empresas asociadas",
+			"seeDetails": "Detalles",
+			"enterpriseId": "CUIT: {{enterpriseId}}",
+			"checkEnterprises": "Ver todas mis empresas ({{countEnterprises}})"
+		},
+		"profileImage": {
+			"favoriteTooltip": "Marcar como favorito"
+		},
+		"loadingDataError": {
+			"errorDescriptionDefault": "No se pudo cargar esta información",
+			"retry": "Reintentar"
+		},
+		"panelLoadingDataError": {
+			"error": "No pudimos completar la operación",
+			"errorMessage": "Por favor intentalo de nuevo. Si el problema persiste contactá con tu agente",
+			"retry": "Intentar nuevamente"
+		},
+		"contactFilterList": {
+			"searchByCategoryEmptyDefaultMessage": "Aún no has agendado ningún destinatario para la categoría seleccionada. Inténtalo agregando un nuevo CBU/CVU o alias",
+			"providerEmptyMessage": "Aún no has agendado ningún proveedor. Intentalo agregando un nuevo CBU/CVU o alias",
+			"employeeEmptyMessage": "Aún no has agendado ningún empleado. Intentalo agregando un nuevo CBU/CVU o alias"
+		},
+		"accountDetails": {
+			"cbvu": "CBU",
+			"alias": "Alias",
+			"businessName": "Razón social",
+			"cuilt": "CUIT"
+		},
+		"debtCard": {
+			"pay": "Pagar"
+		},
+		"needHelpModal": {
+			"title": "Validación de token",
+			"buttonBackText": "Volver",
+			"textDescription": {
+				"first": "Para poder usar tu clave token debes activarla desde tu ",
+				"userMenu": "menú de usuario,",
+				"second": "seleccionando la opción",
+				"generateToken": "generar token.",
+				"third": "Un asistente te va a guiar en todos los pasos necesarios."
+			}
+		}
+	},
+	"pages": {
+		"dashboard": {
+			"title": "¡Bienvenido",
+			"summary": "Resumen de tu cuenta",
+			"movements": {
+				"lastMovements": "Últimos movimientos",
+				"date": "Fecha",
+				"description": "Descripción",
+				"amount": "Importe",
+				"more": "Ver todos"
+			},
+			"checks": {
+				"checksToCover": "Cheques a cubrir",
+				"futureIncome": "Ingresos futuros",
+				"totalInPesos": "Total en Pesos",
+				"payDate": "Fecha de pago",
+				"accreditationDate": "Fecha de acreditación",
+				"originalAmount": "Importe original",
+				"checkNumber": "Nº de cheque",
+				"more": "Ver todos",
+				"footnote": "Banco Itaú de ningún modo asegura que el valor del cobro futuro informado se corresponda con aquel que efectivamente se acreditará en cuenta, el mismo podrá estar sujeto a cambios en base a posibles rechazos, que por cualquier causal, se originen al momento de efectuarse el clearing respectivo",
+				"emptyToCover": "No tenés cheques por cubrir",
+				"emptyFutureIncome": "No tenés cheques por acreditarse"
+			},
+			"upcomingMaturities": {
+				"title": "Próximos vencimientos",
+				"totalInPesos": "Total en Pesos",
+				"totalIndollars": "Total en USD",
+				"more": "Ver todos",
+				"empty": "No tenés pagos próximos a vencer"
+			},
+			"favoriteContacts": {
+				"title": "Destinatarios favoritos",
+				"more": "Ver todos",
+				"paySalaries": "Pagar sueldo",
+				"transferToContact": "Transferir",
+				"empty": "No tenés destinatarios favoritos"
+			}
+		},
+		"expirationTokenModal": {
+			"title": "Tu sesión expiró",
+			"subtitle": "Hemos finalizado tu sesión por inactividad.",
+			"subtitleTwo": "Para seguir operando deberás volver a iniciar sesión.",
+			"close": "Volver a iniciar sesión"
+		},
+		"contacts": {
+			"add": {
+				"title": "Nuevo destinatario",
+				"back": "Volver",
+				"next": "Continuar",
+				"name": "Titular de la cuenta",
+				"cuilt": "CUIT / CUIL",
+				"cbvu": "CBU/CVU",
+				"accountNumber": "Numero de cuenta",
+				"accountType": "Tipo de cuenta",
+				"amount": "Moneda",
+				"email": "Correo electrónico",
+				"reference": "Referencia",
+				"titleSuccess": "Destinatario agendado con éxito"
+			},
+			"addConfirmation": {
+				"contactTitle": "Identificar destinatario",
+				"otherInformation": "Información adicional",
+				"cuilt": "CUIT/CUIL",
+				"cbvu": "CBU/CVU",
+				"reference": "Referencia",
+				"category": "Categoría",
+				"email": "Email",
+				"back": "Cancelar",
+				"next": "Agendar"
+			},
+			"addSuccess": {
+				"subtitle": "Agendaste a ",
+				"reference": "Referencia",
+				"name": "Titular de la cuenta",
+				"cbvu": "CBU",
+				"category": "Categoria",
+				"finish": "Terminar",
+				"paySalaries": "Pagar Sueldo",
+				"transferToContact": "Transferir"
+			},
+			"edit": {
+				"name": "Titular de Cuenta",
+				"cuilt": "CUIT / CUIL / CDI",
+				"cbvu": "CBU/CVU",
+				"accountType": "Tipo de Cuenta",
+				"currency": "Moneda",
+				"reference": "Referencia",
+				"email": "Email",
+				"category": "Categoría",
+				"delete": "Eliminar contacto",
+				"saveChanges": "Guardar cambios",
+				"title": "Editar destinatario",
+				"tryAgain": "Volver a intentar"
+			},
+			"editSuccess": {
+				"message": "El contacto ha sido actualizado con éxito",
+				"back": "Permanecer en edición",
+				"close": "Volver a la lista",
+				"title": "Actualización exitosa",
+				"subtitle": "Actualizaste los datos de"
+			},
+			"delete": {
+				"title": "Eliminar destinatarios",
+				"message": "¿Desea eliminar al destinatario?",
+				"name": "Titular de la cuenta",
+				"cuilt": "CUIT / CUIL",
+				"cbvu": "CBU / CVU",
+				"identifier": "Identificador",
+				"accountNumber": "Número de Cuenta:",
+				"accountType": "Tipo de Cuenta:",
+				"currency": "Moneda:",
+				"email": "Email",
+				"reference": "Referencia",
+				"category": "Categoría",
+				"confirmation": "Eliminar destinatario",
+				"back": "Volver",
+				"deleteContactSuccess": "El contacto ha sido eliminado satisfactoriamente"
+			},
+			"deleteModal": {
+				"message": "¿Desea eliminar al destinatario?",
+				"confirmation": "Eliminar",
+				"cancel": "Cancelar",
+				"contactSelected": "Destinatario seleccionado",
+				"deleteContactSuccess": "El contacto ha sido eliminado satisfactoriamente",
+				"contactNameLabel": "Nombre",
+				"contactCategoryLabel": "Categoria",
+				"contactReferenceLabel": "Referencia"
+			},
+			"exportCSVModal": {
+				"message": "Exportar destinatarios",
+				"description": "Se generará un archivo formato .csv del grupo:",
+				"cancel": "Cancelar",
+				"confirmation": "Descargar",
+				"all": "Todos los destinatarios",
+				"favorites": "Destinatarios favoritos",
+				"categories": "Por categoría",
+				"optionsAriaLabel": "Opciones de filtros",
+				"fileNameAll": "Agenda_todoslosdestinatarios",
+				"fileNameFavorites": "Agenda_destinatariosfavoritos",
+				"fileNameCategory": "Agenda_categoria_"
+			},
+			"categories": {
+				"PROVIDER": "Proveedor",
+				"SERVICE": "Servicio",
+				"CLIENT": "Cliente",
+				"EMPLOYEE": "Empleado",
+				"OTHERS": "Otros"
+			},
+			"tableHeader": {
+				"name": "Titular",
+				"cbu": "CBU/CVU",
+				"category": "Categoria",
+				"reference": "Referencia",
+				"email": "Email"
+			},
+			"searchForm": {
+				"search": "Busqueda",
+				"searchInputLabel": "Buscar por"
+			},
+			"searchPlaceholder": "Buscar destinatario",
+			"title": "Agenda",
+			"export": "Exportar",
+			"favorites": "Favoritos",
+			"contactList": "Lista de destinatarios",
+			"contactListEmptyMessage": "Aún no tenés destinatarios en tu agenda",
+			"searchResults": "Resultados de la busqueda | {{count}} resultados",
+			"newContact": "Nuevo Destinatario",
+			"findContactFailure": "El {{cbvuOrAlias}} ingresado es incorrecto, por favor verificalo y volvé a intentar"
+		},
+		"accounts": {
+			"landing": {
+				"myAccounts": "Mis Cuentas ({{count}})"
+			},
+			"editAlias": {
+				"title": "Editar alias de cuenta",
+				"numberCharactersValidationText": "Tu alias debe contener entre 6 y 20 caracteres.",
+				"charactersValidationText": "Podés usar mayúsculas, minúsculas, números, guión medio y puntos.",
+				"cancelButton": "Cancelar",
+				"updateButton": "Actualizar",
+				"inputLabel": "Alias",
+				"confimMessage": "Su alias se ha actualizado correctamente",
+				"newAlias": "Nuevo alias",
+				"cbu": "CBU",
+				"end": "Terminar",
+				"errorPattern": "El alias no cumple con los requisitos necesarios Por favor intentá de nuevo",
+				"errorDuplicateAlias": "Este alias ya existe, por favor elegí otro",
+				"errorWithoutConexion": "No se pudo actualizar el alias por favor intenta más tarde"
+			},
+			"accountMovements": {
+				"title": "Movimientos en 90 días",
+				"subTitle": "Consultá tus últimos movimientos y descargá comprobantes",
+				"export": "Exportar",
+				"accountsFilters": {
+					"searchFieldLabel": "Buscar por descripción",
+					"startFieldLabel": "Desde",
+					"endFieldLabel": "Hasta"
+				},
+				"accountMovementsFileName": "ResumenMovimientosDeCuenta"
+			},
+			"accountMovementsList": {
+				"emptyAccountMovementsMessage": "No se ha encontrado movimientos para su búsqueda.",
+				"accountingDate": "Fecha de imputación",
+				"valueDate": "Fecha valor",
+				"description": "Descripción del movimiento",
+				"amount": "Importe",
+				"balance": "Saldo",
+				"more": "Mostrar más"
+			},
+			"accountMovementDetail": {
+				"title": "Detalle de movimiento",
+				"cbvu": "CBU",
+				"end": "Terminar",
+				"accountingDate": "Fecha y hora de imputación",
+				"valueDate": "Fecha y hora de realizacíon",
+				"description": "Descripción del movimiento",
+				"originAccountName": "Titular de la cuenta origen",
+				"originDocumentNumber": "Documento del titular de la cuenta origen",
+				"amount": "Importe ",
+				"branch": "Sucursal",
+				"branchAddress": "Domicilio de la sucursal",
+				"referenceNumber": "Número de referencia",
+				"concept": "Concepto",
+				"conceptDescription": "Descripción del concepto",
+				"quotation": "Cotización",
+				"requestNumber": "Número de Solicitud",
+				"commerce": "Comercio",
+				"cardNumber": "Número de tarjeta",
+				"message": "Encontrá el Comprobante en la sección Pago de Servicios"
+			},
+			"balanceDetail": {
+				"title": "Detalle de saldo de cuenta",
+				"detail": "Detalle de saldo",
+				"countableBalance": "Saldo contable",
+				"blockedForDebit": "Bloqueado para débito",
+				"movementsForTheDay": "Movimiento para el día",
+				"overdraftAgreement": "Acuerdo de sobregiro",
+				"applications": "Aplicaciones en fondos",
+				"availableBalance": "Saldo disponible",
+				"creditsOfTheDay": "Créditos numerarios del día",
+				"depositsToCompensate": "Depósitos a compensar",
+				"operatingBalance": "Saldo operativo",
+				"updatedAt": "Actualizado",
+				"downloadDetail": "Descargar detalle",
+				"end": "Terminar",
+				"cbu": "CBU"
+			},
+			"accountsSummariesAll": {
+				"title": "Resúmenes de cuenta"
+			},
+			"accountDetail": {
+				"cbu": "CBU",
+				"alias": "Alias",
+				"cuit": "CUIT",
+				"businessName": "Razón social",
+				"accountNumber": "Número de cuenta",
+				"accountType": "Tipo de cuenta"
+			},
+			"accountSumamry": {
+				"lastAccountSummary": "Último resumen de cuenta",
+				"download": "Descargar",
+				"seeAll": "Ver todos"
+			},
+			"accountTotalBalance": "Saldo Consolidado",
+			"type": {
+				"CC": "Cuenta Corriente",
+				"CA": "Cuenta Ahorro"
+			}
+		},
+		"requests": {
+			"landing": {
+				"requests": "Autorizaciones",
+				"myResquests": "Mostrar sólo mis solicitudes",
+				"totalRequest": "Solicitudes",
+				"subtitleRequest": "Mostrando: Pendientes de autorización, Parcialmente autorizado"
+			},
+			"filters": {
+				"labelSearchField": "Número de Solicitud o Detalle",
+				"labelTypesField": "Tipo",
+				"stateFieldLabel": "Estado",
+				"startFieldLabel": "Desde",
+				"endFieldLabel": "Hasta",
+				"types": {
+					"SERVICE_PAYMENT": "Pago de Servicios",
+					"SALARY_PAYMENT": "Pago de Sueldos",
+					"PROVIDER_PAYMENT": "Pago de Proveedores",
+					"TRANSFER": "Transferencias",
+					"CHECKBOOK": "Solicitud de Chequera",
+					"ALL": "Todos"
+				}
+			},
+			"requestsList": {
+				"emptyRequestsMessage": "No se ha encontrado solicitudes para su búsqueda.",
+				"number": "Número de solicitud",
+				"operationAndDetail": "Operación y detalle",
+				"amount": "Importe",
+				"lastUpdate": "Fecha de última actualización",
+				"state": "Estado",
+				"powerOfSignature": "Poder de firma",
+				"more": "Mostrar más",
+				"selectionMessage": "Podés seleccionar hasta 10 a la vez",
+				"selectedRequest": "seleccionada",
+				"selectedRequests": "seleccionadas",
+				"differentStateMessage": "Elegí solicitudes sobre las que tengas poder de firma y se encuentren en el mismo estado.",
+				"thereAreNoActions": "No hay acciones disponibles.",
+				"subtotalARS": "Subtotal Pesos",
+				"subtotalUSD": "Subtotal Dólares"
+			},
+			"signatures": {
+				"allowed": "Firma permitida",
+				"notAllowed": "Firma no permitida",
+				"signed": "Firmado"
+			},
+			"operations": {
+				"TRANSFER": "Transferencia",
+				"SERVICE_PAYMENT": "Pago de servicio",
+				"SALARY_PAYMENT": "Pago de sueldo",
+				"SUPPLIER_PAYMENT": "Pago a proveedor",
+				"CHECKBOOK_39": "Solicitud de chequera",
+				"CHECKBOOK_40": "Solicitud de chequera",
+				"CHECKBOOK_44": "Solicitud de chequera",
+				"CHECKBOOK_45": "Solicitud de chequera",
+				"CHECKBOOK_32": "Solicitud de chequera",
+				"CHECKBOOK_33": "Solicitud de chequera",
+				"CHECKBOOK_42": "Solicitud de chequera",
+				"CHECKBOOK_43": "Solicitud de chequera",
+				"CHECKBOOK_70": "Solicitud de chequera",
+				"CHECKBOOK_71": "Solicitud de chequera",
+				"CHECKBOOK_72": "Solicitud de chequera",
+				"CHECKBOOK_73": "Solicitud de chequera",
+				"CHECKBOOK_74": "Solicitud de chequera"
+			},
+			"states": {
+				"PENDING_APPROVAL": "Pendiente de autorización",
+				"CANCELLED": "Cancelada",
+				"AUTHORIZED": "Solicitud Autorizada",
+				"REJECTED": "Rechazada",
+				"PARTIALLY_AUTHORIZED": "Parcialmente autorizado",
+				"APPROVED": "Procesado con Éxito",
+				"DENIED": "Rechazada"
+			},
+			"actions": {
+				"REJECT": "Rechazar",
+				"SIGN": "Firmar",
+				"CANCEL": "Cancelar solicitud"
+			},
+			"sign": {
+				"title": "Firma de solicitudes",
+				"goBack": "Solicitudes",
+				"cancel": "Cancelar",
+				"allReady": "¡Todo listo!",
+				"actionMessage": "Solicitudes a firmar",
+				"descriptionMessage": "Validá con tu Soft Token para Firmar las solicitudes seleccionadas.",
+				"buttonLabel": "Firmar"
+			},
+			"signStatus": {
+				"successTitle": "Se ejecutaron firmas en las solicitudes",
+				"errorTitle": "No se ejecutaron firmas en las solicitudes",
+				"actionMessage": "Estado de firma de las solicitudes",
+				"successDescriptionMessage": "Todas tus solicitudes de firma se ejecutaron exitosamente.",
+				"errorDescriptionMessage": "Algunas de tus solicitudes presentaron un error, podés reintentar la firma.",
+				"buttonLabel": "Terminar",
+				"signedSuccessfully": "Firmado con éxito",
+				"error": "Error",
+				"errorMessage": "Error en el procesamiento del pago"
+			},
+			"cancel": {
+				"title": "Cancelar solicitudes",
+				"goBack": "Solicitudes",
+				"cancel": "Cancelar",
+				"actionMessage": "Solicitudes a cancelar",
+				"descriptionMessage": "Recordá que está acción no se puede deshacer.",
+				"buttonLabel": "Cancelar solicitud"
+			},
+			"cancelStatus": {
+				"successTitle": "Se cancelaron las solicitudes",
+				"errorTitle": "No se cancelaron las solicitudes",
+				"actionMessage": "Estado de autorización de las solicitudes",
+				"successDescriptionMessage": "Las solicitudes fueron canceladas.",
+				"errorDescriptionMessage": "Algunas de tus solicitudes presentaron un error, podés reintentar la cancelación.",
+				"buttonLabel": "Terminar",
+				"cancelled": "Cancelada"
+			},
+			"reject": {
+				"title": "Rechazar solicitud",
+				"goBack": "Solicitudes",
+				"cancel": "Cancelar",
+				"actionMessage": "Se esta por rechazar la siguiente solicitud",
+				"descriptionMessage": "Recordá que está acción no se puede deshacer.",
+				"buttonLabel": "Rechazar solicitud",
+				"motive": "Motivo"
+			},
+			"rejectStatus": {
+				"successTitle": "Se rechazó la solicitud",
+				"errorTitle": "No se rechazó la solicitud",
+				"actionMessage": "Estado de autorización de la solicitud",
+				"successDescriptionMessage": "La solicitud fue rechazada.",
+				"errorDescriptionMessage": "La solicitud no fue rechazada.",
+				"buttonLabel": "Terminar",
+				"rejected": "Rechazada"
+			},
+			"cancelScheduledRequest": {
+				"title": "¿Estás seguro de cancelar el pago?",
+				"selectedUser": "Usuario seleccionado",
+				"name": "Destinatario",
+				"amount": "Importe",
+				"date": "Fecha de programación",
+				"back": "Volver",
+				"cancelPay": "Cancelar pago",
+				"cancelMessage": "El pago a {{detail}} fue cancelado",
+				"error": "No pudimos completar la operación"
+			}
+		},
+		"payments": {
+			"paymentContact": "Destinatario del pago",
+			"validateContact": "Validar destinatario",
+			"contactsAgenda": "AGENDA DE DESTINATARIOS",
+			"newCbvuOrAlias": "NUEVO CBU/CVU O ALIAS",
+			"salaryPayment": "Pago de Sueldos",
+			"landingPaymentsTitle": "Pagos",
+			"salaryPaymentNew": "Nuevo Pago de Sueldo",
+			"salaryPaymentAccount": "Cuenta de origen para el pago",
+			"paymentCancel": "Cancelar pago",
+			"backToSalaryPayment": "Volver al pago",
+			"salaryPaymentCancel": "Cancelar pago de sueldo",
+			"paymentDate": "Fecha del pago",
+			"paymentAmount": "Importe del pago",
+			"paymentDescription": "Descripción del pago",
+			"paymentOrigin": "Origen del pago",
+			"paymentDetailsReady": "Todo listo! Validá tu Soft Token para enviar el pago de sueldo.",
+			"selectCbvuOrAlias": "Elegí el destinatario desde tu agenda o bien ingresando un nuevo CBU / CVU o Alias.",
+			"yourFavoriteContacts": "Tus destinatarios favoritos",
+			"salaryPaymentSuccess": "¡Pago de sueldo exitoso!",
+			"payNewSalary": "Pagar Nuevo Sueldo",
+			"payNewService": "Pagar Nuevo Servicio",
+			"payService": "Pagar servicio",
+			"servicePayment": {
+				"success": {
+					"primaryAction": "Terminar",
+					"secondaryAction":"Nuevo pago de servicio",
+					"downloadReceipt": "Descargar comprobante",
+					"shareReceipt": "Compartir comprobante",
+					"detailRequest": "Ver detalle de la solicitud",
+					"receiptConceptLabel": "Servicio",
+					"descriptionReciept": "Número de solicitud",
+					"amountLabel": "Importe total",
+					"title": {
+						"authorized": "¡Pago exitoso!",
+						"pendingApproval": "Pago pendiente de autorización",
+						"PartiallyAuthorized": "Pago parcialmente autorizado",
+						"rejected": "Pago rechazado"
+					},
+					"item": "Rubro",
+					"amount": "Importe",
+					"clientNumber":"Número de cliente",
+					"serviceName":"Nombre del servicio",
+					"backTo": "Pago de Servicios",
+					"titleAuthorized": "¡Pago de Servicio Exitoso!",
+					"titlePartiallyAuthorized": "Solicitud de pago parcialmente autorizada",
+					"titlePendingApproval": "Solicitud de pago pendiente de autorización",
+					"titleRejected": "Solicitud de pago rechazada"
+
+				}
+			},
+			"paymentHistory": "Histórico de pagos",
+			"returnServicePayment": "Volver a pago de servicios",
+			"cancelModal": {
+				"message": "Al abandonar esta página el pago no será efectuado y se perderán todos los datos ingresados."
+			},
+			"unCoverAmountModal": {
+				"title": "¿Usar fondos del descubierto?",
+				"message": "Para realizar este pago de sueldo, usted deberá usar fondos del descubierto ¿Querés seguir con la operación?",
+				"dontAskAgain": "No volver a preguntar"
+			},
+
+			"filterContacs": {
+				"searchFieldLabel": "Buscá en tu agenda...",
+				"categorieFieldLabel": "Categoría"
+			},
+			"sidenavCancel": {
+				"message": "¿Desea descartar los cambios?"
+			},
+
+			"services": {
+				"totalDebtsSoonExpired": "Vencimientos próximos",
+				"subTitleDebtsSoonExpired": "Además de pagar podés omitir y cancelar tus pagos con vencimiento",
+				"searchFieldLabel": "Buscar por Nombre de Servicio",
+				"stateFieldLabel": "Estado",
+				"startFieldLabel": "Desde",
+				"endFieldLabel": "Hasta",
+				"totalHistoryService": "Servicios pagados",
+				"subTitleServiceHistory": "Consultá el estado de tus Servicios Pagados y descargá sus comprobantes.",
+				"serviceHistory": "Histórico de pagos",
+
+				"confirm": {
+					"title": "Nuevo Pago de Servicio",
+					"goBack": "Pago de Servicios",
+					"cancel": "Cancelar",
+					"next": "Pagar",
+					"back": "Volver",
+					"descriptionTitle": "¡Todo listo!",
+					"description": " Verificá que todos los datos sean correctos para hacer el pago de servicio.",
+					"destinationTitle": "Servicio a pagar",
+					"balanceTitle": "Importe",
+					"sourceTitle": "Cuenta de origen",
+					"date": "Fecha",
+					"cbu": "CBU/CVU:"
+				}
+			},
+
+			"detail": {
+				"serviceName": "Nombre del servicio",
+				"referenceNumber": "Número de referencia",
+				"requestNumber": "Número de solicitud",
+				"amount": "Importe de pago",
+				"originalAmount": "Importe original",
+				"exprirationDate": "Fecha de vencimiento",
+				"paymentDate": "Fecha de pago",
+				"requestDate": "Fecha de solicitud",
+				"originAccount": "Cuenta de origen del pago",
+				"downloadReceipt": "Descargar comprobante",
+				"shareReceipt": "Compartir comprobante",
+				"requestUser": "Solicitante"
+			},
+			"state": {
+				"successful": "Procesado con Éxito",
+				"rejected": "Rechazado"
+			},
+			"stateHistory": {
+				"APPROVED": "Procesado con Éxito",
+				"DENIED": "Rechazado"
+			},
+			"debtsList": {
+				"serviceName": "Nombre del servicio",
+				"amount": "Importe",
+				"date": "Fecha de pago",
+				"reference": "Número de referencia",
+				"pay": "Pagar",
+				"more": "Mostrar más",
+				"emptySearchDebtsMessage": "¡Muy bien, te encuentras al día!",
+				"emptyDebtsMessage": "No se ha encontrado resultados para su búsqueda."
+			},
+			"servicePaymentsList": {
+				"serviceName": "Nombre del servicio",
+				"amount": "Importe",
+				"date": "Fecha de pago",
+				"state": "Estado",
+				"more": "Mostrar más",
+				"requestNumber": "# de Solicitud",
+				"emptyServicesMessage": "Aún no tenés servicios pagos.",
+				"servicePaymentFileName": "ResumenPagoServicios"
+			},
+			"serviceResquestsList": {
+				"emptyRequestsMessage": "Aún no tenés pagos pendientes de firma",
+				"serviceSignaturesPending": "Pagos pendientes de firma",
+				"requests": "Solicitudes",
+				"all": "Ver todos"
+			},
+			"salary": {
+				"destinationName": "Nombre completo/Razón social",
+				"cbvuOrAlias": "CBU/CVU/Alias",
+				"cbvuDestination": "CBU/CVU Destino",
+				"amount": "Importe de pago",
+				"paymentDate": "Fecha de pago",
+				"concept": "Concepto",
+				"cuilt": "CUIT",
+				"accountType": "Tipo",
+				"destinationAccount": "Cuenta destino",
+				"originAccount": "Cuenta de origen del pago",
+				"currency": "Moneda",
+				"downloadReceipt": "Descargar comprobante",
+				"salaryPayment": "Pago de Sueldos",
+				"shareReceipt": "Compartir comprobante",
+				"salaryConceptDescription": "Haberes",
+				"salaryDescription": "Descripción",
+				"totalSalariesSoonExpired": "Sueldos Pagados",
+				"subTitleSalariesSoonExpired": "Consultá el estado de tus sueldos pagados y descargá comprobantes",
+				"searchFieldLabel": "Buscar por Nombre o razón social",
+				"reason": "Motivo",
+				"signatures": "Firmantes",
+				"moreDetail": "Más detalles",
+				"lessDetail": "Menos detalles",
+				"requestNumber": "Número de Solicitud",
+				"requestUser": "Solicitante",
+				"requestDate": "Fecha de solicitud",
+				"requestScheduledDate": "Fecha de programación",
+				"executionDate": "Fecha de pago",
+				"contact": {
+					"title": "Nuevo Pago de Sueldo",
+					"goBack": "Pago de Sueldos",
+					"cancel": "Cancelar",
+					"next": "Validar destinatario",
+					"back": "Volver",
+					"subtitle": "Destinatario del pago",
+					"contactList": "Agenda de destinatarios",
+					"newContactFromCBVU": "Nuevo CBU/CVU o alias",
+					"description": "Elegí el destinatario desde tu Agenda o bien ingresando un nuevo CBU/CVU o Alias.",
+					"complete": "Completaste la selección",
+					"requiredFields": "Campos requeridos"
+				},
+				"amounts": {
+					"title": "Nuevo Pago de Sueldo",
+					"goBack": "Pago de Sueldos",
+					"cancel": "Cancelar",
+					"next": "Continuar",
+					"back": "Volver",
+					"subtitle": "Importe del pago",
+					"required": "Campos requeridos",
+					"amountInput": "Importe",
+					"descriptionInput": "Descripción del pago",
+					"leftCharacters": "Quendan {{characters}} caracteres"
+				},
+				"account": {
+					"title": "Nuevo Pago de Sueldo",
+					"goBack": "Pago de Sueldos",
+					"cancel": "Cancelar",
+					"next": "Continuar",
+					"back": "Volver",
+					"originAccount": "Cuenta de origen",
+					"description": "Elegí desde qué cuenta querés realizar el pago y cuándo debe acreditarse",
+					"complete": "Completaste la selección",
+					"executionDate": "Fecha de ejecución",
+					"righNow": "Inmediato",
+					"programmed": "Programado"
+				},
+				"confirm": {
+					"title": "Nuevo Pago de Sueldo",
+					"goBack": "Pago de Sueldos",
+					"cancel": "Cancelar",
+					"next": "Pagar",
+					"back": "Volver",
+					"descriptionTitle": "¡Todo listo!",
+					"description": "¡Todo listo! Verificá que todos los datos sean correctos para ejecutar la transferencia",
+					"destinationTitle": "Destinatario",
+					"balanceTitle": "Importe",
+					"sourceTitle": "Cuenta de origen",
+					"date": "Fecha",
+					"cbu": "CBU/CVU:"
+				},
+				"success": {
+					"titleAuthorized": "Solicitud autorizada",
+					"titlePartiallyAuthorized": "Solicitud de pago parcialmente autorizada",
+					"titlePendingApproval": "Solicitud de pago pendiente de autorización",
+					"titleRejected": "Solicitud de pago rechazada",
+					"titleApproved": "¡Pago de sueldo exitoso!",
+					"backTo": "Pago de Sueldos",
+					"secondaryAction": "Hacer otra transferencia",
+					"primaryAction": "Terminar",
+					"destinatary": "Destinatario",
+					"cbu": "CBU",
+					"amount": "Importe",
+					"receipt": "Número de Solicitud",
+					"paymentDescription": "Concepto y descripción",
+					"downloadReceipt": "Descargar comprobante",
+					"shareReceipt": "Compartir comprobante",
+					"detailRequest": "Ver detalle de la solicitud",
+					"addContactLine1": "Añadir a",
+					"addContactLine2": "a tu agenda",
+					"addContactInstruction": "Podés agregar también datos adicionales para encontrarlo en tu Agenda más facilmente.",
+					"addContactButton": "Agendar destinatario",
+					"scheduledDate": "Fecha de programación"
+				}
+			},
+			"salaryPaymentsList": {
+				"name": "Nombre o razón social",
+				"cuilt": "CUIT/CUIL/CDI",
+				"amount": "Importe",
+				"date": "Fecha de pago",
+				"state": "Estado",
+				"more": "Mostrar más",
+				"requestNumber": "# de Solicitud",
+				"emptyServicesMessage": "Aún no tenés sueldos pagos.",
+				"salaryPaymentFileName": "ResumenPagoSueldos"
+			},
+			"salaryResquestsList": {
+				"emptyRequestsMessage": "No hay pagos pendientes de autorización.",
+				"salarySignaturesPending": "Pagos pendientes de firma",
+				"requests": "Solicitudes",
+				"all": "Ver todos"
+			},
+			"scheduledSalaryPaymentsList": {
+				"emptyRequestsMessage": "No hay pagos programados.",
+				"salarySignaturesPending": "Consultá y modificá tus débitos automáticos",
+				"requests": "Pagos programados"
+			},
+			"providers": {
+				"landing": {
+					"tabName": "Proveedores",
+					"payNewProviderButton": "Pago a Proveedor",
+					"paymentsRequestLabel": "Solicitudes",
+					"paymentsRequestDescription": "Pagos pendientes de firma",
+					"paymentsCompletedLabel": "Pagos realizados",
+					"paymentsCompletedDescription": "Consultá el estado de tus pagos realizados y descargá comprobantes",
+					"emptyRequestList": "No hay pagos pendientes de autorización.",
+					"paymentCompletedtable": {
+						"name": "Nombre o razón social",
+						"amount": "Importe",
+						"date": "Fecha de pago",
+						"operationNumber": "# de Solicitud",
+						"state": "Estado",
+						"successful": "Procesado con Éxito",
+						"processing": "Procesando",
+						"rejected": "Pago rechazado"
+					},
+					"emptyMessage": "Aún no tenés pagos realizados",
+					"all": "Ver todos"
+				},
+				"amount": {
+					"title": "Nuevo Pago a Proveedor",
+					"goBack": "Pagos",
+					"cancel": "Cancelar",
+					"subtitle": "Importe del pago",
+					"currency": "Moneda",
+					"amountInput": "Importe",
+					"descriptionInput": "Descripción del pago",
+					"back": "Volver",
+					"next": "Continuar",
+					"required": "Campos requeridos",
+					"leftCharacters": "Quendan {{characters}} caracteres"
+				},
+				"accounts": {
+					"title": "Nuevo Pago a Proveedor",
+					"goBack": "Pagos",
+					"cancel": "Cancelar",
+					"subtitle": "Cuenta de origen",
+					"balance": "Saldo",
+					"placeholders": {
+						"originAccount": "Cuenta de origen de los fondos"
+					},
+					"description": "Elegí desde qué cuenta querés realizar el pago y cuándo debe acreditarse",
+					"complete": "Completaste la selección",
+					"required": "Campos requeridos",
+					"back": "Volver",
+					"next": "Continuar"
+				},
+				"summary": {
+					"title": "Nuevo Pago a Proveedor",
+					"goBack": "Pagos",
+					"cancel": "Cancelar",
+					"destinationTitle": "Destinatario",
+					"cbu": "CBU/CVU",
+					"balanceTitle": "Importe",
+					"sourceTitle": "Cuenta de origen",
+					"date": "Fecha",
+					"back": "Volver",
+					"next": "Pagar",
+					"descriptionTitle": "¡Todo listo!",
+					"description": "Verificá que todos los datos sean correctos para ejecutar la transferencia"
+				},
+				"exitModal": {
+					"title": "Cancelar Pago a Proveedor",
+					"description": "Al abandonar esta página el pago no será efectuado y se perderán todos los datos ingresados.",
+					"cancel": "Volver al Pago",
+					"confirm": "Cancelar Pago"
+				},
+				"contact": {
+					"title": "Nuevo Pago a Proveedor",
+					"goBack": "Pagos",
+					"cancel": "Cancelar",
+					"next": "Validar destinatario",
+					"back": "Volver",
+					"subtitle": "Destinatario de la transferencia",
+					"contactList": "Agenda de destinatarios",
+					"newContactFromCBVU": "Nuevo CBU/CVU o alias",
+					"description": "Elegí el destinatario desde tu Agenda o bien ingresando un nuevo CBU/CVU o Alias.",
+					"complete": "Completaste la selección",
+					"requiredFields": "Campos requeridos"
+				},
+				"success": {
+					"titleAuthorized": "¡Pago a Proveedor Exitoso!",
+					"titlePartiallyAuthorized": "Solicitud de pago parcialmente autorizado",
+					"titlePendingApproval": "Solicitud de pago pendiente de autorización",
+					"titleRejected": "Solicitud de pago rechazada",
+					"backTo": "Pagos",
+					"secondaryAction": "Nuevo pago a proveedor",
+					"primaryAction": "Terminar",
+					"destinatary": "Destinatario",
+					"cbu": "CBU",
+					"amount": "Importe",
+					"receipt": "Número de Solicitud",
+					"paymentDescription": "Concepto y descripción",
+					"downloadReceipt": "Descargar comprobante",
+					"shareReceipt": "Compartir comprobante",
+					"detailRequest": "Ver detalle de la solicitud",
+					"addContactLine1": "Añadir a",
+					"addContactLine2": "a tu agenda",
+					"addContactInstruction": "Podés agregar también datos adicionales para encontrarlo en tu Agenda más facilmente.",
+					"addContactButton": "Agendar destinatario",
+					"concept": "Factura"
+				}
+			},
+			"service": {
+				"debt": {
+					"title": "Nuevo Pago de Servicio",
+					"goBack": "Pago de Servicios",
+					"cancel": "Cancelar",
+					"subtitle": "Servicio a pagar",
+					"back": "Volver",
+					"next": "Continuar",
+					"description": "Elegí el rubro y el nombre del servicio que corresponda al que quieras realizar el pago",
+					"complete": "Completaste la selección",
+					"requiredFields": "Campos requeridos",
+					"categoryLabel": "Rubro del servicio",
+					"serviceLabel": "Nombre del servicio",
+					"debtLabel": "Número de cliente",
+					"invalidDebtId": "El número es inválido",
+					"debtIdLength": "Máximo 80 caracteres",
+					"emptyServices": "No hay servicios disponibles"
+				},
+				"amount": {
+					"title": "Nuevo Pago de Servicio",
+					"goBack": "Pago de Servicios",
+					"cancel": "Cancelar",
+					"subtitle": "Importe del pago",
+					"back": "Volver",
+					"next": "Continuar",
+					"complete": "Completaste la selección",
+					"requiredFields": "Campos requeridos",
+					"amount": "Importe total",
+					"otherAmount": "Otro importe",
+					"amountLabel": "Importe",
+					"expirationDate": "Fecha de vencimiento",
+					"debtAmount": "Importe adeudado",
+					"usdText": "La moneda permitida para esta operación es pesos argentinos (ARS)",
+					"usdDescription": "Para conocer la cotización del día podés llamar al 0810-345-4000 o a tu oficial Empresas.",
+					"minAmountErrorMessage": "El importe a pagar debe ser mayor a 0",
+					"invalidAmountErrorMessage": "El importe a pagar debe ser mayor a la deuda"
+				},
+				"account": {
+					"title": "Nuevo Pago de Servicio",
+					"goBack": "Pago de Servicios",
+					"cancel": "Cancelar",
+					"subtitle": "Cuenta de origen",
+					"back": "Volver",
+					"next": "Continuar",
+					"description": "Elegí desde qué cuenta querés realizar el pago y cuándo debe acreditarse",
+					"complete": "Completaste la selección",
+					"requiredFields": "Campos requeridos",
+					"balance": "Saldo: ",
+					"originAccount":"Cuenta de origen de los fondos"
+				},
+				"exitModal": {
+					"title": "Cancelar Pago de Servicio",
+					"description": "Al abandonar esta página el pago no será efectuado y se perderán todos los datos ingresados.",
+					"cancel": "Volver al Pago",
+					"confirm": "Cancelar Pago"
+				}
+			}
+		},
+		"transfers": {
+			"landing": {
+				"cancel": "Cancelar",
+				"title": "Transferencias",
+				"transfersCompleted": "Transferencias ejecutadas",
+				"transfersCompletedDescription": "Consultá las transferencias procesadas con éxito",
+				"name": "Nombre o razón social",
+				"amount": "Importe",
+				"date": "Fecha de ejecución",
+				"operationNumber": "# de Solicitud",
+				"state": "Estado",
+				"more": "Mostrar más",
+				"successful": "Procesado con Éxito",
+				"rejected": "Rechazado",
+				"processing": "Procesando",
+				"addTransfer": "Nueva Transferencia",
+				"emptyMessage": "Aún no tenés transferencias realizadas",
+				"emptyRequestsMessage": "Aún no tenés transferencias pendientes de firma",
+				"requests": "Solicitudes",
+				"transferSignaturePending": "Transferencias pendientes de firma",
+				"all": "Ver todos"
+			},
+			"transferFilterForm": {
+				"searchKeyword": {
+					"label": "Buscar por nombre o # de solicitud"
+				},
+				"transferStatus": {
+					"label": "Estado"
+				},
+				"transferExecutionDateFrom": {
+					"label": "Desde"
+				},
+				"transferExecutionDateTo": {
+					"label": "Hasta"
+				}
+			},
+			"status": {
+				"APPROVED": "Procesado con Éxito",
+				"DENIED": "Rechazado",
+				"INPROGRESS": "Procesando",
+				"ALL": "Todos"
+			},
+			"typeSelection": {
+				"title": "Nueva Transferencia",
+				"backTo": "Transferencias",
+				"cancel": "Cancelar",
+				"transferTypePrompt": "¿Qué tipo de transferencia realizarás?",
+				"types": {
+					"ownAccount": {
+						"title": "Cuentas propias",
+						"description": "Transferí dinero entre tus cuentas del banco",
+						"disabledTooltip": "No es posible realizar transferencia entre cuentas si no posee al menos dos cuentas en la misma moneda"
+					},
+					"thirdParty": {
+						"title": "A terceros",
+						"description": "Transferí dinero facilmente a cuentas de otros bancos"
+					}
+				}
+			},
+			"ownAccount": {
+				"accounts": {
+					"title": "Nueva Transferencia entre Cuentas Propias",
+					"cancel": "Cancelar",
+					"goBack": "Transferencias",
+					"subtitle": "Selección de cuentas",
+					"back": "Volver",
+					"next": "Continuar",
+					"sourceAccount": "Cuenta de origen de los fondos",
+					"destinationAccount": "Cuenta destino",
+					"description": "Elegí las cuentas de origen y destino a transferir",
+					"complete": "Completaste la selección",
+					"required": "Campos requeridos",
+					"balance": "Saldo: "
+				},
+				"amount": {
+					"title": "Nueva Transferencia entre Cuentas Propias",
+					"cancel": "Cancelar",
+					"goBack": "Transferencias",
+					"subtitle": "Importe a transferir",
+					"back": "Volver",
+					"next": "Continuar",
+					"description": "Esta fue la última transferencia que hiciste entre tus cuentas",
+					"errorInsufficientFunds": "Saldo insuficiente para realizar la transferencia",
+					"complete": "¡Todo listo!",
+					"completeDescription": "Verificá que todos los datos sean correctos para ejecutar la transferencia",
+					"required": "Campos requeridos",
+					"amountInput": "Importe",
+					"descriptionInput": "Descripción del pago",
+					"source": "Origen",
+					"destination": "Destino",
+					"balance": "Saldo: "
+				},
+				"summary": {
+					"title": "Nueva Transferencia entre Cuentas Propias",
+					"cancel": "Cancelar",
+					"goBack": "Transferencias",
+					"accountTitle": "Cuentas Origen y Destino",
+					"balanceTitle": "Importe",
+					"back": "Volver",
+					"next": "Transferir",
+					"descriptionTitle": "¡Todo listo!",
+					"description": "Verificá que todos los datos sean correctos para ejecutar la transferencia",
+					"source": "Origen",
+					"destination": "Destino",
+					"balance": "Saldo"
+				},
+				"success": {
+					"title": "¡Transferencia exitosa!",
+					"backTo": "Transferencias",
+					"secondaryAction": "Hacer otra transferencia",
+					"primaryAction": "Terminar",
+					"accountOrigin": "Origen",
+					"accountDestination": "Destino",
+					"amount": "Importe",
+					"receipt": "Número de Solicitud",
+					"paymentDescription": "Concepto y descripción",
+					"downloadReceipt": "Descargar comprobante",
+					"detailRequest": "Ver detalle de la solicitud"
+				}
+			},
+			"thirdParty": {
+				"contact": {
+					"title": "Nueva Transferencia",
+					"goBack": "Transferencias",
+					"cancel": "Cancelar",
+					"next": "Validar destinatario",
+					"back": "Volver",
+					"subtitle": "Destinatario de la transferencia",
+					"contactList": "Agenda de destinatarios",
+					"newContactFromCBVU": "Nuevo CBU/CVU o alias",
+					"description": "Elegí el destinatario desde tu Agenda o bien ingresando un nuevo CBU/CVU o Alias.",
+					"complete": "Completaste la selección",
+					"requiredFields": "Campos requeridos"
+
+				},
+				"amount": {
+					"title": "Nueva Transferencia",
+					"cancel": "Cancelar",
+					"goBack": "Transferencias",
+					"subtitle": "Importe a transferir",
+					"back": "Volver",
+					"next": "Continuar",
+					"amountInput": "Importe",
+					"concept": "Concepto de la transferencia",
+					"descriptionInput": "Descripción de la transferencia",
+					"description": "Esta fue la última transferencia que le hiciste a",
+					"required": "Campos requeridos",
+					"currency": "Moneda",
+					"conceptDescription": "El concepto seleccionado requere aceptar declaración jurada",
+					"accept": "Acepto",
+					"swornDeclaration": "declaración jurada",
+					"swornDeclarationTitle": "Declaración jurada",
+					"swornDeclarationBack": "Volver",
+					"swornDeclarationConfirm": "Aceptar declaración jurada",
+					"remember": "Recordá que la moneda de la cuenta origen y destino deben coincidir."
+				},
+				"accounts": {
+					"title": "Nueva Transferencia",
+					"balance": "Saldo: ",
+					"back": "Volver",
+					"next": "Continuar",
+					"backTo": "Transferencias",
+					"cancel": "Cancelar",
+					"description": "Elegí desde qué cuenta querés realizar el pago y cuándo debe acreditarse",
+					"complete": "Completaste la selección",
+					"originAccount": "Cuenta de origen",
+					"placeholders": {
+						"originAccount": "Cuenta de origen de los fondos",
+						"executionDate": "Fecha de ejecución"
+					},
+					"alias": "Alias"
+				},
+				"summary": {
+					"title": "Nueva Transferencia",
+					"cancel": "Cancelar",
+					"goBack": "Transferencias",
+					"destinationTitle": "Destinatario",
+					"sourceTitle": "Cuenta de origen",
+					"balanceTitle": "Importe",
+					"back": "Volver",
+					"next": "Transferir",
+					"descriptionTitle": "¡Todo listo!",
+					"description": "Verificá que todos los datos sean correctos para ejecutar la transferencia",
+					"source": "Origen",
+					"cbu": "CBU/CVU",
+					"date": "Fecha",
+					"error":"Ha ocurrido un error inesperado.",
+					"errorMessage":"Por favor, intentalo nuevamente"
+				},
+				"success": {
+					"titleAuthorized": "¡Transferencia exitosa!",
+					"titlePartiallyAuthorized": "Solicitud de transferencia parcialmente autorizada",
+					"titlePendingApproval": "Solicitud de transferencia pendiente de autorización",
+					"titleRejected": "Solicitud de transferencia rechazada",
+					"backTo": "Transferencias",
+					"secondaryAction": "Hacer otra transferencia",
+					"primaryAction": "Terminar",
+					"destinatary": "Destinatario",
+					"cbu": "CBU",
+					"amount": "Importe",
+					"receipt": "Número de Solicitud",
+					"paymentDescription": "Concepto y descripción",
+					"downloadReceipt": "Descargar comprobante",
+					"shareReceipt": "Compartir comprobante",
+					"detailRequest": "Ver detalle de la solicitud",
+					"titleDetail": "Detalle de transferencia",
+					"addContactLine1": "Añadir a",
+					"addContactLine2": "a tu agenda",
+					"addContactInstruction": "Podés agregar también datos adicionales para encontrarlo en tu Agenda más facilmente.",
+					"addContactButton": "Agendar destinatario"
+				}
+			},
+			"transfersProcessed": {
+				"title": "Transferencias procesadas",
+				"back": "Volver a Transferencias",
+				"addTransfer": "Nueva transferencia",
+				"exportHistory": "Exportar Historial",
+				"transfersCompleted": "Transferencias procesadas",
+				"name": "Nombre o razón social",
+				"amount": "Importe",
+				"date": "Fecha de ejecución",
+				"operationNumber": "# de Solicitud",
+				"state": "Estado",
+				"more": "Mostrar más",
+				"successful": "Procesado con Éxito",
+				"rejected": "Rechazado",
+				"processing": "Procesando",
+				"fileName": "transferencias_ejecutadas",
+				"foundTransfersCompleted": "Transferencias procesadas encontradas",
+				"nameCSV": "Nombre o razón social",
+				"amountCSV": "Importe",
+				"dateCSV": "Fecha de ejecución",
+				"operationNumberCSV": "Número de Solicitud",
+				"stateCSV": "Estado"
+			},
+			"exitModal": {
+				"thirdParty": {
+					"title": "Cancelar Transferencia a terceros",
+					"description": "Al abandonar esta página la transferencia no será efectuada y se perderán todos los datos ingresados.",
+					"cancel": "Volver al Transferencias",
+					"confirm": "Cancelar Transferencia"
+				},
+				"ownAccount": {
+					"title": "Cancelar Transferencia entre cuentas propias",
+					"description": "Al abandonar esta página la transferencia no será efectuada y se perderán todos los datos ingresados.",
+					"cancel": "Volver al Transferencias",
+					"confirm": "Cancelar Transferencia"
+				}
+			}
+		},
+		"checkbooks": {
+			"errors": {
+				"issued": {
+					"generalError": "No te podemos mostrar la información de cheques emitidos en este momento. Por favor consultá más tarde",
+					"paid": "En estos momentos no te podemos mostrar los cheques emitidos Pagados. Por favor intentá más tarde",
+					"toCover": "En estos momentos no te podemos mostrar los cheques emitidos Por cubrir. Por favor intentá más tarde",
+					"rejected":"En estos momentos no te podemos mostrar los cheques emitidos Rechazados. Por favor intentá más tarde"
+				},
+				"received": {
+					"generalError": "No te podemos mostrar la información de cheques recibidos en este momento. Por favor consultá más tarde",
+					"pendingAccreditation": "En estos momentos no te podemos mostrar los cheques recibidos Pendientes de acreditación. Por favor intentá más tarde",
+					"rejected": "En estos momentos no te podemos mostrar los cheques recibidos Rechazados. Por favor intentá más tarde",
+					"discounted": "En estos momentos no te podemos mostrar los cheques recibidos Descontados. Por favor intentá más tarde",
+					"accredited": "En estos momentos no te podemos mostrar los cheques recibidos Cobrados. Por favor intentá más tarde"
+				},
+				"discounted": {
+					"generalError": "No te podemos mostrar la información de cheques descontados en este momento. Por favor consultá más tarde"
+				}
+			},
+			"landing": {
+				"title": "Cheques",
+				"checksIssued": "Cheques emitidos",
+				"checksReceived": "Cheques recibidos",
+				"checksDiscounted": "Cheques descontados",
+				"checkbooks": "Chequeras"
+			},
+			"received": {
+				"accountSelectorTitle": "Cheques correspondientes a",
+				"checksReceived": "Cheques recibidos",
+				"searchAndFilter": "Buscar y Filtrar",
+				"number": "Número de cheque",
+				"code": "CMC7",
+				"accreditationDate": "Fecha de acreditación",
+				"amount": "Importe",
+				"state": "Estado",
+				"emptyMessage": "No tenes información de cheques recibidos para mostrar",
+				"downloadAttachedNote": "Descargar nota adjunta",
+				"downloadImage": "Descargar imagen",
+				"reason": "Motivo",
+				"reasonRejection": "Ver motivo del rechazo",
+				"checkRejected": "Cheque rechazado",
+				"rejectionDate": "Fecha de rechazo",
+				"showMore": "Mostrar más",
+				"end": "Terminar",
+				"states": {
+					"PENDING_ACCREDITATION": "Pendiente de acreditación",
+					"ACCREDITED": "Cobrados",
+					"REJECTED": "Rechazado",
+					"DISCOUNTED": "Descontado rechazado",
+					"PAID": "Pagado",
+					"TO_COVER": "Por cubrir"
+				},
+				"filters": {
+					"stateFieldLabel": "Estado",
+					"showFilters": "Buscar y filtar",
+					"hiddenFilters": "Ocultar filtros",
+					"searchFieldLabel": "Número de cheque o importe",
+					"startFieldLabel": "Desde",
+					"endFieldLabel": "Hasta"
+				}
+			},
+			"checkbooks": {
+				"requestNewCheckbook": "Solicitar nueva chequera",
+				"enableCheckbook": "Habilitar chequera",
+				"typeCheckbooks": "Tipo de chequera",
+				"quantity": "Cantidad",
+				"titleLocation": "Elegí tu Provincia y Sucursal",
+				"request": "Solicitar",
+				"cancel": "Cancelar",
+				"requests": "Solicitudes",
+				"requestsSignaturesPending": "Chequeras pendientes de firma",
+				"checkbookType": "Tipo de chequera",
+				"requestDate": "Fecha de pedido",
+				"requestNumber": "Número de solicitud",
+				"state": "Estado",
+				"requestedCheckbooks": "Chequeras pedidas",
+				"checkIssuedCheckbooks": "Consultá el historial de chequeras emitidas",
+				"emptyRequestMessage": "No hay solicitudes de chequeras pendientes de autorización",
+				"emptyMessage": "Aún no tenés chequeras pedidas",
+				"states": {
+					"PENDING_APPROVAL": "Pendiente de autorización",
+					"CANCELLED": "Cancelada",
+					"AUTHORIZED": "Autorizada",
+					"REJECTED": "Rechazada",
+					"PARTIALLY_AUTHORIZED": "Parcialmente autorizado",
+					"APPROVED": "Procesado con Éxito",
+					"DENIED": "Rechazada"
+				},
+				"showMore": "Mostrar más",
+				"showAll": "Ver todos"
+			},
+			"checksDiscounted": {
+				"totalChecksDiscounted": "Cheques descontados",
+				"title": "Cheques  correspondientes a",
+				"acreditationDate": "Fecha de acreditación",
+				"number": "Número de descuento",
+				"amount": "Monto original",
+				"showMore": "Mostrar más",
+				"filters": {
+					"showFilters": "Buscar y filtar",
+					"hiddenFilters": "Ocultar filtros",
+					"searchFieldLabel": "Número de descuento o importe",
+					"startFieldLabel": "Desde",
+					"endFieldLabel": "Hasta"
+				},
+				"emptyMessage": "No tenes información de cheques descontados para mostrar"
+			},
+			"checkDiscountedDetail": {
+				"title": "Cheque descontado",
+				"number": "Número de descuento",
+				"amount": "Monto original",
+				"tna": "TNA",
+				"CFTEA": "CFTEA",
+				"deadline": "Plazo",
+				"accreditationDate": "Fecha de acreditación",
+				"finishDate": "Fecha de finalización",
+				"account": "Cuenta débito",
+				"end": "Terminar"
+			},
+			"filters": {
+				"states": {
+					"PENDING_ACCREDITATION": "Pendiente de acreditación",
+					"ACCREDITED": "Cobrados",
+					"REJECTED": "Rechazados",
+					"DISCOUNTED": "Descontado rechazado",
+					"PAID": "Pagados",
+					"TO_COVER": "Por cubrir"
+				}
+			},
+			"success": {
+				"success": "Solicitud procesada con éxito",
+				"pending_approval": "Solicitud pendiente de autorización",
+				"partially_authorized": "Solicitud parcialmente autorizada",
+				"rejected": "Solicitud rechazada",
+				"detailRequest": "Ver detalle de la solicitud",
+				"requestNumber": "Número de Solicitud",
+				"centralMessage": "Recordá que una vez autorizada deberá ser aprobada por el banco y deberá activarda un firmante.",
+				"centralMessageRejected": "No se pudo solicitar tu chequera",
+				"cancel": "Cancelar",
+				"requests": "Solicitudes",
+				"requestsSignaturesPending": "Solicitudes pendientes de firma"
+			},
+			"detail": {
+				"title": "Solicitud de chequera",
+				"type": "Tipo",
+				"originAccount": "Cuenta de origen",
+				"count": "Cantidad de chequera",
+				"province": "Provincia",
+				"branch": "Sucursal",
+				"requestUser": "Solicitante",
+				"requestNumber": "Número de Solicitud",
+				"requestDate": "Fecha de solicitud",
+				"downloadAuthorization": "Descargar autorización de retiro",
+				"moreDetail": "Más detalles",
+				"lessDetail": "Menos detalles",
+				"states": {
+					"PENDING_APPROVAL": "Pendiente de autorización",
+					"CANCELLED": "Cancelada",
+					"AUTHORIZED": "Autorizada",
+					"REJECTED": "Rechazada",
+					"PARTIALLY_AUTHORIZED": "Parcialmente autorizado",
+					"APPROVED": "Procesado con Éxito",
+					"DENIED": "Rechazada"
+				}
+			},
+			"enableCheckbook": {
+				"confirmButton": "Habilitar",
+				"cancelButton": "Cancelar",
+				"account": "Cuenta",
+				"checkbookLot": "Lote de la chequera",
+				"initialNumber": "Número Inicial",
+				"lastNumber": "Número Final",
+				"successDescription": "Chequera habilitada con éxito",
+				"successMessage": "Ya podés comenzar a operar con ella",
+				"ErrorDescription": "No se pudo habilitar tu chequera",
+				"ErrorAction": "Terminar"
+			},
+			"checksIssued": {
+				"number": "Número de cheque",
+				"code": "CMC7",
+				"accreditationDate": "Fecha de acreditación",
+				"amount": "Importe",
+				"state": "Estado",
+				"searchAndFilter": "Buscar y Filtrar",
+				"showMore": "Mostrar más",
+				"downloadAttachedNote": "Descargar nota adjunta",
+				"downloadImage": "Descargar imagen",
+				"reasonRejection": "Ver motivo del rechazo",
+				"checkRejected": "Cheque rechazado",
+				"emptyMessage": "No tenes información de cheques emitidos para mostrar",
+				"states": {
+					"COVERED": "Cubierto",
+					"TO_COVER": "Por cubrir",
+					"REJECTED": "Rechazado"
+				},
+				"selectTitle": "Cheques  correspondientes a",
+				"filters": {
+					"searchFieldLabel": "Número de cheque o importe",
+					"startFieldLabel": "Desde",
+					"endFieldLabel": "Hasta",
+					"stateFieldLabel": "Estado",
+					"showFilters": "Buscar y filtrar",
+					"hiddenFilters": "Ocultar filtros"
+				}
+			}
+		},
+		"enterprises": {
+			"welcome": "Bienvenid@",
+			"more": "Mostrar más",
+			"selectEnterprise": "Elegí desde qué Empresa querés operar",
+			"find": "Buscar por razón social o CUIT",
+			"enterprises": "empresas asociadas",
+			"cuilt": "CUIT",
+			"exit": "Salir",
+			"search": "Buscar por razón social o CUIT",
+			"favoriteEnterprise": "Desde ahora iniciarás sesión con tu empresa favorita.",
+			"error":"No pudimos completar la operación"
+		},
+		"users": {
+			"landing": {
+				"title": "Gestión de Usuarios",
+				"addNew": "Vincular Nuevo Usuario",
+				"showUnattachedUsers": "Mostrar Desvinculados",
+				"showMore": "Mostrar más",
+				"tableHeader": {
+					"name": "Nombre",
+					"document": "Documento",
+					"status": "Estado",
+					"role": "Rol"
+				},
+				"linked": "Vinculado",
+				"pending": "Pendiente",
+				"unlinked": "Desvinculado",
+				"admin": "Admin",
+				"operator": "Operador",
+				"consultant": "Consultor",
+				"roleChanged": "Rol {{role}} asignado a {{name}}",
+				"error":"No pudimos completar la operación"
+			},
+			"toggleBind": {
+				"subtitle": "Usuario seleccionado",
+				"name": "Nombre",
+				"document": "Documento",
+				"rol": "Rol",
+				"cancel": "Cancelar",
+				"unbind": {
+					"title": "¿Estás seguro que deseás desvincularlo?",
+					"confirmation": "Desvincular",
+					"message": "ha sido desvinculado"
+				},
+				"bind": {
+					"title": "¿Estás seguro que deseás volver a vincularlo?",
+					"confirmation": "Revincular",
+					"message": "ha sido revinculado"
+				},
+				"error":"No pudimos completar la operación"
+			},
+			"role": {
+				"ADMIN": "Administrador",
+				"OPERADOR": "Operador",
+				"CONSULTOR": "Consultor"
+			}
+		}
+	},
+	"sidenav": {
+		"tokenValidation": {
+			"title": "Validá tu Token",
+			"labelSoftoken": "Para finalizar el proceso tenes que ingresar tu token para confirmar su validez",
+			"helpMessage": " ¿Necesitás ayuda?",
+			"validate": "Validar"
+		},
+		"tokenCreate": {
+			"title": "Crear Token",
+			"description": "Para poder empezar con el proceso de creación de token, debés descargar la aplicación en tu celular.",
+			"subtitle": "Recordá que",
+			"tokenProvider": "CA tecnologies Mobile OTP",
+			"secondaryDescription": "En caso de que ya hayas creado un token anteriormente, este proceso reemplazará tu token actual por uno nuevo.",
+			"tertiaryDescription": "Si ya descargaste la aplicación, hacé click en “Crear token”.",
+			"confirmAction": "Crear token"
+		},
+		"positiveValidation": {
+			"title": "Validación positiva",
+			"description": "Escribinos a <strong>Itaú</strong> en <strong>WhatsApp</strong> al <strong>1126028000</strong> enviando el código <strong>#codigoempresa.</strong>",
+			"openWhatsapp": "Abrir WhatsApp Web",
+			"enterCode": "Cuando hayas finalizado, ingresá el código generado acá",
+			"code": "Código",
+			"requiredFields": "Campos requeridos",
+			"back": "Volver",
+			"continue": "Continuar",
+			"sidenavCancelConfirmation": {
+				"message": "¿Desea descartar los cambios realizados?",
+				"cancel": "Cancelar",
+				"confirm": "Descartar"
+			}
+		},
+		"tokenCreateEmailConfirmation": {
+			"title": "Crear Token",
+			"description": "Se envió un email con el código de activación a tu casilla de correo {{email}}",
+			"descriptionNote": "El codigo de activación tiene una validez de 24h. Si no recibís el email, comunicate con un administrador.",
+			"subtitle": "Recordá que",
+			"secondaryDescription": "Tendrás que crear en la aplicación un pin de acceso, este pin de acceso se solicitará en la aplicación cada vez que quieras generar un token para tus transacciones.",
+			"tertiaryDescription": "Una vez que definas el pin de acceso podrás continuar al siguiente paso.",
+			"cancelAction": "Volver",
+			"confirmAction": "Validar token",
+			"sidenavCancelConfirmation": {
+				"message": "¿Desea descartar los cambios realizados?",
+				"cancel": "Cancelar",
+				"confirm": "Descartar"
+			}
+		},
+		"userDetails": {
+			"name": "Nombre",
+			"details": "Detalles de usuario",
+			"documentType": "Tipo de documento",
+			"documentNumber": "Nº de documento",
+			"cellphone": "Teléfono",
+			"email": "Correo electrónico",
+			"back": "Volver",
+			"saveChanges": "Guardar cambios",
+			"editUser": "Editar detalles",
+			"validateAndSave": "Validar y Guardar"
+		},
+		"payments": {
+			"payableAmount": "Monto a pagar",
+			"totalAmount": "Monto total",
+			"verifyContact": "Validar Destinatario",
+			"invalidContact": "Destinatario inválido",
+			"confirmContact": "Confirmar destinatario",
+			"paymentError": "Error al procesar el pago",
+			"cbvuErrorMessage": "El CBU/CVU ingresado es incorrecto. Por favor verificalo y volvé a intentar.",
+			"checkTheDataEntered": "Revisá los datos ingresados e intentá nuevamente",
+			"salaryPaymentError": "Hubo error al procesar el pago de sueldo de {{name}} por {{currency}} {{amount}}. Por favor, intentalo de nuevo.",
+			"serviceDetail": "Pago de Servicios",
+			"providerPaymentDetailTitle": "Detalle de Pago de Proveedores"
+		},
+		"softokenConfirm": {
+			"labelSoftoken": "Para validar la operación ingresá tu clave Soft Token",
+			"messageHelp": " ¿Necesitás ayuda?",
+			"messageInvalidSoftoken": "La clave token es inválida. Por favor intentá de nuevo.",
+			"invalidNotificationLabel": "El token se bloquea luego de 3 intentos fallidos.",
+			"centralMessageHelp": "Para poder autorizar ciertas operaciones los firmantes deben hacer una validación de seguridad mediante una clave token",
+			"moreInformation": "Más información",
+			"confirm": {
+				"requestSign": "Validar y Firmar",
+				"requestReject": "Validar y Rechazar",
+				"salaryPaymentSign": "Validar y Pagar",
+				"providerPaymentSign": "Validar y Pagar",
+				"requestCheckbook": "Validar y Solicitar",
+				"servicePaymentSign": "Validar y Pagar",
+				"enableCheckbook": "Validar y Habilitar"
+			},
+			"sidenavCancelConfirmation": {
+				"message": "¿Desea descartar los cambios realizados?",
+				"cancel": "Cancelar",
+				"confirm": "Descartar"
+			}
+		},
+		"softokenCreateSuccess": {
+			"title": "Token creado exitosamente",
+			"subtitle": "¡Ya creaste tu token!",
+			"description": "Ya podés operar de forma mas segura",
+			"message": "Recordá tener siempre a la mano tu pin de acceso para generar token al momento de realizar una operación",
+			"finish": "Terminar",
+			"closeText": "¿Desea descartar los cambios realizados?",
+			"cancelText": "Cancelar",
+			"closeConfirmText": "Descartar"
+		},
+		"validateContact": {
+			"note": "Verificá que los datos del nuevo destinatario sean correctos",
+			"contactNameLabel": "Titular de la cuenta",
+			"cuiltLabel": "CUIT/CUIL/CDI",
+			"bank": "Banco",
+			"accountNumberLabel": "Numero de cuenta",
+			"cbvuLabel": "CBU / CVU",
+			"accountTypeLabel": "Tipo de cuenta",
+			"currencyLabel": "Moneda",
+			"cancel": "Volver",
+			"confirm": "Confirmar"
+		},
+		"transferDetails": {
+			"title": "Detalle de transferencia",
+			"name": "Nombre o razón social",
+			"cuit": "CUIT/CUIL/CDI Destino",
+			"originAccount": "Cuenta de origen del pago",
+			"destinationCbu": "CBU/CVU Destino",
+			"concept": "Concepto",
+			"operationNumber": "# Solicitud",
+			"payedAmount": "Importe pagado"
+		},
+		"enterpriseDetails": {
+			"title": "Detalle de empresa",
+			"destinationHolderLabel": "Razón social",
+			"idLabel": "CUIT",
+			"phoneNumberLabel": "Teléfono",
+			"addressLabel": "Dirección",
+			"return": "Volver"
+		},
+		"allEnterprises": {
+			"title": "Empresas asociadas"
+		},
+		"bindUser": {
+			"title": "Nueva Vinculación",
+			"form": {
+				"title": "Identificar destinatario",
+				"docType": "Tipo",
+				"documentNumberLabel": "Número de documento",
+				"nameInput": "Nombre completo",
+				"lastNameInput": "Apellido",
+				"emailInput": "Email",
+				"radioButtonTitle": "Seleccioná un Rol",
+				"radioAdminRol": "Administrador",
+				"radioOperatorRol": "Operador",
+				"radioConsultantRol": "Consultor",
+				"formReturnButton": "Volver",
+				"continueButton": "Confirmar",
+				"inputRequiredText": "Campos Requeridos"
+			},
+			"closeMessage": "¿Deseás descartar los cambios realizados?",
+			"discard": "Descartar",
+			"success": {
+				"title": "Nueva vinculación exitosa",
+				"imageSubTitle": "Vinculaste a",
+				"nameLabel": "Nombre",
+				"emailLabel": "Email",
+				"rolLabel": "Rol de Usuario",
+				"finishButton": "Terminar"
+			},
+			"cancel": "Cancelar"
+		},
+		"notificationsDetails": {
+			"title": "Notificaciones",
+			"newNotifications": "Notificaciones Nuevas",
+			"markAllAsRead": "Marcar todas leidas",
+			"viewMore": "Mostrar mas",
+			"today": "Hoy",
+			"yesterday": "Ayer"
+		}
+	},
+	"common": {
+		"alias": "Alias",
+		"youCanContinue": "¡Ya podés continuar!",
+		"cbvu": "CBU / CVU",
+		"missingCharacters": "Faltan {{characters}} caracteres",
+		"cuilt": "CUIT / CUIL",
+		"destinationAccount": "Cuenta destino:",
+		"accountType": "Tipo de Cuenta:",
+		"currency": "Moneda:",
+		"cancel": "Cancelar",
+		"continue": "Continuar",
+		"account": "Cuenta",
+		"originAccount": "Cuenta de origen de los fondos",
+		"amount": "Importe",
+		"validateSoftToken": "Válida tu soft token",
+		"payAndValidate": "Validar y pagar",
+		"payAndTransfer": "Validar y transferir",
+		"return": "Volver",
+		"confirm": "Confirmar",
+		"edit": "Editar",
+		"contact": "Destinatario",
+		"date": "Fecha",
+		"cdi": "CDI",
+		"retry": "Reintentar",
+		"youCompletedTheSelection": "Completaste la selección.",
+		"requiredFields": "* Campos requeridos",
+		"checkCbvu": "Corregir CBU / CVU",
+		"end": "Terminar",
+		"print": "Imprimir",
+		"share": "Compartir",
+		"yourReceipt": "Número de Solicitud:",
+		"yourRequest": "Tu solicitud:",
+		"requestNumber": "Número de solicitud:",
+		"downloadReceipt": "Descargar comprobante",
+		"goOut": "Salir",
+		"accept": "Aceptar",
+		"ok": "Ok",
+		"salaries": "Sueldos",
+		"services": "Servicios",
+		"exportSummary": "Exportar Resumen",
+		"province": "Provincia",
+		"branches": "Sucursal"
+	}
+}

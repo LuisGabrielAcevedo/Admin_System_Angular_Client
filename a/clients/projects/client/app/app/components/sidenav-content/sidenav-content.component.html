@@ -1,0 +1,39 @@
+<div class="right-sidenav-content">
+	<div class="right-sidenav-content__icon-container">
+		<mcy-icon-button
+			(handleClick)="closeSidenav()"
+			class="right-sidenav-content__close"
+			[id]="'right-sidenav-content__close-button'"
+		>fechar</mcy-icon-button>
+	</div>
+	<div
+		class="right-sidenav-content__header"
+		*ngIf="sidenavService.step.title">
+		<h3 class="right-sidenav-content__title">
+			{{ sidenavService.error  ? ('components.sidenavError.title' | translate) : sidenavService.step.title }}
+		</h3>
+		<div
+			*ngIf="!sidenavService.step.hasMoreData"
+			class="right-sidenav-content__divider"
+		></div>
+	</div>
+	<div class="right-sidenav-content__body">
+		<mcy-sidenav-error
+			[errorConfiguration]="sidenavService.errorConfiguration"
+			*ngIf="sidenavService.error && !sidenavService.closeView"
+			[isLoading]="sidenavService.isRetryOnErrorLoading"
+			(handleConfirm)="sidenavService.retryOnErrorCallback()"
+		></mcy-sidenav-error>
+		<mcy-sidenav-cancel
+			*ngIf="sidenavService.closeView"
+			[sidenavClose]="sidenavService.step.closeAction"
+			(cancelEvent)="cancel()"
+			(closeEvent)="close()">
+		</mcy-sidenav-cancel>
+		<mcy-sidenav-select-component
+			[hidden]="sidenavService.closeView || sidenavService.error"
+			*ngIf="sidenavService.step.component"
+			[step]="sidenavService.step"
+		></mcy-sidenav-select-component>
+	</div>
+</div>

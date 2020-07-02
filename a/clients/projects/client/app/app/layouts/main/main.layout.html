@@ -1,0 +1,28 @@
+<ng-sidebar-container class="main-container" showBackdrop="true">
+	<ng-sidebar
+		[(opened)]="menuOpened"
+		mode="push"
+		dock="true"
+		[dockedSize]="isMobile ? '0px' : '72px'"
+		class="main-container__menu"
+		#sideBar
+	>
+	<mcy-menu (menuButtonClick)="toggleMenu()" [closed]="!menuOpened"></mcy-menu>
+	</ng-sidebar>
+
+	<ng-sidebar
+		class="main-container__sidenav"
+		showBackdrop="true"
+		position="end"
+		mode="over"
+		[opened]="sidenavService.opened">
+		<mcy-sidenav-content></mcy-sidenav-content>
+	</ng-sidebar>
+
+	<div ng-sidebar-content>
+		<mcy-header [closed]="!menuOpened" (menuButtonClick)="toggleMenu()"></mcy-header>
+		<main class="main-container__content">
+			<router-outlet></router-outlet>
+		</main>
+	</div>
+</ng-sidebar-container>

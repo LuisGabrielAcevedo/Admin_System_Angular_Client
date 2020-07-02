@@ -1,0 +1,57 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.onboarding-carousel {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+	&__carousel-container {
+		max-height: 560px;
+	}
+
+	&__information-container {
+		display: flex;
+		justify-content: space-between;
+		margin: $spacing-M;
+		align-items: center;
+	}
+
+	&__img {
+		width: 960px;
+		height: 600px;
+	}
+
+	&__title {
+		@include font-primary-extrabold();
+		color: $text-color-partial;
+		font-size: $font-size-XL;
+	}
+
+	&__description {
+		font-size: $font-size-M;
+	}
+
+	.mcy-carousel {
+		&__item-container {
+			padding: 0 !important;
+		}
+
+		&__points {
+			position: absolute;
+			bottom: 14px;
+			overflow: hidden;
+			margin: auto;
+			width: 100%;
+			&--single {
+				background-color: $background-color-carousel-item !important;
+			}
+		}
+
+		&__point--active {
+			background-color: $background-color-partially !important;
+		}
+	}
+}
+
+

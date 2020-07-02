@@ -1,0 +1,28 @@
+<div class="new-contact-box">
+	<div class="new-contact-box__top">
+		<span class="new-contact-box__add-outer-circle">
+			<span class="new-contact-box__add-inner-circle">
+				<mcy-icon class="new-contact-box__add-icon">mais</mcy-icon>
+			</span>
+		</span>
+		<p class="new-contact-box__instructions">
+			{{ 'pages.transfers.thirdParty.success.addContactLine1' | translate }}
+			<span class="new-contact-box__name">
+				{{ name }}
+			</span>
+			{{ 'pages.transfers.thirdParty.success.addContactLine2' | translate }}
+		</p>
+	</div>
+	<div class="new-contact-box__bottom">
+		<p class="new-contact-box__info">
+			{{ 'pages.transfers.thirdParty.success.addContactInstruction' | translate }}
+		</p>
+		<mcy-button
+			[id]="'new-contact-box__add-contact-button'"
+			[color]="'primary2'"
+			(handleClick)="onClick()"
+		>
+			{{ 'pages.transfers.thirdParty.success.addContactButton' | translate }}
+		</mcy-button>
+	</div>
+</div>

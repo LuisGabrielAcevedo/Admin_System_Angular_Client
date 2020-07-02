@@ -1,0 +1,24 @@
+<div class="contact-add-find">
+	<div class="contact-add-find__body">
+		<div class="contact-add-find__header">
+			<span class="contact-add-find__header-title">
+				{{ 'pages.contacts.addConfirmation.contactTitle' | translate }}
+			</span>
+		</div>
+
+		<mcy-find-contact-form
+			class="contact-add-find__main-section"
+			(handleChange)="onFindContactFormChange($event)"
+		></mcy-find-contact-form>
+	</div>
+
+	<div class="contact-add-find__buttons-section">
+		<mcy-button
+			(handleClick)="onContinue()"
+			[disabled]="!isFormValid"
+			class="contact-add-find__button"
+			[id]="'contact-add-find__validate-button'">
+			{{ 'pages.transfers.thirdParty.contact.next' | translate }}
+		</mcy-button>
+	</div>
+</div>

@@ -1,0 +1,41 @@
+<div class="request-checkbooks-success">
+	<div class="request-checkbooks-success__box-icon-status">
+		<mcy-status-icon size="large" [status]="requestStatus"></mcy-status-icon>
+	</div>
+	<div class="request-checkbooks-success__box-sub-title" *ngIf="requestStatus !== 'DENIED'">
+		<span class="request-checkbooks-success__sub-title">
+			{{messageSubTitle}}
+		</span>
+	</div>
+
+	<div class="request-checkbooks-success__box-request-number" *ngIf="requestStatus !== 'DENIED'">
+		<span class="request-checkbooks-success__request-number">
+			{{'pages.checkbooks.success.requestNumber' | translate}}  : {{requestNumber}}
+		</span>
+	</div>
+
+	<div class="request-checkbooks-success__box-central-message">
+		<span class="request-checkbooks-success__central-message" *ngIf="requestStatus !== 'APPROVED'">
+			{{getCentralMessage()}}
+		</span>
+	</div>
+
+	<div class="request-checkbooks-success__see-detail" *ngIf="requestStatus !== 'DENIED'">
+
+			<mcy-contextual-button
+				[id]="'request-checkbooks-success__action'"
+				[prefixIcon]="'comprovante_outline'"
+				(handleClick)="showDetailCheckbook()">
+				{{'pages.checkbooks.success.detailRequest' | translate}}
+			</mcy-contextual-button>
+
+	</div>
+
+	<mcy-sidenav-footer>
+		<div class="request-checkbooks-success__footer">
+			<mcy-button
+				(handleClick)="end()"
+				>{{ 'pages.accounts.accountMovementDetail.end' | translate }}</mcy-button>
+		</div>
+	</mcy-sidenav-footer>
+</div>

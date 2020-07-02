@@ -1,0 +1,37 @@
+<div class="reject-requests-status">
+	<mcy-primary-page-layout
+		(handleBack)="goToLanding()"
+		[title]="title()"
+		[back]="'pages.requests.sign.goBack' | translate">
+		<div body class="reject-requests-status__content">
+			<mcy-primary-panel-layout>
+				<div body class="reject-requests-status__actions-list">
+					<div class="reject-requests-status__bar">
+						<div class="reject-requests-status__bar">
+							<mcy-icon class="reject-requests-status__list-icon">documento</mcy-icon>
+							<span class="reject-requests-status__main-title">{{'pages.requests.rejectStatus.actionMessage' | translate}}</span>
+						</div>
+					</div>
+					<div class="reject-requests-status__list">
+						<mcy-requests-actions-list
+							[showStatus]="true"
+							[errors]="formattedErrors"
+							action="REJECT"
+							[selectedRequests]="requests()">
+						</mcy-requests-actions-list>
+					</div>
+				</div>
+				<div description class="reject-requests-status__description">
+					<span>{{description()}}</span>
+				</div>
+				<mcy-button
+					footer
+					(handleClick)="goToLanding()"
+					[id]="'reject-requests-status__button'"
+					color="primary">
+					{{'pages.requests.rejectStatus.buttonLabel' | translate}}
+				</mcy-button>
+			</mcy-primary-panel-layout>
+		</div>
+	</mcy-primary-page-layout>
+</div>

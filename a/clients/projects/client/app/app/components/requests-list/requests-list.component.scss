@@ -1,0 +1,67 @@
+@import 'variablesNew';
+
+@import 'mixins';
+
+.requests-list {
+	padding: $spacing-L $spacing-XL;
+
+	&__loading {
+		display: flex;
+		justify-content: center;
+	}
+
+	&__icon {
+		color: $icon-color-spinner;
+		font-size: 24px;
+	}
+
+	&__operation-and-detail {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__type {
+		margin-bottom: $spacing-XS;
+	}
+
+	&__name {
+		@include font-primary-bold();
+	}
+
+	&__profile, &__badge-icon {
+		cursor: pointer;
+	}
+
+	&__state {
+		&--partially-authorized {
+			font-size: $font-size-S;
+			@include font-primary-bold();
+			color: $text-color-processing;
+		}
+
+		&--pending-approval {
+			font-size: $font-size-S;
+			@include font-primary-bold();
+			color: $text-color-link;
+		}
+
+		&--authorized,
+		&--approved {
+			font-size: $font-size-S;
+			@include font-primary-bold();
+			color: $text-color-succeed;
+		}
+
+		&--rejected,
+		&--denied,
+		&--cancelled {
+			font-size: $font-size-S;
+			@include font-primary-bold();
+			color: $text-color-cancelled;
+		}
+	}
+
+	&__icon-column {
+		width: 40px;
+	}
+}

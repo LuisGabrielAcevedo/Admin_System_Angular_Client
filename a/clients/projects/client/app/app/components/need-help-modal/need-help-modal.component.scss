@@ -1,0 +1,57 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.need-help-modal {
+	width: 756px;
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+
+	&__header-box {
+		margin: $spacing-M $spacing-L;
+	}
+
+	&__title {
+		@include font-primary-extrabold();
+		font-size: $font-size-XXL;
+		margin: 0;
+		margin-bottom: $spacing-M;
+	}
+
+	&__image-description-box {
+		display: flex;
+		padding:0 $spacing-M  $spacing-XXL  $spacing-M;
+	}
+
+	&__image-need-help-box {
+		border: 2px solid $border-color-image-box;
+	}
+
+	&__image-need-help {
+		width: 428px;
+	}
+
+	&__description-box {
+		@include font-primary-regular();
+		overflow-y: auto;
+		flex: 1;
+		padding-right: $spacing-XL;
+		font-size: $font-size-M;
+		line-height: 1.5;
+		&--text-bold {
+			@include font-primary-extrabold();
+		}
+	}
+
+	&__box-third-text {
+		margin-top: $spacing-M;
+	}
+
+	&__footer {
+		@include box-shadow-upperside();
+		padding: $spacing-S;
+		display: flex;
+		justify-content: flex-end;
+		height: 88px;
+	}
+}

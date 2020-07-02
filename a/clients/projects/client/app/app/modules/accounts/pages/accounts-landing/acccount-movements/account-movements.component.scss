@@ -1,0 +1,45 @@
+@import 'variables';
+@import 'mixins';
+
+.acccount-movements {
+	&__header {
+		display: flex;
+		align-content: center;
+		justify-content: space-between;
+	}
+	&__number {
+		@include font-primary-semibold();
+		color: $text-color-octanary;
+		font-size: $font-size-XL;
+		margin-right: $spacing-S;
+	}
+	&__title {
+		@include font-primary-regular();
+		color: $text-color-disabled;
+		font-size: $font-size-L;
+	}
+	&__sub-title {
+		@include font-primary-regular();
+		font-size: $font-size-M;
+	}
+	&__export-button {
+		margin-right: $spacing-XL;
+	}
+	&__export-icon {
+		margin-right: $spacing-S;
+		font-size: 24px;
+	}
+	&__icon-search {
+		cursor: pointer;
+		color: $icon-color-tertiary;
+		margin-right: $spacing-S;
+		font-size: 24px;
+	}
+	&__actions {
+		display: flex;
+	}
+	&__more-button-container {
+		display: flex;
+		justify-content: center;
+	}
+}

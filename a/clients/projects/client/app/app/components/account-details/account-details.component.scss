@@ -1,0 +1,59 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.account-details {
+	&__value {
+		@include font-primary-extrabold();
+		font-size: $font-size-S;
+	}
+
+	&__label {
+		@include font-primary-regular();
+		font-size: $font-size-S;
+	}
+
+	&__detail {
+		line-height: 2;
+	}
+
+	&__currency-symbol {
+		@include font-primary-light();
+		font-size: $font-size-XXL;
+		line-height: 1.3;
+	}
+
+	&__balance {
+		@include font-primary-light();
+		font-size: 40px;
+		color: $text-color-hyperlink;
+	}
+
+	&__balance-section {
+		display: flex;
+		margin-bottom: $spacing-L;
+	}
+
+	&__balance-detail {
+		display: flex;
+		flex-direction: column;
+		margin-left: $spacing-M;
+		justify-content: center;
+	}
+
+	&__details-section {
+		position: relative;
+		background-color: $background-color-secondary;
+		padding: $spacing-XS;
+	}
+
+	&__copy {
+		position: absolute;
+		top: 16px;
+		right: 16px;
+	}
+
+	&__copy-button {
+		color: $text-color-link;
+		font-size: 24px;
+	}
+}

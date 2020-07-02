@@ -1,0 +1,303 @@
+<div class="contacts">
+	<header class="contacts__header">
+		<h1 class="contacts__header-title">{{'pages.contacts.title' | translate}}</h1>
+		<div class="contacts__button-group">
+			<div class="contacts__button">
+				<mcy-button
+					*ngIf="hasWritePermission"
+					(handleClick)="gotoContact()" 
+					[color]="'primary'" 
+					[id]="'contacts_button-new-destination'"
+				>
+					<mcy-icon class="contacts__button-icon">mais</mcy-icon>
+					{{'pages.contacts.newContact' | translate}}
+				</mcy-button>
+			</div>
+			<div class="contacts__button">
+				<mcy-button 
+					(handleClick)="showExportDialog()" 
+					[color]="'secondary'" 
+					[id]="'contacts_button-export'"
+				>
+					<mcy-icon class="contacts__button-icon">compra_outline</mcy-icon>
+					{{'pages.contacts.export' | translate}}
+				</mcy-button>
+			</div>
+		</div>
+	</header>
+
+	<div>
+		<mcy-search-contact-form
+			[placeholder]="'pages.contacts.searchPlaceholder' | translate"
+			(handleSearch)="onSearch($event)"
+		>
+		</mcy-search-contact-form>
+		<div [hidden]="isAccountBeingSearched">
+			<div class="contacts__table-title-container">
+				<h3 class="contacts__table-title">{{'pages.contacts.favorites' | translate}}</h3>
+			</div>
+			<table mat-table [dataSource]="favoriteContactsListTableSource" class="mat-elevation-z8 contacts__table" id="contacts__table-favorite">
+				<ng-container matColumnDef="select">
+					<th mat-header-cell *matHeaderCellDef></th>
+					<td mat-cell *matCellDef="let contact">
+						<mcy-profile-image
+							[size]="'small'"
+							[name]="contact.reference"
+							[selected]="false"
+							[category]="contact.category"
+							class="contact-list__contact-image"
+					></mcy-profile-image>
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="favorite">
+					<th mat-header-cell *matHeaderCellDef></th>
+					<td mat-cell *matCellDef="let contact; let cellIndex = index">
+						<mcy-favorite
+							[readOnly]="!hasWritePermission"
+							class="contacts__favorite"
+							[active]="contact.favorite"
+							(handleClick)="onFavoriteClick(contact, $event)"
+							[id]="'contacts__table-favorite-icons' + cellIndex"
+						>
+						</mcy-favorite>
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="reference">
+					<th mat-header-cell *matHeaderCellDef>
+						<span class="contacts__table-header-title">
+							{{'pages.contacts.tableHeader.reference' | translate}}
+						</span>
+					</th>
+					<td
+						class="contacts__table-reference"
+						mat-cell
+						*matCellDef="let contact"
+					>
+						{{contact.reference}}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="name">
+					<th mat-header-cell *matHeaderCellDef>
+						<span class="contacts__table-header-title">
+							{{'pages.contacts.tableHeader.name' | translate}}
+						</span>
+					</th>
+					<td
+						class="contacts__table-name"
+						mat-cell
+						*matCellDef="let contact"
+					>
+						{{contact.name}}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="cbvu">
+					<th mat-header-cell *matHeaderCellDef>
+						<span class="contacts__table-header-title">
+							{{'pages.contacts.tableHeader.cbu' | translate}}
+						</span>
+					</th>
+					<td mat-cell *matCellDef="let contact"> {{contact.cbvu}} </td>
+				</ng-container>
+
+				<ng-container matColumnDef="category">
+					<th mat-header-cell *matHeaderCellDef>
+						<span class="contacts__table-header-title">
+							{{'pages.contacts.tableHeader.category' | translate}}
+						</span>
+					</th>
+					<td mat-cell *matCellDef="let contact">
+						{{'pages.contacts.categories.' + contact.category | translate}}
+				</ng-container>
+
+				<ng-container matColumnDef="email">
+					<th mat-header-cell *matHeaderCellDef>
+						<span class="contacts__table-header-title">
+							{{'pages.contacts.tableHeader.email' | translate}}
+						</span>
+					</th>
+					<td mat-cell *matCellDef="let contact"> {{contact.email}} </td>
+				</ng-container>
+
+				<ng-container matColumnDef="actions">
+					<th mat-header-cell *matHeaderCellDef></th>
+					<td class mat-cell *matCellDef="let contact; let cellIndex = index" class="contacts__table-column-actions">
+						<mcy-icon-button
+							*ngIf="hasWritePermission"
+							class="contacts__icon-actions"
+							(handleClick)="openEdit(contact.id)"
+							[id]="'contacts__table-favorite-edit-button-' + cellIndex"
+						>
+						editar_outline
+						</mcy-icon-button>
+						<mcy-icon-button
+							*ngIf="hasWritePermission"
+							class="contacts__icon-actions"
+							(handleClick)="onRemoveContactClick(contact)"
+							[id]="'contacts__favorite-remove-button-' + cellIndex"
+						>
+						excluir_outline
+						</mcy-icon-button>
+					</td>
+				</ng-container>
+
+				<tr
+					class="contacts__table-header"
+					mat-header-row
+					*matHeaderRowDef="displayedColumns"
+				>
+				</tr>
+				<tr
+					mat-row
+					*matRowDef="let row; columns: displayedColumns;"
+					[ngClass]="selectedContact === row.id ? 'contacts__table-row--selected' : 'contacts__table-row'"
+				>
+				</tr>
+				</table>
+				<mat-paginator #favoritesPaginator [pageSizeOptions]="[favoriteContactsPageSize]"></mat-paginator>
+			</div>
+
+		<div class="contacts__table-title-container" *ngIf="isAccountBeingSearched; else notSearched">
+			<h3 class="contacts__table-title">{{'pages.contacts.searchResults' | translate:{count: searchedResultsLength} }}</h3>
+		</div>
+		<ng-template #notSearched>
+				<h3 class="contacts__table-title">{{'pages.contacts.contactList' | translate}}</h3>
+		</ng-template>
+		<div [hidden]="isContactListEmpty">
+			<table
+				mat-table
+				[dataSource]="contactsListTableSource"
+				class="mat-elevation-z8 contacts__table"
+				id="contacts__table"
+			>
+				<ng-container matColumnDef="select">
+					<th mat-header-cell *matHeaderCellDef></th>
+					<td mat-cell *matCellDef="let contact">
+						<mcy-profile-image
+							[size]="'small'"
+							[name]="contact.reference"
+							[selected]="false"
+							[category]="contact.category"
+							class="contact-list__contact-image"
+						></mcy-profile-image>
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="favorite">
+					<th mat-header-cell *matHeaderCellDef></th>
+					<td mat-cell *matCellDef="let contact; let cellIndex = index">
+						<mcy-favorite
+							[readOnly]="!hasWritePermission"
+							class="contacts__favorite"
+							[active]="contact.favorite"
+							(handleClick)="onFavoriteClick(contact, $event)"
+							[id]="'contact__table-icon-' + cellIndex"
+						>
+						</mcy-favorite>
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="reference">
+					<th mat-header-cell *matHeaderCellDef>
+						<span class="contacts__table-header-title">
+							{{'pages.contacts.tableHeader.reference' | translate}}
+						</span>
+					</th>
+					<td
+						class="contacts__table-reference"
+						mat-cell
+						*matCellDef="let contact"
+					>
+						{{contact.reference}}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="name">
+					<th mat-header-cell *matHeaderCellDef>
+						<span class="contacts__table-header-title">
+							{{'pages.contacts.tableHeader.name' | translate}}
+						</span>
+					</th>
+					<td
+						class="contacts__table-name"
+						mat-cell
+						*matCellDef="let contact"
+					>
+						{{contact.name}}
+					</td>
+				</ng-container>
+
+				<ng-container matColumnDef="cbvu">
+					<th mat-header-cell *matHeaderCellDef>
+						<span class="contacts__table-header-title">
+							{{'pages.contacts.tableHeader.cbu' | translate}}
+						</span>
+					</th>
+					<td mat-cell *matCellDef="let contact"> {{contact.cbvu}} </td>
+				</ng-container>
+
+				<ng-container matColumnDef="category">
+					<th mat-header-cell *matHeaderCellDef>
+						<span class="contacts__table-header-title">
+							{{'pages.contacts.tableHeader.category' | translate}}
+						</span>
+					</th>
+					<td mat-cell *matCellDef="let contact">
+						{{'pages.contacts.categories.' + contact.category | translate}}
+				</ng-container>
+
+				<ng-container matColumnDef="email">
+					<th mat-header-cell *matHeaderCellDef>
+						<span class="contacts__table-header-title">
+							{{'pages.contacts.tableHeader.email' | translate}}
+						</span>
+					</th>
+					<td mat-cell *matCellDef="let contact"> {{contact.email}} </td>
+				</ng-container>
+
+				<ng-container matColumnDef="actions">
+					<th mat-header-cell *matHeaderCellDef></th>
+					<td class mat-cell *matCellDef="let contact; let cellIndex = index" class="contacts__table-column-actions">
+						<div *ngIf="hasWritePermission">
+							<mcy-icon-button
+								class="contacts__icon-actions"
+								(handleClick)="openEdit(contact.id)"
+								[id]="'contacts__table-edit-button-' + cellIndex"
+							>
+							editar_outline
+							</mcy-icon-button>
+							<mcy-icon-button
+								class="contacts__icon-actions"
+								(handleClick)="onRemoveContactClick(contact)"
+								[id]="'contacts__table-remove-button-' + cellIndex"
+							>
+							excluir_outline
+							</mcy-icon-button>
+						</div>
+					</td>
+				</ng-container>
+
+				<tr
+					class="contacts__table-header"
+					mat-header-row
+					*matHeaderRowDef="displayedColumns"
+				>
+				</tr>
+				<tr
+					mat-row
+					*matRowDef="let row; columns: displayedColumns;"
+					class="contacts__table-row"
+				>
+				</tr>
+			</table>
+			<mat-paginator #contactsPaginator [pageSizeOptions]="[contactsPageSize]"></mat-paginator>
+		</div>
+		<mcy-no-data-message
+			*ngIf="!contactsListTableSource.data.length"
+			[message]="'pages.contacts.contactListEmptyMessage' | translate">
+		</mcy-no-data-message>
+	</div>
+</div>

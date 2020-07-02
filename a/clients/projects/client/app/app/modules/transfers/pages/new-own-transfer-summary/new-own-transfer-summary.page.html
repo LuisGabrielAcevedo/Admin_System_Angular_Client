@@ -1,0 +1,126 @@
+<div class="new-own-transfer-summary">
+	<mcy-primary-page-layout
+		(handleBack)="onCancel(true)"
+		[title]="'pages.transfers.ownAccount.summary.title' | translate"
+		[back]="'pages.transfers.ownAccount.summary.goBack' | translate">
+		<div actions>
+			<mcy-contextual-button
+				sufixIconSize="16px"
+				sufixIcon="fechar"
+				[id]="'new-own-transfer-summary__cancel-button'"
+				(handleClick)="onCancel(true)"
+			>
+				{{'pages.transfers.ownAccount.summary.cancel' | translate}}
+			</mcy-contextual-button>
+		</div>
+		<div body class="new-own-transfer-summary__panel">
+			<mcy-primary-panel-layout>
+				<div class="new-own-transfer-summary__body" body>
+					<div class="new-own-transfer-summary__accounts-section">
+						<mcy-stepper-guidelines
+							class="new-own-transfer-summary__stepper-guidelines"
+							[nextGuideline]="true"
+							[selected]="true">
+						</mcy-stepper-guidelines>
+						<div class="new-own-transfer-summary__accounts-container">
+							<h3 class="new-own-transfer-summary__section-title">
+								{{ 'pages.transfers.ownAccount.summary.accountTitle' | translate }}
+							</h3>
+							<div class="new-own-transfer-summary__accounts-info">
+								<div class="new-own-transfer-summary__account-info">
+									<span class="new-own-transfer-summary__account-title">
+										{{ 'pages.transfers.ownAccount.summary.source' | translate }}
+									</span>
+									<span class="new-own-transfer-summary__account-number">
+										{{ formattedAccountType(sourceAccount.type) }} {{ sourceAccount.number | mcyAccountNumber }}
+									</span>
+									<span class="new-own-transfer-summary__balance-description">
+										{{ 'pages.transfers.ownAccount.summary.balance' | translate }}:
+										 {{ sourceAccount.currency.symbol }} {{ sourceAccount.balance | mcyAmount }}
+									</span>
+								</div>
+								<div class="new-own-transfer-summary__account-info">
+									<span class="new-own-transfer-summary__account-title">
+										{{ 'pages.transfers.ownAccount.summary.destination' | translate }}
+									</span>
+									<span class="new-own-transfer-summary__account-number">
+										{{ formattedAccountType(destinationAccount.type) }} {{ destinationAccount.number | mcyAccountNumber }}
+									</span>
+									<span class="new-own-transfer-summary__balance-description">
+										{{ 'pages.transfers.ownAccount.summary.balance' | translate }}:
+										 {{ destinationAccount.currency.symbol }} {{ destinationAccount.balance | mcyAmount }}
+									</span>
+									<mcy-icon-button
+										(handleClick)="backToEditAccount()"
+										[id]="'new-own-transfer-summary__back-to-account-button'"
+										class="new-own-transfer-summary__edit-icon"
+									>
+										editar_outline
+									</mcy-icon-button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="new-own-transfer-summary__balance-section">
+						<mcy-stepper-guidelines
+							class="new-own-transfer-summary__stepper-guidelines"
+							[previousGuideline]="true"
+							[selected]="true">
+						</mcy-stepper-guidelines>
+						<div class="new-own-transfer-summary__balance-container">
+							<h3 class="new-own-transfer-summary__section-title">
+								{{ 'pages.transfers.ownAccount.summary.balanceTitle' | translate }}
+							</h3>
+							<div class="new-own-transfer-summary__balance-info">
+								<div>
+									<span class="new-own-transfer-summary__description">
+										{{ sourceAccount.currency.symbol }}
+									</span>
+									<span class="new-own-transfer-summary__description--bold">
+										 {{ transferState.newTransferFormValue.amount | mcyAmount }}
+									</span>
+								</div>
+								<span class="new-own-transfer-summary__balance-description">
+									{{ transferState.newTransferFormValue.paymentDescription }}
+								</span>
+							</div>
+							<mcy-icon-button
+								(handleClick)="backToEditBalance()"
+								[id]="'new-own-transfer-summary__back-to-balance-button'"
+								class="new-own-transfer-summary__edit-icon">
+								editar_outline
+							</mcy-icon-button>
+						</div>
+					</div>
+				</div>
+
+				<div footer class="new-own-transfer-summary__buttons-section">
+					<mcy-button
+						class="new-own-transfer-summary__button"
+						(handleClick)="back()"
+						[id]="'new-own-transfer-summary__back-button'"
+						[color]="'tertiary'">
+						{{ 'pages.transfers.ownAccount.summary.back' | translate }}
+					</mcy-button>
+					<mcy-button
+						class="new-own-transfer-summary__button"
+						[id]="'new-own-transfer-summary__next-button'"
+						(handleClick)="submitTransfer()"
+						[color]="'primary'">
+						{{ 'pages.transfers.ownAccount.summary.next' | translate }}
+					</mcy-button>
+				</div>
+
+				<div description class="new-own-transfer-summary__description-section">
+					<span class="new-own-transfer-summary__description--bold">
+						{{ 'pages.transfers.ownAccount.summary.descriptionTitle' | translate }}
+					</span>
+					<span class="new-own-transfer-summary__description">
+						 {{ 'pages.transfers.ownAccount.summary.description' | translate }}
+					</span>
+				</div>
+			</mcy-primary-panel-layout>
+		</div>
+	</mcy-primary-page-layout>
+</div>

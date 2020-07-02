@@ -1,0 +1,19 @@
+<div class="profile-image">
+	<div
+		class="profile-image__circle"
+		[ngClass]="{
+			'profile-image__circle--small': size === 'small',
+			'profile-image__circle--medium': size === 'medium',
+			'profile-image__circle--large': size === 'large'
+		 }">
+
+		<span
+			class="profile-image__contact-initials"
+			[ngClass]="{
+				'profile-image__contact-initials--small': size === 'small'
+			}"
+		>
+			{{ displayName }}
+		</span>
+	</div>
+</div>

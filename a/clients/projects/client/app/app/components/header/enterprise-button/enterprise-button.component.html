@@ -1,0 +1,59 @@
+<mcy-contextual-button
+	[matMenuTriggerFor]="enterpriseMenu"
+	[prefixIcon]="selectedEnterprise.id === favorite ? 'empresa' : 'empresas_outline'"
+	[sufixIcon]="menuOpened ? 'seta_cima' : 'seta_baixo'"
+	[sufixIconSize]="'16px'"
+	(menuOpened)="handleMenuOpened()"
+	(menuClosed)="handleMenuOpened()"
+	[id]="'enterprise-menu__button'"
+>{{ selectedEnterprise.name }}</mcy-contextual-button>
+<mat-menu #enterpriseMenu="matMenu">
+	<div class="enterprise-button__menu">
+		<span class="enterprise-button__menu-subtitle">
+			{{ 'components.enterpriseButton.primarySubtitle' | translate }}
+		</span>
+		<div class="enterprise-button__selected-enterprise">
+			<mcy-icon class="enterprise-button__enterprise-icon">{{ selectedEnterprise.id === favorite ? 'empresa' : 'empresas_outline' }}</mcy-icon>
+			<div class="enterprise-button__selected-enterprise-details">
+				<span class="enterprise-button__selected-enterprise-title">
+					{{ selectedEnterprise.name }}
+				</span>
+				<span class="enterprise-button__selected-enterprise-subtitle">
+					{{ 'components.enterpriseButton.enterpriseId' | translate: { enterpriseId: selectedEnterprise.cuilt } }}
+				</span>
+				<mcy-link class="enterprise-button__selected-enterprise-view-details" (handleClick)="onViewDetailsClick()" [id]="'enterprise-button__selected-enterprise-view-details'">
+					{{ 'components.enterpriseButton.seeDetails' | translate }}
+				</mcy-link>
+			</div>
+		</div>
+		<div *ngIf="otherEnterprises.length > 0">
+			<mat-divider></mat-divider>
+			<div class="enterprise-button__other-enterprises">
+				<span class="enterprise-button__other-enterprises-subtitle">
+					{{ 'components.enterpriseButton.secundarySubtitle' | translate }}
+				</span>
+				<div
+					class="enterprise-button__other-enterprise"
+					*ngFor="let enterprise of otherEnterprises; let rowIndex = index"
+					(click)="onOtherEnterpriseClick(enterprise)"
+					id="enterprise-button__switch-enterprise"
+				>
+					<mcy-icon class="enterprise-button__other-enterprise-icon" [id]="'enterprise-button__other-enterprise-icon-' + rowIndex">{{ enterprise.id === favorite ? 'empresa' : 'empresas_outline' }}</mcy-icon>
+					<div class="enterprise-button__selected-enterprise-details" id="enterprise-button__other-enterprise-{{rowIndex}}">
+						<span class="enterprise-button__selected-enterprise-title">
+							{{ enterprise.name }}
+						</span>
+						<span class="enterprise-button__selected-enterprise-subtitle">
+							{{ 'components.enterpriseButton.enterpriseId' | translate: { enterpriseId: enterprise.cuilt } }}
+						</span>
+					</div>
+				</div>
+				<div class="enterprise-button__all-enterprise-details">
+					<mcy-link (handleClick)="onViewAllEnterprisesClick()" [id]="'enterprise-button__view-all'">
+						{{ 'components.enterpriseButton.checkEnterprises' | translate: { countEnterprises: enterprises.length } }}
+					</mcy-link>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-menu>

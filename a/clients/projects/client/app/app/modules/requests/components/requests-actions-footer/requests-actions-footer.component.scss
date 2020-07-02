@@ -1,0 +1,30 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.requests-actions-footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: 54px;
+
+	&__currency-content {
+		display: flex;
+		justify-content: center;
+	}
+	
+	&__currency-summary {
+		display: flex;
+		flex-direction: column;
+		margin-right: $spacing-M;
+	}
+
+	&__currency {
+		margin-top: $spacing-XS;
+		@include font-primary-bold();
+		font-size: $font-size-L;
+	
+	}
+	&__text {
+		font-size: $font-size-M;
+	}
+}

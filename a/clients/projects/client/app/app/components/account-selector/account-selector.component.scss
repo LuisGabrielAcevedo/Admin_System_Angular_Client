@@ -1,0 +1,28 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.account-selector {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	width: 100%;
+	box-shadow: 0 0 12px 0 $background-color-info-box;
+	background-color: $background-color-account-selector;
+	padding: $spacing-L $spacing-XXL;
+
+	&__title {
+		@include font-primary-light();
+		font-size: $font-size-XL;
+		color: $text-color-label-account-selector;
+	}
+
+	&__menu {
+		padding-left: $spacing-XXS;
+	}
+
+	&__account {
+		@include font-primary-bold();
+		font-size: $font-size-XXL;
+		color: $text-color-hyperlink;
+	}
+}

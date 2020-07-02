@@ -1,0 +1,36 @@
+<div class="account-select">
+	<mat-form-field appearance="outline">
+		<mat-label>{{ label }}
+			<span *ngIf="required" class="account-select__required">*</span>
+		</mat-label>
+		<mat-select
+			ngDefaultControl
+			id="{{ id }}"
+			[formControl]="selectedAccount"
+			(blur)="onTouched()"
+			(selectionChange)="onChange($event.value)"
+			[compareWith]="compareAccounts">
+			<mat-select-trigger>{{ selectAccountLabel() }}</mat-select-trigger>
+			<mat-option *ngFor="let option of accounts" [value]="option">
+				<div class="account-select__option">
+					<span>{{ formattedAccountType(option) }} {{ option.number | mcyAccountNumber }}</span>
+					<span *ngIf="!hiddenBalance">{{ accountBalance(option) | mcyAmount }}</span>
+				</div>
+			</mat-option>
+		</mat-select>
+		<span 
+			matSuffix 
+			class="account-select__selected-amount" 
+			*ngIf="!hiddenBalance && formattedAccountAmount() !== ''"
+		>
+			{{ formattedAccountAmount() | mcyAmount }}
+		</span>
+
+		<span matSuffix class="account-select__icon">
+			<mcy-icon>seta_baixo</mcy-icon>
+		</span>
+		<mat-error>
+			<ng-content select="[error]"></ng-content>
+		</mat-error>
+	</mat-form-field>
+</div>

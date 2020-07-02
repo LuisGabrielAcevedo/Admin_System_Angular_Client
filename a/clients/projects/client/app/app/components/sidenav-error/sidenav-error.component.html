@@ -1,0 +1,38 @@
+<div class="sidenav-error">
+	<div class="sidenav-error__spinner-container" *ngIf="isLoading">
+		<voxel-loading-circle [showLoading]="true" size="large"></voxel-loading-circle>
+	</div>
+	<div
+		*ngIf="!isLoading"
+		class="sidenav-error__warning"
+	>
+		<mcy-badge-icon [type]="'warning'">fechar</mcy-badge-icon>
+		<h3 class="sidenav-error__warning-title" *ngIf="!errorConfiguration.subtitle">
+			{{ 'components.sidenavError.subtitle' | translate }}
+		</h3>
+		<h3 class="sidenav-error__warning-title" *ngIf="errorConfiguration.subtitle">
+			{{ errorConfiguration.subtitle }}
+		</h3>
+		<p class="sidenav-error__warning-description" *ngIf="!errorConfiguration.message">
+			{{ 'components.sidenavError.description' | translate }}
+		</p>
+		<p class="sidenav-error__warning-description" *ngIf="errorConfiguration.message">
+			{{ errorConfiguration.message }}
+		</p>
+	</div>
+	<div class="sidenav-error__actions">
+		<mcy-button
+			*ngIf="!errorConfiguration.actionLabel"
+			[disabled]="isLoading"
+			[id]="'sidenav-error__confirm-button'"
+			(handleClick)="onConfirm()"
+		>{{ 'components.sidenavError.confirmAction' | translate }}</mcy-button>
+
+		<mcy-button
+			*ngIf="errorConfiguration.actionLabel"
+			[disabled]="isLoading"
+			[id]="'sidenav-error__confirm-button'"
+			(handleClick)="onConfirm()"
+		>{{ errorConfiguration.actionLabel }}</mcy-button>
+	</div>
+</div>

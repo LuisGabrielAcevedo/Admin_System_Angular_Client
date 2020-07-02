@@ -1,0 +1,36 @@
+<div class="sign-requests-status">
+	<mcy-primary-page-layout
+		(handleBack)="goToLanding()"
+		[title]="title()"
+		[back]="'pages.requests.sign.goBack' | translate">
+		<div body class="sign-requests-status__content">
+			<mcy-primary-panel-layout>
+				<div body class="sign-requests-status__actions-list">
+					<div class="sign-requests-status__bar">
+						<div class="sign-requests-status__bar">
+							<mcy-icon class="sign-requests-status__list-icon">documento</mcy-icon>
+							<span class="sign-requests-status__main-title">{{'pages.requests.signStatus.actionMessage' | translate}}</span>
+						</div>
+					</div>
+					<div class="sign-requests-status__list">
+						<mcy-requests-actions-list
+							[showStatus]="true"
+							[errors]="formattedErrors"
+							[selectedRequests]="requests()">
+						</mcy-requests-actions-list>
+					</div>
+				</div>
+				<div description class="sign-requests-status__description">
+					<span>{{description()}}</span>
+				</div>
+				<mcy-button
+					footer
+					(handleClick)="goToLanding()"
+					[id]="'sign-requests-status__button'"
+					color="primary">
+					{{'pages.requests.signStatus.buttonLabel' | translate}}
+				</mcy-button>
+			</mcy-primary-panel-layout>
+		</div>
+	</mcy-primary-page-layout>
+</div>

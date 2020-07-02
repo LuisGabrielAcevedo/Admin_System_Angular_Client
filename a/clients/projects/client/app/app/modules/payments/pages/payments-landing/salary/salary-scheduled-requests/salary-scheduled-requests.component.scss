@@ -1,0 +1,31 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.salary-scheduled-requests {
+	margin: $spacing-XXL $spacing-XXL 0 $spacing-XXL;
+
+	&__length {
+		@include font-primary-semibold();
+		color: $text-color-tertiary;
+		font-size: $font-size-XXL;
+	}
+
+	&__title {
+		@include font-primary-regular();
+		color: $text-color-disabled;
+		font-size: $font-size-L;
+	}
+
+	&__subtitle {
+		@include font-primary-regular();
+		font-size: $font-size-M;
+	}
+
+	&__no-message {
+		margin: $spacing-XL 0;
+	}
+
+	&__carousel {
+		margin-top: $spacing-XXL;
+	}
+}

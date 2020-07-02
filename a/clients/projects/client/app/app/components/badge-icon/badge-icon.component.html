@@ -1,0 +1,26 @@
+<div class="badge-icon"
+	[ngClass]="{
+		'badge-icon--common': type === 'common',
+		'badge-icon--success': type === 'success',
+		'badge-icon--warning': type === 'warning',
+		'badge-icon--information': type === 'information',
+		'badge-icon--caution': type === 'caution',
+		'badge-icon--logo': type === 'logo',
+		'badge-icon--service': type === 'service',
+		'badge-icon--small': badgeSize === 'small',
+		'badge-icon--medium': badgeSize === 'medium',
+		'badge-icon--large': badgeSize === 'large',
+		'badge-icon--notification': type === 'notification',
+		'badge-icon--selected':selected
+	}">
+	<mcy-icon
+		*ngIf="!selected"
+		[ngStyle]="{ fontSize: iconSize, height: iconSize }"
+	>
+		<ng-content></ng-content>
+	</mcy-icon>
+
+	<mcy-icon	class="badge-icon--selected" *ngIf="selected">
+			check
+	</mcy-icon>
+</div>

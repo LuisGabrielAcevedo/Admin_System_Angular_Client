@@ -1,0 +1,9 @@
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px" class="range-line">
+	<span>{{min}}</span>
+	<div class="range-line__bar">
+		<div fxLayout="row" fxLayoutAlign="center center" class="range-line__point" [ngStyle]="{'left': formattedValue()}">
+			<span>{{value}}</span>
+		</div>
+	</div>
+	<span>{{max}}</span>
+</div>

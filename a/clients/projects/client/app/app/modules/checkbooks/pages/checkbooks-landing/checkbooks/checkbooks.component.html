@@ -1,0 +1,78 @@
+<div class="checkbooks">
+	<div class="checkbooks__header-buttons">
+		<mcy-button
+			*ngIf="hasWritePermissions"
+			[id]="'checkbooks__enable-checkbook'"
+			class="checkbooks__button"
+			color="secondary"
+			(handleClick)="enableCheckbook()"
+		>
+			<mcy-icon class="checkbooks__icon">cheque_outline</mcy-icon>
+			{{ 'pages.checkbooks.checkbooks.enableCheckbook' | translate }}
+		</mcy-button>
+		<mcy-button
+			*ngIf="hasWritePermissions"
+			[id]="'checkbooks__Request-new-checkbook'"
+			(handleClick)="goToRequestCheckbooks()"
+			class="checkbooks__button"
+		>
+			{{ 'pages.checkbooks.checkbooks.requestNewCheckbook' | translate }}
+		</mcy-button>
+	</div>
+
+	<div class="checkbooks__title-container">
+		<span class="checkbooks__length">
+			{{ totalRequest }}
+		</span>
+		<span class="checkbooks__title">
+			{{ 'pages.checkbooks.checkbooks.requests' | translate }}
+		</span>
+		<div class="checkbooks-requests-list__subtitle">
+			{{ 'pages.checkbooks.checkbooks.requestsSignaturesPending' | translate }}
+		</div>
+	</div>
+
+	<div body>
+		<mcy-requests-list
+			[selectedRequests]="selectedRequests"
+			(resetSelection)="resetSelection()"
+			(selectRequest)="select($event)"
+			[requests]="paginatedRequestList"
+			(actionRedirect)="goTo($event)"
+			type="CHECKBOOK"
+			[loading]="loading">
+		</mcy-requests-list>
+
+		<div class="checkbooks__show-more">
+			<mcy-contextual-button [id]="'checkbooks__go-to-requests-langing'" *ngIf="totalRequest"
+				sufixIcon="seta_direita" (handleClick)="goToRequestsLanding()">
+				{{ 'pages.checkbooks.checkbooks.showAll' | translate }}
+			</mcy-contextual-button>
+		</div>
+
+		<div class="checkbooks__title-container">
+			<span class="checkbooks__length">
+				{{ totalCheckbookRequest }}
+			</span>
+			<span class="checkbooks__title">
+				{{ 'pages.checkbooks.checkbooks.requestedCheckbooks' | translate }}
+			</span>
+			<div class="checkbooks-requests-list__subtitle">
+				{{ 'pages.checkbooks.checkbooks.checkIssuedCheckbooks' | translate }}
+			</div>
+		</div>
+
+		<mcy-checkbook-list
+			[checkbooks]="paginatedCheckbookRequestList"
+			[emptyMessage]="'pages.checkbooks.checkbooks.emptyMessage' | translate"
+			[loading]="loading">
+		</mcy-checkbook-list>
+
+		<div class="checkbooks__show-more">
+			<mcy-contextual-button [id]="'checkbooks__change-pagination'" sufixIcon="seta_baixo" (handleClick)="changePagination()"
+				*ngIf="filteredCheckbookRequest.length > paginatedCheckbookRequestList.length">
+				{{'pages.checkbooks.checkbooks.showMore' | translate}}
+			</mcy-contextual-button>
+		</div>
+	</div>
+</div>

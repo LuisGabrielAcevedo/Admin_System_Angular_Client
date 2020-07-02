@@ -1,0 +1,13 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.link {
+	@include font-primary-bold;
+	color: $text-color-link-light;
+	cursor: pointer;
+	font-size: $font-size-S;
+
+	&--big {
+		font-size: $font-size-M;
+	}
+}

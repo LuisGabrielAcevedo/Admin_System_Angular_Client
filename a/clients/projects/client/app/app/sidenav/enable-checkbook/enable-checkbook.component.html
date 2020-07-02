@@ -1,0 +1,52 @@
+<div class="enable-checkbook">
+	<form [formGroup]="enableForm">
+		<mcy-account-select
+			[id]="'enable-checkbook__account-select'"
+			[label]="'pages.checkbooks.enableCheckbook.account' | translate"
+			formControlName="account"
+			[accounts]="accounts"
+			[hiddenBalance]="true"
+			ngDefaultControl
+		></mcy-account-select>
+		<div class="enable-checkbook__text-row">
+			<span>{{
+				'pages.checkbooks.enableCheckbook.checkbookLot' | translate
+			}}</span>
+		</div>
+		<div class="enable-checkbook__row">
+			<mcy-input
+				[id]="'enable-checkbook__initial-number-input'"
+				class="enable-checkbook__initial-number-input"
+				formControlName="initialNumber"
+				[label]="'pages.checkbooks.enableCheckbook.initialNumber' | translate"
+			></mcy-input>
+			<mcy-input
+				[id]="'enable-checkbook__last-number-input'"
+				class="enable-checkbook__input"
+				formControlName="lastNumber"
+				[label]="'pages.checkbooks.enableCheckbook.lastNumber' | translate"
+			></mcy-input>
+		</div>
+	</form>
+	<mcy-sidenav-footer>
+		<div class="enable-checkbook__footer">
+			<mcy-button
+				[id]="'enable-checkbook__cancel-button'"
+				color="tertiary"
+				(handleClick)="cancel()"
+				class="enable-checkbook__button"
+				>{{ 'pages.checkbooks.enableCheckbook.cancelButton' | translate }}
+			</mcy-button>
+			<mcy-button
+				color="primary"
+				[id]="'enable-checkbook__enable-button'"
+				[disabled]="!enableForm.valid"
+				class="enable-checkbook__enable-button"
+				(handleClick)="onEnabledCheckbookClick()"
+				>{{
+					'pages.checkbooks.enableCheckbook.confirmButton' | translate
+				}}</mcy-button
+			>
+		</div>
+	</mcy-sidenav-footer>
+</div>

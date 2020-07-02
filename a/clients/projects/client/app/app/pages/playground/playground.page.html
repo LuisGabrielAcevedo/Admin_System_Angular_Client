@@ -1,0 +1,104 @@
+<div>
+	Dashboard:
+</div>
+<div>
+	Respuesta async: <br />
+	<pre>({{ dataXHR | async | json }})</pre>
+</div>
+<button (click)="openToast()">openToast</button>
+<button (click)="dismiss()">dismiss</button>
+<button (click)="dismissWithAction()">dismissWithAction</button>
+
+<div fxLayout="column" fxLayoutAlign="center center" class="app">
+	<mcy-range-line [min]="min" [max]="max" [value]="value"></mcy-range-line>
+	<mcy-range [min]="min" [max]="max" (changeValue)="value = $event"></mcy-range>
+</div>
+
+<div fxLayout="column" fxLayoutAlign="center center" class="app">
+	<div>
+		<mat-card-content>
+			<form [formGroup]="testSoftTokenForm">
+				<div fxLayout="row">
+					<mat-form-field appearance="outline" floatLabel="always">
+						<mat-label>Nombre</mat-label>
+						<input
+							type="text"
+							matInput
+							formControlName="name"
+							autocomplete="off"
+							maxlength="24"
+						/>
+						<mat-error *ngIf="testSoftTokenForm.controls.name?.hasError('required')">
+							Campo requerido
+						</mat-error>
+					</mat-form-field>
+				</div>
+				<div fxLayout="row">
+					<mat-form-field appearance="outline" floatLabel="always">
+						<mat-label>Apellido</mat-label>
+						<input
+							type="text"
+							matInput
+							formControlName="lastName"
+							autocomplete="off"
+							maxlength="24"
+						/>
+						<mat-error *ngIf="testSoftTokenForm.controls.lastName?.hasError('required')">
+							Campo requerido
+						</mat-error>
+					</mat-form-field>
+				</div>
+
+					<mcy-soft-token formControlName="softToken"></mcy-soft-token>
+
+					<mat-error
+						*ngIf="testSoftTokenForm.controls.softToken?.hasError('minLength')"
+					>
+						minLength < 6
+					</mat-error>
+					<mat-error
+						*ngIf="
+					(testSoftTokenForm.controls.softToken.touched) &&
+					testSoftTokenForm.controls.softToken?.hasError('required')"
+					>
+						required
+					</mat-error>
+
+
+				<div fxLayout="row">
+					<mcy-input
+						formControlName="inputField"
+						label="CBU/CVU"
+						textHint1="Faltan"
+						textHint2="Carateres"
+						minLength="1"
+            			maxLength="20"					>
+					</mcy-input>
+					<mat-error
+						*ngIf="testSoftTokenForm.controls.inputField?.hasError('minLength')"
+					>
+						minLength
+					</mat-error>
+					<mat-error
+						*ngIf="
+					(testSoftTokenForm.controls.inputField.touched) &&
+					testSoftTokenForm.controls.inputField?.hasError('required')"
+					>
+						required
+					</mat-error>
+				</div>
+
+
+
+				<div>touch : {{ testSoftTokenForm.controls.softToken }}</div>
+				<div>testSoftTokenForm : {{ testSoftTokenForm.valid }}</div>
+				<div>
+					testSoftTokenForm2 : {{ testSoftTokenForm.controls.softToken.valid }}
+				</div>
+				<div>value : {{ testSoftTokenForm.value | json}}</div>
+				<button type="button" (click)="onSubmit();">Enviar</button>
+			</form>
+		</mat-card-content>
+	</div>
+</div>
+<mcy-media-query></mcy-media-query>

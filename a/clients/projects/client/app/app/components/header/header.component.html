@@ -1,0 +1,110 @@
+<mat-toolbar class="header">
+	<div class="header__logo-container">
+		<mcy-logo></mcy-logo>
+	</div>
+	<div class="header__profile">
+		<mcy-contextual-button
+			*ngIf="hasUserManagementPermission"
+			class="header__users-button"
+			[prefixIcon]="'lideranca'"
+			(handleClick)="onUsersClick()"
+			[id]="'header_users-button'"
+		>{{ 'components.header.users' | translate }}</mcy-contextual-button>
+		<div class="header__notification-wrapper">
+			<mcy-notification></mcy-notification>
+		</div>
+		<mcy-enterprise-button
+			class="header__enterprise-button"
+			[selectedEnterprise]="enterpriseState.selectedEnterprise"
+			[enterprises]="enterpriseState.enterprises"
+			[favorite]="enterpriseState.enterpriseDefault"
+			(handleOnViewEnterpriseDetails)="onViewEnterpriseDetails()"
+			(handleOnViewAllEnterprisesClick)="onViewAllEnterprises()"
+			(handleOnOtherEnterpriseClick)="onOtherEnterpriseClick($event)"
+		></mcy-enterprise-button>
+		<mcy-user-profile-image
+			[size]="'small'"
+			[name]="userState.user.name"
+			[matMenuTriggerFor]="userMenu"
+			[selected]="isUserProfileSelected"
+			(menuOpened)="onOpenUserMenu()"
+			(menuClosed)="onCloseUserMenu()"
+			[id]="'header__user-profile-image'"
+		> </mcy-user-profile-image>
+		<mat-menu #userMenu="matMenu">
+			<div class="header__menu-container">
+				<div class="header__info-container">
+					<div class="header__menu-logo">
+						<mcy-user-profile-image
+							[size]="'small'"
+							[hoverEnabled]="false"
+							[name]="userState.user.name"
+						></mcy-user-profile-image>
+					</div>
+					<div class="header__menu-info">
+						<span class="header__menu-name">{{ userState.user.name }}</span>
+						<span class="header__menu-document">
+							{{userState.user.document.type}}: {{ userState.user.document.number }}
+						</span>
+						<mcy-contextual-button
+							(handleClick)="openUserDetails()"
+							[id]="'header-user-info__details-button'">
+							<span class="header__menu-details-button">
+								{{ 'components.header.menu.details' | translate }}
+							</span>
+						</mcy-contextual-button>
+					</div>
+				</div>
+				<div>
+					<span class="header__menu-last-entry">
+						{{ 'components.header.menu.lastEntry' | translate }}: {{ lastEntry }}
+					</span>
+				</div>
+				<div class="header__menu-footer">
+					<div class="header__menu-button">
+						<mcy-contextual-button
+							[prefixIcon]="'video_outline'"
+							(handleClick)="onGoToOnboardingFlow()"
+							[id]="'header__menu-go-to-onboarding-button'"
+						>
+							<span class="header__menu-text">
+								{{ 'components.header.menu.goToTour' | translate }}
+							</span>
+						</mcy-contextual-button>
+					</div>
+					<div class="header__menu-button">
+						<mcy-contextual-button
+							[prefixIcon]="'chave_outline'"
+						>
+							<span class="header__menu-text">
+								{{ 'components.header.menu.managePassword' | translate }}
+							</span>
+						</mcy-contextual-button>
+					</div>
+					<div class="header__menu-button">
+						<mcy-contextual-button
+							*ngIf="hasSoftTokenWritePermission"
+							[prefixIcon]="'itoken_outline'"
+							(handleClick)="onManageTokenClick()"
+						>
+							<span class="header__menu-text">
+								{{ 'components.header.menu.manageToken' | translate }}
+							</span>
+						</mcy-contextual-button>
+					</div>
+					<div class="header__menu-button">
+						<mcy-contextual-button
+							[prefixIcon]="'sair'"
+							(handleClick)="logout()"
+							[id]="'header-user-info__logout-button'"
+						>
+							<span class="header__menu-text">
+								{{ 'components.header.menu.logout' | translate }}
+							</span>
+						</mcy-contextual-button>
+					</div>
+				</div>
+			</div>
+		</mat-menu>
+	</div>
+</mat-toolbar>

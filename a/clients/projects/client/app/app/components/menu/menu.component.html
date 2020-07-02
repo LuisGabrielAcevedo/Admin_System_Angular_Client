@@ -1,0 +1,71 @@
+<div class="menu" [class.menu--closed]="closed">
+	<div class="menu__header">
+		<div class="menu__collapse-icon-container">
+			<mcy-icon-button
+				class="menu__collapse-icon"
+				aria-label="activa menu icon"
+				(click)="closeMenu()"
+				[id]="'menu_hamburger'"
+			>
+				menu_hamburger
+			</mcy-icon-button>
+		</div>
+	</div>
+	<div class="menu__separator"></div>
+	<mat-nav-list class="menu__items">
+		<a mat-list-item class="menu__item" routerLinkActive="menu__item--active" routerLink="/app/requests">
+			<span class="menu__icon-wrapper">
+				<mcy-icon class="menu__icon" aria-label="activa menu icon">email_resposta_rapida_outline</mcy-icon>
+			</span>
+			<span class="menu__label">{{ 'components.menu.requests' | translate }}</span>
+		</a>
+	</mat-nav-list>
+	<div class="menu__separator"></div>
+	<mat-nav-list class="menu__items">
+		<a mat-list-item class="menu__item" routerLinkActive="menu__item--active" routerLink="/app/dashboard" id="menu__home">
+			<span class="menu__icon-wrapper">
+				<mcy-icon class="menu__icon" aria-label="activa menu icon">home_outline</mcy-icon>
+			</span>
+			<span class="menu__label">{{ 'components.menu.start' | translate }}</span>
+		</a>
+		<a mat-list-item class="menu__item" routerLinkActive="menu__item--active" routerLink="/app/accounts" id="menu__accounts">
+			<span class="menu__icon-wrapper">
+				<mcy-icon class="menu__icon" aria-label="activa menu icon">conta_corrente_outline</mcy-icon>
+			</span>
+			<span class="menu__label">{{ 'components.menu.myAccounts' | translate }}</span>
+		</a>
+		<a mat-list-item class="menu__item" routerLinkActive="menu__item--active" routerLink="/app/payments" id="menu__payments">
+			<span class="menu__icon-wrapper">
+				<mcy-icon class="menu__icon" aria-label="activa menu icon">pagamentos</mcy-icon>
+			</span>
+			<span class="menu__label">{{ 'components.menu.payments' | translate }}</span>
+		</a>
+		<a mat-list-item class="menu__item" routerLinkActive="menu__item--active" routerLink="/app/transfers" id="menu__transfers">
+			<span class="menu__icon-wrapper">
+				<mcy-icon class="menu__icon" aria-label="activa menu icon">transferencia</mcy-icon>
+			</span>
+			<span class="menu__label">{{ 'components.menu.transfers' | translate }}</span>
+		</a>
+		<a mat-list-item class="menu__item" routerLinkActive="menu__item--active" routerLink="/app/checkbooks" id="menu__charges">
+			<span class="menu__icon-wrapper">
+				<mcy-icon class="menu__icon" aria-label="activa menu icon">cheque_outline</mcy-icon>
+			</span>
+			<span class="menu__label">{{ 'components.menu.checks' | translate }}</span>
+		</a>
+		<a mat-list-item class="menu__item" routerLinkActive="menu__item--active" routerLink="/app/contacts" id="menu__checkbook">
+			<span class="menu__icon-wrapper">
+				<mcy-icon class="menu__icon" aria-label="activa menu icon">contatos_outline</mcy-icon>
+			</span>
+			<span class="menu__label">{{ 'components.menu.contacts' | translate }}</span>
+		</a>
+	</mat-nav-list>
+	<div class="menu__separator"></div>
+	<mat-nav-list class="menu__items">
+		<a mat-list-item class="menu__item" routerLinkActive="menu__item--active" routerLink="/app/false">
+			<span class="menu__icon-wrapper">
+				<mcy-icon class="menu__icon" aria-label="activa menu icon">ajuda_outline</mcy-icon>
+			</span>
+			<span class="menu__label">{{ 'components.menu.frequentlyAskedQuestions' | translate }}</span>
+		</a>
+	</mat-nav-list>
+</div>

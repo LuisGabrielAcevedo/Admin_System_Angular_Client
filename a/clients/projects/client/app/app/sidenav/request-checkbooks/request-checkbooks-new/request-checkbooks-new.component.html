@@ -1,0 +1,77 @@
+<div class="request-checkbooks-new">
+	<form [formGroup]="requestCheckbooksForm">
+		<div class="request-checkbooks-new__box-account">
+			<mcy-account-select
+				ngDefaultControl
+				[label]="'common.account' | translate"
+				[id]="'request-checkbooks-new-account'"
+				formControlName="account"
+				[accounts]="accounts"
+				[hiddenBalance]="true"
+				(handleChange)="loadCheckbooksTypes()">
+			</mcy-account-select>
+		</div>
+
+		<div class="request-checkbooks-new__box-type-quantity">
+			<div class="request-checkbooks-new__box-type-checkbook">
+				<mcy-select
+					[id] ="'request-checkbooks-new__type-checkbook'"
+					[data]="typesOfCheckbooksOptions"
+					[label]="'pages.checkbooks.checkbooks.typeCheckbooks' | translate"
+					formControlName="typeCheckbook">
+				</mcy-select>
+			</div>
+			<div class="request-checkbooks-new__box-quantity">
+				<mcy-input
+					[id]="'request-checkbooks-new__quantity'"
+					[label]="'pages.checkbooks.checkbooks.quantity' | translate"
+					[type]="'text'"
+					[maxlength]="2"
+					mcyOnlyNumbers
+					formControlName="quantity">
+				</mcy-input>
+			</div>
+		</div>
+
+		<div class="request-checkbooks-new__divider">
+			<span class="request-checkbooks-new__subtitle-location">{{ 'pages.checkbooks.checkbooks.titleLocation' | translate }}</span>
+		</div>
+
+		<div class="request-checkbooks-new__box-account">
+			<mcy-select
+				[id] ="'request-checkbooks-new__province-select'"
+				[data]="provincesOptions"
+				(handleChange)="onProvinceChange()"
+				[label]="'common.province' | translate"
+				formControlName="province">
+			</mcy-select>
+		</div>
+
+		<div class="request-checkbooks-new__box-account">
+			<mcy-select
+					[id] ="'request-checkbooks-new__branches'"
+					[data]="branchesOptions"
+					[label]="'common.branches' | translate"
+					formControlName="branches">
+			</mcy-select>
+		</div>
+
+		<div footer class="request-checkbooks-new__box-buttons">
+			<mcy-button
+				(handleClick)="back()"
+				[color]="'tertiary'"
+				[id]="'request-checkbooks-new__back-button'"
+				class="request-checkbooks-new__button">
+				{{ 'pages.checkbooks.checkbooks.cancel' | translate }}
+			</mcy-button>
+			<mcy-button
+				(handleClick)="onRequestCheckbook()"
+				[disabled]="!requestCheckbooksForm.valid"
+				[color]="'primary'"
+				[id]="'request-checkbooks-new__request-checkbook-button'"
+				class="request-checkbooks-new__button">
+				{{ 'pages.checkbooks.checkbooks.request' | translate }}
+			</mcy-button>
+		</div>
+	</form>
+</div>

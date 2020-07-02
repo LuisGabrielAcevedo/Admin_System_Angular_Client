@@ -1,0 +1,16 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.sidebar-title {
+	padding: $spacing-XXL $spacing-M;
+
+	&__title {
+		@include font-primary-bold;
+		font-size: $font-size-XXL;
+		color: $text-color-high-contrast;
+		margin: 0;
+		padding: 0 0 $spacing-M 0;
+		border-bottom: 2px solid $border-color-secondary;
+		margin-bottom: $spacing-XXL;
+	}
+}

@@ -1,0 +1,14 @@
+@import 'variables';
+
+.payment-confirmation {
+	&__text {
+		margin: 0;
+		margin-bottom: $spacing-L;
+		font-size: $font-size-M;
+		font-weight: $font-weight-XL;
+	}
+	&__title {
+		margin: $font-size-S 0;
+		font-size: $font-size-M;
+	}
+}

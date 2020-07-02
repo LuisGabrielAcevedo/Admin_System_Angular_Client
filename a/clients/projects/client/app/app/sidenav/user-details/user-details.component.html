@@ -1,0 +1,110 @@
+<div class="user">
+	<div class="user__information-container">
+		<div class="user__header-container">
+			<div class="user__profile-image">
+				<mcy-user-profile-image
+					[size]="'medium'"
+					[hoverEnabled]="false"
+					[name]="data.user.name"
+				></mcy-user-profile-image>
+			</div>
+			<div class="user__header-fields-container">
+				<h5 class="user__title-field">
+					{{ 'sidenav.userDetails.name' | translate}}
+				</h5>
+				<span class="user__name-description">
+					{{data.user.name}}
+				</span>
+			</div>
+		</div>
+		<div class="user__content-container">
+	
+			<div class="user__content-item">
+				<div class="user__fields-container">
+					<h5 class="user__title-field">
+						{{ 'sidenav.userDetails.documentType' | translate }}
+					</h5>
+					<span class="user__title-description">
+						{{data.user.document.type}}
+					</span>
+				</div>
+			</div>
+	
+			<div class="user__content-item">
+				<div class="user__fields-container">
+					<h5 class="user__title-field">
+						{{ 'sidenav.userDetails.documentNumber' | translate }}
+					</h5>
+					<span class="user__title-description">
+						{{data.user.document.number}}
+					</span>
+				</div>
+			</div>
+
+			<div *ngIf="!isEditing" class="user__content-item">
+				<div class="user__fields-container">
+					<h5 class="user__title-field">
+						{{ 'sidenav.userDetails.cellphone' | translate }}
+					</h5>
+					<span class="user__title-description">
+						{{data.user.cellPhone}}
+					</span>
+				</div>
+			</div>
+
+			<div *ngIf="!isEditing" class="user__content-item">
+				<div class="user__fields-container">
+					<h5 class="user__title-field">
+						{{ 'sidenav.userDetails.email' | translate }}
+					</h5>
+					<span class="user__title-description">
+						{{data.user.email}}
+					</span>
+				</div>
+			</div>
+			
+			<form [formGroup]="userForm" class="user__form-container" *ngIf="isEditing">
+				<div class="user__form-item">
+					<mcy-input
+						formControlName="cellphone"
+						[label]="'sidenav.userDetails.cellphone' | translate"
+					></mcy-input>
+				</div>
+		
+				<div class="user__form-item">
+					<mcy-input
+						formControlName="email"
+						[label]="'sidenav.userDetails.email' | translate"
+						[validators]="emailValidators"
+					></mcy-input>
+				</div>
+			</form>
+	
+		</div>
+	</div>
+	<div class="user__button-group">
+		<div *ngIf="isEditing">
+
+			<mcy-button (handleClick)="onCloseEditClick()" [color]="'tertiary'">
+				{{ 'sidenav.userDetails.back' | translate }}
+			</mcy-button>
+
+			<mcy-button [disabled]="!userForm.valid" (handleClick)="onSaveClick()" [color]="'primary'">
+				{{ 'sidenav.userDetails.saveChanges' | translate }}
+			</mcy-button>
+
+		</div>
+		<div *ngIf="!isEditing">
+
+			<mcy-button (handleClick)="onEditClick()" [color]="'tertiary'" *ngIf="hasWritePermission">
+				<mcy-icon class="user__button-icon">editar_outline</mcy-icon>
+				{{ 'sidenav.userDetails.editUser' | translate }}
+			</mcy-button>
+
+			<mcy-button (handleClick)="closeSidenav()" [color]="'primary'">
+				{{ 'sidenav.userDetails.back' | translate }}
+			</mcy-button>
+
+		</div>
+	</div>
+</div>

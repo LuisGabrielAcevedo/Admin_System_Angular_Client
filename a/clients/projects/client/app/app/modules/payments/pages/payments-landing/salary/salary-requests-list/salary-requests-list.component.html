@@ -1,0 +1,37 @@
+<div class="salary-requests-list">
+	<div class="salary-requests-list__title-container">
+		<span class="salary-requests-list__length">
+			{{ totalRequest }}
+		</span>
+		<span class="salary-requests-list__title">
+			{{ 'pages.payments.salaryResquestsList.requests' | translate }}
+		</span>
+	</div>
+	<span class="salary-requests-list__subtitle">
+		{{ 'pages.payments.salaryResquestsList.salarySignaturesPending' | translate }}
+	</span>
+	<div
+		class="salary-requests-list__no-message"
+		*ngIf="!totalRequest">
+		<mcy-no-data-message
+			[message]="'pages.payments.salaryResquestsList.emptyRequestsMessage' | translate">
+		</mcy-no-data-message>
+	</div>
+	<div *ngIf="totalRequest">
+		<mcy-requests-list
+			[selectedRequests]="selectedRequests"
+			(resetSelection)="resetSelection()"
+			(selectRequest)="select($event)"
+			[requests]="requests"
+			(actionRedirect)="goTo($event)"></mcy-requests-list>
+		<div class="salary-requests-list__show-more">
+			<mcy-contextual-button
+				[id]="'salary-requests-list__go-to-requests-langing'"
+				*ngIf="totalRequest > itemsPerPage"
+				sufixIcon="seta_direita"
+				(handleClick)="goToRequestsLanging()">
+				{{ 'pages.payments.salaryResquestsList.all' | translate }}
+			</mcy-contextual-button>
+		</div>
+	</div>
+</div>

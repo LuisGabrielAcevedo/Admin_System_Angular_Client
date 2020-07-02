@@ -1,0 +1,166 @@
+<div class="transfers-processed">
+	<mcy-primary-page-layout
+		(handleBack)="goToLanding()"
+		[title]="'pages.transfers.transfersProcessed.title' | translate"
+		[back]="'pages.transfers.transfersProcessed.back' | translate">
+		<div actions>
+			<mcy-button
+				[id]="'transfers-processed__export-button'"
+				class="transfers-processed__button"
+				[color]="'secondary'"
+				(handleClick)="onExportClick()"
+				[disabled]="!transfersListTableSource.data.length">
+				<mcy-icon
+					class="transfers-processed__icon-actions transfers-processed__button-icon"
+				>
+					documento_outline
+				</mcy-icon>
+				{{ 'pages.transfers.transfersProcessed.exportHistory' | translate }}
+			</mcy-button>
+			<mcy-button
+				[id]="'transfers-processed__new-transfer-button'"
+				class="transfers-processed__button"
+				[disabled]="isLoadingAccounts"
+				(handleClick)="onNewTransferClick()">
+				{{ 'pages.transfers.transfersProcessed.addTransfer' | translate }}
+			</mcy-button>
+		</div>
+
+		<div body class="transfers-processed__body">
+			<div class="transfers-processed__transfers-completed">
+				<div class="transfers-processed__transfer-header">
+					<div class="transfers-processed__transfers-completed-title">
+						<span class="transfers-processed__transfers-completed-length">
+							{{ transfers.length }}
+						</span>
+						<span class="transfers-processed__transfers-completed-title-label" *ngIf="!isFilterActive">
+							{{ 'pages.transfers.transfersProcessed.transfersCompleted' | translate }}
+						</span>
+						<span class="transfers-processed__transfers-completed-title-label" *ngIf="isFilterActive">
+							{{ 'pages.transfers.transfersProcessed.foundTransfersCompleted' | translate }}
+						</span>
+					</div>
+					<mcy-icon (click)="onFilterClick()" class="transfers-processed__filter-icon">
+						{{ isFilterActive ? 'busca' : 'busca_outline'}}
+					</mcy-icon>
+				</div>
+				<div class="transfers-processed__filter-form">
+					<mcy-transfer-filter-form
+						*ngIf="isFilterActive"
+						(handleChange)="onFiltersChange($event)"
+					></mcy-transfer-filter-form>
+				</div>
+				<mcy-no-data-message
+					*ngIf="!transfersListTableSource.data.length"
+					[message]="'pages.transfers.landing.emptyMessage' | translate">
+				</mcy-no-data-message>
+				<table mat-table
+					*ngIf="transfersListTableSource.data.length"
+					class="transfers-processed__table"
+					id="transfers-processed__table"
+					[dataSource]="transfersListTableSource">
+					<ng-container matColumnDef="name">
+						<th mat-header-cell *matHeaderCellDef>
+							{{ 'pages.transfers.transfersProcessed.name' | translate }}
+						</th>
+						<td mat-cell *matCellDef="let transfer">
+							{{ transfer.destinationHolder }}
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="amount">
+						<th mat-header-cell *matHeaderCellDef>
+							{{ 'pages.transfers.transfersProcessed.amount' | translate }}
+						</th>
+						<td mat-cell *matCellDef="let transfer">
+							{{ transfer.currency.symbol }} {{ transfer.amount | mcyAmount }}
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="date">
+						<th mat-header-cell *matHeaderCellDef>
+							{{ 'pages.transfers.transfersProcessed.date' | translate }}
+						</th>
+						<td mat-cell *matCellDef="let transfer">
+							{{ formatDate(transfer.date) }}
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="operationNumber">
+						<th mat-header-cell *matHeaderCellDef>
+							{{ 'pages.transfers.transfersProcessed.operationNumber' | translate }}
+						</th>
+						<td mat-cell *matCellDef="let transfer">
+							{{ transfer.id }}
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="state">
+						<th mat-header-cell *matHeaderCellDef>
+							{{ 'pages.transfers.transfersProcessed.state' | translate }}
+						</th>
+						<td mat-cell *matCellDef="let transfer">
+							<span
+								*ngIf="transfer.state === 'APPROVED'"
+								class="transfers-processed__status-successful">
+								{{ 'pages.transfers.transfersProcessed.successful' | translate }}
+							</span>
+							<span
+								*ngIf="transfer.state === 'INPROGRESS'"
+								class="transfers-processed__status-processing">
+								{{ 'pages.transfers.transfersProcessed.processing' | translate }}
+							</span>
+							<span
+								*ngIf="transfer.state === 'DENIED'"
+								class="transfers-processed__status-rejected">
+								{{ 'pages.transfers.transfersProcessed.rejected' | translate }}
+							</span>
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="actions">
+						<th mat-header-cell *matHeaderCellDef></th>
+						<td mat-cell *matCellDef="let transfer; let cellIndex = index">
+							<div class="transfers-processed__icons-section">
+								<mcy-icon-button
+									[id]="'transfers-processed__download-receipt-button-' + cellIndex"
+									class="transfers-processed__icon-actions"
+									(handleClick)="downloadReceipt(transfer)"
+									[ngClass]="{
+										'transfers-processed__icon-actions--disabled': transfer.state !== 'APPROVED'
+									}">
+									download_outline
+								</mcy-icon-button>
+								<mcy-icon-button
+									[id]="'transfers-processed__show-details-button-' + cellIndex"
+									(handleClick)="showDetails(transfer)"
+									class="transfers-processed__icon-actions">
+									comprovante_outline
+								</mcy-icon-button>
+							</div>
+						</td>
+					</ng-container>
+
+					<tr
+						mat-header-row
+						*matHeaderRowDef="displayedColumns"
+					>
+					<tr
+						mat-row
+						*matRowDef="let row; columns: displayedColumns;"
+					>
+					</tr>
+				</table>
+				<mcy-contextual-button
+					[id]="'transfers-processed__show-more-button'"
+					class="transfers-processed__show-more"
+					*ngIf="transfers.length > itemsDisplayed"
+					(handleClick)="showMoreTransfersProcessed()"
+					[sufixIcon]="'seta_baixo'"
+				>
+					{{ 'pages.transfers.transfersProcessed.more' | translate }}
+				</mcy-contextual-button>
+			</div>
+		</div>
+	</mcy-primary-page-layout>
+</div>

@@ -1,0 +1,76 @@
+<div class="contact-add-success">
+	<div class="contact-add-success__main-section">
+		<div class="contact-add-success__title-section">
+			<h3 class="contact-add-success__title">
+				{{ data.title }}
+			</h3>
+			<mcy-profile-image
+				[size]="'medium'"
+				[name]="data.contact.reference"
+				[category]="data.contact.category"
+				class="contact-add-success__contact-image"
+			></mcy-profile-image>
+		</div>
+
+		<div class="contact-add-success__data-section">
+			<div class="contact-add-success__text-container">
+				<h3 class="contact-add-success__label">
+					{{ 'pages.contacts.addSuccess.reference' | translate }}
+				</h3>
+				<span class="contact-add-success__text contact-add-success__reference">
+					{{ data.contact.reference }}
+				</span>
+			</div>
+			<div class="contact-add-success__text-container">
+				<h3 class="contact-add-success__label">
+					{{ 'pages.contacts.addSuccess.name' | translate }}
+				</h3>
+				<span class="contact-add-success__text">
+					{{ data.contact.name }}
+				</span>
+			</div>
+			<div class="contact-add-success__text-container">
+				<h3 class="contact-add-success__label">
+					{{ 'pages.contacts.addSuccess.cbvu' | translate }}
+				</h3>
+				<span class="contact-add-success__text">
+					{{ data.contact.cbvu }}
+				</span>
+			</div>
+			<div class="contact-add-success__text-container">
+				<h3 class="contact-add-success__label">
+					{{ 'pages.contacts.addSuccess.category' | translate }}
+				</h3>
+				<span class="contact-add-success__text">
+					{{ 'pages.contacts.categories.' + data.contact.category | translate }}
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="contact-add-success__buttons-section">
+		<mcy-button
+			*ngIf="data.contact.category !== 'EMPLOYEE' && data.contact.category !== 'PROVIDER'"
+			class="contact-add-success__button"
+			[color]="'secondary'"
+			(handleClick)="transfer()"
+			[id]="'contact-add-success__tranferToContact-button'">
+			{{ 'pages.contacts.addSuccess.transferToContact' | translate }}
+		</mcy-button>
+		<mcy-button
+			*ngIf="data.contact.category === 'EMPLOYEE'"
+			class="contact-add-success__button"
+			[color]="'secondary'"
+			(handleClick)="paySalaries()"
+			[id]="'contact-add-success__paySalaries-button'">
+			{{ 'pages.contacts.addSuccess.paySalaries' | translate }}
+		</mcy-button>
+		<mcy-button
+			class="contact-add-success__button"
+			[color]="'primary'"
+			(handleClick)="finish()"
+			[id]="'contact-add-success__finish-button'">
+			{{ 'pages.contacts.addSuccess.finish' | translate }}
+		</mcy-button>
+	</div>
+</div>

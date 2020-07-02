@@ -1,0 +1,82 @@
+<div class="checkbook-list">
+	<div *ngIf="loading" class="checkbook-list__loading">
+		<voxel-loading-circle [showLoading]="true" size="large"></voxel-loading-circle>
+	</div>
+
+	<mcy-no-data-message *ngIf="!loading && !checkbooks.length" [message]="emptyMessage"></mcy-no-data-message>
+
+	<table
+		*ngIf="!loading && checkbooks.length"
+		mat-table [dataSource]="checkbooks"
+		class="mat-elevation-z8 checkbook-list__table"
+		id="checkbook-list__table">
+
+		<ng-container matColumnDef="icon">
+			<th mat-header-cell *matHeaderCellDef></th>
+			<td mat-cell *matCellDef class="checkbook-list__icon-column">
+				<mcy-badge-icon
+					[type]="'caution'"
+					[iconSize]="'27px'"
+					[badgeSize]="'small'">cheque_outline
+				</mcy-badge-icon>
+			</td>
+		</ng-container>
+
+		<ng-container matColumnDef="checkbookType">
+			<th mat-header-cell *matHeaderCellDef>
+				{{'pages.checkbooks.checkbooks.checkbookType' | translate}}
+			</th>
+			<td mat-cell *matCellDef="let checkbook">
+				{{checkbook.detail || '--'}}
+			</td>
+		</ng-container>
+
+		<ng-container matColumnDef="requestDate">
+			<th mat-header-cell *matHeaderCellDef>
+				{{'pages.checkbooks.checkbooks.requestDate' | translate}}
+			</th>
+			<td mat-cell *matCellDef="let checkbook">
+				{{formatDate(checkbook.creationDate)}}
+			</td>
+		</ng-container>
+
+		<ng-container matColumnDef="requestNumber">
+			<th mat-header-cell *matHeaderCellDef>
+				{{'pages.checkbooks.checkbooks.requestNumber' | translate}}
+			</th>
+			<td mat-cell *matCellDef="let checkbook"> {{checkbook.id}} </td>
+		</ng-container>
+
+		<ng-container matColumnDef="state">
+			<th mat-header-cell *matHeaderCellDef>
+				{{'pages.checkbooks.checkbooks.state' | translate}}
+			</th>
+			<td mat-cell *matCellDef="let checkbook"
+				class="checkbook-list__state"
+				[ngClass]="{
+					'checkbook-list__state--authorized': checkbook.content.state === 'AUTHORIZED',
+					'checkbook-list__state--approved': checkbook.content.state === 'APPROVED',
+					'checkbook-list__state--rejected': checkbook.content.state === 'REJECTED',
+					'checkbook-list__state--denied': checkbook.content.state === 'DENIED',
+					'checkbook-list__state--cancelled': checkbook.content.state === 'CANCELLED'
+				}">
+				{{'pages.checkbooks.checkbooks.states.' + checkbook.content.state | translate}}</td>
+		</ng-container>
+
+		<ng-container matColumnDef="detail">
+			<th mat-header-cell *matHeaderCellDef></th>
+			<td mat-cell *matCellDef="let checkbook; let cellIndex = index" class="checkbook-list__icon-column">
+				<mcy-icon-button
+					[id]="'checkbook-list__show-details-button-' + cellIndex"
+					(handleClick)="showDetails(checkbook)"
+					class="checkbook-list__details-icon">
+					comprovante_outline
+				</mcy-icon-button>
+			</td>
+		</ng-container>
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns;">
+		</tr>
+	</table>
+</div>

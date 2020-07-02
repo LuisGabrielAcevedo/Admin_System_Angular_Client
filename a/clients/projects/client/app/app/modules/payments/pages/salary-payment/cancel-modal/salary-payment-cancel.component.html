@@ -1,0 +1,9 @@
+<mcy-modal-content
+	[title]="data.title"
+	[cancel]="data.cancel"
+	[confirmation]="data.confirm"
+	(handleCancel)="onCancel()"
+	(handleClose)="onClose()"
+	(handleConfirmation)="onConfirm()">
+	<p>{{'pages.payments.cancelModal.message' | translate}}</p>
+</mcy-modal-content>

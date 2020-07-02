@@ -1,0 +1,41 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.checks-issued-list {
+	&__header {
+		margin: 0 $spacing-XL;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: $spacing-XL;
+	}
+
+	&__show-more {
+		font-size: $font-size-M;
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		color: $text-color-link;
+	}
+
+	&__count {
+		@include font-primary-semibold();
+		color: $text-color-tertiary;
+		font-size: $font-size-XXL;
+	}
+
+	&__title {
+		@include font-primary-regular();
+		font-size: $font-size-M;
+		margin-left: $spacing-XXS;
+		color: $text-color-secondary;
+	}
+	&__general-error {
+		margin: $spacing-XXL auto;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		max-width: 401px;
+		text-align: center;
+	}
+}

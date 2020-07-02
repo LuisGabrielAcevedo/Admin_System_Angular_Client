@@ -1,0 +1,43 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.enterprise-details {
+	padding: 0 $spacing-XXL 150px $spacing-XXL;
+
+	&__enterprise-cuit {
+		@include font-primary-light;
+		line-height: 1.6;
+		margin: 0 0 $spacing-L 0;
+		font-size: $font-size-XL;
+	}
+
+	&__users-found-count {
+		font-size: $font-size-XXL;
+	}
+
+	&__users-found-label {
+		@include font-primary-light;
+		font-size: $font-size-L;
+	}
+
+	&__users-table {
+		margin: $spacing-XXL 0 0 0;
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	&__icon-actions {
+		color: $icon-color-spinner;
+		font-size: 24px;
+	}
+
+	&__show-more {
+		padding: $spacing-M 0 0 0;
+		display: flex;
+		justify-content: center;
+	}
+}

@@ -1,0 +1,128 @@
+<div class="new-third-party-transfer-amount">
+	<mcy-primary-page-layout
+		[title]="'pages.transfers.thirdParty.amount.title' | translate"
+		[back]="'pages.transfers.thirdParty.amount.goBack' | translate"
+		(handleBack)="onCancel(true)">
+		<div actions>
+			<mcy-contextual-button sufixIcon="fechar" (click)="onCancel(true)">
+				{{'pages.transfers.thirdParty.amount.cancel' | translate}}
+			</mcy-contextual-button>
+		</div>
+		<div body class="new-third-party-transfer-amount__panel">
+			<form [formGroup]="amountForm" class="new-third-party-transfer-amount__inputs-container">
+				<mcy-primary-panel-layout>
+					<div body class="new-third-party-transfer-amount__body">
+						<mcy-stepper-guidelines
+							[previousGuideline]="true"
+							[nextGuideline]="true"
+							icon="consorcio_outline"
+							[selected]="amountForm.valid">
+						</mcy-stepper-guidelines>
+						<div class="new-third-party-transfer-amount__content">
+							<h3 class="new-third-party-transfer-amount__title">
+								{{ 'pages.transfers.thirdParty.amount.subtitle' | translate }}
+							</h3>
+							<div class="new-third-party-transfer-amount__amount-message">
+								<mcy-icon class="new-third-party-transfer-amount__amount-message-icon">
+									informacao_outline
+								</mcy-icon>
+								<span class="new-third-party-transfer-amount__amount-message-label">
+									{{ 'pages.transfers.thirdParty.amount.remember' | translate }}
+								</span>
+							</div>
+							<div class="new-third-party-transfer-amount__amount-container">
+								<div class="new-third-party-transfer-amount__currency-input">
+									<mcy-select
+										[data]="currenciesListOption"
+										(handleChange)="currencyChange()"
+										[id]="'new-third-party-transfer-amount__currency-select'"
+										[label]="'pages.transfers.thirdParty.amount.currency' | translate"
+										[required]="true"
+										formControlName="currencyCode">
+									</mcy-select>
+								</div>
+								<div class="new-third-party-transfer-amount__amount-input">
+									<mcy-amount-input
+										[required]="true"
+										[id]="'new-third-party-transfer-amount__amount-input'"
+										[validators]="balanceValidators"
+										[label]="'pages.transfers.thirdParty.amount.amountInput' | translate"
+										formControlName="amount">
+									</mcy-amount-input>
+								</div>
+							</div>
+							<div class="new-third-party-transfer-amount__input-container">
+								<mcy-select
+									class="new-third-party-transfer-amount__input"
+									[id]="'new-third-party-transfer-amount__concept-select'"
+									[data]="conceptsListOption"
+									(handleChange)="conceptChange()"
+									[label]="'pages.transfers.thirdParty.amount.concept' | translate"
+									[required]="true"
+									formControlName="conceptCode">
+								</mcy-select>
+							</div>
+							<div class="new-third-party-transfer-amount__input-container">
+								<mcy-input
+									[validators]="descriptionValidators"
+									[maxLength]="descriptionMaxlength"
+									[id]="'new-third-party-transfer-amount__description-input'"
+									[label]="'pages.transfers.thirdParty.amount.descriptionInput' | translate"
+									formControlName="description">
+								</mcy-input>
+							</div>
+						</div>
+					</div>
+
+					<div footer class="new-third-party-transfer-amount__footer">
+						<div class="new-third-party-transfer-amount__sworn-declaration-section">
+							<div *ngIf="amountForm.value.concept && amountForm.value.concept.swornDeclaration">
+								<span class="new-third-party-transfer-amount__concept-description">
+									{{ 'pages.transfers.thirdParty.amount.conceptDescription' | translate }}
+								</span>
+								<div class="new-third-party-transfer-amount__validate-checkbox">
+									<voxel-checkbox
+										[label]="'pages.transfers.thirdParty.amount.accept' | translate"
+										id="new-third-party-transfer-amount__validate-checkbox"
+										[checked]="amountForm.value.swornDeclaration"
+										(checkboxChange)="updateSwornDeclaration($event.checked)">
+									>
+									</voxel-checkbox>
+									<span
+										class="new-third-party-transfer-amount__sworn-declaration"
+										(click)="openSwornDeclaration()">
+										{{ 'pages.transfers.thirdParty.amount.swornDeclaration' | translate }}
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="new-third-party-transfer-amount__buttons-section">
+							<mcy-button
+								class="new-third-party-transfer-amount__button"
+								[id]="'new-third-party-transfer-amount__back-button'"
+								(handleClick)="back()"
+								[color]="'tertiary'">
+								{{ 'pages.transfers.thirdParty.amount.back' | translate }}
+							</mcy-button>
+							<mcy-button
+								class="new-third-party-transfer-amount__button"
+								[id]="'new-third-party-transfer-amount__next-button'"
+								(handleClick)="next()"
+								[disabled]="!amountForm.valid"
+								[color]="'primary'">
+								{{ 'pages.transfers.thirdParty.amount.next' | translate }}
+							</mcy-button>
+						</div>
+					</div>
+
+					<div description class="new-third-party-transfer-amount__description-section">
+						<div>
+							<span class="new-third-party-transfer-amount__required">* </span>
+							<span class="new-third-party-transfer-amount__required-text">{{ 'pages.transfers.thirdParty.amount.required' | translate }}</span>
+						</div>
+					</div>
+				</mcy-primary-panel-layout>
+			</form>
+		</div>
+	</mcy-primary-page-layout>
+</div>

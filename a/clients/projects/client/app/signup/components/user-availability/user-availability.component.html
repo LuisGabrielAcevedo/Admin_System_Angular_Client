@@ -1,0 +1,18 @@
+<div class="user-availability"
+	[ngClass]="{
+		'user-availability--available': isAvailable,
+		'user-availability--unavailable': !isAvailable
+	}"
+>
+	<span class="user-availability__title">
+		{{ 'components.password.availabilityTitle' | translate }}
+	</span>
+	<div class="user-availability__middle">
+		<span class="user-availability__level-text">
+			{{ (isAvailable ? 'components.password.available' : 'components.password.unavailable') | translate }}
+		</span>
+		<mcy-icon class="user-availability__icon">
+			{{ isAvailable ? 'check' : 'fechar' }}
+		</mcy-icon>
+	</div>
+</div>

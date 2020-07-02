@@ -1,0 +1,5 @@
+<mat-form-field appearance="fill" floatLabel="always">
+	<mat-label>Number</mat-label>
+	<input matInput [formControl]="range" type="number" [min]="min" [max]="max"/>
+	<mat-error *ngIf="range.invalid">{{setError()}}</mat-error>
+</mat-form-field>

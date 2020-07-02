@@ -1,0 +1,73 @@
+@import 'variablesNew';
+
+.badge-icon {
+	border-radius: $radius-circle;
+	display: flex;
+	height: 56px;
+	width: 56px;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+
+	&--common {
+		background-color: $background-color-primary;
+		color: $text-color-disabled;
+	}
+
+	&--success {
+		background-color: $background-color-check;
+		color: $text-color-high-contrast;
+	}
+
+	&--warning {
+		background-color: $background-color-cancel;
+		color: $text-color-high-contrast;
+	}
+
+	&--information {
+		background-color: $background-color-pending;
+		color: $text-color-high-contrast;
+	}
+
+	&--caution {
+		background-color: $background-color-badge-icon;
+		color: $text-color-high-contrast;
+	}
+
+	&--logo {
+		background-color: $background-color-partially;
+		color: $text-color-high-contrast;
+	}
+
+	&--service {
+		background-color: $background-color-badge-service;
+		color: $text-color-high-contrast;
+	}
+
+	&--selected {
+		background-color: $background-color-partially;
+		color: $text-color-high-contrast;
+		font-size: $font-size-L;
+	}
+
+	&--small {
+		height: 40px;
+		width: 40px;
+	}
+
+	&--medium {
+		height: 73px;
+		width: 73px;
+	}
+
+	&--large {
+		height: 86px;
+		width: 86px;
+	}
+
+	&--notification {
+		height: 33px;
+		width: 33px;
+		background-color: $white-four;
+	}
+}

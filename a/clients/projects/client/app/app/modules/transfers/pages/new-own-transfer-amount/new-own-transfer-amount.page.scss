@@ -1,0 +1,57 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.new-own-transfer-amount {
+	&__panel {
+		margin: 0 $spacing-XL 0;
+	}
+
+	&__button {
+		padding-left: $spacing-L;
+	}
+
+	&__description-footer {
+		padding-bottom: $spacing-M;
+	}
+
+	&__description-section {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		justify-content: space-between;
+		padding: 0 $spacing-M $spacing-L $spacing-M;
+	}
+
+	&__required {
+		color: $icon-color-brand;
+	}
+
+	&__required-text {
+		font-size: $font-size-M;
+	}
+
+	&__last-transfer-title {
+		font-size: $font-size-M;
+		line-height: 1.5;
+	}
+
+	&__last-transfer-section {
+		@include font-primary-regular();
+		background-color: $background-color-tertiary;
+		border-left: 6px solid $border-color-list;
+		line-height: 20px;
+		margin-top: $spacing-M;
+		padding: $spacing-XS;
+	}
+
+	&__last-transfer-amount {
+		font-size: $font-size-M;
+		&--bold {
+			@include font-primary-bold();
+		}
+	}
+
+	&__last-transfer-description {
+		font-size: $font-size-XXS;
+	}
+}

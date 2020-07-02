@@ -1,0 +1,28 @@
+@import 'variablesNew';
+
+.enable-checkbook {
+	padding: $spacing-XXL 0;
+	&__row {
+		display: flex;
+	}
+	&__text-row {
+		display: flex;
+		border-bottom: 1px solid $border-color-secondary;
+		padding-bottom: $spacing-S;
+		margin: $spacing-M 0;
+	}
+	&__footer {
+		display: flex;
+		justify-content: flex-end;
+	}
+	&__button {
+		margin-right: $spacing-XXS;
+	}
+	&__input {
+		flex: 1;
+	}
+	&__initial-number-input {
+		margin-right: $spacing-XS;
+		flex: 1;
+	}
+}

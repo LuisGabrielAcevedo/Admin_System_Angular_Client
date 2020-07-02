@@ -1,0 +1,25 @@
+<mat-toolbar class="header">
+	<div class="header__logo-container">
+		<mcy-logo></mcy-logo>
+	</div>
+	<div class="header__info">
+		<mcy-contextual-button
+			*ngIf="isLogged"
+			class="header__check-logs-button"
+			[id]="'header__check-logs-button'"
+			[prefixIcon]="'relogio_outline'"
+			(handleClick)="checkLogs()"
+		>
+			{{ 'components.header.checkLogs' | translate }}
+		</mcy-contextual-button>
+		<div class="header__profile">
+			<mcy-profile-image
+				*ngIf="isLogged"
+				[size]="'small'"
+				class="header__profile-image"
+				[name]="sesionState.username"
+				(click)="logout()"
+			></mcy-profile-image>
+		</div>
+	</div>
+</mat-toolbar>

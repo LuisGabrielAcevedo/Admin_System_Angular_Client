@@ -1,0 +1,77 @@
+@import 'variables';
+@import 'mixins';
+
+$outer-circle-size: 74px;
+$inner-circle-size: 64px;
+
+.new-contact-box {
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+	border: 1px solid $border-color-disabled;
+	border-radius: $radius-XS;
+	align-items: center;
+
+	&__top {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+		padding: $spacing-M $spacing-L;
+		background-color: $background-color-disabled;
+	}
+
+	&__add-inner-circle {
+		display: flex;
+		width: $inner-circle-size;
+		height: $inner-circle-size;
+		border-radius: 50%;
+		background-color: $background-color-disabled;
+		border: 1px solid $border-color-septenary;
+		color: $border-color-septenary;
+		justify-content: center;
+		align-items: center;
+		font-size: 40px;
+	}
+
+	&__add-icon {
+		width: 40px;
+		height: 40px;
+	}
+
+	&__add-outer-circle {
+		display: flex;
+		width: $outer-circle-size;
+		height: $outer-circle-size;
+		border-radius: 50%;
+		background-color: $background-color-primary;
+		align-self: center;
+		margin-top: -38px;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__bottom {
+		padding: $spacing-M $spacing-L $spacing-L $spacing-M;
+
+		.button {
+			width: 100% !important;
+		}
+	}
+
+	&__name {
+		@include font-primary-bold();
+		color: $text-color-primary;
+	}
+
+	&__instructions {
+		@include font-primary-regular();
+		color: $text-color-primary;
+		line-height: normal;
+	}
+
+	&__info {
+		@include font-primary-regular();
+		color: $text-color-primary;
+		line-height: normal;
+	}
+}

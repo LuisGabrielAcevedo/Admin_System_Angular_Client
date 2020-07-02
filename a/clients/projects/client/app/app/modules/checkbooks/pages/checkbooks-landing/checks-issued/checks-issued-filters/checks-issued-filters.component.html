@@ -1,0 +1,49 @@
+<div class="checks-issued-filters">
+	<form [formGroup]="filterForm">
+		<div class="checks-issued-filters__row">
+			<div class="checks-issued-filters__search">
+				<mcy-input
+					[id]="'checks-issued-filters__search'"
+					type="text"
+					(handleChange)="filtersEmit()"
+					[label]="'pages.checkbooks.checksIssued.filters.searchFieldLabel' | translate"
+					[maxLength]="searchFieldLength"
+					icon="busca_outline"
+					formControlName="searchField">
+				</mcy-input>
+			</div>
+			<div class="checks-issued-filters__states">
+				<mcy-select
+					[id]="'payments-filters__categories'"
+					[data]="statesOptions"
+					multiple= "true"
+					(handleChange)="filtersEmit()"
+					[label]="'pages.checkbooks.checksIssued.filters.stateFieldLabel' | translate"
+					formControlName="stateField">
+				</mcy-select>
+			</div>
+			<div class="checks-issued-filters__start-date">
+				<mcy-date
+					[id]="'checks-issued-filters__start-date'"
+					[label]="'pages.checkbooks.checksIssued.filters.startFieldLabel' | translate"
+					icon="calendario_outline"
+					(handleChange)="filtersEmit()"
+					formControlName="startDate"
+					[minDate]="minDate"
+					[maxDate]="executionDateFromMax"
+				></mcy-date>
+			</div>
+			<div class="checks-issued-filters__end-date">
+				<mcy-date
+					[id]="'checks-issued-filters__end-date'"
+					[label]="'pages.checkbooks.checksIssued.filters.endFieldLabel' | translate"
+					icon="calendario_outline"
+					(handleChange)="filtersEmit()"
+					formControlName="endDate"
+					[maxDate]="executionDateToMax"
+					[minDate]="executionDateToMin"
+				></mcy-date>
+			</div>
+		</div>
+	</form>
+</div>

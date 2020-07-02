@@ -1,0 +1,12 @@
+<div class="mcy-account">
+	<div class="mcy-account__info">
+		<span class="mcy-account__number">{{data.type}} {{data.number | mcyAccountNumber}}</span>
+		<span class="mcy-account__amount">{{data.currency.symbol}} {{data.balance | mcyAmount}}</span>
+	</div>
+	<div class="mcy-account__alias">
+		<span class="mcy-account__alias-label">{{
+			'pages.accounts.accountDetail.alias' | translate
+		}}</span>
+		<span class="mcy-account__alias-value">{{data.alias}}</span>
+	</div>
+</div>

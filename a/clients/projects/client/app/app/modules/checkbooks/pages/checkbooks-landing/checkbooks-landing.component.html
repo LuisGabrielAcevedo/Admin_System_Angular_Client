@@ -1,0 +1,41 @@
+<mcy-primary-page-layout [title]="'pages.checkbooks.landing.title' | translate">
+	<div body class="checkbooks-landing">
+		<mat-tab-group [(selectedIndex)]="checkState.tabSelected">
+			<mat-tab
+				[label]="'pages.checkbooks.landing.checksIssued' | translate">
+				<div class="checkbooks-landing__loading-accounts">
+					<voxel-loading-circle [showLoading]="accountsState.loading" size="large"></voxel-loading-circle>
+				</div>
+				<mcy-loading-data-error
+				*ngIf="accountsState.hasErrorAccounts"
+					[displayRetry]="true"
+					(handleOnRetry)="loadAccounts()">
+				</mcy-loading-data-error>
+				<mcy-checks-issued [accountList]="accountList" *ngIf="!accountsState.loading && !accountsState.hasErrorAccounts"></mcy-checks-issued>
+			</mat-tab>
+
+			<mat-tab
+				[label]="'pages.checkbooks.landing.checksReceived' | translate">
+				<div class="checkbooks-landing__loading-accounts">
+					<voxel-loading-circle [showLoading]="accountsState.loading" size="large"></voxel-loading-circle>
+				</div>
+				<mcy-loading-data-error
+				*ngIf="accountsState.hasErrorAccounts"
+					[displayRetry]="true"
+					(handleOnRetry)="loadAccounts()">
+				</mcy-loading-data-error>
+				<mcy-checks-received [accountList]="accountList" *ngIf="!accountsState.loading && !accountsState.hasErrorAccounts"></mcy-checks-received>
+			</mat-tab>
+
+			<mat-tab
+				[label]="'pages.checkbooks.landing.checksDiscounted' | translate">
+				<mcy-checks-discounted></mcy-checks-discounted>
+			</mat-tab>
+
+			<mat-tab
+				[label]="'pages.checkbooks.landing.checkbooks' | translate">
+				<mcy-checkbooks></mcy-checkbooks>
+			</mat-tab>
+		</mat-tab-group>
+	</div>
+</mcy-primary-page-layout>

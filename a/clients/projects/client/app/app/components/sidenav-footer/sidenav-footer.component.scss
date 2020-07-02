@@ -1,0 +1,13 @@
+@import 'variables';
+
+.right-sidenav-footer {
+	position: fixed;
+	height: auto;
+	min-height: 80px;
+	padding: $spacing-XL;
+	// TODO, Define later
+	width: 600px;
+	right: 0;
+	bottom: 0;
+	background-color: $background-color-quinary;
+}

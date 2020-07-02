@@ -1,0 +1,107 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.login-page {
+	flex-direction: column;
+	height: 100%;
+	justify-content: space-between;
+	margin: auto;
+	padding: 0 $spacing-XXL $spacing-XXL $spacing-XXL;
+	width: 600px;
+    display: flex;
+
+	&__title {
+		@include font-primary-regular();
+		font-size: $font-size-L;
+	}
+
+	&__image-container {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		justify-content: center;
+	}
+
+	&__header-divider {
+		margin: $spacing-S 0;
+	}
+
+	&__container {
+		display: flex;
+		flex: 1;
+	}
+
+	&__footer {
+		width: 100%;
+	}
+
+	&__horizontal-list {
+		align-items: center;
+		background-color: $background-color-footer;
+		display: flex;
+		flex-wrap: wrap;
+		height: 56px;
+		justify-content: flex-start;
+		list-style-type: none;
+		margin: 0;
+	}
+
+	&__horizontal-list-element {
+		color: $text-color-tertiary;
+		margin: 0 $spacing-XXL 0 0;
+	}
+
+	&__form {
+		margin: 0 auto;
+		width: 80%;
+	}
+
+	&__user-input {
+		margin: $spacing-S 0;
+	}
+
+	&__password-input {
+		margin: 0 0 $spacing-XXL 0;
+	}
+
+	&__form-actions {
+		padding: 0 0 0 $spacing-XS;
+		margin-bottom: $spacing-S;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: row-reverse;
+		align-items: center;
+	}
+
+	&__register {
+		border: 1px solid $border-color-primary;
+		border-radius: $radius-XS;
+		padding: $spacing-M;
+	}
+
+	&__register-title {
+		@include font-primary-bold();
+		color: $text-color-hyperlink;
+		margin: 0;
+		font-size: $font-size-XL;
+	}
+
+	&__register-description {
+		@include font-primary-light();
+		color: $text-color-tertiary;
+		display: block;
+		font-size: $font-size-M;
+		margin: $spacing-XS 0 $spacing-S 0;
+	}
+
+	&__loading-container {
+		display: flex;
+		flex: 1;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+
+

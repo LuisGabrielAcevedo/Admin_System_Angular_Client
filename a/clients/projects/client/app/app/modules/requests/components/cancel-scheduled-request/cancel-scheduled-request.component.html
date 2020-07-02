@@ -1,0 +1,32 @@
+
+<mcy-modal-content
+	[title]="'pages.requests.cancelScheduledRequest.title' | translate"
+	[cancel]="'pages.requests.cancelScheduledRequest.back' | translate"
+	[confirmation]="'pages.requests.cancelScheduledRequest.cancelPay' | translate"
+	(handleCancel)="onCancel()"
+	(handleClose)="onClose()"
+	(handleConfirmation)="onConfirm()">
+	<div class="cancel-scheduled-request">
+		<span class="cancel-scheduled-request__main-title">{{'pages.requests.cancelScheduledRequest.selectedUser' | translate}}</span>
+		<div class="cancel-scheduled-request__row">
+			<div class="cancel-scheduled-request__column">
+				<span class="cancel-scheduled-request__title">{{'pages.requests.cancelScheduledRequest.name' | translate}}</span>
+				<span  class="cancel-scheduled-request__text">{{data.request.detail}}</span>
+			</div>
+			<div class="cancel-scheduled-request__column">
+				<span class="cancel-scheduled-request__title">
+					{{'pages.requests.cancelScheduledRequest.amount' | translate}}
+				</span>
+				<span  class="cancel-scheduled-request__text">{{data.request.amount | mcyAmount}}</span>
+			</div>
+			<div class="cancel-scheduled-request__column">
+				<span class="cancel-scheduled-request__title">
+					{{'pages.requests.cancelScheduledRequest.date' | translate}}
+				</span>
+				<span  class="cancel-scheduled-request__text">
+					{{ this.data.request.scheduledDate ? formatDate(data.request.scheduledDate) : ''}}
+				</span>
+			</div>
+		</div>
+	</div>
+</mcy-modal-content>

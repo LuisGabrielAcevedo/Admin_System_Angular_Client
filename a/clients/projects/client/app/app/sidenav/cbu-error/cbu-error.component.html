@@ -1,0 +1,14 @@
+<div div class="cbvu-error">
+	<div class="cbvu-error__content">
+		<mcy-sidenav-feedback
+			[message]="message" 
+			[status]="status">
+		</mcy-sidenav-feedback>
+		<p>{{'sidenav.payments.cbvuErrorMessage' | translate }}</p>
+		<p>{{'sidenav.payments.checkTheDataEntered' | translate }}</p>
+	</div>
+	<mcy-button
+		(handleClick)="close()">
+		{{'common.checkCbvu' | translate }}
+	</mcy-button>
+</div>

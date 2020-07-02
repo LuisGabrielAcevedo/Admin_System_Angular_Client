@@ -1,0 +1,10 @@
+<a 
+	class="link"
+	(click)="onClick()"
+	id="{{ id }}" 
+	[ngClass]="{
+		'link--big': size === 'big'
+	}"
+>
+	<ng-content></ng-content>
+</a>

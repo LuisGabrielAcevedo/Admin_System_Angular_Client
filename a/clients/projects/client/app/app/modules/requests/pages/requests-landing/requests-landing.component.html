@@ -1,0 +1,51 @@
+<div body class="requests-landing">
+	<mcy-primary-page-layout
+		[title]="'pages.requests.landing.requests' | translate">
+		<div body>
+			<div class="requests-landing__box-title">
+				<div class="requests-landing__box-sub-title">
+					<div>
+						<span class="requests-landing__total-services-soon-expired">
+							{{ totalRequest }}
+						</span>
+						<span class="requests-landing__title">
+							{{ 'pages.requests.landing.totalRequest' | translate }}
+						</span>
+					</div>
+					<mcy-slide-toggle
+						[title]="'pages.requests.landing.myResquests' | translate"
+						[checked]="defaultFilters.myRequests"
+						(handleChange)="onMyRequestsToggle($event)">
+					</mcy-slide-toggle>
+				</div>
+				<div>
+					<span class="requests-landing__sub-title">
+						{{ 'pages.requests.landing.subtitleRequest' | translate }}
+					</span>
+				</div>
+			</div>
+			<mcy-requests-filters
+				[statesToShow]="statesToShow"
+				[defaultFilters]="defaultFilters"
+				(sendFilters)="filterRequests($event)">
+			</mcy-requests-filters>
+			<mcy-requests-list
+				[selectedRequests]="selectedRequests"
+				(resetSelection)="resetSelection()"
+				(selectRequest)="select($event)"
+				[requests]="paginatedRequestList"
+				(actionRedirect)="goTo($event)"
+				[loading]="loading">
+			</mcy-requests-list>
+			<div class="requests-landing__more-button-container">
+				<mcy-contextual-button
+					[id]="'requests-landing__more-button'"
+					sufixIcon="seta_baixo"
+					(handleClick)="changePagination()"
+					*ngIf="filteredRequest.length > paginatedRequestList.length">
+					{{'pages.requests.requestsList.more' | translate}}
+				</mcy-contextual-button>
+			</div>
+		</div>
+	</mcy-primary-page-layout>
+</div>

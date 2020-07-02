@@ -1,0 +1,63 @@
+<div class="find-contact-form">
+	<form [formGroup]="searchForm" class="">
+		<mat-radio-group
+			aria-labelledby="'components.findContactForm.arialabelRadioGroup' | translate"
+			(change)="onOptionChange()"
+			formControlName="searchBy"
+		>
+			<mat-radio-button
+				[value]="'cbvu'"
+				class="find-contact-form__search-option"
+				[id]="'find-contact__cbvu-radio-button'">
+				<span>
+					{{ 'components.findContactForm.searchParameters.cbvuOption' | translate }}
+				</span>
+				<span class="find-contact-form__required-symbol">
+					*
+				</span>
+			</mat-radio-button>
+			<mcy-input
+				mcyOnlyNumbers
+				type="text"
+				[maxLength]="cbvuMaxLength"
+				[id]="'find-contact__cbvu-input'"
+				[label]="'components.findContactForm.cbvuLabel' | translate"
+				[validators]="cbvuValidators"
+				(handleChange)="onChange()"
+				formControlName="cbvu"
+				[id]="'find-contact-form__cbu-input'"
+				[validatorMessage]="{ pattern: 'components.findContactForm.cbvuError' | translate }"
+			>
+				<span hint *ngIf="cbvuMissingCharacters > 0">
+					{{'common.missingCharacters' | translate:{ characters: cbvuMissingCharacters } }}
+				</span>
+				<span hint *ngIf="isFormValid && cbvuMissingCharacters === 0">
+					{{'common.youCanContinue' | translate }}
+				</span>
+			</mcy-input>
+			<mat-radio-button
+				[value]="'alias'"
+				class="find-contact-form__search-option"
+				id="find-contact__alias-radio-button"
+			>
+				<span>
+					{{ 'components.findContactForm.searchParameters.aliasOption' | translate }}
+				</span>
+				<span class="find-contact-form__required-symbol">
+					*
+				</span>
+			</mat-radio-button>
+			<mcy-input
+				mcyAlias
+				type="text"
+				[id]="'find-contact-form__alias-input'"
+				[validators]="aliasValidators"
+				[label]="'components.findContactForm.aliasLabel' | translate"
+				(handleChange)="onChange()"
+				[maxLength]="aliasMaxLength"
+				formControlName="alias"
+			>
+			</mcy-input>
+		</mat-radio-group>
+	</form>
+</div>

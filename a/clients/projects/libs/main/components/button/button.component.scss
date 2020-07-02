@@ -1,0 +1,73 @@
+@import 'variablesNew';
+@import 'mixins';
+
+.button {
+	@include font-primary-bold();
+	font-size: 16px;
+	letter-spacing: normal;
+	height: 48px;
+	padding: 0 $spacing-M;
+
+	&__size--big {
+		padding: 0 40px;
+	}
+
+	&__primary {
+		color: $text-color-high-contrast !important;
+		background-color: $button-color-background-primary !important;
+
+		&:hover {
+			background-color: $button-color-background-primary-hover !important;
+		}
+
+		&[disabled] {
+			color: $text-color-disabled-button !important;
+			background-color: $button-color-background-primary-disabled !important;
+		}
+	}
+
+	&__primary2 {
+		color: $text-color-high-contrast !important;
+		background-color: $button-color-background-primary2 !important;
+		border: 1px solid $button-color-border-primary2;
+
+		&:hover {
+			background-color: $button-color-background-primary2-hover !important;
+		}
+
+		&[disabled] {
+			color: $text-color-disabled-button !important;
+			background-color: $button-color-background-primary-disabled !important;
+			border-color: $border-color-secondary;
+
+		}
+	}
+
+	&__secondary {
+		border: 1px solid $button-color-border-secondary;
+		color: $text-color-link-light !important;
+		background-color: $button-color-background-secondary !important;
+
+		&:hover {
+			background-color: $button-color-background-secondary-hover !important;
+		}
+
+		&[disabled] {
+			color: $text-color-disabled !important;
+			background-color: $button-color-background-secondary-disabled !important;
+			border-color: $border-color-secondary;
+		}
+	}
+
+	&__tertiary {
+		color: $text-color-link-light !important;
+
+		&:hover {
+			color: $text-color-link-hover !important;
+		}
+
+		&[disabled] {
+			color: $text-color-disabled !important;
+		}
+	}
+}
