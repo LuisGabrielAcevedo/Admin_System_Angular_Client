@@ -1,1 +1,0 @@
-export type ISoftTokenActionType = 'salaryPayment' | 'providerPayment' | 'servicePayment' | 'thirdPartyTransfer' | 'softTokenRegistration' | 'requestSign' | 'requestReject' | 'cancelScheduledRequest' | 'userDetailsUpdate' | 'enableCheckbook' | 'requestCheckbook';

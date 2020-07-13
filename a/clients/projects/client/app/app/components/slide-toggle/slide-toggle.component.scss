@@ -1,8 +1,0 @@
-@import 'variablesNew';
-@import 'mixins';
-
-.mcy-slide-toggle {
-	@include font-primary-regular();
-	display: flex;
-	flex-direction: row-reverse;
-}
